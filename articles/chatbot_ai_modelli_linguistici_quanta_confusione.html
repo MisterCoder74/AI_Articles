@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot, AI, Modelli linguistici: quanta confusione! | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Chatbot, AI, Modelli linguistici: quanta confusione!</h1>
+        <p>Chatbot, LLM e reti neurali: un dizionario critico per orientarsi nel caos terminologico dell'intelligenza artificiale conversazionale.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Giugno 2023 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="/blog/coverimgs/chatbotai.jpg" alt="Chatbot, AI, Modelli linguistici: quanta confusione!" class="cover-image">
+<h2>I. Il Problema della Confusione Terminologica</h2>
+
+<p>Viviamo in un'epoca in cui termini come <strong>intelligenza artificiale</strong>, <strong>chatbot</strong> e <strong>modelli linguistici</strong> vengono usati quasi come sinonimi, anche da chi dovrebbe saperne di più. Questa imprecisione non è solo un vezzo linguistico: genera aspettative distorte, decisioni aziendali sbagliate e una percezione pubblica della tecnologia che oscilla tra l'entusiasmo acritico e il timore irrazionale. È tempo di fare ordine.</p>
+
+<p>Un <strong>chatbot</strong> è, nella sua forma più elementare, un'applicazione software che riceve un input da un utente — tipicamente testo — lo elabora e restituisce un output pertinente. Fin qui, nulla di magico. La complessità — e la confusione — nasce da <em>come</em> avviene quell'elaborazione nel mezzo, e da quali tecnologie vengono impiegate per renderla possibile.</p>
+
+<div class="highlight-box"><p>⚠️ <strong>Attenzione:</strong> "Chatbot", "AI" e "Modello Linguistico" non sono sinonimi. Sono livelli distinti di una stessa architettura tecnologica: confonderli significa non capire né i limiti né le potenzialità degli strumenti che si usano ogni giorno.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Anatomia di un Chatbot: Dal Form HTML al Modello Linguistico</h2>
+
+<p>Per comprendere come funziona un chatbot moderno, è utile scomporlo nelle sue fasi operative fondamentali. Il processo inizia con la <strong>raccolta dell'input</strong> — spesso attraverso una semplice interfaccia web — e prosegue con una fase di elaborazione che è il vero cuore del sistema: il <strong>modello linguistico</strong>.</p>
+
+<p>È proprio qui che si annida la maggior parte degli equivoci. Il modello linguistico non è "l'AI" in senso assoluto: è il meccanismo computazionale che permette al chatbot di interpretare il linguaggio naturale e formulare una risposta coerente. Esistono famiglie molto diverse di questi modelli, con capacità, costi e limiti radicalmente differenti.</p>
+
+<h3>Le tre famiglie classiche di modelli linguistici</h3>
+
+<ul>
+  <li><strong>Modello basato su regole:</strong> opera su un insieme predefinito di coppie domanda/risposta. Rigido, prevedibile, ma limitato — incapace di gestire input non previsti. È la tecnologia alla base di molti sistemi di riconoscimento vocale per comandi applicativi.</li>
+  <li><strong>Modello basato su Machine Learning:</strong> apprende dalle conversazioni, assegna "pesi" alle componenti linguistiche e migliora nel tempo. Molto più flessibile, ma richiede un processo di addestramento accurato e una costante supervisione degli errori.</li>
+  <li><strong>Modello ibrido:</strong> combina regole predefinite e apprendimento automatico, cercando di bilanciare la prevedibilità del primo con l'adattabilità del secondo. Spesso la scelta più pragmatica in contesti aziendali.</li>
+</ul>
+
+<div class="quote">"Definire 'algoritmo di AI' qualsiasi sistema di elaborazione del linguaggio è come chiamare 'motore' qualsiasi cosa che si muova. Tecnicamente non sbagliato, ma pericolosamente impreciso."</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Il Salto Qualitativo: Reti Neurali e Deep Learning</h2>
+
+<p>La vera rivoluzione — quella che ha portato strumenti come <em>ChatGPT</em> o il nostro <em>VivacityGPT</em> nell'uso quotidiano — è avvenuta con l'affermarsi dei <strong>modelli a rete neurale</strong>, e in particolare dei cosiddetti <strong>Large Language Models (LLM)</strong>.</p>
+
+<p>Un <strong>modello a rete neurale</strong> elabora il linguaggio attraverso strati sovrapposti di componenti computazionali interconnessi. Ad ogni passaggio, l'input viene trasformato in una <strong>rappresentazione numerica</strong> — un vettore matematico che codifica il "significato" delle parole nel contesto della frase. È per questo che questi modelli vengono spesso chiamati anche <em>trasformativi</em>: non si limitano a riconoscere pattern, ma trasformano attivamente la rappresentazione dell'informazione ad ogni livello della rete.</p>
+
+<h3>Apprendimento supervisionato e non supervisionato</h3>
+
+<p>Un aspetto spesso trascurato riguarda <em>come</em> questi modelli vengono addestrati. L'<strong>apprendimento supervisionato</strong> prevede l'uso di dati etichettati e — crucialmente — di revisori umani che valutano la coerenza e la qualità degli output. L'<strong>apprendimento non supervisionato</strong>, invece, lascia che il modello estragga autonomamente strutture e relazioni dai dati. Nella pratica dei grandi LLM, le due modalità si combinano in pipeline sofisticate che includono sia controllo algoritmico che intervento umano diretto.</p>
+
+<ul>
+  <li><strong>ChatGPT 3.5:</strong> modello a rete neurale di tipo <em>trasformativo</em>, basato sull'architettura <em>GPT</em> sviluppata da <em>OpenAI</em>. Capacità generativa avanzata, ampio contesto conversazionale.</li>
+  <li><strong>DaVinci:</strong> modello linguistico basato su <strong>Deep Learning</strong> classico — un approccio che privilegia la profondità degli strati neurali per la comprensione semantica — nella sua versione più matura tra quelle della famiglia <em>GPT-3</em>.</li>
+  <li><strong>VivacityGPT:</strong> il modello conversazionale sviluppato internamente da <em>Vivacity Design AI Division</em>, pensato per integrarsi in contesti aziendali italiani con attenzione alla precisione terminologica e alla conformità dei contenuti.</li>
+</ul>
+
+<div class="highlight-box"><p>💡 <strong>Punto chiave:</strong> La differenza tra un chatbot basato su regole e un LLM come <em>ChatGPT</em> non è di grado, è di natura. Il primo esegue, il secondo — in un certo senso — interpreta. Questa distinzione ha implicazioni enormi su affidabilità, allucinazioni, costi e governance dei sistemi AI.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Perché la Precisione Terminologica è una Questione Strategica</h2>
+
+<p>Potrebbe sembrare un esercizio accademico distinguere con cura tra <strong>chatbot</strong>, <strong>LLM</strong>, <strong>deep learning</strong> e <strong>reti neurali</strong>. Non lo è. Chi adotta strumenti AI in azienda senza comprendere le differenze architetturali rischia di scegliere la tecnologia sbagliata per il problema sbagliato — con conseguenze che vanno dall'inefficienza operativa fino a seri problemi di conformità e sicurezza dei dati.</p>
+
+<p>Il mercato dell'AI conversazionale è oggi popolato da soluzioni radicalmente diverse per capacità, costo e adeguatezza ai casi d'uso. Un sistema a regole può essere perfetto per un helpdesk con FAQ strutturate; un LLM è necessario per interazioni complesse e sfumate. Confondere i due — o peggio, scegliere il più costoso pensando che sia automaticamente il migliore — è un errore che si paga caro.</p>
+
+<div class="quote">"Nel giornalismo tecnologico come nella consulenza aziendale, la chiarezza terminologica non è un lusso: è la condizione minima per prendere decisioni informate in un settore che cambia ogni sei mesi."</div>
+
+<p>Il nostro impegno con la rubrica <em>Pillole di AI</em> è esattamente questo: restituire complessità senza generare ulteriore confusione. Perché capire davvero come funziona uno strumento è il primo passo per usarlo bene — e per sapere quando <em>non</em> usarlo.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Giugno 2023</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

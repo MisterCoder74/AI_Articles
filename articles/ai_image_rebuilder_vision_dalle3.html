@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Rebuilder: Generare Varianti di Immagini con Vision e DALL-E 3 | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        pre { background: rgba(0,0,0,0.5); border: 1px solid rgba(16,185,129,0.25); border-radius: 12px; padding: 1.5rem; overflow-x: auto; margin: 1.5rem 0; font-size: 0.82rem; line-height: 1.6; }
+        pre code { font-family: var(--font-mono); color: #a8ffce; background: none; padding: 0; }
+        code { font-family: var(--font-mono); font-size: 0.85em; background: rgba(16,185,129,0.12); color: var(--accent-green); padding: 0.15em 0.4em; border-radius: 4px; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>AI Image Rebuilder: Generare Varianti di Immagini con Vision e DALL-E 3</h1>
+        <p>Come combinare GPT-4o-mini Vision e DALL-E 3 in un'unica web app Vanilla JS per analizzare un'immagine e rigenerarla automaticamente.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Ottobre 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Progetto: un Workflow Multimodale in Due Atti</h2>
+
+<p>Quando ho iniziato a esplorare le possibilità combinate dei modelli <strong>multimodali</strong> di OpenAI, mi sono reso conto che il vero potenziale non stava nel singolo modello, ma nell'orchestrazione di più intelligenze in sequenza. <em>AI Image Rebuilder</em> è esattamente questo: una web app che prende un'immagine caricata dall'utente, la fa "leggere" a <em>GPT-4o-mini</em> tramite le sue capacità Vision, e poi passa la descrizione testuale a <em>DALL-E 3</em> per generare una variante visiva completamente nuova.</p>
+
+<p>Il workflow è volutamente <strong>sequenziale e utente-attivato</strong>: Upload → Analisi Vision → Generazione immagine. Tre step distinti, tre momenti di controllo. Non c'è automazione cieca: l'utente vede la descrizione prodotta dal modello Vision prima che questa diventi il prompt per la generazione. È una scelta progettuale importante, perché permette di intercettare errori o descrizioni imprecise prima di sprecare una chiamata a <em>DALL-E 3</em>.</p>
+
+<p>Lo stack tecnico è deliberatamente minimalista: <em>HTML5</em>, <em>CSS3</em> con <strong>Flexbox</strong> e <strong>backdrop-filter</strong>, <em>jQuery</em> per il solo upload AJAX, e <em>Vanilla JS</em> puro per tutte le chiamate API. Una scelta che riflette un principio che condivido: usare il minimo necessario, senza framework pesanti quando non servono.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Struttura HTML e Interfaccia Visiva</h2>
+
+<h3>Il layout a due pannelli</h3>
+
+<p>L'interfaccia è costruita attorno a un concetto semplice: mostrare l'originale e il risultato affiancati, così da rendere immediato il confronto visivo. Due <strong>image-box</strong> di uguale dimensione, separate ma simmetriche, ciascuna con bordi arrotondati e un sottile effetto <strong>glassmorphism</strong> ottenuto con <code>backdrop-filter: blur(2px)</code>.</p>
+
+<pre><code class="language-html">&lt;div class="container"&gt;
+    &lt;div class="image-box" id="original-image"&gt;
+        &lt;img id="uploaded-image" src="" alt="Uploaded Image" style="max-width:90%;display:none;"&gt;
+    &lt;/div&gt;
+    &lt;div class="image-box" id="generated-image"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="text-box"&gt;
+    &lt;b&gt;Your Image analysis will appear here...&lt;/b&gt;
+    &lt;p id="image-analysis-output"&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="commands"&gt;
+    &lt;button type="button" onclick="generateImage();"&gt; Rebuild the image&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Noto con piacere la coerenza stilistica: il <strong>text-box</strong> che conterrà l'analisi Vision occupa il 60% della larghezza e si posiziona tra le due box immagine e i controlli di generazione. È una UI narrativa: prima vedi l'immagine, poi leggi cosa ne pensa l'AI, poi ordini la rigenerazione.</p>
+
+<div class="highlight-box"><p><strong>Design insight:</strong> posizionare la descrizione testuale dell'AI tra l'upload e il tasto "Rebuild" non è casuale. Trasforma il testo in un elemento interattivo del flusso, non un semplice log. L'utente legge, valuta, e solo allora procede. È trasparenza algoritmica incorporata nel layout.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Upload e Anteprima con jQuery AJAX</h2>
+
+<h3>FormData e feedback immediato</h3>
+
+<p>L'upload è l'unico punto del progetto dove entra in gioco <em>jQuery</em>. La scelta è pragmatica: gestire un <strong>FormData</strong> multipart con AJAX richiede poche righe con jQuery, mentre in Vanilla JS puro aggiungerebbe verbosità non necessaria. Il file viene inviato a <code>vupload.php</code> sul server, e in caso di successo l'anteprima viene mostrata immediatamente usando <strong>URL.createObjectURL</strong> — nessun round-trip al server per visualizzare l'immagine caricata.</p>
+
+<pre><code class="language-javascript">$(document).ready(function () {
+    $('#vuploadBtn').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'vupload.php', type: 'POST',
+            data: new FormData($('form')[0]),
+            processData: false, contentType: false,
+            success: function (response) {
+                const data = JSON.parse(response);
+                if (data.status === "success") {
+                    $('#vfeedback').html("Your file was uploaded.");
+                    var file = document.getElementById('vfile-input').files[0];
+                    if (file) {
+                        $('#uploaded-image').attr('src', URL.createObjectURL(file)).show();
+                    }
+                    $('#voperations button[type="button"]').attr('onclick', `submitImage("${data.url}");`);
+                }
+            }
+        });
+    });
+});</code></pre>
+
+<p>Un dettaglio elegante: al completamento dell'upload, il bottone "Analyze the image" viene aggiornato dinamicamente con il suo <strong>onclick handler</strong> che include l'URL del file appena caricato. È un modo per passare il contesto senza variabili globali aggiuntive — soluzione semplice, ma efficace per un prototipo.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Vision e Memoria Contestuale: GPT-4o-mini Vede</h2>
+
+<h3>La chiamata multimodale</h3>
+
+<p>Qui sta il cuore tecnico del progetto. La chiamata a <em>GPT-4o-mini</em> non invia solo testo: il campo <strong>content</strong> del messaggio utente è un array che combina un oggetto di tipo <code>text</code> e uno di tipo <code>image_url</code>. Il modello riceve simultaneamente l'istruzione e l'immagine da analizzare. È la struttura che abilita le capacità <strong>Vision</strong> dell'API.</p>
+
+<pre><code class="language-javascript">body: JSON.stringify({
+    model: "gpt-4o-mini",
+    messages: [
+        ...chatMemory.map((item) => ({ ...item })),
+        { role: "user", content: [
+            { type: "text", text: "Provide a detailed description of the image content. Don't thank, greet or propose the user to ask further questions, only provide the image description." },
+            { type: "image_url", image_url: { url: fileUrl } }
+        ]}
+    ],
+    max_tokens: 450
+})</code></pre>
+
+<p>La scelta di <em>GPT-4o-mini</em> invece di <em>GPT-4o</em> per la Vision è economicamente razionale: per generare una descrizione testuale di un'immagine, la versione mini offre qualità più che sufficiente a un costo significativamente inferiore. Il <strong>sistema di memoria</strong> <code>chatMemory</code> è mutuato dal pattern di <em>VivacityGPT</em>: mantiene il contesto tra le chiamate, aggiungendo sia l'URL dell'immagine che la risposta del modello come coppie <code>user/assistant</code>.</p>
+
+<p>Un'attenzione che apprezzo: la risposta viene ripulita dai marcatori <strong>Markdown bold</strong> con una regex prima di essere visualizzata nel DOM. Piccolo dettaglio, ma evita che l'utente veda asterischi nell'output.</p>
+
+<div class="quote">La vera sfida del workflow multimodale non è tecnica, è epistemica: stiamo usando la descrizione che un modello fa di un'immagine come prompt per un altro modello che ne creerà una nuova. Il risultato non è una copia — è l'interpretazione di un'interpretazione. Ogni passaggio introduce una trasformazione semantica. È distillazione visiva attraverso il linguaggio.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. DALL-E 3 Genera: Dal Testo alla Nuova Immagine</h2>
+
+<h3>La chiamata di generazione e il download</h3>
+
+<p>L'ultima fase del workflow legge il testo prodotto da Vision direttamente dal <strong>DOM</strong> — <code>document.getElementById("image-analysis-output").textContent</code> — e lo usa come prompt per <em>DALL-E 3</em>. La generazione avviene a <strong>1024×1024 pixel</strong>, l'unica dimensione quadrata disponibile per questo modello. Il risultato viene iniettato dinamicamente nella seconda image-box, accompagnato da un link di download che si apre in nuova scheda.</p>
+
+<pre><code class="language-javascript">async function generateImage() {
+    const apikey = localStorage.getItem("openaikey");
+    const prompt = document.getElementById("image-analysis-output").textContent;
+    const response = await fetch("https://api.openai.com/v1/images/generations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + apikey },
+        body: JSON.stringify({
+            model: "dall-e-3",
+            prompt: prompt,
+            n: 1,
+            size: "1024x1024"
+        })
+    });
+    const data = await response.json();
+    const imageUrl = data.data[0].url;
+    const image = document.createElement("img");
+    image.src = imageUrl;
+    const downloadLink = document.createElement("a");
+    downloadLink.href = imageUrl;
+    downloadLink.target = "_blank";
+    downloadLink.textContent = "Download Image";
+    chatContainer.appendChild(image);
+    chatContainer.appendChild(document.createElement("br"));
+    chatContainer.appendChild(downloadLink);
+}</code></pre>
+
+<h3>Sicurezza dell'API Key e considerazioni per la produzione</h3>
+
+<p>L'<strong>API key</strong> viene recuperata da <code>localStorage.getItem("openaikey")</code>. Questa strategia è perfetta per prototipi e demo personali — non espone la chiave nel codice sorgente né in un repository — ma non è adatta alla produzione, dove le chiamate alle API OpenAI dovrebbero transitare sempre attraverso un <strong>backend proxy</strong> autenticato. È una nota che vale la pena tenere sempre presente quando si scala da prototipo a prodotto.</p>
+
+<div class="highlight-box"><p><strong>Pattern riutilizzabile:</strong> l'architettura Vision → testo → generazione è un template applicabile a decine di use case: variazioni stilistiche di product photo, ricostruzione di bozze architettoniche, generazione di concept art da riferimenti fotografici. Il codice di questo progetto è un punto di partenza solido per qualsiasi pipeline image-to-image mediata dal linguaggio.</p></div>
+
+<p>In sintesi, <em>AI Image Rebuilder</em> dimostra come sia possibile costruire un'applicazione <strong>multimodale funzionante</strong> con poche centinaia di righe di codice, nessun framework pesante, e due endpoint API. La complessità vera non è nel codice — è nel capire come far dialogare modelli con capacità complementari, dove uno osserva e l'altro immagina.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Ottobre 2024</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
