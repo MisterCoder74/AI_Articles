@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT3.5, ChatGPT4o e Claude 3.5 Sonnet a confronto | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>ChatGPT3.5, ChatGPT4o e Claude 3.5 Sonnet a confronto</h1>
+        <p>Un confronto diretto tra ChatGPT 3.5 Turbo, ChatGPT 4o e Claude 3.5 Sonnet sulla generazione di codice reale: chi vince la sfida del server IRC in VB.NET?</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Luglio 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/claudevsgpt.jpg" alt="ChatGPT3.5, ChatGPT4o e Claude 3.5 Sonnet a confronto" class="cover-image">
+<h2>I. La Sfida: Generare Codice Funzionante, Non Solo Codice</h2>
+
+<p>Nel panorama attuale dell'<strong>intelligenza artificiale generativa</strong>, la capacità di produrre codice funzionante è diventata uno dei parametri di valutazione più concreti e impietosi. Chiunque può generare righe di sintassi apparentemente corrette — ma quante di quelle righe sopravvivono al contatto con la realtà di un compilatore, di un runtime, di un utente reale? Per rispondere a questa domanda, la redazione di <em>Vivacity Design AI Division</em> ha condotto una settimana di test sistematici su tre dei modelli linguistici più discussi del momento: <em>ChatGPT 3.5 Turbo</em>, <em>ChatGPT 4o</em> e il nuovissimo <em>Claude 3.5 Sonnet</em>, quest'ultimo acclamato da numerosi sviluppatori come il miglior sistema di generazione di codice attualmente disponibile al pubblico.</p>
+
+<p>La metodologia adottata è stata volutamente rigorosa e paritaria: stesso <strong>prompt iniziale</strong>, stesso processo iterativo di correzione degli errori, stesso obiettivo finale da raggiungere. Il progetto scelto come banco di prova è un <strong>server IRC</strong> scritto in <strong>VB.NET</strong> per <em>Visual Basic 2010 Express Edition</em>, con interfaccia <strong>Windows Form</strong>. Una scelta tutt'altro che casuale: si tratta di un progetto tecnicamente "elementare" nella concezione, ma sufficientemente articolato da mettere alla prova la gestione del <strong>multithreading</strong>, dei <strong>socket TCP</strong>, del <strong>protocollo IRC</strong> e dell'interfaccia grafica in modo simultaneo.</p>
+
+<p>Il prompt sottoposto ai tre modelli era il seguente:</p>
+
+<div class="quote">"Dammi il codice per un semplice server IRC in Windows Form, Visual Basic 2010 Express Edition, con pulsanti di connessione e disconnessione, controllo delle connessioni in multithreading, textbox di log eventi, 2 listbox per utenti e canali auto-aggiornanti, gestione dei comandi utente JOIN, NICK, PRIVMSG, gestione del comando admin KLINE."</div>
+
+<p>Un prompt chiaro, dettagliato, contestualizzato. Esattamente il tipo di richiesta che uno sviluppatore reale potrebbe fare nel proprio flusso di lavoro quotidiano. Vediamo come si è comportato ciascun modello.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. I Risultati Modello per Modello</h2>
+
+<h3>ChatGPT 3.5 Turbo: Buona Partenza, Muro Invalicabile</h3>
+
+<p><em>ChatGPT 3.5 Turbo</em> (versione <strong>0125</strong>) ha risposto con un codice iniziale di <strong>95 righe</strong> che copriva gli elementi fondamentali: imports, gestione dei pulsanti, creazione di <strong>thread</strong> e <strong>socket</strong>, invio della <strong>Capabilities List</strong> al client, logging degli eventi e parsing dei comandi <strong>JOIN</strong>, <strong>NICK</strong> e <strong>PRIVMSG</strong>. Una base di partenza dignitosa, con commenti esplicativi adeguati e codice restituito sempre in forma completa — pronto per il copia-incolla su <em>Visual Studio</em> senza necessità di ricomposizione manuale.</p>
+
+<p>Il primo test ha evidenziato un problema immediato: al tentativo di connessione tramite <em>mIRC</em> su <em>localhost:5667</em>, il client veniva disconnesso. Segnalato l'errore, il modello ha prodotto una revisione della routine di gestione dei socket e delle <strong>capabilities request</strong>. Il secondo tentativo ha mostrato miglioramenti reali: il client si connetteva, i comandi <strong>NICK</strong> e <strong>JOIN</strong> venivano ricevuti dal server, e le listbox si aggiornavam correttamente. Tuttavia, le modifiche non si propagavano correttamente al client <em>mIRC</em>: il nick cambiava nella listbox ma non nell'interfaccia del client, e alla chiusura del canale il client veniva disconnesso inspiegabilmente, lasciando utente e canale "fantasma" nelle listbox.</p>
+
+<p>Segnalato il bug più volte, il modello non è riuscito a risolverlo. I test su <strong>PRIVMSG</strong> e <strong>KLINE</strong> sono stati abbandonati, ritenuti prematuri rispetto al livello di stabilità raggiunto.</p>
+
+<ul>
+  <li><strong>Righe di codice finali:</strong> 124</li>
+  <li><strong>Funzionalità ottenuta:</strong> 50%</li>
+  <li><strong>Punto di forza:</strong> velocità e completezza delle risposte iterative</li>
+  <li><strong>Punto critico:</strong> incapacità di risolvere bug strutturali legati alla gestione dello stato del client IRC</li>
+</ul>
+
+<h3>ChatGPT 4o: Un Salto di Qualità, ma Non Senza Inciampi</h3>
+
+<p><em>ChatGPT 4o</em> ha mostrato fin dal primo output una maggiore maturità architetturale: <strong>121 righe</strong> già alla prima generazione, con gestione completa di <strong>JOIN</strong>, <strong>NICK</strong>, <strong>PRIVMSG</strong>, <strong>KLINE</strong> e blocchi <strong>try...catch</strong> per la gestione degli errori runtime. Il client <em>mIRC</em> si connetteva con successo già al primo tentativo, riceveva correttamente la <strong>capabilities list</strong>, e le operazioni di base funzionavano end-to-end: cambio nick propagato correttamente, canale aperto in <em>mIRC</em> e aggiornamento coerente delle listbox.</p>
+
+<p>Il problema è emerso con la connessione simultanea di un secondo client: il primo veniva disconnesso, generando un loop di messaggi di errore nel log. Una correzione della gestione del rilascio dei <strong>socket</strong> e dei <strong>thread</strong> ha risolto la coesistenza multi-client, aprendo la strada al test di <strong>PRIVMSG</strong> — che però non ha funzionato: i messaggi venivano registrati nel log del server ma non instradati correttamente verso i client destinatari, senza apertura delle finestre di chat private in <em>mIRC</em>.</p>
+
+<div class="highlight-box"><p>⚠️ <strong>Nota critica:</strong> La gestione del protocollo IRC lato server richiede una comprensione precisa del routing dei messaggi tra socket attivi. Entrambi i modelli OpenAI hanno mostrato difficoltà nel mantenere la coerenza dello stato delle connessioni in scenari multi-client — un limite che riflette la complessità intrinseca della programmazione concorrente con stato condiviso.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Claude 3.5 Sonnet: Il Nuovo Standard di Riferimento?</h2>
+
+<p><em>Claude 3.5 Sonnet</em> di <em>Anthropic</em> è entrato in questo confronto con una reputazione già consolidata nella comunità degli sviluppatori. Il modello si distingue per un approccio alla generazione di codice che tende a privilegiare la <strong>correttezza architetturale</strong> rispetto alla velocità di risposta, producendo output più ragionati e spesso più aderenti alle specifiche reali del dominio tecnico richiesto.</p>
+
+<p>I risultati del test hanno confermato questa reputazione in modo significativo, con un livello di completezza funzionale superiore rispetto ai modelli <em>OpenAI</em> testati, una gestione più robusta degli scenari multi-client e una maggiore coerenza nel propagare le modifiche di stato tra server e client <em>mIRC</em>. La qualità dei commenti nel codice e la strutturazione delle routine hanno evidenziato una comprensione più profonda del <strong>protocollo IRC</strong> come sistema stateful.</p>
+
+<div class="quote">La vera domanda non è quale modello scriva più codice, ma quale modello capisca davvero cosa il codice deve fare nel contesto in cui opererà. Su questo fronte, il gap tra generazioni di modelli — e tra vendor diversi — è ancora sorprendentemente ampio.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Conclusioni: Cosa ci Insegna Questo Test</h2>
+
+<p>Al di là dei numeri e delle percentuali di funzionalità raggiunte, questo confronto restituisce alcune lezioni di metodo che vale la pena sottolineare per chiunque utilizzi i <strong>modelli linguistici di grandi dimensioni</strong> (<strong>LLM</strong>) come strumento di sviluppo software professionale.</p>
+
+<ul>
+  <li><strong>Iterazione necessaria:</strong> Nessun modello ha prodotto codice funzionante al 100% al primo tentativo. Il processo di <strong>prompt engineering</strong> iterativo è parte integrante del flusso di lavoro, non un'eccezione.</li>
+  <li><strong>Complessità nascosta:</strong> Progetti apparentemente semplici come un server IRC nascondono sfide tecniche reali — gestione concorrente, stato distribuito, protocolli con handshake — che mettono in difficoltà anche i modelli più avanzati.</li>
+  <li><strong>Differenze generazionali reali:</strong> Il salto qualitativo tra <em>GPT-3.5</em> e <em>GPT-4o</em> è misurabile e concreto. Quello tra <em>GPT-4o</em> e <em>Claude 3.5 Sonnet</em>, almeno su questo tipo di task, sembra altrettanto significativo.</li>
+  <li><strong>Valutare con progetti reali:</strong> I benchmark astratti dicono poco. Testare un modello su un progetto concreto, con requisiti precisi e verifica sul campo, è l'unico modo per valutarne l'utilità pratica.</li>
+</ul>
+
+<div class="highlight-box"><p>🔍 <strong>Takeaway editoriale:</strong> Per attività di <strong>code generation</strong> su progetti con requisiti tecnici specifici — specialmente in ambienti legacy come <em>VB.NET</em> o con protocolli complessi — <em>Claude 3.5 Sonnet</em> si posiziona attualmente come la scelta più affidabile. Ma il panorama evolve rapidamente: ciò che è vero oggi potrebbe essere superato nel giro di poche settimane.</p></div>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Luglio 2024</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

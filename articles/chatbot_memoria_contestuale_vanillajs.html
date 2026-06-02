@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creare un Chatbot con Memoria Contestuale in Vanilla JS | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        pre { background: rgba(0,0,0,0.5); border: 1px solid rgba(16,185,129,0.25); border-radius: 12px; padding: 1.5rem; overflow-x: auto; margin: 1.5rem 0; font-size: 0.82rem; line-height: 1.6; }
+        pre code { font-family: var(--font-mono); color: #a8ffce; background: none; padding: 0; }
+        code { font-family: var(--font-mono); font-size: 0.85em; background: rgba(16,185,129,0.12); color: var(--accent-green); padding: 0.15em 0.4em; border-radius: 4px; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Creare un Chatbot con Memoria Contestuale in Vanilla JS</h1>
+        <p>Come ho costruito VivacityGPT Online: un chatbot con memoria contestuale usando solo HTML e Vanilla JS, zero dipendenze, integrato con le API di OpenAI.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2023 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Progetto: Un Clone di ChatGPT Senza Framework</h2>
+
+<p>Quando il team di <em>Vivacity Design Web Agency</em> mi ha chiesto di sviluppare un chatbot interno funzionante, la mia prima reazione istintiva è stata quella di aprire <em>npm</em> e cercare una libreria. Mi sono fermato. Volevo dimostrare qualcosa a me stesso prima di tutto: è davvero necessario un framework per costruire un'interfaccia conversazionale moderna con <strong>memoria contestuale</strong>? La risposta, dopo qualche giorno di lavoro su <em>VivacityGPT Online</em>, è stata un chiaro no.</p>
+
+<p>Il progetto nasce come caso di studio reale: un clone funzionale di <em>ChatGPT</em>, con due personalità distinte del bot e — soprattutto — la capacità di ricordare l'intera conversazione. Stack scelto: <strong>HTML puro</strong>, <strong>Vanilla JavaScript</strong> e un file CSS separato per lo stile. Nessuna dipendenza esterna, nessun bundler, nessun transpiler. Solo tre file nella stessa directory: <code>index.html</code>, <code>script.js</code> e <code>vdgptstyle.css</code>.</p>
+
+<p>In questo articolo racconto ogni decisione tecnica, dal markup HTML fino alla gestione asincrona delle chiamate all'<strong>API di OpenAI</strong> con il modello <em>gpt-3.5-turbo</em>. I prerequisiti sono minimi: una conoscenza base di HTML e JavaScript è sufficiente per seguire tutto il ragionamento.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. La Struttura HTML: Interfaccia Minima, Funzionalità Massima</h2>
+
+<p>La scelta architetturale più importante lato markup è stata quella di separare nettamente due aree funzionali: una <strong>navbar fissa</strong> con il campo di input dell'utente, e una <strong>sezione scrollabile</strong> per la cronologia della chat. Questo schema — comune nelle app di messaggistica — garantisce che l'input sia sempre visibile indipendentemente dalla lunghezza della conversazione.</p>
+
+<p>Il campo di testo usa l'attributo <code>onkeydown</code> per intercettare il tasto Invio, delegando la logica alla funzione <code>verifyEnter()</code>. Il pulsante di invio richiama direttamente <code>sendMessage()</code>. Tutto il resto è gestito dinamicamente da JavaScript, inclusa la generazione dei <strong>bubble di messaggio</strong>.</p>
+
+<pre><code class="language-html"><div class="fixedhead">
+   <nav>
+      <img src="../img/coollogo_com-108841550.png" width=300 alt="Vivacity Logo"> 
+      <div style="display: flex; flex-direction: column; align-items: center;">
+         <h1 class="paddedheader">VivacityGPT Online</h1>
+         <span class="typing-span">Now with context memory!</span>
+      </div>
+   </nav>
+   <section class="userinput">        
+      <input type="text" id="user-input" placeholder="Enter a request..." onkeydown="verifyEnter(event)" />
+      <button onclick="sendMessage()">Send</button>
+   </section>
+</div>
+<section class="chathistory">
+   <div id="chat-container"></div>
+</section>
+<script>
+   function verifyEnter(event) {
+     if (event.keyCode === 13) {
+       event.preventDefault(); 
+       sendMessage();
+     }
+   }
+</script></code></pre>
+
+<p>Il <code>div#chat-container</code> è il cuore visuale dell'applicazione: è qui che JavaScript inietta dinamicamente ogni messaggio. La sezione <code>.chathistory</code> è quella che riceve il comportamento di scroll automatico verso il basso a ogni nuovo messaggio.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. La Memoria Contestuale: Il Meccanismo Chiave</h2>
+
+<h3>Come funziona il contesto nelle API di OpenAI</h3>
+
+<p>Questo è il punto dove molti tutorial si fermano in superficie. Le API di <em>OpenAI</em> per i modelli <strong>chat completion</strong> non hanno memoria nativa tra una richiesta e l'altra: ogni chiamata è <strong>stateless</strong> per definizione. Tocca a noi, lato client, costruire e mantenere il contesto conversazionale. Il meccanismo è elegantemente semplice: ad ogni richiesta inviamo l'intero storico della conversazione come array di oggetti <code>messages</code>, ciascuno con un <code>role</code> (<em>system</em>, <em>user</em>, <em>assistant</em>) e un <code>content</code>.</p>
+
+<div class="highlight-box"><p>La <strong>memoria contestuale</strong> in VivacityGPT non è un database né un cookie: è un array JavaScript che cresce ad ogni scambio e viene inviato integralmente all'API ad ogni nuova richiesta. Più la conversazione si allunga, più token vengono consumati — ma il modello "ricorda" tutto.</p></div>
+
+<h3>Inizializzazione della memoria e system prompt</h3>
+
+<p>La funzione <code>createMemory()</code> costruisce l'array iniziale a partire da un array di messaggi di seed. Il <strong>system prompt</strong> — il messaggio con <code>role: 'system'</code> — è quello che definisce la personalità del bot: in questo caso, un <em>full stack developer</em> specializzato in codice pulito per agenzie web.</p>
+
+<pre><code class="language-javascript">function createMemory(messages) {
+    const memory = [];
+    for (const msg of messages) {
+        memory.push({ role: msg.role, content: msg.content });
+    }
+    return memory;
+}
+
+let chatMemory = createMemory([
+    { role: 'system', content: "You are a full stack developer working for Vivacity Design Web Agency. You are specialized in producing code for websites and you will always provide clean and effective code. When asked for some code, you will also provide the description for different approaches to achieve the same goal." }
+]);</code></pre>
+
+<p>Cambiando il contenuto del <code>system</code> message, si ottiene una personalità completamente diversa del bot. È così che in <em>VivacityGPT Online</em> ho implementato le due modalità distinte: basta inizializzare <code>chatMemory</code> con un system prompt differente.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Le Funzioni Core: Invio, Visualizzazione e Chiamata API</h2>
+
+<h3>sendMessage: coordinatore del flusso</h3>
+
+<p>La funzione <code>sendMessage()</code> ha un ruolo di puro coordinamento: legge l'input, lo visualizza immediatamente nell'interfaccia, delega la chiamata API e aggiorna la memoria. Il pattern <strong>async/await</strong> rende il flusso leggibile come codice sincrono pur restando non-bloccante.</p>
+
+<pre><code class="language-javascript">async function sendMessage() {
+    const inputElement = document.getElementById('user-input');
+    const userInput = inputElement.value.trim();
+    if (userInput !== '') {
+        showMessage("Guest", userInput);
+        chatMemory = await getChatGPTResponse(userInput, chatMemory);
+        inputElement.value = '';
+    }
+}</code></pre>
+
+<h3>showMessage: rendering dinamico della chat</h3>
+
+<p>La funzione <code>showMessage()</code> gestisce la creazione dei <strong>nodi DOM</strong> per ogni messaggio. Distingue tra messaggi dell'utente (<code>Guest</code>) e risposte del bot (<code>VivacityGPT</code>), applicando classi CSS diverse. Sui messaggi del bot aggiunge automaticamente un pulsante "Copia" che usa la vecchia API <code>document.execCommand('copy')</code> — una scelta consapevole per massimizzare la compatibilità browser senza dipendenze.</p>
+
+<pre><code class="language-javascript">function showMessage(sender, message) {
+    const chatContainer = document.getElementById('chat-container');
+    const chatSection = document.querySelector('.chathistory');
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator && sender === 'VivacityGPT') {
+        chatContainer.removeChild(typingIndicator);
+    }
+    const messageElement = document.createElement('div');
+    messageElement.innerText = `${sender}: ${message}`;
+    if (sender === 'Guest') {
+        messageElement.classList.add('user-message');
+    } else if (sender === 'VivacityGPT') {
+        messageElement.classList.add('chatgpt-message');
+        const copyLink = document.createElement('button');
+        copyLink.innerText = 'Copia';
+        copyLink.style.float = 'right';
+        copyLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            const input = document.createElement('input');
+            input.value = message;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+        });
+        messageElement.appendChild(copyLink);
+    }
+    chatContainer.appendChild(messageElement);
+    chatSection.scrollTop = chatSection.scrollHeight;
+}</code></pre>
+
+<h3>getChatGPTResponse: la chiamata all'API</h3>
+
+<p>Questa è la funzione più densa del progetto. Mostra l'indicatore "Typing..." prima di lanciare la chiamata <strong>fetch</strong> verso l'endpoint <code>/v1/chat/completions</code> di <em>OpenAI</em>. Nel body della richiesta, l'array <code>chatMemory</code> viene espanso con lo <strong>spread operator</strong> e il nuovo messaggio utente viene aggiunto in coda. Un passaggio che ritengo particolarmente interessante è il <strong>filtraggio del testo</strong> in risposta: i modelli tendono a restituire blocchi di codice con backtick markdown, che in un'interfaccia HTML pura risulterebbero come testo grezzo. La <strong>regex</strong> rimuove queste formattazioni prima di visualizzare la risposta.</p>
+
+<pre><code class="language-javascript">async function getChatGPTResponse(userInput, chatMemory = []) {
+    const chatContainer = document.getElementById('chat-container');
+    const typingIndicator = document.createElement('p');
+    typingIndicator.id = 'typing-indicator';
+    typingIndicator.textContent = 'Typing...';
+    chatContainer.appendChild(typingIndicator);
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer placeyourkeyhere'
+            },
+            body: JSON.stringify({
+                "model": "gpt-3.5-turbo",
+                "messages": [
+                    ...chatMemory,
+                    {"role": "user", "content": userInput}
+                ]
+            })
+        });
+        const data = await response.json();
+        const chatGPTResponse = data.choices[0].message.content.trim();
+        var cleanResponse = chatGPTResponse.replace(/(```html|```css|```javascript|```php|```python)(.*?)/gs, '$2');
+        cleanResponse = cleanResponse.replace(/```/g, "");
+        showMessage("VivacityGPT", cleanResponse);
+        chatMemory.push({ role: 'user', content: userInput });
+        chatMemory.push({ role: 'assistant', content: cleanResponse });
+        return chatMemory;
+    } catch (error) {
+        console.error(error);
+    }
+}</code></pre>
+
+<div class="highlight-box"><p>Attenzione: in questo approccio la <strong>API key di OpenAI</strong> è esposta nel codice JavaScript lato client. Per un ambiente di produzione è imperativo proxare le chiamate attraverso un backend server-side che custodisca la chiave in modo sicuro. Questo progetto è un caso di studio e una demo: non deploiamolo in produzione così com'è.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>V. Riflessioni Finali e Limitazioni dell'Approccio</h2>
+
+<p>Il risultato finale — visibile nella <strong>demo live</strong> su <em>vivacitydesign.net/vdgpt</em> — è un chatbot pienamente funzionale con personalità configurabile e memoria contestuale persistente per tutta la sessione. L'intera logica applicativa occupa meno di 100 righe di JavaScript, senza una sola riga di codice di framework.</p>
+
+<p>La limitazione principale di questo approccio riguarda la <strong>scalabilità del contesto</strong>: l'array <code>chatMemory</code> cresce in modo illimitato durante la sessione. Per conversazioni molto lunghe, si rischia di superare il <strong>context window</strong> del modello (4.096 token per <em>gpt-3.5-turbo</em> nella versione base) o di generare costi API elevati. Una strategia di mitigazione pratica sarebbe quella di mantenere solo gli ultimi N scambi in memoria, oppure di implementare un meccanismo di <strong>summarization</strong> periodica del contesto.</p>
+
+<div class="quote">Il progetto VivacityGPT mi ha ricordato un principio che tendo a dimenticare quando lavoro in ecosistemi JavaScript moderni: la piattaforma web nativa è già straordinariamente potente. Fetch API, async/await, manipolazione DOM — tutto ciò che serve per costruire un'interfaccia conversazionale moderna esiste già nel browser, senza installare nulla. I framework sono strumenti, non prerequisiti.</div>
+
+<p>Per chi volesse estendere il progetto, i prossimi passi naturali sarebbero: gestione degli errori API più robusta con feedback visivo all'utente, implementazione di uno <strong>streaming della risposta</strong> tramite <code>ReadableStream</code> per simulare l'effetto di digitazione progressiva, e — assolutamente necessario per la produzione — un layer backend per proteggere la <strong>chiave API</strong>. Ma come punto di partenza per capire come funziona l'integrazione con i modelli di linguaggio? Questo è esattamente il codice da leggere.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2023</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
