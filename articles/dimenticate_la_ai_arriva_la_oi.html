@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimenticate la AI, arriva la OI | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Dimenticate la AI, arriva la OI</h1>
+        <p>Dalla silicio alla biologia: l'Organoid Intelligence sfida i paradigmi dell'AI tradizionale, unendo cellule umane e machine learning in un territorio ancora inesplorato.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Novembre 2023 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/fsci-01-1017235-g001.jpg" alt="Dimenticate la AI, arriva la OI" class="cover-image">
+<h2>I. Oltre il Silicio: Quando la Biologia Diventa Computazione</h2>
+
+<p>Parliamoci chiaramente: quello che oggi chiamiamo <strong>Intelligenza Artificiale</strong> è, nella sostanza, un sofisticato sistema di reti neurali artificiali, tecniche di <strong>Machine Learning</strong> e modelli linguistici di grande scala. Nulla di magico, nulla di senziente. Eppure, i principi matematici che ne costituiscono la spina dorsale si rivelano sorprendentemente applicabili ben oltre i confini del software — fino ad arrivare, letteralmente, alla materia vivente.</p>
+
+<p>È in questo spazio di frontiera che prende forma un concetto dirompente: l'<strong>Organoid Intelligence</strong> (<strong>OI</strong>). Non si tratta di un'evoluzione dell'AI tradizionale, ma di una vera e propria convergenza tra <strong>Biologia Sintetica</strong> e informatica avanzata. L'obiettivo? Studiare, analizzare e — attenzione — <em>istruire</em> gli <strong>organoidi</strong>, aggregati tridimensionali di cellule umane capaci di replicare alcune funzioni caratteristiche degli organi biologici.</p>
+
+<div class="highlight-box"><p>L'Organoid Intelligence non è fantascienza: è la disciplina che studia come gruppi di cellule neurali umane possano essere interfacciati con sistemi elettronici e "addestrati" a elaborare informazioni, aprendo scenari inediti tanto in medicina quanto in informatica.</p></div>
+
+<p>La distinzione rispetto all'AI classica è fondamentale: mentre i modelli artificiali simulano il comportamento neurale attraverso algoritmi matematici eseguiti su hardware in silicio, la OI lavora con neuroni <em>reali</em>, biologicamente attivi, capaci di plasticità sinaptica autentica. Un salto qualitativo che potrebbe ridefinire il concetto stesso di computazione.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Cortical Labs e il Progetto DishBrain: Cellule che Imparano</h2>
+
+<h3>Chi è Cortical Labs</h3>
+
+<p><em>Cortical Labs</em>, startup australiana di neuroscienze computazionali, si è posizionata come uno degli attori più audaci in questo campo. Il suo approccio è tanto semplice nella formulazione quanto radicale nelle implicazioni: combinare l'expertise di biologi e informatici per sviluppare sistemi capaci di leggere, interpretare e interagire con i dati prodotti dagli organoidi neurali.</p>
+
+<p>Il sistema proprietario sviluppato da <em>Cortical Labs</em> è in grado di identificare <strong>pattern cellulari</strong> specifici all'interno delle colture, consentendo ai ricercatori non solo di osservare le dinamiche biologiche, ma di intervenire attivamente su di esse — modificando i comportamenti cellulari attraverso stimolazioni elettroniche mirate.</p>
+
+<h3>DishBrain: 800.000 Neuroni che Giocano a Pong</h3>
+
+<p>La dimostrazione più clamorosa di questo approccio è il progetto <em>DishBrain</em>. La premessa è quasi incredibile: una coltura di circa <strong>800.000 cellule neurali umane</strong>, coltivate <em>in vitro</em> e interfacciate elettronicamente con un sistema digitale, è stata addestrata a giocare a <em>Pong</em>, il leggendario videogioco arcade del 1972.</p>
+
+<div class="quote">Il fatto che un aggregato di neuroni biologici riesca ad apprendere le regole di un videogioco non è una trovata spettacolare: è la prima prova sperimentale concreta che la plasticità biologica può essere indirizzata computazionalmente. La domanda vera non è "può funzionare?" — evidentemente sì. La domanda è: fino a dove può arrivare?</div>
+
+<p>I risultati dell'esperimento furono pubblicati nell'ottobre 2022 sulla rivista <em>Neuron</em>, generando un dibattito vivace nella comunità scientifica internazionale. Non tanto per lo stupore tecnologico, quanto per le implicazioni etiche e filosofiche: se cellule biologiche possono "imparare", dove tracciamo il confine tra strumento e soggetto?</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Le Applicazioni: Dalla Medicina ai Nuovi Paradigmi Computazionali</h2>
+
+<h3>Il Potenziale Medico</h3>
+
+<p>Il campo applicativo più immediato e meno controverso della <strong>Organoid Intelligence</strong> è quello biomedico. Gli organoidi, proprio grazie alla loro capacità di replicare strutture tissutali umane, offrono una piattaforma di ricerca senza precedenti:</p>
+
+<ul>
+  <li><strong>Drug Testing:</strong> testare nuovi farmaci su organoidi umani riduce la dipendenza da modelli animali, aumentando al contempo la rilevanza clinica dei risultati</li>
+  <li><strong>Oncologia traslazionale:</strong> identificare molecole con effetti selettivi sulle cellule tumorali, simulando microambienti tumorali reali</li>
+  <li><strong>Malattie neurodegenerative:</strong> studiare patologie come l'Alzheimer o il Parkinson su tessuto neurale funzionante, osservando dinamiche impossibili da replicare in silico</li>
+  <li><strong>Malattie rare e genetiche:</strong> le disfunzioni del sistema nervoso centrale, spesso poco comprese, potrebbero trovare nuove chiavi interpretative grazie alla capacità degli organoidi di esprimere fenotipi patologici specifici</li>
+</ul>
+
+<h3>Verso il Biocomputing</h3>
+
+<p>Ma è sul fronte informatico che la OI apre scenari davvero vertiginosi. L'idea di <strong>organoidi computazionali</strong> — strutture biologiche utilizzate come substrato per l'elaborazione dati — non è più fantascienza accademica. Pionieri come <em>Craig Venter</em>, già noto per il Progetto Genoma Umano e per i suoi lavori di biologia sintetica, hanno contribuito a costruire le basi teoriche su cui oggi si muovono aziende come <em>Cortical Labs</em>.</p>
+
+<div class="highlight-box"><p>Un processore biologico basato su organoidi neurali potrebbe, in teoria, offrire un'efficienza energetica ordini di grandezza superiore rispetto ai chip in silicio — il cervello umano elabora informazioni complesse consumando circa 20 watt. Nessun datacenter al mondo può competere con questo rapporto prestazioni/consumo.</p></div>
+
+<p>L'orizzonte, naturalmente, resta lontano. Le sfide tecniche — dalla stabilità delle colture alla scalabilità dell'interfaccia elettrobiochimica — sono enormi. E le questioni etiche lo sono ancora di più: fino a che punto possiamo "usare" tessuto neurale biologico come hardware? Chi tutela la dignità di un aggregato cellulare che, per definizione, è capace di apprendere?</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Riflessioni Critiche: Una Rivoluzione che Richiede Governance</h2>
+
+<p>La <strong>Organoid Intelligence</strong> rappresenta uno di quei rari momenti in cui la scienza tocca simultaneamente il piano tecnologico, medico e filosofico. Il rischio, come spesso accade con le tecnologie emergenti, è duplice: da un lato l'iperbole entusiastica che promette rivoluzioni immediate; dall'altro la sottovalutazione delle implicazioni a lungo termine.</p>
+
+<div class="quote">L'AI tradizionale ha impiegato decenni per generare un dibattito regolatorio serio. La OI si muove su un terreno ancora più scivoloso, perché mescola codice e biologia, dati e cellule vive. Sarebbe ingenuo aspettare che il mercato si autoregoli: serve una governance scientifica ed etica che anticipi, non insegua, lo sviluppo tecnologico.</div>
+
+<p>Il lavoro di <em>Cortical Labs</em> e il progetto <em>DishBrain</em> sono pietre miliari genuine. Ma è essenziale che la comunità scientifica, i regolatori e il pubblico informato inizino già oggi a costruire un framework concettuale adeguato. Non per frenare la ricerca — che va sostenuta con convinzione — ma per assicurarsi che i benefici siano distribuiti e i rischi, gestiti con consapevolezza.</p>
+
+<p>La domanda non è se la <strong>OI</strong> diventerà rilevante. Lo è già. La domanda è se saremo pronti ad accoglierla con la maturità che merita.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Novembre 2023</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

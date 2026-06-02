@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Due chiacchiere con Loquace | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Due chiacchiere con Loquace</h1>
+        <p>Loquace è il primo LLM italiano nativo: lo abbiamo testato in diretta e il risultato è sorprendente — ma non privo di ombre.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Maggio 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/chatbot000.jpg" alt="Due chiacchiere con Loquace" class="cover-image">
+<h2>I. Un LLM Tutto Italiano: Nasce Loquace</h2>
+
+<p>Nel panorama internazionale dominato da giganti come <em>ChatGPT</em>, <em>Gemini</em> e <em>Claude</em>, emerge un progetto italiano che merita attenzione critica e — va detto — un certo orgoglio tecnologico. <em>Loquace</em> è la prima famiglia di <strong>Large Language Model (LLM)</strong> raffinata su un dataset <em>interamente in lingua italiana</em>, sviluppata da <strong>Cosimo Iaia</strong> nei primi mesi del 2023. Un'impresa non banale, considerando che la quasi totalità dei modelli linguistici di rilievo nasce in contesti anglosassoni, con l'italiano trattato come lingua di serie B nel pre-training.</p>
+
+<p>La prima release di <em>Loquace</em> venne annunciata da Iaia su <em>LinkedIn</em> circa dieci mesi fa, con modelli e repository pubblicamente disponibili su <em>HuggingFace</em> e <em>GitHub</em>. Questa scelta open — tutt'altro che scontata — riflette una visione di ricerca accessibile e replicabile, in netto contrasto con l'approccio chiuso di molti player commerciali. Più di recente, Iaia ha fondato <em>ExMentisLabs</em> a Francavilla, un laboratorio dedicato alla ricerca sull'intelligenza artificiale, dotato di un sito ufficiale con una <strong>chat live</strong> che consente di interagire direttamente con una versione attiva del modello.</p>
+
+<p>Noi l'abbiamo testata. E abbiamo molto da dire.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Dentro il Motore: Cosa Dice Loquace di Sé</h2>
+
+<p>La prima cosa che colpisce interagendo con <em>Loquace</em> è la <strong>fluidità espressiva in italiano</strong>: il modello risponde con naturalezza, costruisce frasi coerenti e dimostra una comprensione contestuale apprezzabile. Alla domanda sulle proprie caratteristiche tecniche, il modello si autodescrive come sistema basato su architetture <strong>Transformer</strong> e <strong>Recurrent Neural Network (RNN)</strong>, citando circa <em>1,5 milioni di parametri</em> — un numero che, confrontato con i miliardi di parametri di <em>GPT-4</em>, sottolinea quanto <em>Loquace</em> sia pensato per essere <strong>leggero ed efficiente</strong>, non per competere in scala bruta.</p>
+
+<h3>L'Auto-Presentazione del Modello</h3>
+
+<p>Durante la nostra sessione, <em>Loquace</em> si è presentato con sicurezza, dichiarando capacità di accesso a un "database di conoscenze generaliste e specialistiche" e persino di elaborazione di informazioni online. Qui emerge la prima criticità rilevante: <strong>queste affermazioni sono parzialmente false</strong>. Come specificato esplicitamente nel disclaimer del sito di <em>ExMentisLabs</em>, il modello <em>non ha accesso a Internet</em>. Si tratta di un caso classico di <strong>hallucination</strong> — fenomeno per cui un LLM genera affermazioni plausibili ma non verificate o direttamente errate, presentandole con tono assertivo.</p>
+
+<div class="highlight-box"><p>⚠️ <strong>Attenzione:</strong> Loquace dichiara in chat di avere accesso a Internet e a database aggiornati. Il disclaimer ufficiale smentisce questa affermazione. Un esempio emblematico di hallucination da tenere presente in ogni contesto d'uso critico.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Il Test: Luci e Ombre di un Modello Pionieristico</h2>
+
+<h3>Punti di Forza</h3>
+
+<p>Il test pratico ha rivelato caratteristiche davvero notevoli per un modello di questa scala. Ecco una sintesi strutturata delle nostre osservazioni:</p>
+
+<ul>
+  <li><strong>Velocità di risposta:</strong> <em>Loquace</em> è almeno tre volte più rapido di <em>ChatGPT</em> nel generare output — un vantaggio non trascurabile in scenari applicativi real-time.</li>
+  <li><strong>Generazione di codice:</strong> il modello mostra ottime capacità nella produzione di codice in diversi linguaggi di programmazione, con tempi di risposta particolarmente competitivi.</li>
+  <li><strong>Traduzione:</strong> si comporta come un traduttore discreto, capace di gestire testi in più lingue, anche se con lacune grammaticali nelle lingue target non primarie.</li>
+  <li><strong>Leggerezza architetturale:</strong> il modello è progettato per girare su hardware ridotto, caratteristica che lo rende interessante per deployment su dispositivi edge o ambienti con risorse limitate.</li>
+  <li><strong>Naturalezza in italiano:</strong> la fluidità nella lingua madre è il vero punto di eccellenza — segno che il fine-tuning su dataset italiano ha prodotto risultati concreti.</li>
+</ul>
+
+<h3>Criticità e Limitazioni</h3>
+
+<p>Sarebbe disonesto, però, non evidenziare le aree di miglioramento. Il problema delle <strong>allucinazioni</strong> — ovvero la tendenza del modello a inventare informazioni non disponibili nel training set, spacciandole per fatti — è presente e rilevante. È un limite comune a tutti gli LLM, ma in un modello pensato per utenti italiani che potrebbero non avere familiarità con questo fenomeno, il rischio di disinformazione è reale e va comunicato con chiarezza.</p>
+
+<div class="quote">L'hallucination non è un bug esotico: è una caratteristica strutturale degli LLM attuali. La vera differenza tra un prodotto responsabile e uno no sta nel modo in cui questo limite viene comunicato all'utente finale. ExMentisLabs lo fa nel disclaimer — ma andrebbe reso ancora più visibile nell'interfaccia di chat.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Perché Loquace Conta: Il Valore di un LLM Nativo Italiano</h2>
+
+<p>Al di là dei benchmark tecnici, <em>Loquace</em> rappresenta qualcosa di più significativo: un segnale che l'ecosistema italiano dell'<strong>intelligenza artificiale</strong> esiste, produce e pubblica. In un settore dove la narrazione è quasi interamente dettata da player statunitensi e, sempre più, cinesi, un progetto come quello di <strong>Cosimo Iaia</strong> — sviluppato in modo indipendente, reso open source, ancorato alla lingua e alla cultura italiana — ha un valore che va oltre le sue performance attuali.</p>
+
+<p>L'apertura di <em>ExMentisLabs</em> come laboratorio fisico è un ulteriore passo in questa direzione: trasforma un progetto individuale in un'infrastruttura potenzialmente collaborativa, aperta a ricercatori, sviluppatori e aziende del territorio. È esattamente il tipo di iniziativa che l'Italia ha bisogno di alimentare, specialmente in un momento in cui la <strong>sovranità digitale</strong> e il controllo sui modelli linguistici stanno diventando temi geopolitici di primo piano.</p>
+
+<p><em>Loquace</em> non è ancora <em>ChatGPT</em>, né ambisce a esserlo. Ma è un punto di partenza solido, trasparente e — soprattutto — italiano. E questo, nel 2024, vale già molto.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Maggio 2024</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

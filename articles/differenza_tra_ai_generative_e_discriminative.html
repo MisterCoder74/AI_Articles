@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differenza tra AI Generative e Discriminative | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Differenza tra AI Generative e Discriminative</h1>
+        <p>Generativo o discriminativo? Capire la differenza tra i due paradigmi del Deep Learning è la chiave per scegliere l'AI giusta.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Maggio 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/IA640x360.jpg" alt="Differenza tra AI Generative e Discriminative" class="cover-image">
+<h2>I. Due Anime dell'Intelligenza Artificiale</h2>
+
+<p>Nel panorama dell'<strong>Intelligenza Artificiale</strong> moderna, poche distinzioni risultano tanto fondamentali — e altrettanto sottovalutate — quanto quella tra <strong>modelli generativi</strong> e <strong>modelli discriminativi</strong>. Eppure, ogni volta che interagiamo con un <em>chatbot</em>, chiediamo a <em>ChatGPT</em> di scrivere un testo o utilizziamo un filtro fotografico basato su AI, stiamo implicitamente scegliendo da quale parte di questa dicotomia vogliamo attingere.</p>
+
+<p>Il <strong>Deep Learning</strong> — il sottoinsieme del machine learning che ha rivoluzionato il settore negli ultimi dieci anni — non è un monolite. Si articola in famiglie di approcci con obiettivi, architetture e logiche profondamente diverse. Comprendere questa distinzione non è un esercizio accademico: è una competenza pratica che orienta scelte progettuali, investimenti tecnologici e strategie di adozione dell'AI in azienda.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Cosa Fanno (Davvero) i Modelli Generativi</h2>
+
+<p>I <strong>modelli generativi</strong> operano con un obiettivo ambizioso: imparare la <strong>distribuzione sottostante dei dati</strong> per poi essere in grado di produrre nuovi campioni coerenti con quella distribuzione. In termini più concreti, un modello generativo non si limita a riconoscere un gatto in una foto — impara cosa rende un gatto un gatto, e può generarne uno nuovo di zecca.</p>
+
+<p>Questo approccio si basa prevalentemente su tecniche di <strong>apprendimento non supervisionato</strong>, il che significa che il modello non ha bisogno di etichette esplicite per ogni esempio nel dataset di addestramento. Deve invece modellare la struttura intrinseca dei dati.</p>
+
+<h3>Applicazioni principali</h3>
+<ul>
+  <li><strong>Text generation:</strong> i grandi <strong>LLM</strong> (<em>Large Language Models</em>) come <em>GPT-4</em> o <em>Gemini</em> sono modelli generativi addestrati su enormi corpus testuali.</li>
+  <li><strong>Image synthesis:</strong> sistemi come <em>Stable Diffusion</em> o <em>DALL·E</em> generano immagini realistiche a partire da descrizioni testuali.</li>
+  <li><strong>Data augmentation:</strong> in contesti con dataset limitati, i modelli generativi producono dati sintetici per ampliare il set di addestramento.</li>
+  <li><strong>Generazione musicale e video:</strong> strumenti emergenti come <em>Sora</em> o <em>MusicLM</em> estendono la generazione a domini multimodali.</li>
+</ul>
+
+<div class="highlight-box"><p>I modelli generativi non "inventano" nel senso creativo umano: apprendono pattern statistici e li ricombinano con sofisticata coerenza probabilistica. La creatività è simulata, ma i risultati sono sempre più indistinguibili dall'originale.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. La Logica Precisa dei Modelli Discriminativi</h2>
+
+<p>Se i modelli generativi cercano di capire il mondo per poterlo riprodurre, i <strong>modelli discriminativi</strong> puntano a una cosa sola: distinguere. Il loro obiettivo è apprendere il <strong>confine decisionale</strong> tra classi di dati, ottimizzando la capacità di classificazione con la massima precisione possibile.</p>
+
+<p>Funzionano tipicamente attraverso <strong>apprendimento supervisionato</strong>: vengono addestrati su dataset etichettati, dove ogni esempio è associato a una categoria di appartenenza. Il modello impara a minimizzare gli errori di classificazione, non a capire come quei dati sono stati generati.</p>
+
+<h3>Applicazioni principali</h3>
+<ul>
+  <li><strong>Classificazione delle immagini:</strong> riconoscere se una radiografia mostra o meno un tumore.</li>
+  <li><strong>Spam detection:</strong> distinguere email legittime da messaggi indesiderati.</li>
+  <li><strong>Sentiment analysis:</strong> categorizzare recensioni o commenti come positivi, negativi o neutri.</li>
+  <li><strong>Riconoscimento facciale:</strong> identificare un volto specifico all'interno di un database.</li>
+</ul>
+
+<div class="quote">È significativo notare come l'industria tenda a sovra-comunicare le capacità dei modelli generativi — più spettacolari e mediaticamente appetibili — trascurando i modelli discriminativi, che rappresentano tuttora la spina dorsale della maggior parte delle applicazioni AI enterprise in produzione.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Scegliere il Paradigma Giusto: Una Questione Strategica</h2>
+
+<p>La distinzione tra i due approcci non è solo teorica: ha implicazioni dirette su costi computazionali, qualità dei dati necessari, tempi di sviluppo e obiettivi di business. Un modello discriminativo richiede dataset etichettati di alta qualità — costosi da produrre — ma è generalmente più efficiente e interpretabile. Un modello generativo può operare su dati non strutturati, ma richiede risorse di calcolo significativamente maggiori e introduce sfide legate alla <strong>valutazione qualitativa degli output</strong>.</p>
+
+<p>La frontiera più avanzata della ricerca attuale esplora architetture ibride — come i <strong>GAN</strong> (<em>Generative Adversarial Networks</em>), dove un modello generativo e uno discriminativo si sfidano in modo competitivo — dimostrando che la dicotomia non è necessariamente un vincolo, ma può diventare una sinergia progettuale.</p>
+
+<div class="highlight-box"><p>La domanda giusta non è "quale dei due è migliore?", ma "quale problema sto cercando di risolvere?". Generare contenuti richiede un approccio; classificarli o analizzarli ne richiede un altro. Confondere i due significa sprecare risorse — o peggio, adottare la tecnologia sbagliata.</p></div>
+
+<p>In un mercato sempre più affollato di soluzioni AI, la capacità di orientarsi tra questi paradigmi rappresenta un vantaggio competitivo reale. Dotarsi di competenze specializzate — o affidarsi a partner tecnologici con esperienza verticale — non è un lusso: è una condizione necessaria per trasformare il potenziale dell'<strong>Intelligenza Artificiale</strong> in valore misurabile.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Maggio 2024</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
