@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pHTML 2.0 – Creare Universi con Custom Tag: un Esperimento con GPT-4.1-mini | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        pre {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+        pre code {
+            font-family: var(--font-mono);
+            color: #a8ffce;
+            background: none;
+            padding: 0;
+        }
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-green);
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>pHTML 2.0 – Creare Universi con Custom Tag: un Esperimento con GPT-4.1-mini</h1>
+        <p>Ho chiesto a GPT-4.1-mini di inventare un linguaggio HTML per creare universi: ecco cosa ha generato, dove ha brillato e dove ha mostrato i suoi limiti.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Novembre 2025 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Punto di Partenza: Perché Chiedere a un LLM di Inventare un Linguaggio</h2>
+
+<p>Lavoro con <em>VivacityGPT Complete</em> da diversi mesi, e una delle domande che mi pongo sistematicamente è questa: fino a dove può spingersi un <strong>Large Language Model</strong> nella generazione di sistemi software <em>integrati e coerenti</em>? Non snippet isolati, non funzioni di esempio — ma un ecosistema completo: linguaggio, runtime, editor, documentazione. Ho quindi deciso di condurre un esperimento strutturato usando <em>GPT-4.1-mini</em> attraverso la piattaforma <em>VivacityGPT Complete</em>, chiedendogli qualcosa di deliberatamente ambizioso: inventare un <strong>linguaggio descrittivo per creare universi</strong>, implementarne il runtime tramite <strong>Web Components API</strong>, e costruire attorno a esso un ambiente di sviluppo visuale.</p>
+
+<p>Il risultato si chiama <em>pHTML 2.0</em> — <em>Planet HTML</em> — e questa è la mia analisi critica di ciò che il modello ha prodotto, di come ha ragionato sulla gerarchia dei concetti, e di dove si sono manifestati i limiti strutturali di un LLM quando lavora su sistemi di questa complessità.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Il Linguaggio: Sintassi, Gerarchia e Scelte Progettuali</h2>
+
+<h3>La struttura ad albero del multiverso</h3>
+
+<p>Ho formulato il prompt in modo preciso: volevo che il modello progettasse una <strong>gerarchia tag dichiarativa</strong> ispirata alla sintassi HTML, capace di descrivere corpi celesti con attributi fisici reali. La prima cosa che mi ha sorpreso è stata la coerenza con cui <em>GPT-4.1-mini</em> ha costruito la tassonomia: dal contenitore radice <code>&lt;p-multiverse&gt;</code> fino alle lune con attributo <strong>tidal-locked</strong>, ogni livello della gerarchia rispecchia una logica astronomica genuina.</p>
+
+<p>La struttura base che il modello ha prodotto è questa:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="p_2.0_tags.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p-multiverse name="My Multiverse"&gt;
+    &lt;p-universe name="Test Universe" version="2.1"&gt;
+      &lt;p-solarsystem name="Sistema Solare" age="4.6 billion years"&gt;
+        &lt;p-star name="Sole" type="G2V" mass="1solar" temperature="5778K" luminosity="1solar"&gt;&lt;/p-star&gt;
+        &lt;p-earth order="3" water="70%" terrain="30%" air="breathable" population-autoevolve&gt;
+          &lt;p-moon name="Luna" distance="384400km" tidal-locked&gt;&lt;/p-moon&gt;
+        &lt;/p-earth&gt;
+        &lt;p-mars order="4" mass="0.107earth" radius="3389km" air="thin"&gt;
+          &lt;p-moon name="Phobos" distance="9376km"&gt;&lt;/p-moon&gt;
+          &lt;p-moon name="Deimos" distance="23463km"&gt;&lt;/p-moon&gt;
+        &lt;/p-mars&gt;
+      &lt;/p-solarsystem&gt;
+    &lt;/p-universe&gt;
+  &lt;/p-multiverse&gt;
+  &lt;script src="p_2.0_tags.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h3>Oggetti avanzati e la scelta delle unità di misura</h3>
+
+<p>Una delle decisioni più interessanti del modello riguarda le <strong>unità di misura</strong>: il LLM ha definito autonomamente un sistema di riferimento coerente — <em>solar mass</em>, <em>earth mass</em>, <em>AU</em>, <em>light-years</em> — senza che io lo specificassi nel prompt. Questo mi ha detto qualcosa di importante sulla capacità del modello di attingere a corpus scientifici e di applicare convenzioni di dominio in modo appropriato. Interessante anche l'estensione verso oggetti astrofisici avanzati:</p>
+
+<pre><code class="language-html">&lt;!-- Oggetti avanzati: nebulosa, pulsar, quasar --&gt;
+&lt;p-universe name="Deep Space Objects"&gt;
+  &lt;p-nebula
+    name="Orion Nebula"
+    type="emission"
+    distance="1344 light-years"
+    size="24 light-years"
+    composition="hydrogen,helium,dust"
+    temperature="10000K"&gt;
+  &lt;/p-nebula&gt;
+
+  &lt;p-pulsar
+    name="PSR B1919+21"
+    type="millisecond"
+    period="1.3373s"
+    magneticField="1e12 gauss"
+    distance="2283 light-years"
+    age="10 million years"&gt;
+  &lt;/p-pulsar&gt;
+
+  &lt;p-quasar
+    name="3C 273"
+    redshift="0.158"
+    luminosity="4e12 solar"
+    distance="2.4 billion light-years"
+    massBH="886 million solar"&gt;
+  &lt;/p-quasar&gt;
+&lt;/p-universe&gt;</code></pre>
+
+<div class="highlight-box"><p><strong>Insight tecnico #1 — Attributi booleani HTML nativi:</strong> GPT-4.1-mini ha gestito correttamente il pattern degli attributi booleani HTML standard: <code>population-autoevolve</code> (presenza = true, assenza = false) e <code>tidal-locked</code> seguono la specifica HTML5 per gli attributi booleani, senza inventare sintassi proprietarie tipo <code>population-autoevolve="true"</code>. È un segnale che il modello ha interiorizzato le convenzioni del DOM, non solo la sua sintassi superficiale.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. L'Implementazione: Web Components da Zero</h2>
+
+<h3>Come il LLM ha strutturato il runtime JavaScript</h3>
+
+<p>La parte più tecnica dell'esperimento riguardava la generazione del file <code>p_2.0_tags.js</code>. Ho chiesto a <em>GPT-4.1-mini</em> di implementare ogni tag come un <strong>Custom Element</strong> via <em>Web Components API</em> (ES6+). Il modello ha adottato correttamente il pattern <code>connectedCallback()</code> per la fase di rendering, usando <code>this.getAttribute()</code> per leggere gli attributi dichiarativi e costruire il DOM interno. L'implementazione di <code>&lt;p-earth&gt;</code> è rappresentativa dell'approccio generale:</p>
+
+<pre><code class="language-html">&lt;!-- Utilizzo del custom element p-earth nel documento --&gt;
+&lt;p-earth
+  order="3"
+  water="70%"
+  terrain="30%"
+  air="breathable"
+  population-autoevolve&gt;
+  &lt;p-moon name="Luna" distance="384400km" tidal-locked&gt;&lt;/p-moon&gt;
+&lt;/p-earth&gt;
+
+&lt;!-- Il CSS generato per il rendering visuale --&gt;
+&lt;style&gt;
+/* Override visuale personalizzato per p-earth */
+p-earth .planet-visual {
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255, 255, 255, 0.3),
+    hsl(220, 70%, 40%)
+  );
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.4);
+}
+
+/* Indicatore vita */
+p-earth .life-indicator {
+  color: #00ff88;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+/* Luna con tidal-lock */
+p-moon[tidal-locked] .moon-indicator::after {
+  content: " 🔒";
+}
+&lt;/style&gt;</code></pre>
+
+<h3>Il sistema TRAPPIST-1: esopianeti e pianeti custom</h3>
+
+<p>Per testare la flessibilità del linguaggio ho chiesto esplicitamente un esempio con esopianeti reali. Il modello ha distinto correttamente tra tag predefiniti (i pianeti del sistema solare) e il tag generico <code>&lt;p-planet&gt;</code> per corpi celesti custom — una scelta progettuale pulita che riflette il pattern di estensibilità tipico dei linguaggi di markup ben disegnati:</p>
+
+<pre><code class="language-html">&lt;!-- Sistema TRAPPIST-1: esempio con esopianeti --&gt;
+&lt;p-universe name="TRAPPIST-1 System" version="2.0"&gt;
+  &lt;p-solarsystem name="TRAPPIST-1" age="7.6 billion years" type="ultra-cool-dwarf"&gt;
+
+    &lt;p-star
+      name="TRAPPIST-1"
+      type="M8V"
+      mass="0.089solar"
+      temperature="2566K"
+      luminosity="0.000525solar"
+      radius="0.1192solar"&gt;
+    &lt;/p-star&gt;
+
+    &lt;p-planet name="TRAPPIST-1b" order="1" mass="1.017earth" radius="1.121earth" air="none"&gt;&lt;/p-planet&gt;
+    &lt;p-planet name="TRAPPIST-1c" order="2" mass="1.156earth" radius="1.095earth" air="thin"&gt;&lt;/p-planet&gt;
+    &lt;p-planet name="TRAPPIST-1d" order="3" mass="0.297earth" radius="0.784earth" air="thin"&gt;&lt;/p-planet&gt;
+
+    &lt;!-- TRAPPIST-1e: candidato abitabile --&gt;
+    &lt;p-planet
+      name="TRAPPIST-1e"
+      order="4"
+      mass="0.772earth"
+      radius="0.910earth"
+      water="50%"
+      air="breathable"
+      population-autoevolve&gt;
+    &lt;/p-planet&gt;
+
+    &lt;p-planet name="TRAPPIST-1f" order="5" mass="0.934earth" radius="1.045earth" water="80%" air="thin"&gt;&lt;/p-planet&gt;
+
+    &lt;p-asteroidbelt
+      name="Inner Belt"
+      composition="silicate,carbon"
+      count="~10000"
+      distance="0.6AU"
+      width="0.1AU"&gt;
+    &lt;/p-asteroidbelt&gt;
+
+  &lt;/p-solarsystem&gt;
+&lt;/p-universe&gt;</code></pre>
+
+<div class="highlight-box"><p><strong>Insight tecnico #2 — Coerenza sistemica su ~800 righe:</strong> GPT-4.1-mini ha mantenuto la coerenza della gerarchia tag attraverso l'intero sistema generato, stimabile in circa 800 righe di codice tra JS, CSS e HTML di esempio. La nomenclatura degli attributi è rimasta consistente (stessa ortografia, stesse unità) in tutti i file. Questo tipo di <strong>coerenza cross-file</strong> è uno dei segnali più significativi della capacità del modello di gestire un "contratto di sistema" implicito.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. L'Ambiente di Sviluppo: Quando il LLM Genera Strumenti per Sé Stesso</h2>
+
+<p>La parte che mi ha più colpito dell'esperimento non è stata la generazione del linguaggio in sé, ma la richiesta successiva: ho chiesto a <em>GPT-4.1-mini</em> di progettare un <strong>ambiente di sviluppo visuale</strong> per <em>pHTML 2.0</em>. Il modello ha prodotto un editor a 5 tab — <em>Visual Editor</em>, <em>Import JSON</em>, <em>Viewer</em>, <em>Export</em>, <em>pHTML Editor</em> — con logica di esportazione/importazione in formato <code>.phtml</code> e JSON. È come se, dopo aver inventato un linguaggio, il LLM avesse ragionato su quale toolchain un developer si aspetterebbe di trovare. Questo mi sembra uno dei comportamenti emergenti più interessanti: la capacità di <strong>inferire le aspettative dell'utente finale</strong> a partire dalla natura dello strumento.</p>
+
+<div class="quote"><p>La vera domanda non è se <em>GPT-4.1-mini</em> possa generare codice funzionante — questo lo sappiamo già. La domanda è se possa generare sistemi <em>coerenti</em>, dove ogni componente rispetta un contratto implicito con gli altri. In questo esperimento, la risposta è stata prevalentemente sì — con una riserva importante: la coerenza è sintattica e strutturale, non fisica. <em>pHTML 2.0</em> descrive universi, non li simula. Il salto dal linguaggio descrittivo al motore computazionale rimane fuori dalla portata di un singolo session prompt, e probabilmente è giusto così.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>V. Limiti, Compatibilità e Cosa Ho Imparato</h2>
+
+<h3>Dove il modello ha mostrato i suoi confini</h3>
+
+<p>L'esperimento ha prodotto risultati solidi, ma non privi di imperfezioni. Il manuale generato da <em>GPT-4.1-mini</em> marcava alcuni attributi avanzati come <em>"in sviluppo"</em> — in particolare il supporto alle <strong>stelle binarie</strong> tramite attributo <code>binary</code>. Questo è un pattern che ho osservato spesso: il modello, quando si trova a descrivere funzionalità complesse da implementare ex-novo, tende a includerle nella specifica ma a rinviarne l'implementazione reale. È una forma di <strong>technical debt implicito</strong> che un team di sviluppo umano dovrebbe riconoscere e gestire consapevolmente.</p>
+
+<p>Il <strong>rendering visuale</strong> è interamente CSS-based: i gradienti radiali simulano acqua, terreno e atmosfera in modo visivamente credibile, ma non esiste fisica reale sottostante. Gli attributi come <code>mass</code>, <code>temperature</code>, <code>luminosity</code> sono puramente descrittivi — il sistema non calcola orbite, non simula gravitazione, non verifica la coerenza fisica dei valori inseriti. Questo non è un difetto del modello, è un limite del prompt: non ho chiesto un simulatore fisico, e il LLM ha correttamente interpretato il perimetro della richiesta.</p>
+
+<h3>Compatibilità e stack richiesto</h3>
+
+<p>La compatibilità dell'output è stata verificata dal modello stesso nella documentazione generata: <em>Chrome/Edge</em> (ottima), <em>Firefox</em> (ottima), <em>Safari</em> (ottima), con requisito minimo <strong>ES6+</strong> per la <em>Custom Elements API</em>. Una nota tecnica importante: i <strong>Web Components</strong> richiedono contesto di pagina web servita — non funzionano aprendo un file HTML direttamente dal filesystem su alcuni browser per restrizioni CORS. È un dettaglio che il modello ha correttamente incluso nelle note di installazione.</p>
+
+<h3>Il giudizio finale sull'esperimento</h3>
+
+<p>Usando <em>VivacityGPT Complete</em> come ambiente di lavoro, questo ciclo di prompt mi ha richiesto circa tre sessioni di lavoro iterativo. Il risultato — un linguaggio funzionante, un runtime in <strong>JavaScript</strong>, un editor visuale, una documentazione strutturata — è qualcosa che un team di sviluppo junior avrebbe impiegato settimane a produrre. La qualità non è production-ready senza revisione umana, ma il <strong>punto di partenza generato</strong> è straordinariamente denso e coerente. <em>GPT-4.1-mini</em> si è dimostrato capace di tenere in testa un "contratto di sistema" complesso attraverso generazioni successive di codice — ed è proprio questa la capacità che, come ricercatore, stavo cercando di misurare.</p>
+
+<p>La prossima fase dell'esperimento sarà aggiungere un layer di <strong>validazione fisica</strong>: chiedere al modello di implementare regole di coerenza astronomica (una stella di tipo M8V non può avere la luminosità del Sole, per esempio) direttamente nel runtime JavaScript. Quello sarà il vero banco di prova per capire se un LLM può generare non solo sintassi, ma <em>semantica computazionale</em>.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Novembre 2025</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

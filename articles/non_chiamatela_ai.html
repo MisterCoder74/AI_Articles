@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non chiamatela AI | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Non chiamatela AI</h1>
+        <p>ChatGPT ammette i propri limiti: il termine "intelligenza artificiale" è davvero appropriato per descrivere questi sistemi?</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Luglio 2023 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="/blog/coverimgs/125325.jpg" alt="Non chiamatela AI" class="cover-image">
+<h2>I. La Domanda Scomoda che Nessuno Vuole Fare</h2>
+
+<p>Nel dibattito pubblico sull'intelligenza artificiale, c'è una parola che viene usata con disinvoltura quasi imbarazzante: <strong>intelligenza</strong>. La usiamo per descrivere chatbot, modelli linguistici, sistemi di raccomandazione. La usiamo su giornali, nei convegni, nelle presentazioni aziendali. Ma cosa succede quando siamo noi a chiedere direttamente a <em>ChatGPT</em> se il termine è appropriato? La risposta, sorprendentemente lucida, apre una riflessione che va ben oltre la semplice semantica.</p>
+
+<p>Abbiamo condotto una sessione di conversazione diretta con <em>ChatGPT</em>, il celebre modello sviluppato da <strong>OpenAI</strong>, ponendo domande sempre più precise sulla natura stessa del sistema. Quello che ne è emerso è una sorta di <strong>autoanalisi critica</strong> rara nel panorama della comunicazione tecnologica: uno strumento che, interrogato sulla propria identità, ammette con coerenza i propri confini concettuali.</p>
+
+<div class="highlight-box"><p>Quando è lo stesso sistema a mettere in discussione l'etichetta che lo definisce, forse è il momento in cui anche giornalisti, aziende e policy maker dovrebbero fare altrettanto.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Chatbot, Deep Learning e la Confusione Terminologica</h2>
+
+<h3>Cosa è davvero ChatGPT?</h3>
+
+<p>Alla domanda iniziale — <em>"Sei un chatbot o un'intelligenza artificiale?"</em> — <em>ChatGPT</em> risponde con una definizione composita: è un'<strong>intelligenza artificiale conversazionale</strong> basata sull'architettura <strong>GPT</strong> (<em>Generative Pre-trained Transformer</em>). Ma questa risposta, per quanto tecnicamente corretta, è già il primo terreno scivoloso.</p>
+
+<p>Il sistema chiarisce subito la distinzione fondamentale rispetto a un generico programma di <strong>deep learning</strong>: mentre quest'ultimo è tipicamente addestrato su un compito specifico — riconoscimento di immagini, traduzione automatica, rilevamento di anomalie — <em>ChatGPT</em> è stato esposto a un vastissimo <strong>corpus testuale</strong> con l'obiettivo di modellare il linguaggio umano in modo generalizzato. La differenza non è di tipo qualitativo, ma di <strong>scala e intento di addestramento</strong>.</p>
+
+<ul>
+  <li><strong>Deep Learning generico:</strong> algoritmo addestrato su dati specifici per risolvere un compito circoscritto (es. classificazione di immagini mediche)</li>
+  <li><strong>Modello linguistico di grandi dimensioni (LLM):</strong> sistema addestrato su enormi volumi di testo per comprendere e generare linguaggio naturale in contesti variabili</li>
+  <li><strong>Chatbot classico:</strong> sistema basato su regole o alberi decisionali predefiniti, senza capacità di generalizzazione statistica</li>
+</ul>
+
+<h3>Il Nodo Architetturale</h3>
+
+<p>L'architettura <strong>Transformer</strong>, introdotta da Google nel 2017 con il paper <em>"Attention Is All You Need"</em>, è il cuore tecnico di <em>ChatGPT</em>. Il meccanismo di <strong>self-attention</strong> permette al modello di pesare la rilevanza di ogni parola rispetto alle altre all'interno di una sequenza, generando risposte statisticamente coerenti. È un processo potente. Ma è, appunto, un processo statistico — non un atto cognitivo.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Quando l'AI Smonta il Mito dell'Intelligenza</h2>
+
+<p>È nella seconda parte della conversazione che il dialogo assume un valore editoriale autentico. All'osservazione dell'utente — <em>"l'uso del termine intelligenza è improprio, perché tu non generi niente spontaneamente, ma puoi solo elaborare richieste"</em> — <em>ChatGPT</em> non si difende. Concorda.</p>
+
+<p>Il sistema elenca autonomamente almeno quattro dimensioni in cui il termine <strong>intelligenza artificiale</strong> risulta concettualmente inadeguato per descriverlo:</p>
+
+<ul>
+  <li><strong>Consapevolezza e coscienza:</strong> assenza totale di auto-percezione e di esperienza soggettiva; il sistema non "sa" di esistere nel senso fenomenologico del termine</li>
+  <li><strong>Creatività e originalità:</strong> ogni output è una ricombinazione statistica di pattern presenti nei dati di addestramento; non vi è generazione genuinamente nuova</li>
+  <li><strong>Comprensione contestuale profonda:</strong> il modello può fallire su ironia, linguaggio figurativo, riferimenti culturali impliciti o ambiguità semantiche sottili</li>
+  <li><strong>Empatia ed emozioni:</strong> l'elaborazione del linguaggio emotivo non implica la comprensione o la condivisione dell'emozione stessa</li>
+</ul>
+
+<div class="quote">Il vero problema non è che <em>ChatGPT</em> si chiami "intelligente". Il problema è che noi abbiamo smesso di chiederci cosa significhi davvero quella parola — e abbiamo lasciato che fosse il marketing a rispondere al posto nostro.</div>
+
+<p>Questa autoconsapevolezza del modello — per quanto anch'essa sia, tecnicamente, una risposta generata su pattern statistici — pone una questione culturale urgente. Il termine <strong>intelligenza artificiale</strong> nasce negli anni '50 del Novecento come etichetta di ricerca accademica, non come promessa commerciale. Nel tempo è diventato un brand, un'aspettativa, quasi una profezia. E come tutte le profezie, rischia di oscurare più che illuminare.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Ripensare il Linguaggio per Ripensare la Tecnologia</h2>
+
+<p>La questione terminologica non è accademica. Le parole che usiamo per descrivere una tecnologia ne condizionano la percezione pubblica, la regolamentazione e — in ultima istanza — l'uso responsabile. Chiamare <em>ChatGPT</em> "intelligente" genera aspettative distorte: gli utenti si aspettano comprensione dove c'è elaborazione, giudizio dove c'è correlazione, affidabilità dove c'è plausibilità statistica.</p>
+
+<p>Termini alternativi come <strong>sistema di elaborazione del linguaggio naturale</strong>, <strong>modello generativo probabilistico</strong> o più semplicemente <strong>motore di completamento testuale</strong> sarebbero più precisi — ma molto meno evocativi. E qui sta il dilemma irrisolto tra comunicazione tecnica e comunicazione di massa.</p>
+
+<div class="highlight-box"><p>Non si tratta di sminuire la portata di strumenti come <em>ChatGPT</em> — che rimangono trasformazioni reali nel modo in cui interagiamo con l'informazione. Si tratta di smettere di confondere la potenza di un sistema con attributi cognitivi che non possiede, per poterne valutare i rischi con la lucidità che meritano.</p></div>
+
+<p>La prossima volta che leggete un titolo che recita <em>"l'AI ha capito"</em>, o <em>"l'AI ha deciso"</em>, ricordatevi di questa conversazione. E chiedete, come ha fatto l'utente di quella chat: <em>ma davvero?</em></p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Luglio 2023</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
