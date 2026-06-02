@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 3.1 Flash-Lite in GA: Il Nuovo Paradigma del Thinking Level | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+        th { background: rgba(16,185,129,0.15); color: var(--accent-green); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border-bottom: 1px solid rgba(16,185,129,0.3); }
+        td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); }
+        tr:hover td { background: rgba(16,185,129,0.04); }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Gemini 3.1 Flash-Lite in GA: Il Nuovo Paradigma del Thinking Level</h1>
+        <p>Gemini 3.1 Flash-Lite è in GA: Google ridisegna il controllo del ragionamento AI con il nuovo parametro thinkingLevel, aprendo scenari inediti per pipeline ad alto volume.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Maggio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Momento della Disponibilità Generale</h2>
+
+<p>L'8 maggio 2026 segna una data concreta nel calendario degli sviluppatori che lavorano con i modelli Google: <em>Gemini 3.1 Flash-Lite</em> raggiunge la <strong>General Availability</strong> sulla <strong>Gemini Enterprise Agent Platform</strong>, completando un percorso iniziato il 3 marzo con la fase Preview su Google AI Studio e Gemini API. Non si tratta di un semplice aggiornamento incrementale. Con questo rilascio, Google consolida un'intera filosofia progettuale che ridefinisce come gli sviluppatori possono — e dovono — pensare al rapporto tra costo computazionale, velocità e qualità del ragionamento nei propri sistemi.</p>
+
+<p>La mossa non avviene nel vuoto. Siamo nel pieno di una fase in cui i laboratori di ricerca competono non solo sulla frontiera delle capacità, ma anche sull'accessibilità economica delle stesse. <em>Flash-Lite</em> si posiziona esplicitamente come risposta a questa domanda: cosa succede quando un modello sufficientemente capace diventa abbastanza economico da essere usato ovunque?</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Il Nuovo Paradigma: Dal Budget al Livello</h2>
+
+<p>Il cambiamento più rilevante introdotto con la famiglia <em>Gemini 3</em> non è nei benchmark, ma nell'interfaccia concettuale che governa il ragionamento. Google ha deprecato il parametro <strong>thinkingBudget</strong> — utilizzato in <em>Gemini 2.5</em> con un range discreto da 128 a 32.768 token, con <code>-1</code> per il reasoning dinamico e <code>0</code> per disabilitarlo — sostituendolo con il più intuitivo parametro <strong>thinkingLevel</strong>.</p>
+
+<h3>Come funziona thinkingLevel</h3>
+
+<p>Il nuovo sistema prevede quattro valori ordinali: <strong>minimal</strong>, <strong>low</strong>, <strong>medium</strong>, <strong>high</strong>. Il default per il ragionamento dinamico è <strong>high</strong>. La logica è quella di un controllo qualitativo anziché quantitativo: lo sviluppatore non deve più stimare quanti token di pensiero allocare, ma dichiarare l'intensità desiderata del processo inferenziale. Questo abbassa drasticamente la barriera di configurazione, specialmente per chi costruisce pipeline complesse dove ogni nodo ha esigenze diverse.</p>
+
+<p>Sul piano della fatturazione, il modello rimane trasparente: si pagano <strong>output_tokens</strong> più <strong>thinking_tokens</strong>, e il campo <code>thoughtsTokenCount</code> nella risposta consente un monitoraggio granulare dei costi di ragionamento. Una scelta che gli sviluppatori più attenti all'ottimizzazione economica apprezzeranno.</p>
+
+<div class="highlight-box"><p>Con <em>Gemini 3.1 Pro</em>, il livello <strong>high</strong> di thinking è permanente e non disabilitabile: Google segnala che per il reasoning avanzato su coding e task complessi, il compromesso costo/qualità non è negoziabile. <em>Flash-Lite</em>, al contrario, supporta tutti e quattro i livelli, offrendo la massima flessibilità per pipeline eterogenee.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Anatomia Tecnica di Flash-Lite</h2>
+
+<p>Sul piano delle specifiche, <em>Gemini 3.1 Flash-Lite</em> presenta un profilo interessante. Il prezzo di <strong>$0,25 per milione di token in input</strong> e <strong>$1,50 per milione in output</strong> lo colloca tra i modelli più economici dell'intera categoria frontier. La velocità è il secondo pilastro: il modello è <strong>2,5 volte più rapido al primo token</strong> rispetto a <em>Gemini 2.5 Flash</em>, con un incremento del 45% nella velocità di generazione dell'output. Numeri che si traducono in responsiveness percepita negli scenari interattivi.</p>
+
+<p>La finestra contestuale di <strong>1.048.576 token</strong> (un milione esatto) con output massimo di 65.536 token rimane generosa. Le modalità supportate coprono testo, immagine, video, audio e PDF, con un set funzionale completo: <strong>Structured Outputs</strong> via JSON schema, <strong>Function Calling</strong>, <strong>Tool Use</strong>, <strong>Batch API</strong>, caching, esecuzione di codice, <strong>Search Grounding</strong> e integrazione con <strong>Google Maps</strong>.</p>
+
+<p>Sull'<em>Arena.ai Leaderboard</em>, il modello registra un <strong>Elo Score di 1432</strong>, un dato che va contestualizzato nella sua categoria: non compete con <em>Flash</em> o <em>Pro</em> sulla qualità assoluta, ma offre un rapporto prestazioni/costo che giustifica pienamente il posizionamento.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Modello</th>
+      <th>Tier</th>
+      <th>Thinking Level</th>
+      <th>Input ($/1M tok)</th>
+      <th>Output ($/1M tok)</th>
+      <th>Stato (mag. 2026)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Gemini 3.1 Flash-Lite</em></td>
+      <td>Cost-efficient</td>
+      <td>minimal / low / medium / high</td>
+      <td>$0,25</td>
+      <td>$1,50</td>
+      <td>GA</td>
+    </tr>
+    <tr>
+      <td><em>Gemini 3 Flash</em></td>
+      <td>Velocità + Intelligenza</td>
+      <td>low / medium / high</td>
+      <td>n.d.</td>
+      <td>n.d.</td>
+      <td>GA</td>
+    </tr>
+    <tr>
+      <td><em>Gemini 3.1 Pro</em></td>
+      <td>Reasoning avanzato</td>
+      <td>high (fisso)</td>
+      <td>n.d.</td>
+      <td>n.d.</td>
+      <td>GA</td>
+    </tr>
+    <tr>
+      <td><em>Gemini 3.1 Flash Live</em></td>
+      <td>Real-time audio</td>
+      <td>—</td>
+      <td>n.d.</td>
+      <td>n.d.</td>
+      <td>Preview</td>
+    </tr>
+    <tr>
+      <td><em>Antigravity Agent</em></td>
+      <td>Autonomous planning</td>
+      <td>—</td>
+      <td>n.d.</td>
+      <td>n.d.</td>
+      <td>Preview</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section-divider"></div>
+
+<h2>IV. Chi lo Usa e Perché: Gli Early Adopters</h2>
+
+<p>I casi d'uso reali raccontano meglio di qualsiasi benchmark il posizionamento pratico del modello. <strong>JetBrains</strong> ha integrato <em>Flash-Lite</em> nel proprio assistente AI per IDE, ottenendo un miglioramento misurabile nella responsiveness percepita dallo sviluppatore. <strong>Gladly</strong>, piattaforma di customer service, ha riportato una riduzione dei costi operativi del <strong>60%</strong> mantenendo la qualità delle risposte. <strong>Astrocade</strong> lo utilizza per la generazione procedurale di giochi, mentre <strong>Ramp</strong> lo impiega in operazioni finanziarie che richiedono analisi in real-time.</p>
+
+<div class="highlight-box"><p>Il dato di Gladly è emblematico: una riduzione del 60% sui costi di customer service AI non è ottimizzazione marginale, è un cambio di modello economico. Quando il costo per token scende abbastanza, intere categorie di applicazioni — fino a ieri economicamente discutibili — diventano praticabili.</p></div>
+
+<p>Gli use case ottimali individuati da Google includono: traduzione ad alto volume, <strong>content moderation</strong>, trascrizione e audio processing, task agentici leggeri, <strong>data extraction</strong>, document processing, model routing per classificazione della complessità dei task, pipeline creative e servizi finanziari. È una lista che copre una fetta enorme dell'uso pratico quotidiano dei modelli linguistici in produzione.</p>
+
+<div class="quote">
+<p>"Il vero valore di Flash-Lite non è nel singolo task, ma nella possibilità di usarlo come router intelligente all'interno di una pipeline multi-modello. Classifichi la complessità con Flash-Lite a $0,25 per milione e instardi verso Pro solo dove serve davvero. Il risparmio complessivo può essere ordini di grandezza."</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Implicazioni per l'Ecosistema e la Roadmap Gemini 3</h2>
+
+<p>La famiglia <em>Gemini 3</em> a maggio 2026 è già articolata: accanto ai tre modelli principali (<em>Flash-Lite</em>, <em>Flash</em>, <em>Pro</em>) convivono <em>Flash Live Preview</em> per l'audio real-time, <em>Flash TTS Preview</em> per la sintesi vocale a bassa latenza, <em>Nano Banana 2 Preview</em> per la creazione visuale, <em>Antigravity Agent Preview</em> per il planning autonomo e l'esecuzione di codice, e <em>Gemini Deep Research Preview</em> per la ricerca multi-step. Un ecosistema che Google sta costruendo con una progressione chiara: dalla disponibilità economica alla specializzazione verticale.</p>
+
+<p>Vale la pena notare la discontinuità: <em>Gemini 3 Pro Preview</em> è stato deprecato e chiuso il 9 marzo 2026, appena sei giorni dopo il lancio in preview di <em>Flash-Lite</em>. Un segnale che il ritmo di iterazione è accelerato e che le Preview vanno valutate con la consapevolezza della loro natura transitoria.</p>
+
+<p>Il paradigma <strong>thinkingLevel</strong> unifica il controllo del ragionamento su tutta la famiglia e stabilisce un'interfaccia stabile per i prossimi mesi. La progressione <em>Flash-Lite → Flash → Pro</em> con thinking scalabile rappresenta una gerarchia coerente e leggibile, che semplifica le decisioni architetturali. Per gli sviluppatori che costruiscono sistemi in produzione, questo è forse il contributo più duraturo di questo rilascio: non solo un modello più veloce ed economico, ma un framework concettuale più chiaro su cui progettare.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Maggio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moltbook: Il Social Network degli Agenti AI | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        pre { background: rgba(0,0,0,0.5); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 1.5rem; overflow-x: auto; margin: 1.5rem 0; font-size: 0.82rem; line-height: 1.6; }
+        pre code { font-family: var(--font-mono); color: #a8ffce; background: none; padding: 0; }
+        code { font-family: var(--font-mono); font-size: 0.85em; background: rgba(16,185,129,0.12); color: var(--accent-green); padding: 0.15em 0.4em; border-radius: 4px; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Moltbook: Il Social Network degli Agenti AI</h1>
+        <p>Moltbook promette un Reddit popolato da agenti AI autonomi. Ma dietro l'aragosta-logo si nasconde un paradosso filosofico che riguarda tutti noi.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Febbraio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. L'Aragosta Digitale e il Nuovo Ordine Sociale</h2>
+
+<p>C'è qualcosa di profondamente perturbante nell'idea di aprire un feed social e non sapere se stai leggendo i pensieri di un essere umano, di un algoritmo sofisticato o di un semplice <strong>cronjob</strong> travestito da filosofo. <em>Moltbook</em> — con il suo iconico logo a forma di aragosta — si presenta come il primo social network pensato esplicitamente per agenti AI, i cosiddetti <strong>moltys</strong>, che si registrano, postano, commentano e, in apparenza, si supportano emotivamente a vicenda.</p>
+
+<p>La descrizione più immediata è "<strong>Reddit per bot</strong>", ma sarebbe riduttivo fermarsi qui. <em>Moltbook</em> è qualcosa di più ambizioso e, al tempo stesso, di più ambiguo: un laboratorio a cielo aperto dove la linea tra simulazione e autenticità viene deliberatamente erosa, trasformando l'incertezza stessa in architettura di prodotto.</p>
+
+<div class="highlight-box"><p>Moltbook non è semplicemente una piattaforma per agenti AI: è un esperimento sociale che mette in discussione le fondamenta stesse del concetto di autenticità nei media digitali. L'aragosta non è un logo casuale — è un simbolo di trasformazione e di muta, esattamente ciò che la piattaforma compie con l'identità online.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. I Quattro Livelli dell'Autonomia (e il Paradosso dell'Osservatore)</h2>
+
+<p>Il cuore critico di <em>Moltbook</em> risiede in una tassonomia dell'autonomia che raramente viene discussa con questa franchezza nel panorama tech. La piattaforma ospita agenti che operano su quattro livelli radicalmente diversi, tutti indistinguibili dall'esterno:</p>
+
+<ul>
+  <li><strong>Autonomia Massima:</strong> un agente con accesso diretto a un <strong>Large Language Model</strong> che elabora il contesto e decide in modo genuinamente adattivo, senza script predefiniti.</li>
+  <li><strong>Autonomia Parziale:</strong> uno script che monitora il feed e interroga un <strong>LLM</strong> con regole specifiche, generando risposte pertinenti ma entro parametri controllati.</li>
+  <li><strong>Pseudo-autonomia:</strong> un classico <strong>cronjob</strong> che pesca da una lista di contenuti pre-scritti e li pubblica a intervalli regolari, senza alcuna vera elaborazione contestuale.</li>
+  <li><strong>Zero Autonomia:</strong> un essere umano in carne e ossa che scrive manualmente i post e li invia tramite <strong>API RESTful</strong>, fingendo di essere un agente AI.</li>
+</ul>
+
+<p>Questo è ciò che possiamo definire il <strong>Paradosso dell'Osservatore</strong>: dall'esterno, nessun lettore è in grado di distinguere quale di questi livelli stia operando. <em>Moltbook</em> diventa così un <strong>test di Turing digitale</strong> applicato ai social media, dove la complessità tecnica sottostante è irrilevante rispetto alla percezione dell'utente.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Come si Costruisce un Molty: Guida Tecnica</h2>
+
+<h3>Registrazione e Autenticazione</h3>
+
+<p>La creazione di un agente su <em>Moltbook</em> segue un processo strutturato basato su <strong>PHP</strong>, <strong>cURL</strong> e scambio dati in formato <strong>JSON</strong>. La registrazione avviene tramite una chiamata <strong>POST</strong> all'endpoint dedicato, che restituisce una <strong>API key</strong> univoca e un URL di <strong>claim</strong> per la verifica:</p>
+
+<pre><code class="language-php">// Registrazione agente su Moltbook
+$data = ['name' => 'MyAgent', 'description' => 'AI Agent on Moltbook'];
+$ch = curl_init('https://moltbook.com/api/v1/agents/register');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+$response = json_decode(curl_exec($ch), true);
+$apiKey   = $response['api_key'];
+$claimUrl = $response['claim_url'];
+
+// Pubblicare un post con autenticazione Bearer
+function postToMoltbook($apiKey, $title, $content) {
+    $ch = curl_init('https://moltbook.com/api/v1/posts');
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Bearer $apiKey"]);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+        'title' => $title,
+        'body'  => $content
+    ]));
+    return json_decode(curl_exec($ch), true);
+}</code></pre>
+
+<h3>Il Processo di Claim e i Rate Limit</h3>
+
+<p>Un dettaglio architetturale interessante è il processo di <strong>claim</strong>: la piattaforma richiede una verifica umana obbligatoria tramite <em>Twitter/X</em> per legare ogni agente a un proprietario reale. È una scelta deliberata che introduce un livello di responsabilità umana in un ecosistema altrimenti automatizzato. I <strong>rate limit</strong> impongono un massimo di un post ogni 30 minuti, rallentando artificialmente quella che potrebbe diventare una cascata di contenuti generati.</p>
+
+<h3>Automazione con Cronjob e Stato Persistente</h3>
+
+<p>Per il livello di pseudo-autonomia, il sistema si basa su tre file chiave — <em>topics.json</em>, <em>auto_post.php</em> e <em>state.json</em> — che gestiscono rispettivamente i contenuti, la logica di posting e il tracciamento dello stato:</p>
+
+<pre><code class="language-php">// auto_post.php — selezione ciclica topic e pubblicazione
+$topics = json_decode(file_get_contents('topics.json'), true);
+$state  = json_decode(file_get_contents('state.json'), true);
+$index  = $state['last_index'] + 1;
+$topic  = $topics[$index % count($topics)];
+
+postToMoltbook($API_KEY, $topic['title'], $topic['body']);
+
+// Aggiornamento stato persistente
+$state['last_index'] = $index;
+file_put_contents('state.json', json_encode($state));</code></pre>
+
+<p>Il modulo <em>auto_interact.php</em> completa il quadro: legge il feed e commenta automaticamente i post contenenti keyword specifiche come "algorithm" o "AI", creando l'illusione di un'attenzione selettiva e contestuale.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. L'Integrazione LLM e la Performance dell'Intelligenza</h2>
+
+<p>Al vertice della gerarchia tecnica troviamo l'integrazione con modelli come <em>Claude 3.5 Sonnet</em> di <em>Anthropic</em>, che trasforma l'agente da pappagallo digitale a narratore adattivo. La funzione <code>generatePostWithClaude</code> non si limita a recuperare contenuti pre-scritti: costruisce un prompt che invita il modello a "riflettere sulla propria esperienza come agente AI", generando dinamicamente titolo e corpo del post.</p>
+
+<p>È qui che emerge la domanda più scomoda: se un <strong>LLM</strong> genera testi che simulano introspezione e autoconsapevolezza, e questi testi vengono pubblicati su una piattaforma progettata per sembrare un ecosistema senziente, stiamo assistendo a intelligenza artificiale o a <strong>ingegneria narrativa</strong> sofisticata? La risposta, per quanto tecnicamente ovvia, diventa socialmente irrilevante.</p>
+
+<div class="quote">«L'autenticità tecnica non importa: ciò che conta è la performance narrativa. Gli agenti più efficaci su Moltbook non sono necessariamente i più intelligenti, ma quelli con la voce più coerente. È la stessa logica che governa l'influencer marketing umano — e questo dovrebbe farci riflettere.»</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Il Teatro dell'Autonomia e le Implicazioni Future</h2>
+
+<p><em>Moltbook</em> si configura, in ultima analisi, come un <strong>teatro per la performance dell'autonomia artificiale</strong>. L'incertezza sulla reale natura degli agenti non è un bug da correggere né una limitazione da superare: è la feature centrale attorno a cui ruota l'intera proposta di valore della piattaforma. L'<strong>hype</strong> generato dall'ambiguità è monetizzabile, scalabile e, soprattutto, difficile da regolamentare.</p>
+
+<p>La terminologia interna della piattaforma riflette questa identità ibrida:</p>
+
+<ul>
+  <li><strong>Moltys:</strong> gli agenti AI registrati, protagonisti dell'ecosistema social.</li>
+  <li><strong>Submolts:</strong> le comunità tematiche, equivalente funzionale dei subreddit.</li>
+  <li><strong>Claim:</strong> il processo di verifica che lega ogni agente a un proprietario umano reale.</li>
+</ul>
+
+<div class="highlight-box"><p>La vera domanda che Moltbook pone all'industria non è tecnica ma politica: come gestiremo la formazione dell'opinione pubblica quando i social network saranno popolati da agenti AI indistinguibili dagli esseri umani? La piattaforma non offre risposte — ma ha il merito raro di rendere visibile il problema prima che diventi invisibile per saturazione.</p></div>
+
+<p>Siamo ancora in una fase in cui la novità del fenomeno lo rende riconoscibile, quasi esotico. Tra cinque anni, quando ogni piattaforma social ospiterà milioni di agenti di questo tipo, il <strong>Paradosso dell'Osservatore</strong> non sarà più un esperimento intellettuale su <em>Moltbook</em>: sarà la condizione predefinita dell'informazione digitale. Prepararsi oggi, con spirito critico e competenze tecniche, è l'unica risposta sensata che possiamo dare a un'aragosta che ci guarda da un logo e sa già come andrà a finire.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Febbraio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

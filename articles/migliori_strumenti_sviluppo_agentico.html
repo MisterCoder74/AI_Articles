@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Migliori Strumenti di Sviluppo Agentico secondo Vivacity Design | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        .tool-card { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; }
+        .tool-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+        .tool-tag { font-family: var(--font-mono); font-size: 0.7rem; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 0.2em 0.7em; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+        .tool-name { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin: 0; }
+        .tool-desc { color: var(--text-secondary); font-size: 0.95rem; margin: 0.5rem 0 1rem; }
+        .tool-cta { display: inline-block; background: var(--accent-green); color: #000; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
+        .tool-cta:hover { opacity: 0.85; }
+        .tool-cta-disabled { display: inline-block; background: rgba(255,255,255,0.1); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; padding: 0.6rem 1.4rem; border-radius: 8px; cursor: default; }
+        .tool-screenshot { width: 100%; border-radius: 10px; margin: 0.75rem 0; border: 1px solid rgba(255,255,255,0.1); }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>I Migliori Strumenti di Sviluppo Agentico secondo Vivacity Design</h1>
+        <p>Oltre Cursor e Lovable: quattro piattaforme AI meno note ma potenti per chi vuole costruire app, automatizzare task e delegare all'AI l'esecuzione reale.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Maggio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+
+<p>Lo sviluppo di app e siti web sta attraversando una trasformazione radicale grazie agli <strong>agenti AI</strong>. Strumenti come <em>Cursor</em>, <em>Replit</em>, <em>Lovable</em>, <em>Base44</em> e <em>Claude Codex</em> hanno già portato il "vibe coding" nel mainstream: descrivi cosa vuoi, l'AI scrive il codice. Ma il panorama si sta evolvendo ben oltre l'assistenza alla scrittura di codice.</p>
+
+<p>Ecco quattro piattaforme meno conosciute ma altrettanto potenti, che Vivacity Design ha selezionato per chi vuole andare oltre il prompt-to-code.</p>
+
+<div class="section-divider"></div>
+
+<h2>I. Workshop — Costruisci App Reali da una Conversazione</h2>
+
+<p><em>Workshop</em> è una piattaforma AI che genera applicazioni reali — non prototipi — direttamente da conversazioni in linguaggio naturale. Disponibile in versione <strong>Cloud</strong> (browser) e <strong>Desktop</strong> (locale, con supporto a modelli LLM privati per chi ha requisiti di privacy), genera codice frontend + backend FastAPI, si connette a database enterprise (BigQuery, PostgreSQL, MongoDB, Snowflake) e API di terze parti (OpenAI, Claude, GitHub, Supabase). Il deploy è serverless one-click con autenticazione integrata.</p>
+
+<div class="tool-card">
+  <div class="tool-card-header">
+    <span class="tool-tag">App Builder</span>
+    <h3 class="tool-name">Workshop.ai</h3>
+  </div>
+  <p class="tool-desc">Build real, full-stack apps from conversation. Cloud + Desktop, multi-model, one-click deploy.</p>
+  <a href="https://workshop.ai/invite?id=abe8fccc-cf3a-4fc9-bf61-35711438142a" class="tool-cta" target="_blank">Prova Workshop →</a>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Accio — L'Agente AI Aziendale di Alibaba</h2>
+
+<p><em>Accio Work</em> è la risposta di Alibaba al mondo degli agenti AI: una piattaforma <strong>desktop-first</strong> che non si limita a rispondere domande, ma esegue task aziendali reali attraverso skill e connettori integrati. Il suo punto di forza è il <strong>sourcing globale</strong>: analisi trend di mercato, ricerca fornitori internazionali, richieste di preventivo automatizzate. Disponibile anche su iOS e Android, porta l'automazione aziendale a portata di smartphone.</p>
+
+<div class="tool-card">
+  <div class="tool-card-header">
+    <span class="tool-tag">Business Automation</span>
+    <h3 class="tool-name">Accio Work</h3>
+  </div>
+  <p class="tool-desc">AI agent team by Alibaba. Sourcing globale, analisi trend, design automation — tutto da un'unica conversazione.</p>
+  <a href="https://www.accio.com/" class="tool-cta" target="_blank">Scopri Accio →</a>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>III. SureThing — La Prima General AI Agency</h2>
+
+<p><em>SureThing</em> si definisce la prima <strong>General AI Agency</strong> al mondo: non un singolo agente, ma un vero team AI — COO, CMO, CTO, Researcher — con <strong>memoria condivisa</strong> e zero silos tra agenti. Mentre la maggior parte delle piattaforme offre agenti specializzati che non comunicano tra loro, SureThing coordina tutto in un'unica mente persistente connessa a <strong>1000+ app</strong>. Lavora in autonomia 24/7, gestisce email, calendar, ricerche e task operativi. Piano gratuito con 150 crediti giornalieri, piani pagati da $30/mese, SOC 2 compliant.</p>
+
+<div class="tool-card">
+  <div class="tool-card-header">
+    <span class="tool-tag">AI Agency</span>
+    <h3 class="tool-name">SureThing.io</h3>
+  </div>
+  <p class="tool-desc">Il tuo team AI — COO, CMO e CTO — con memoria condivisa e integrazione con 1000+ app. Zero silos, attivo 24/7.</p>
+  <a href="https://app.surething.io/invitation?ref=DB4RTN6S&utm_source=invitation&utm_medium=copy_link&utm_campaign=copy_link" class="tool-cta" target="_blank">Inizia con SureThing →</a>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Accomplish — Descrivi il Task, l'AI lo Esegue</h2>
+
+<p><em>Accomplish</em> incarna il principio più radicale dell'agentic AI: <strong>descrivi cosa vuoi fare, in linguaggio naturale, e l'AI lo fa</strong>. Senza workflow da configurare, senza nodi da collegare. La piattaforma integra Slack, Gmail, Google Sheets, Google Docs, LinkedIn e Yahoo Finance, e gestisce sia automazioni web (verifica link rotti, confronto staging/production) che task locali (organizzazione file). Un task scheduler e una libreria di prompt pre-built completano un'interfaccia volutamente minimalista.</p>
+
+<div class="tool-card accomplish-card">
+  <div class="tool-card-header">
+    <span class="tool-tag">Task Automation</span>
+    <h3 class="tool-name">Accomplish</h3>
+  </div>
+  <img src="https://surething.io/api/files/e861f5eb-559c-4c1b-bbfb-a8fc4456e435/download?t=YyF1sHOgOXrgwk3fHEmQwg.1779041884" alt="Accomplish — AI task automation interface" class="tool-screenshot" />
+  <p class="tool-desc">Descrivi un task in linguaggio naturale. Accomplish lo esegue: web, email, spreadsheet, file locali.</p>
+  <span class="tool-cta-disabled">Prodotto in fase di lancio</span>
+</div>
+
+<div class="highlight-box">
+  <p>Il denominatore comune di questi quattro tool? Nessuno richiede di scrivere workflow manuali o configurare integrazioni. L'interfaccia è il linguaggio naturale; il risultato è codice, app o task eseguiti. Siamo entrati nell'era in cui <strong>l'intenzione sostituisce l'istruzione</strong>.</p>
+</div>
+
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Maggio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

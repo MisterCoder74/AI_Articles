@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Copilot e ChatGPT: cosa sono e come differiscono | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Microsoft Copilot e ChatGPT: cosa sono e come differiscono</h1>
+        <p>Copilot e ChatGPT sembrano gemelli, ma nascondono architetture e vocazioni profondamente diverse: ecco cosa li distingue davvero.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Aprile 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/chatbots.jpg" alt="Microsoft Copilot e ChatGPT: cosa sono e come differiscono" class="cover-image">
+<h2>I. Due Chatbot, Una Confusione Diffusa</h2>
+
+<p>Nel panorama dell'<strong>intelligenza artificiale</strong> conversazionale, pochi equivoci sono tanto persistenti quanto quello che vuole <em>Microsoft Copilot</em> come una semplice «versione Microsoft di ChatGPT». È una semplificazione comprensibile — dopotutto Microsoft ha investito cifre astronomiche in <em>OpenAI</em> — ma tecnicamente imprecisa e, soprattutto, fuorviante per chiunque voglia capire davvero questi strumenti. In questa pillola proviamo a fare chiarezza, distinguendo architetture, obiettivi e origini dei due sistemi.</p>
+
+<p>La confusione nasce da un dato reale: Microsoft ha versato circa <strong>7 miliardi di dollari</strong> in <em>OpenAI</em> per accedere e studiare il modello linguistico alla base di <em>ChatGPT-4</em>. Questo investimento ha inevitabilmente alimentato la narrativa che i due prodotti siano intercambiabili. Non lo sono.</p>
+
+<div class="highlight-box"><p>📌 <strong>Punto chiave:</strong> Copilot non è ChatGPT con un'interfaccia Microsoft. È un sistema autonomo che utilizza componenti derivati dai modelli OpenAI, ma li orchestra in modo completamente diverso, con finalità distinte.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Cosa Sono, Davvero</h2>
+
+<h3>ChatGPT: il conversazionalista</h3>
+
+<p><em>ChatGPT</em>, sviluppato da <em>OpenAI</em>, è definito dalla stessa azienda come <em>«un modello di intelligenza artificiale progettato per interagire in modo conversazionale, rispondendo a domande di follow-up, ammettendo errori, sfidando premesse errate e rifiutando richieste inappropriate»</em>. Non si tratta di una definizione di marketing: riflette scelte architetturali precise.</p>
+
+<p>Il modello è stato addestrato tramite <strong>RLHF</strong> (<strong>Reinforcement Learning from Human Feedback</strong>), una tecnica che utilizza il giudizio umano per affinare le risposte del sistema verso una maggiore utilità e sicurezza. È considerato un modello «fratello» di <em>InstructGPT</em>, con cui condivide la metodologia di base ma differisce nella raccolta dei dati di addestramento. Il <strong>fine-tuning</strong> è avvenuto a partire da un modello della serie <strong>GPT-3.5</strong>, completato all'inizio del 2022.</p>
+
+<ul>
+  <li><strong>Accesso al web:</strong> limitato per impostazione predefinita nelle versioni standard; disponibile tramite plugin come <em>Superpower ChatGPT</em> o nativamente in <em>ChatGPT-4</em> con navigazione abilitata</li>
+  <li><strong>Knowledge cutoff:</strong> dicembre 2023 per i modelli non connessi alla rete</li>
+  <li><strong>Punti di forza:</strong> ragionamento complesso, generazione di testo, gestione del codice in numerosi linguaggi di programmazione</li>
+</ul>
+
+<h3>Microsoft Copilot: l'integratore</h3>
+
+<p><em>Microsoft Copilot</em> — già noto come <em>Bing Chat</em> — è stato lanciato nel 2023 come sostituto dell'assistente virtuale <em>Cortana</em>. Nato inizialmente come funzionalità integrata nel motore di ricerca <em>Bing</em>, è stato progressivamente elevato a servizio autonomo e poi capillarmente distribuito all'interno dell'ecosistema Microsoft.</p>
+
+<p>Il cuore tecnologico di Copilot non è <em>ChatGPT-4</em> in senso stretto, bensì un modello derivato e proprietario denominato <strong>Microsoft Prometheus</strong>. Prometheus è il prodotto del progetto di <strong>Deep Learning</strong> omonimo condotto internamente da Microsoft, e si distingue per un componente cruciale: l'<strong>Orchestrator</strong>.</p>
+
+<div class="quote">«Chiamare Copilot "ChatGPT di Microsoft" è come chiamare un SUV una berlina perché condividono lo stesso motore: la piattaforma di base può avere origini comuni, ma la destinazione d'uso — e l'ingegneria che ci sta intorno — è radicalmente diversa.»</div>
+
+<p>L'<strong>Orchestrator</strong> è il meccanismo che genera iterativamente <strong>query di ricerca</strong>, combinando l'indice di <em>Bing Search</em> con i risultati in tempo reale e integrandoli con i modelli linguistici <strong>GPT-4</strong> e <strong>GPT-4 Turbo</strong> di OpenAI. Il risultato è un sistema ibrido: parte <strong>motore di ricerca aumentato</strong>, parte <strong>modello linguistico generativo</strong>.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Le Differenze Sostanziali</h2>
+
+<h3>Scopo e vocazione</h3>
+
+<p>La divergenza più profonda tra i due sistemi non è tecnica, ma filosofica: riguarda il <em>perché</em> questi strumenti esistono.</p>
+
+<ul>
+  <li><strong>ChatGPT:</strong> pensato come chatbot conversazionale ad alta autonomia, ottimizzato per rispondere a domande articolate, produrre testi, riassumere contenuti e generare codice. È un <strong>modello generalista</strong> con ambizioni enciclopediche.</li>
+  <li><strong>Microsoft Copilot:</strong> concepito fin dall'origine come <strong>strumento di integrazione applicativa</strong>. Non è pensato per esistere in isolamento, ma per potenziare un ecosistema: prima <em>Bing Search</em>, poi il browser <em>Edge</em>, quindi le app di <em>Microsoft 365</em> (Word, Excel, Outlook, Teams) e l'intero grafo applicativo di <em>Microsoft Graph</em>.</li>
+</ul>
+
+<h3>Connessione al web e aggiornamento informazioni</h3>
+
+<p>Un ulteriore elemento distintivo riguarda l'accesso alle informazioni in tempo reale. <em>Copilot</em>, grazie all'integrazione nativa con <em>Bing</em> tramite l'<strong>Orchestrator</strong>, può attingere a fonti aggiornate durante ogni sessione. <em>ChatGPT</em>, nelle versioni standard senza accesso alla rete, rimane vincolato al proprio <strong>knowledge cutoff</strong> e non può riportare eventi successivi alla data di aggiornamento del modello.</p>
+
+<div class="highlight-box"><p>🔍 <strong>Da ricordare:</strong> Se avete bisogno di informazioni aggiornate in tempo reale integrate nel flusso di lavoro Microsoft, <em>Copilot</em> è lo strumento appropriato. Per ragionamento profondo, scrittura creativa o generazione di codice complesso in un contesto autonomo, <em>ChatGPT</em> rimane il riferimento.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Prospettiva Critica</h2>
+
+<p>Comprendere le differenze tra questi due sistemi non è un esercizio accademico: ha implicazioni dirette su come le aziende e i professionisti scelgono di adottare e integrare l'<strong>intelligenza artificiale</strong> nei propri flussi di lavoro. Confondere i due strumenti significa rischiare di utilizzare quello sbagliato per il compito sbagliato — o peggio, di sovrastimare le capacità dell'uno aspettandosi le caratteristiche dell'altro.</p>
+
+<p>Vale anche la pena notare che la convergenza tra i due ecosistemi è destinata ad accelerare: con <em>OpenAI</em> che sviluppa sempre più funzionalità enterprise e Microsoft che affina l'integrazione di <strong>Prometheus</strong> con modelli di ultima generazione, i confini potrebbero sfumare ulteriormente. Ma per ora, la distinzione rimane — ed è importante conoscerla.</p>
+
+<div class="quote">«In un mercato dove ogni prodotto viene etichettato con il suffisso "AI", la capacità di distinguere tra un modello conversazionale generalista e un orchestratore applicativo integrato non è un dettaglio tecnico: è cultura digitale di base.»</div>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Aprile 2024</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
