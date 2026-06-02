@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Virtuali Multi-Ruolo: Architetture Collaborative per Sistemi Conversazionali Avanzati | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Team Virtuali Multi-Ruolo: Architetture Collaborative per Sistemi Conversazionali Avanzati</h1>
+        <p>Due agenti AI specializzati che si confrontano, negoziano e convergono: l'architettura multi-ruolo che ridistribuisce il carico cognitivo nei sistemi conversazionali avanzati.</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Ottobre 2025 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Limite del Singolo Agente</h2>
+
+<p>Per anni, il paradigma dominante nello sviluppo di sistemi conversazionali ha ruotato attorno a un assunto implicito ma raramente messo in discussione: un unico modello generalista, sufficientemente grande e ben istruito, sarebbe in grado di gestire qualsiasi complessità. Questo approccio ha prodotto risultati notevoli, ma mostra crepe evidenti non appena ci si addentra in domini che richiedono simultaneamente competenze eterogenee, capacità di pianificazione strategica e produzione tecnica dettagliata.</p>
+
+<p>Il paper di <strong>Alessandro Demontis</strong>, pubblicato il 27 ottobre 2025, affronta frontalmente questa limitazione proponendo un'architettura alternativa: i <strong>Team Virtuali Multi-Ruolo</strong>. L'intuizione fondamentale è tanto semplice quanto potente — distribuire il <strong>carico cognitivo</strong> tra agenti specializzati, ciascuno con un dominio di competenza circoscritto e definito, piuttosto che sovraccaricare un singolo modello generalista con responsabilità cognitive in conflitto tra loro.</p>
+
+<div class="highlight-box"><p><strong>Nota editoriale:</strong> La specializzazione degli agenti non è solo una questione di performance tecnica. È una scelta architetturale che rispecchia un principio organizzativo umano consolidato: i team funzionano meglio quando i ruoli sono chiari, le responsabilità separate e i canali di comunicazione strutturati.</p></div>
+
+<p>Non si tratta di una novità teorica assoluta — la letteratura sui <strong>sistemi multi-agente</strong> è ricca e consolidata — ma l'implementazione pratica proposta da Demontis ha il merito di tradurre questi concetti in un sistema funzionante, replicabile e costruito con tecnologie web diffuse e accessibili.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. L'Architettura del Team: Developer e Project Manager</h2>
+
+<p>Il cuore del sistema è un team composto da due agenti conversazionali distinti, entrambi basati su <em>gpt-4o-mini</em> di <em>OpenAI</em>, ma configurati con identità, responsabilità e protocolli comunicativi radicalmente diversi. Il primo agente interpreta il ruolo di <strong>Full Stack Developer</strong>, orientato alla produzione di codice, alla fattibilità tecnica e all'implementazione concreta. Il secondo agente è il <strong>Project Manager</strong>, figura strategica responsabile della coerenza del progetto, della gestione delle priorità e della validazione delle scelte rispetto alle specifiche originali dell'utente.</p>
+
+<p>La scelta di <em>gpt-4o-mini</em> come base per entrambi gli agenti è significativa: un modello compatto, economicamente sostenibile, che attraverso <strong>system prompt</strong> altamente strutturati viene trasformato in due professionisti virtuali con personalità distinte. Questo dimostra che la specializzazione non richiede necessariamente modelli diversi o di dimensioni maggiori — richiede ingegneria del contesto.</p>
+
+<h3>La Knowledge Base: il file pms_creators.json</h3>
+
+<p>L'intera configurazione del sistema risiede in un file <em>pms_creators.json</em>, che funge da <strong>knowledge base</strong> centralizzata. La sua struttura merita attenzione:</p>
+
+<ul>
+  <li><strong>chatbot_apikey:</strong> chiave di autenticazione verso le API di OpenAI, gestita lato server per sicurezza</li>
+  <li><strong>header_message:</strong> messaggio iniziale di contesto condiviso tra gli agenti</li>
+  <li><strong>fullstack_developer:</strong> system prompt completo che definisce personalità, vincoli tecnici e protocolli comunicativi del developer</li>
+  <li><strong>project_manager:</strong> system prompt speculare per l'agente manageriale, con criteri di convergenza e keyword di agreement incorporate</li>
+</ul>
+
+<p>Il layer server-side è gestito da <em>PHP</em>, che carica il file di configurazione e inietta le costanti nel frontend tramite <em>echo PHP</em> con <em>addslashes</em> per prevenire injection. Una scelta pragmatica che separa nettamente la configurazione sensibile dall'esecuzione client-side.</p>
+
+<img src="../assets/team_flow.jpg" alt="Workflow del sistema Team Virtuali Multi-Ruolo" class="cover-image" style="margin: 2rem 0;">
+
+<p>Il <strong>workflow conversazionale</strong> segue uno schema iterativo ben definito: l'utente fornisce un prompt iniziale a uno dei due agenti, che avvia una sequenza di scambi con la controparte. Gli agenti si confrontano, negoziano le scelte tecniche e progettuali, e il loop continua fino al raggiungimento del consenso — o fino al limite massimo di 10 scambi (<em>MAX_EXCHANGES=10</em>). Solo a quel punto viene prodotto il codice finale.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Il Motore JavaScript: Turni, Storia e Consenso</h2>
+
+<p>Il frontend è implementato in <em>JavaScript</em> con chiamate asincrone via <em>Ajax</em>, e ospita tre componenti logici fondamentali che meritano un'analisi separata. Insieme, questi componenti costituiscono ciò che potremmo definire il <strong>motore orchestrale</strong> del sistema multi-agente.</p>
+
+<h3>Gestione della Storia Condivisa</h3>
+
+<p>Il primo componente critico è lo <em>sharedHistory array</em>: un registro conversazionale condiviso tra i due agenti. Ogni messaggio viene prefissato con identificatori espliciti — <em>[Full Stack Developer]:</em> e <em>[Project Manager]:</em> — per garantire la <strong>disambiguazione degli agenti</strong> all'interno del contesto conversazionale. Senza questo meccanismo, un modello linguistico privo di memoria nativa non potrebbe ricostruire chi ha detto cosa, collassando di fatto il dialogo in un monologo incoerente.</p>
+
+<h3>Sistema a Turni Alternati e Agreement Detection</h3>
+
+<p>Il secondo componente è il <strong>sistema a turni alternati</strong>, gestito dalla variabile <em>currentTurn</em>, che garantisce che Developer e Project Manager si alternino in modo ordinato. È accompagnato da un delay artificiale di 2 secondi per migliorare la leggibilità dell'interfaccia — una scelta di UX consapevole che sacrifica minima efficienza in cambio di una migliore esperienza utente.</p>
+
+<p>Il terzo componente è forse il più interessante concettualmente: l'<strong>Agreement Detection</strong>. Il sistema utilizza un approccio di <strong>pattern matching euristico</strong> su keyword predefinite per rilevare quando i due agenti hanno raggiunto il consenso, consentendo la terminazione anticipata del loop conversazionale. Non è un meccanismo sofisticato di analisi semantica, ed è corretto riconoscerlo — ma è sorprendentemente efficace in contesti controllati.</p>
+
+<div class="highlight-box"><p><strong>Punto critico:</strong> L'Agreement Detection basata su keyword è il tallone d'Achille più evidente dell'architettura. Un consenso simulato — agenti che usano le parole giuste senza aver realmente risolto il problema — può ingannare il sistema. L'evoluzione naturale di questo componente dovrebbe includere valutazione semantica o un terzo agente arbitro dedicato alla validazione del consenso.</p></div>
+
+<h3>Generazione e Sanificazione del Codice</h3>
+
+<p>Una volta raggiunto l'accordo, la funzione <em>generateFinalCode()</em> entra in azione con una <strong>catena di regex</strong> per ripulire il codice da code fence markdown e delimitatori strutturali (<em>----start/end of fullstack system code----</em>). Il codice sanificato viene poi renderizzato tramite <em>generateVisual()</em> in un <em>iframe sandbox</em> isolato, proteggendo il documento principale da potenziali effetti collaterali del codice generato dinamicamente.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. L'Interfaccia: Due Identità Visive per Due Ruoli</h2>
+
+<p>Il frontend è costruito con <em>CSS Grid</em> in un layout responsive strutturato in tre sezioni verticali distinte. Il pannello superiore ospita l'input testuale e i pulsanti di controllo (<em>START</em>, <em>STOP</em>, <em>SAVE LOG</em>). La sezione centrale mostra gli <strong>indicatori di stato</strong>: un exchange counter che tiene traccia del numero di scambi effettuati e una barra di status che comunica lo stato del processo in tempo reale. La griglia inferiore presenta le due chatbox in parallelo, una per agente.</p>
+
+<img src="../assets/team_interface.jpg" alt="Interfaccia grafica del sistema conversazionale multi-agente" class="cover-image" style="margin: 2rem 0;">
+
+<p>La scelta cromatica è tutt'altro che casuale: una palette con <strong>gradienti rosa-violetto</strong> identifica visivamente il Full Stack Developer, mentre <strong>ciano-blu</strong> contraddistingue il Project Manager. Ogni messaggio viene classificato con classi <em>CSS</em> differenziate — <em>from-bot1</em>, <em>from-bot2</em>, <em>thinking</em> — permettendo all'utente di seguire il filo del dialogo tra i due agenti senza ambiguità. La scelta della tipografia monospaciata <em>Courier New</em> per il contenuto tecnico rafforza ulteriormente la leggibilità del codice prodotto.</p>
+
+<p>L'interfaccia riflette una comprensione matura della <strong>comunicazione uomo-macchina</strong>: rendere visibile il processo deliberativo dei due agenti non è solo un dettaglio estetico, ma una scelta epistemica. L'utente non vede soltanto il risultato finale, ma assiste alla negoziazione — e questo cambia profondamente il rapporto di fiducia con il sistema.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Implicazioni e Direzioni Future</h2>
+
+<p>L'architettura descritta da Demontis è un prototipo funzionante che dimostra la fattibilità dei team multi-agente con tecnologie web standard. Ma è soprattutto un punto di partenza per riflessioni più ampie. La <strong>separazione delle responsabilità cognitive</strong> tra agenti specializzati potrebbe scalare ben oltre il binomio Developer-Manager: si pensi a team virtuali con agenti dedicati alla sicurezza, al testing, all'accessibilità, alla documentazione.</p>
+
+<p>Il limite principale dell'implementazione attuale — l'Agreement Detection euristica — suggerisce la necessità di meccanismi di <strong>validazione del consenso</strong> più robusti. Un approccio promettente potrebbe essere l'introduzione di un agente arbitro terzo, o l'adozione di metriche semantiche per misurare la convergenza reale delle posizioni, non solo la presenza di keyword specifiche.</p>
+
+<p>Sul fronte della <strong>persistenza e della scalabilità</strong>, la dipendenza da un singolo file <em>JSON</em> per la knowledge base è adeguata per un prototipo ma rappresenta un collo di bottiglia evidente in scenari produttivi. L'integrazione con sistemi di <strong>RAG</strong> (<em>Retrieval-Augmented Generation</em>) o database vettoriali aprirebbe scenari di specializzazione molto più profondi e dinamici.</p>
+
+<div class="quote">I Team Virtuali Multi-Ruolo non sono semplicemente un'architettura tecnica più sofisticata. Sono un cambio di paradigma nel modo in cui concepiamo l'intelligenza artificiale applicata: non un oracolo onnisciente da interrogare, ma un team da coordinare. E forse, proprio in questa umiltà progettuale — nel riconoscere che anche le macchine pensano meglio quando collaborano — risiede la lezione più preziosa di questo lavoro.</div>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Ottobre 2025</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
