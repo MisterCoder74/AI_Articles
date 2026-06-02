@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek: dalla Cina con furore | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>DeepSeek: dalla Cina con furore</h1>
+        <p>DeepSeek Coder V2 sfida i giganti occidentali dell'AI: architettura MoE, 300+ linguaggi e benchmark sorprendenti. Ma quanto c'è di reale?</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Giugno 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/AIdeepseek.jpg" alt="DeepSeek: dalla Cina con furore" class="cover-image">
+<h2>I. La Sfida Cinese all'Egemonia dell'AI Occidentale</h2>
+
+<p>Nel panorama sempre più affollato dei modelli linguistici di grandi dimensioni, irrompe con decisione la startup cinese <em>DeepSeek</em>, che ha annunciato il lancio di <em>DeepSeek Coder V2</em>: un modello <strong>open-source</strong> specializzato nella generazione e analisi del codice, che secondo i suoi creatori supererebbe in diversi benchmark alcuni dei nomi più blasonati del settore, da <em>GPT-4 Turbo</em> a <em>Claude 3 Opus</em>. Un'affermazione che merita attenzione, ma anche il giusto scetticismo analitico.</p>
+
+<p>La notizia non è solo tecnologicamente rilevante: è politicamente e strategicamente significativa. In un momento in cui Stati Uniti e Cina si contendono la supremazia nell'<strong>intelligenza artificiale</strong>, ogni avanzamento proveniente dall'ecosistema tech cinese va letto su più livelli. <em>DeepSeek</em> non è un attore improvvisato: dietro di essa c'è una struttura di ricerca seria, finanziamenti consistenti e una visione chiara sul ruolo dei modelli specializzati nell'economia digitale globale.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Architettura e Capacità Tecniche: Cosa c'è Sotto il Cofano</h2>
+
+<h3>Mixture of Experts: efficienza come strategia</h3>
+
+<p>Il cuore tecnologico di <em>DeepSeek Coder V2</em> risiede nell'adozione di un'architettura <strong>Mixture of Experts (MoE)</strong>. Si tratta di un approccio che rompe con il paradigma del modello monolitico tradizionale: invece di attivare tutti i parametri per ogni inferenza, il sistema seleziona dinamicamente solo i cosiddetti "esperti" più pertinenti al compito in corso. Il risultato è una drastica ottimizzazione delle risorse computazionali, senza — almeno in teoria — sacrificare le prestazioni.</p>
+
+<ul>
+  <li><strong>MoE (Mixture of Experts):</strong> architettura neurale che attiva selettivamente sottoinsiemi di parametri in base al tipo di input, riducendo il costo computazionale mantenendo alta la capacità espressiva del modello.</li>
+  <li><strong>Finestra di contesto a 128K token:</strong> capacità di elaborare e "ricordare" sequenze di testo molto lunghe in una singola sessione, paragonabile a quella offerta da <em>ChatGPT-4</em> e <em>ChatGPT-4o</em>.</li>
+  <li><strong>Dataset di addestramento:</strong> 6 trilioni di token aggiuntivi, con forte concentrazione su codice sorgente e ragionamento matematico — una scelta che spiega le performance nei benchmark specializzati.</li>
+  <li><strong>Supporto linguistico:</strong> oltre 300 linguaggi di programmazione, un'ampiezza che pochi modelli possono vantare e che lo rende potenzialmente appetibile per ambienti di sviluppo eterogenei.</li>
+</ul>
+
+<h3>I Benchmark: luci e ombre</h3>
+
+<p>Sui test di riferimento come <strong>MBPP+</strong>, <strong>HumanEval</strong> e <strong>Aider</strong> — standard ampiamente adottati per valutare le capacità di <strong>code generation</strong> nei <strong>LLM</strong> — <em>DeepSeek Coder V2</em> ha registrato punteggi che hanno sorpreso la comunità tecnica internazionale. Il modello predecessore, con i suoi 33 miliardi di parametri, era già considerato competitivo; questa nuova versione sembra aver compiuto un salto qualitativo significativo.</p>
+
+<div class="highlight-box"><p>Sui benchmark di programmazione come HumanEval e MBPP+, DeepSeek Coder V2 supera GPT-4 Turbo e Claude 3 Opus. Sul più generale MMLU — che misura ragionamento e comprensione linguistica trasversale — il divario con i leader occidentali si assottiglia, ma non si annulla ancora. Il progresso è reale, ma la vetta rimane contesa.</p></div>
+
+<p>Sul benchmark <strong>MMLU</strong> (Massive Multitask Language Understanding), uno dei parametri più utilizzati per confrontare le capacità generali degli <strong>LLM</strong>, il modello si avvicina in modo considerevole a <em>GPT-4o</em> e <em>Claude 3 Opus</em>, pur non raggiungendoli. Un dettaglio non trascurabile, che ridimensiona parzialmente l'entusiasmo iniziale senza però sminuire il risultato complessivo.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Analisi Critica: Hype o Rivoluzione Concreta?</h2>
+
+<p>La domanda che ogni osservatore attento dovrebbe porsi è semplice quanto scomoda: stiamo assistendo a un autentico cambio di paradigma o a un'operazione di <strong>benchmark gaming</strong>, pratica sempre più diffusa nel settore in cui i modelli vengono ottimizzati specificamente per i test pubblici, a scapito delle performance reali in produzione?</p>
+
+<div class="quote">I benchmark sono fotografie, non film. Misurano un momento, un contesto, una metrica. La vera domanda su DeepSeek Coder V2 non è se supera GPT-4 Turbo su HumanEval, ma se uno sviluppatore reale, su un progetto reale, lo troverà più utile, affidabile e sicuro. Quella risposta arriverà solo dal campo.</div>
+
+<p>Il fatto che il modello sia rilasciato come <strong>open-source</strong> è in questo senso una mossa intelligente e verificabile: la comunità globale degli sviluppatori potrà testarlo, criticarlo e migliorarlo. Questo apre scenari interessanti, soprattutto per le aziende che cercano alternative ai costosi servizi <strong>API</strong> di OpenAI o Anthropic, con il vantaggio aggiuntivo del controllo sui dati e della personalizzazione del modello.</p>
+
+<p>Rimangono tuttavia domande aperte: la qualità del codice generato in scenari complessi e multifile, la gestione degli errori in contesti ambigui, la robustezza su linguaggi meno rappresentati nel dataset di training. Questi aspetti, difficilmente catturabili da un benchmark standardizzato, determineranno il reale impatto di <em>DeepSeek Coder V2</em> nell'ecosistema dello sviluppo software.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Prospettive: Cosa Significa per il Settore</h2>
+
+<p>L'ascesa di <em>DeepSeek</em> conferma una tendenza strutturale: il monopolio americano sull'<strong>intelligenza artificiale</strong> di frontiera è finito, se mai è davvero esistito. Modelli competitivi stanno emergendo da contesti geografici e organizzativi diversissimi, e la natura <strong>open-source</strong> di molti di questi progetti accelera ulteriormente la diffusione delle capacità tecnologiche.</p>
+
+<p>Per sviluppatori e team di ricerca, <em>DeepSeek Coder V2</em> rappresenta comunque un'opzione concreta da valutare, soprattutto in contesti dove il costo computazionale è una variabile critica. Per il settore nel suo complesso, è l'ennesimo segnale che la competizione sui <strong>LLM</strong> specializzati — nel codice, nella matematica, nel ragionamento scientifico — sarà il vero terreno di gioco dei prossimi anni. <em>ChatGPT</em> e <em>Claude</em> sono avvisati.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Giugno 2024</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

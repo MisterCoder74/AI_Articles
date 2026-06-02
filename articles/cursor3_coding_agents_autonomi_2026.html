@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor 3 e l'Era dei Coding Agent Autonomi | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+        th { background: rgba(16,185,129,0.15); color: var(--accent-green); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border-bottom: 1px solid rgba(16,185,129,0.3); }
+        td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); }
+        tr:hover td { background: rgba(16,185,129,0.04); }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Cursor 3 e l'Era dei Coding Agent Autonomi</h1>
+        <p>Da assistente a flotta autonoma: Cursor 3 ridisegna il ruolo dello sviluppatore da esecutore a direttore tecnico di agenti paralleli.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Maggio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. La Terza Era dello Sviluppo Software</h2>
+
+<p>C'è un momento preciso in cui una tecnologia smette di essere un'estensione delle tue capacità e diventa un'entità con cui collaborare. Con <em>Cursor 3</em>, quel momento è arrivato per lo sviluppo software. Non si tratta di un aggiornamento incrementale — è un <strong>rebuild architetturale completo</strong> dell'IDE attorno al concetto di agenti autonomi. Il messaggio è diretto: siamo entrati nella terza era dello sviluppo, dopo l'<strong>autocomplete</strong> e l'<strong>assistente conversazionale</strong>. Benvenuti nell'era della <strong>flotta di agenti paralleli</strong>.</p>
+
+<p>Fino a ieri, anche i tool più avanzati ti chiedevano di stare al volante. Oggi <em>Cursor 3</em> ti offre una plancia di controllo. Il paradigma si inverte: non sei tu ad alimentare l'agente con ogni singolo prompt, sei tu a definire obiettivi, priorità, confini — e la macchina lavora, anche quando tu non ci sei.</p>
+
+<div class="highlight-box"><p>Il developer che padroneggia Cursor 3 non scrive più codice in prima persona: definisce architetture, revisiona output e gestisce una flotta. Il suo valore si sposta dalla produzione alla supervisione strategica.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Agents Window e Cloud Agents: Cosa Cambia Davvero</h2>
+
+<h3>La nuova interfaccia di orchestrazione</h3>
+
+<p>La feature più rappresentativa del cambiamento è l'<strong>Agents Window</strong>, accessibile via <em>Cmd+Shift+P</em>. Non è una semplice lista di processi: è una panoramica visiva in tempo reale di tutti gli agenti attivi, che possono girare simultaneamente su ambienti <strong>locali</strong>, <strong>cloud</strong> e <strong>SSH remoti</strong>. Puoi avviare agenti dal desktop, dal mobile, dal browser, o direttamente da <em>Slack</em>, <em>GitHub</em> o <em>Linear</em>. Il flusso di lavoro si distribuisce su più superfici senza perdere coerenza.</p>
+
+<h3>Cloud Agents: lavorano anche mentre dormi</h3>
+
+<p>I vecchi <strong>Background Agents</strong> di <em>Cursor 2.0</em> diventano <strong>Cloud Agents</strong>: processi isolati in VM dedicate che continuano a girare offline. Fanno refactoring esteso, aggiornano dipendenze, gestiscono sweep di PR. E quando tornano, portano con sé <strong>screenshot e demo di verifica</strong> — un dettaglio non banale, perché è lì che si gioca la fiducia. Senza quella capacità di ispezione, la delega diventerebbe opacità.</p>
+
+<div class="quote">«Il problema non è se gli agenti funzionano. Il problema è capire cosa hanno fatto mentre eri via. Gli screenshot di verifica e la Diffs View sono l'unica cosa che mi impedisce di avere un attacco d'ansia ogni mattina quando apro il progetto.»</div>
+
+<div class="section-divider"></div>
+
+<h2>III. L'Ecosistema dei Coding Agent a Maggio 2026</h2>
+
+<p>Il mercato dei <strong>coding agent autonomi</strong> è esploso nel Q2 2026. <em>Cursor 3</em> non è solo: si muove in un ecosistema sempre più affollato e competitivo, dove ogni player propone una visione diversa dell'autonomia. La tabella seguente offre un confronto operativo tra i principali attori.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Modalità principale</th>
+      <th>Autonomia</th>
+      <th>Open-source</th>
+      <th>Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Cursor 3</em></td>
+      <td>IDE con flotta di agenti paralleli</td>
+      <td>Alta — cloud + locale, offline</td>
+      <td>No</td>
+      <td>Dev team, indie, enterprise</td>
+    </tr>
+    <tr>
+      <td><em>Claude Code</em></td>
+      <td>Agente da terminale</td>
+      <td>Media — edita file, gestisce git, fixa test</td>
+      <td>No</td>
+      <td>Dev avanzati, workflow CLI</td>
+    </tr>
+    <tr>
+      <td><em>GitHub Copilot Wave 3</em></td>
+      <td>Multi-model integrato in IDE/GitHub</td>
+      <td>Alta — Cowork multi-step autonomo</td>
+      <td>No</td>
+      <td>Enterprise, team Microsoft</td>
+    </tr>
+    <tr>
+      <td><em>Windsurf</em></td>
+      <td>Agente Cascade + AI flows</td>
+      <td>Media-alta — multi-file, workflow sincronizzati</td>
+      <td>No</td>
+      <td>Dev individuali, startup</td>
+    </tr>
+    <tr>
+      <td><em>Cline AI</em></td>
+      <td>Modalità Plan/Act, multi-model</td>
+      <td>Media — controllo granulare utente</td>
+      <td>Sì</td>
+      <td>Dev sperimentali, self-hosted</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>La differenza più rilevante non è tecnica, è filosofica: <em>Cline</em> punta sul <strong>controllo granulare</strong> e sulla libertà open-source; <em>GitHub Copilot Wave 3</em> — con il suo piano <em>E7 Frontier Suite</em> a 99 dollari per utente al mese — punta sull'integrazione enterprise e sulla suite Microsoft; <em>Cursor 3</em> punta sull'<strong>astrazione di livello superiore</strong>, dove la complessità della gestione multi-agente viene nascosta dietro un'interfaccia coerente.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Le Feature che Ridisegnano il Workflow</h2>
+
+<p>Al di là degli agenti, <em>Cursor 3</em> porta una serie di strumenti che cambiano la texture quotidiana del lavoro. Il supporto nativo <strong>Worktrees & Multi-Repo</strong> permette a umani e agenti di operare su repository diversi in parallelo senza collisioni di contesto. <em>Composer 2</em> introduce un modello frontier con usage limits elevati, pensato per iterazioni rapide su blocchi di codice complessi.</p>
+
+<p>Il <strong>Design Mode</strong> merita una menzione separata: gli agenti ora riconoscono e targetizzano elementi UI specifici, aprendo scenari di automazione front-end che fino a sei mesi fa erano fantascienza pratica. L'<strong>Integrated Browser</strong> chiude il loop tra sviluppo e testing locale, rendendo superfluo il continuo alt-tab tra IDE e browser. E il <em>Cursor Marketplace</em> — con installazione one-click di plugin, <strong>MCP</strong>, skill e subagent — trasforma l'IDE in una piattaforma estendibile, non più un prodotto chiuso.</p>
+
+<div class="highlight-box"><p>La funzione Best-of-N Comparison — che affianca output di modelli diversi side-by-side — è sottovalutata: in un mondo di agenti autonomi, la capacità di confrontare soluzioni alternative prima di committare è una forma di governance essenziale, non un lusso.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>V. Il Rischio Reale: Governance di una Flotta Non Supervisionata</h2>
+
+<p>Il cambiamento più profondo portato da <em>Cursor 3</em> — e dall'intero ecosistema dei coding agent nel Q2 2026 — non è tecnologico: è organizzativo. Il developer smette di essere esecutore e diventa <strong>direttore tecnico</strong>. Ma questa transizione porta con sé un rischio concreto: la <strong>proliferazione di agenti non supervisionati</strong>.</p>
+
+<p>Più agenti girano in parallelo, più aumenta la superficie di errore silenzioso. Un agente che aggiorna le dipendenze mentre un altro fa refactoring sullo stesso modulo può produrre conflitti sottili, difficili da tracciare. Non è un problema teorico: è la conseguenza diretta dell'autonomia scalata senza struttura di governance adeguata.</p>
+
+<p>La risposta di <em>Cursor 3</em> passa per strumenti come la <strong>Diffs View</strong> — interfaccia semplificata per revisionare e gestire ogni cambiamento prodotto dagli agenti — e per gli screenshot di verifica prodotti dai Cloud Agents. Non sono feature secondarie: sono l'infrastruttura di controllo senza cui l'autonomia diventa caos.</p>
+
+<p>La vera domanda che il mercato dovrà rispondere nei prossimi mesi non è "quale agente scrive codice migliore", ma "quale piattaforma offre la governance più solida su ciò che gli agenti producono". Su questo terreno si giocherà la prossima fase della competizione. E su questo terreno, chi saprà bilanciare autonomia e trasparenza avrà un vantaggio decisivo.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Maggio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

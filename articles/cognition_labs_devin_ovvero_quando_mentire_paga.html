@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognition Labs Devin, ovvero: quando mentire paga! | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cover-image {
+            width: 100%; max-height: 420px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 3rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+        .article-meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted); margin-bottom: 2rem; text-align: center;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb">
+            <a href="../pillole_di_ai.html">← Pillole di AI</a>
+        </div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Cognition Labs Devin, ovvero: quando mentire paga!</h1>
+        <p>L'agente AI che ha convinto gli investitori con demo truccate: Devin di Cognition Labs vale 2 miliardi. Ma a quale prezzo?</p>
+    </header>
+
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Maggio 2024 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+            <img src="./blog/coverimgs/devin.jpg" alt="Cognition Labs Devin, ovvero: quando mentire paga!" class="cover-image">
+<h2>I. L'oro degli investitori AI: miliardi su miliardi</h2>
+
+<p>Investire nel settore dell'<strong>intelligenza artificiale</strong> è diventato, negli ultimi anni, la formula magica per trasformare startup semi-sconosciute in colossi miliardari nel giro di pochi mesi. Il caso più emblematico rimane quello di <em>OpenAI</em>: prima del lancio di <em>ChatGPT 3.5</em> e <em>ChatGPT 4</em>, l'azienda era praticamente invisibile al grande pubblico e agli investitori istituzionali. In meno di due anni, ha raggiunto una valutazione di <strong>80 miliardi di dollari</strong>, triplicando la propria quotazione in soli dieci mesi. Un fenomeno senza precedenti nella storia recente della tecnologia.</p>
+
+<p>Non si tratta di un caso isolato. <em>HuggingFace</em>, piattaforma di riferimento per la comunità open-source nel campo del <strong>machine learning</strong>, ha chiuso il 2023 con una valutazione di 5 miliardi di dollari — cifra che sembrava già straordinaria — e si proietta verso i 9 miliardi entro fine 2024. Il mercato dell'AI premia con generosità, spesso a prescindere dai risultati concreti. Ma cosa accade quando quella generosità incontra la disonestà?</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Devin: la grande promessa e il castello di carte</h2>
+
+<h3>Il lancio che ha fatto sognare il settore</h3>
+
+<p>Nel marzo 2024, <em>Cognition Labs</em> presenta al mondo <em>Devin</em>, quello che viene subito battezzato come il primo vero <strong>AI agent</strong> autonomo per lo sviluppo software. Il video dimostrativo è spettacolare: Devin sembra capace di creare intere applicazioni partendo da un singolo <strong>prompt</strong> iniziale, eseguendo in autonomia decine di passaggi logici — analisi, scrittura del codice, debugging, deploy — senza alcun intervento umano. La promessa implicita è dirompente: un software engineer artificiale in grado di rimpiazzare, o quantomeno affiancare, i developer umani.</p>
+
+<p>Il settore reagisce con entusiasmo. Per settimane, <em>Devin</em> domina i feed di LinkedIn, i thread su X e le discussioni nelle community tech globali. Cognition Labs diventa il nome del momento.</p>
+
+<div class="highlight-box"><p>⚠️ <strong>Attenzione ai dettagli nascosti:</strong> nei video promozionali di <em>Devin</em>, i <strong>timestamp</strong> che documentano la durata reale delle operazioni venivano sistematicamente omessi o oscurati — un dettaglio non secondario, ma strutturale alla narrazione costruita da Cognition Labs.</p></div>
+
+<h3>Il debunking: quando la realtà smonta la narrativa</h3>
+
+<p>Il castello inizia a sgretolarsi quando alcuni ricercatori e sviluppatori indipendenti pubblicano video di analisi approfondita. Le evidenze sono imbarazzanti: <em>Devin</em> non solo fatica con task elementari, ma li complica attivamente, generando <strong>falsi problemi</strong> che poi "risolve", in un loop autoreferenziale che simula produttività senza generarla. Il caso più citato riguarda l'implementazione del classico <em>Gioco della Vita</em> di Conway: un'applicazione didattica di base che Devin impiega fino a <strong>9 ore</strong> per completare, contro i pochi minuti promessi nelle demo.</p>
+
+<p>I <strong>timestamp</strong> nascosti nei materiali promozionali rivelano la vera natura della manipolazione: non si trattava di imprecisioni o ottimismi eccessivi, ma di una scelta editoriale consapevole per mascherare le performance reali del sistema.</p>
+
+<div class="quote">C'è una differenza sostanziale tra overselling — prassi comune nel mondo delle startup — e falsificazione deliberata delle capacità di un prodotto. Il caso Devin sembra superare ampiamente la prima categoria per avvicinarsi pericolosamente alla seconda. E il mercato, incredibilmente, ha premiato entrambe.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Due miliardi di dollari: il paradosso del fallimento premiato</h2>
+
+<h3>La valutazione che sfida la logica</h3>
+
+<p>Nonostante l'esposizione pubblica delle sue criticità, <em>Cognition Labs</em> ha raggiunto una valutazione di <strong>2 miliardi di dollari</strong>. L'azienda continua ad acquisire contratti, partnership e finanziamenti di rilievo. L'ultimo round di investimento registra un contributo di <strong>157 milioni di dollari</strong> da parte del <em>Peter Thiel's Founders Fund</em>, il veicolo di investimento di <strong>Peter Thiel</strong> — cofondatore di <em>PayPal</em>, investitore visionario e voce critica dell'establishment tecnologico.</p>
+
+<p>Thiel è noto anche per un intervento del 2014 intitolato <em>"The Failure of Modern Technologies"</em>, in cui denunciava la stagnazione dell'innovazione reale, attribuendola alla mancanza di coraggio nel perseguire nuove frontiere scientifiche e tecnologiche. Una posizione che rende ancora più contraddittoria la scelta di finanziare un'azienda la cui tecnologia di punta è stata pubblicamente smascherata come esagerata nelle sue capacità dimostrate.</p>
+
+<h3>Glossario del fenomeno</h3>
+
+<ul>
+  <li><strong>AI Agent:</strong> sistema di intelligenza artificiale progettato per agire autonomamente, pianificare sequenze di azioni e raggiungere obiettivi complessi senza supervisione continua</li>
+  <li><strong>Demo washing:</strong> pratica di presentare capacità di un prodotto AI attraverso scenari artefatti o condizioni non replicabili, al fine di attrarre investimenti o attenzione mediatica</li>
+  <li><strong>Valutazione pre-revenue:</strong> stima del valore di una startup basata su proiezioni future e percezione del mercato, indipendentemente dai ricavi effettivi — prassi comune ma rischiosa nel settore AI</li>
+  <li><strong>Benchmark manipulation:</strong> selezione strategica dei test di valutazione per mostrare esclusivamente i risultati più favorevoli, omettendo i casi in cui il sistema fallisce</li>
+</ul>
+
+<div class="section-divider"></div>
+
+<h2>IV. Una riflessione necessaria sull'ecosistema AI</h2>
+
+<p>Il caso <em>Devin</em> non è solo una storia di marketing aggressivo andato storto. È il sintomo di una distorsione sistemica nell'ecosistema degli investimenti in <strong>intelligenza artificiale</strong>: un ambiente in cui la narrazione vale più dei risultati, e in cui la velocità di iniezione di capitali supera di gran lunga la capacità del mercato di verificare le promesse.</p>
+
+<p>Noi di <em>Vivacity Design AI Division</em> siamo convinti sostenitori dell'innovazione radicale. Il nostro motto — <em><strong>Action first, without boundaries</strong></em> — riflette la convinzione che rompere gli schemi sia necessario per fare tecnologia vera. Ma c'è una linea netta tra il coraggio di innovare e la manipolazione deliberata delle aspettative. Thiel ha ragione quando invoca più audacia tecnologica: ma finanziare chi costruisce castelli di carte non accelera l'innovazione, la inquina.</p>
+
+<div class="highlight-box"><p>💡 <strong>La domanda che il settore deve porsi:</strong> se 157 milioni di dollari possono fluire verso una tecnologia pubblicamente smentita, quali meccanismi di verifica e accountability esistono — o dovrebbero esistere — nell'ecosistema degli investimenti in AI?</p></div>
+
+<p>Il video di debunking qui sotto rappresenta uno degli esempi più chiari di analisi critica applicata all'<strong>AI hype</strong>: uno strumento prezioso per chiunque voglia distinguere l'innovazione reale dalla narrazione commerciale.</p>
+
+<iframe width="500" height="310" src="https://www.youtube.com/embed/tNmgmwEtoWE?si=TqaeI5EmiSvn-Sr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Maggio 2024</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>

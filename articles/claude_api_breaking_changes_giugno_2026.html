@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude API: Le Breaking Change di Giugno 2026 che Devi Risolvere Subito | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+        th { background: rgba(16,185,129,0.15); color: var(--accent-green); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border-bottom: 1px solid rgba(16,185,129,0.3); }
+        td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); }
+        tr:hover td { background: rgba(16,185,129,0.04); }
+        pre { background: rgba(0,0,0,0.4); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 1.2rem; overflow-x: auto; margin: 1.5rem 0; }
+        code { font-family: var(--font-mono); font-size: 0.82rem; color: #a5f3c0; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Claude API: Le Breaking Change di Giugno 2026 che Devi Risolvere Subito</h1>
+        <p>Scadenza 15 giugno 2026: 13 giorni per migrare le API Claude o affrontare errori 400 in produzione. Cosa fare subito.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Giugno 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Conto alla Rovescia È Iniziato</h2>
+
+<p>Mancano tredici giorni. Il <strong>15 giugno 2026</strong> Anthropic spegne ufficialmente due versioni dei propri modelli e — cosa ben più insidiosa — consolida una <strong>breaking change sui parametri di sampling</strong> che per molti team è già attiva da settimane senza che se ne siano accorti. Se il vostro codice di produzione contiene ancora i parametri <em>temperature</em>, <em>top_p</em> o <em>top_k</em> nelle chiamate a <em>claude-opus-4-20250514</em> o a qualsiasi modello Opus 4.7+, state operando su una bomba a orologeria.</p>
+
+<p>Non è la consueta deprecazione morbida con mesi di preavviso. Questa volta il cambiamento è stato introdotto <strong>senza periodo di grazia</strong> a livello di parametri: chiunque abbia già effettuato il migrazione verso Opus 4.7 e abbia lasciato quei parametri nel payload ha scoperto il problema con un <strong>HTTP 400</strong> secco, in produzione, senza avvertimento preliminare nel corpo della risposta.</p>
+
+<div class="quote">
+<p>"Ho trovato il 400 error alle 2 di notte durante un deploy su staging. Il client lanciava eccezione generica, non capivo perché. Ho passato un'ora a cercare un problema di autenticazione prima di leggere il changelog. Avevo <em>temperature=0.2</em> hardcoded da due anni." — Marco T., senior backend engineer, Milano</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Cosa Viene Rimosso e Perché</h2>
+
+<h3>I modelli in pensione</h3>
+
+<p>La tabella seguente riassume i <strong>model ID deprecati</strong>, le scadenze e i replacement ufficiali. Dopo il 15 giugno qualsiasi chiamata ai modelli nella colonna sinistra restituirà errore: non un fallback silenzioso, non un reindirizzamento automatico.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Modello Deprecato</th>
+      <th>Scadenza</th>
+      <th>Replacement</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>claude-opus-4-20250514</em></td>
+      <td>15 giugno 2026</td>
+      <td><em>claude-opus-4-8</em></td>
+      <td>Rilasciato il 28 maggio 2026; stesso pricing ($5/$25 per M token); ottimizzato per agentic workflow</td>
+    </tr>
+    <tr>
+      <td><em>claude-sonnet-4-20250514</em></td>
+      <td>15 giugno 2026</td>
+      <td><em>claude-sonnet-4-6</em></td>
+      <td>+12 punti CursorBench; supporto immagini hi-res fino a 2576px; fascia di prezzo Sonnet invariata</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Il parametro che non doveva esistere</h3>
+
+<p>La rimozione di <em>temperature</em>, <em>top_p</em> e <em>top_k</em> non è un capriccio: è la formalizzazione di qualcosa che i team più esperti sapevano già. Su Claude, <strong>temperature=0 non ha mai garantito output identici</strong>. Il comportamento deterministico — quando necessario — andava costruito attraverso il <strong>prompt engineering</strong>, non attraverso parametri che il modello interpretava in modo non lineare. Anthropic ha semplicemente reso esplicita questa realtà: dalla versione 4.7 in poi, è il modello stesso a gestire internamente il registro creativo, senza esporre knob numerici all'esterno.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Claude Opus 4.8 e Sonnet 4.6 — Cosa Guadagnate</h2>
+
+<p><em>Claude Opus 4.8</em>, rilasciato il 28 maggio 2026, è un <strong>upgrade incrementale rispetto a 4.7</strong> con ottimizzazioni specifiche per i <strong>workflow agentici a lungo termine</strong>: sessioni estese, task budgets adattivi, integrazione nativa con strumenti come <em>Claude Code</em>. Il pricing rimane invariato a <strong>$5,00 per milione di token in input</strong> e <strong>$25,00 per milione in output</strong> — una continuità che facilita la pianificazione dei costi nei prossimi trimestri.</p>
+
+<p><em>Claude Sonnet 4.6</em> è il sostituto diretto di <em>claude-sonnet-4-20250514</em> e porta con sé due novità concrete: un salto di <strong>+12 punti su CursorBench</strong> — benchmark di riferimento per le task di code editing assistito — e il supporto a immagini ad alta risoluzione fino a <strong>2576 pixel</strong>, rilevante per applicazioni di analisi documentale e vision pipeline.</p>
+
+<div class="highlight-box">
+<p><strong>Insight operativo — Checklist di migrazione in 5 step (da completare entro il 13 giugno):</strong></p>
+<p>✅ <strong>Step 1:</strong> grep ricorsivo nel codebase per <em>temperature</em>, <em>top_p</em>, <em>top_k</em> — rimuovere o commentare ogni occorrenza nelle chiamate Claude.<br>
+✅ <strong>Step 2:</strong> sostituire tutti i riferimenti a <em>claude-opus-4-20250514</em> con <em>claude-opus-4-8</em> e <em>claude-sonnet-4-20250514</em> con <em>claude-sonnet-4-6</em>.<br>
+✅ <strong>Step 3:</strong> riscrivere i prompt dove si dipendeva da temperature bassa per output strutturati — usare istruzioni esplicite di formato (es. "rispondi solo con JSON valido").<br>
+✅ <strong>Step 4:</strong> eseguire una test suite completa su staging con i nuovi model ID prima del 13 giugno.<br>
+✅ <strong>Step 5:</strong> monitorare i log post-deploy per HTTP 400 residui nelle prime 48 ore dopo il go-live.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Il Codice da Cambiare — Subito</h2>
+
+<p>Di seguito un esempio concreto di migrazione per una chiamata Python tipica. Il blocco <strong>prima</strong> mostra il pattern comune con parametri di sampling; il blocco <strong>dopo</strong> mostra la versione corretta per Opus 4.8, con la logica di controllo dell'output spostata nel prompt di sistema.</p>
+
+<pre><code class="language-python">
+# ============================================================
+# PRIMA — Pattern errato (genera HTTP 400 su Opus 4.7+)
+# ============================================================
+import anthropic
+
+client = anthropic.Anthropic()
+
+response = client.messages.create(
+    model="claude-opus-4-20250514",   # modello deprecato il 15/06/2026
+    max_tokens=1024,
+    temperature=0.2,                  # ❌ RIMOSSO: genera HTTP 400 su 4.7+
+    top_p=0.9,                        # ❌ RIMOSSO
+    top_k=40,                         # ❌ RIMOSSO
+    messages=[
+        {"role": "user", "content": "Genera un report JSON sui KPI di vendita."}
+    ]
+)
+
+print(response.content[0].text)
+
+
+# ============================================================
+# DOPO — Pattern corretto per claude-opus-4-8
+# ============================================================
+import anthropic
+
+client = anthropic.Anthropic()
+
+response = client.messages.create(
+    model="claude-opus-4-8",           # ✅ replacement ufficiale
+    max_tokens=1024,
+    # temperature, top_p, top_k rimossi
+    system=(
+        "Sei un analista dati preciso. "
+        "Rispondi SEMPRE e SOLO con un oggetto JSON valido, "
+        "senza testo aggiuntivo, senza markdown, senza spiegazioni. "
+        "Struttura: {\"kpi\": [...], \"periodo\": \"...\", \"note\": \"...\"}"
+    ),                                  # ✅ determinismo via prompt engineering
+    messages=[
+        {"role": "user", "content": "Genera un report JSON sui KPI di vendita."}
+    ]
+)
+
+print(response.content[0].text)
+</code></pre>
+
+<p>Il principio è semplice: tutto il controllo che prima veniva delegato a un numero decimale passa ora nel <strong>prompt di sistema</strong>. La buona notizia è che questa tecnica produce risultati più stabili e documentabili rispetto al vecchio approccio numerico.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Il Contesto Più Ampio — Perché Anthropic Ha Scelto Questo Momento</h2>
+
+<p>Questa breaking change non arriva nel vuoto. Giugno 2026 segna un <strong>punto di inflessione nell'infrastruttura AI globale</strong>: gli investimenti in capex AI hanno superato i <strong>$400 miliardi nel 2025</strong> con proiezioni che toccano i <strong>$600 miliardi nel 2026</strong>, e la direzione dell'intero settore è inequivocabile — si punta agli <strong>agentic workflow</strong>, ovvero sistemi dove i modelli eseguono task autonomi multi-step, non semplici richieste isolate.</p>
+
+<p>In questo scenario, i parametri di sampling erano un residuo di un paradigma precedente: quello del modello come <strong>motore di completamento testo</strong> da calibrare manualmente. I modelli della serie Opus 4 sono progettati per operare come <strong>agenti autonomi</strong>, con <em>adaptive thinking</em> e <em>task budget</em> integrati. Cedere il controllo della creatività al chiamante tramite <em>temperature</em> contrasta con questa architettura.</p>
+
+<div class="highlight-box">
+<p><strong>Dato concreto da tenere a mente:</strong> secondo i dati di benchmark interni pubblicati da Anthropic, <em>claude-opus-4-8</em> mostra varianza di output significativamente ridotta rispetto a <em>claude-opus-4-20250514</em> con <em>temperature=0</em> — il che significa che il modello senza parametri esterni è <strong>più stabile</strong> del modello con temperatura bassa. La rimozione non riduce il controllo: lo sposta dove è sempre stato più efficace, nel linguaggio.</p>
+</div>
+
+<p>Tredici giorni sono pochi, ma sufficienti se si agisce oggi. La migrazione tecnica è rapida — ore, non giorni. Il vero rischio è la <strong>procrastinazione</strong>: ogni deploy rinviato è un deployment che il 15 giugno potrebbe andare in errore in produzione, davanti agli utenti finali. Il momento di aprire la pull request è adesso.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Giugno 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
