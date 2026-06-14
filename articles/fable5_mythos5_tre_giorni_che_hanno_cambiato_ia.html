@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fable 5 e Mythos 5: La Storia Di 3 Giorni Che Hanno Cambiato L'IA | Pillole di AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Fable 5 e Mythos 5: La Storia Di 3 Giorni Che Hanno Cambiato L'IA</h1>
+        <p>Lanciati il 9 giugno, spenti il 12: Fable 5 e Mythos 5 durano 72 ore prima che il governo USA invochi la sicurezza nazionale. L'IA entra nell'era del controllo delle esportazioni.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Giugno 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Aprile 2026: Il Fantasma Che Allarmò Il Mondo</h2>
+
+<p>Tutto inizia in primavera. <em>Anthropic</em> presenta <strong>Claude Mythos Preview</strong> — un modello capace di fare qualcosa che nessuno aveva mai visto prima: trovare e collegare autonomamente <strong>exploit zero-day</strong> sui principali sistemi operativi e browser. Non è una capacità accademica. È una capacità concreta, operativa, pericolosa.</p>
+
+<p>Il modello scopre <strong>migliaia di vulnerabilità critiche e gravi</strong>. Allarmano Wall Street. Allarmano i funzionari governativi. Allarmano le banche. La potenza è reale, tangibile, preoccupante. <em>Anthropic</em> capisce immediatamente cosa significa e decide di non renderlo pubblico.</p>
+
+<p>Invece, crea <strong>Project Glasswing</strong>: un programma ad accesso controllato che coinvolge oltre <strong>150 organizzazioni selezionate</strong> — istituzioni finanziarie, aziende software, reti sanitarie, fornitori di infrastrutture critiche. <strong>Mythos Preview</strong> rimane un segreto ben custodito. Solo i prescelti possono toccare questo fuoco.</p>
+
+<div class="highlight-box"><p><strong>Project Glasswing</strong> coinvolge oltre <strong>150 organizzazioni selezionate</strong> in settori critici: finanza, sanità, software e infrastrutture. È il perimetro di contenimento che <em>Anthropic</em> costruisce attorno alla capacità più pericolosa mai sviluppata da un modello AI commerciale.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. 9 Giugno: Il Lancio Più Atteso Dell'Anno</h2>
+
+<p>Il <em>9 giugno</em> <em>Anthropic</em> fa l'annuncio che tutto il settore aspetta. Introduce <strong>Claude Fable 5</strong> e <strong>Claude Mythos 5</strong>: due modelli che rappresentano un nuovo livello di capacità dell'intelligenza artificiale. Non sono più esperimenti. Sono pronti per il mercato.</p>
+
+<p><strong>Fable 5</strong> è la versione pubblica — il modello che porta le capacità Mythos nelle mani di tutti gli sviluppatori. Ma <em>Anthropic</em> non è ingenua. Ha costruito <strong>Fable 5</strong> con <strong>tutele di sicurezza</strong> più solide di qualsiasi modello precedentemente distribuito. Ha lavorato per migliaia di ore in sessioni di <strong>red-teaming</strong>, collaborando con il governo degli Stati Uniti, la <em>UK AISI</em> e diversi team di sicurezza di terze parti. Nessun tester riesce a trovare un <strong>jailbreak universale</strong>.</p>
+
+<p>Eppure la strategia è consapevolmente limitante. Sulle domande che toccano <strong>cybersicurezza, biologia e chimica</strong> — i settori dove <strong>Mythos</strong> è letale — <strong>Fable 5</strong> non risponde con le sue capacità piene. Le devia su <strong>Opus 4.8</strong>, un modello più vecchio e meno potente. La "chiave più affilata" rimane custodita da <strong>Glasswing</strong>.</p>
+
+<div class="highlight-box"><p><strong>Fable 5</strong> costa <strong>50 dollari per milione di token</strong> in output — il doppio di <strong>Opus 4.8</strong> a 25 dollari. <em>Anthropic</em> introduce anche un obbligo di <strong>conservazione dei dati per 30 giorni</strong> per il monitoraggio della sicurezza dei modelli di classe <strong>Mythos</strong>. Accesso gratuito fino al <em>22 giugno</em> per i piani Pro, Max, Team ed Enterprise.</p></div>
+
+<p>Nonostante le limitazioni, il lancio genera entusiasmo autentico. Per la prima volta, capacità di livello <strong>Mythos</strong> arrivano sul mercato pubblico. È un evento importante. È un momento di celebrazione nella comunità AI. Nessuno sa che durerà settantadue ore.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. 12 Giugno: Lo Spegnimento</h2>
+
+<p>Tre giorni dopo.</p>
+
+<p>Alle <em>17:21 della costa Est americana</em> — le <em>23:21 in Italia</em> — <em>Anthropic</em> riceve una lettera dal <em>Dipartimento del Commercio americano</em>, firmata dal Segretario <strong>Howard Lutnick</strong>. L'ordine è secco: sospendere ogni accesso a <strong>Fable 5</strong> e <strong>Mythos 5</strong> per qualsiasi cittadino straniero, dentro o fuori gli Stati Uniti. Inclusi i dipendenti di <em>Anthropic</em> privi di cittadinanza americana.</p>
+
+<p>La direttiva cita autorità in materia di <strong>sicurezza nazionale</strong>. Non fornisce dettagli specifici sulla preoccupazione. Semplicemente impone il blocco.</p>
+
+<div class="quote">Il governo americano credeva di essere venuto a conoscenza di un metodo per aggirare le protezioni di Fable 5 — un jailbreak in grado di accedere alle capacità ristrette. Nessuna prova pubblica. Nessun procedimento. Solo l'ordine.</div>
+
+<p><em>Anthropic</em> ha un problema tecnico immediato: non può distinguere in tempo reale chi è cittadino statunitense e chi no. La conformità immediata è impossibile. Sceglie quindi l'unica strada che garantisce obbedienza: disattiva completamente <strong>Fable 5</strong> e <strong>Mythos 5</strong> per tutti gli utenti nel mondo.</p>
+
+<p>Poche ore dopo, sviluppatori in ogni continente vedono le loro chiamate <strong>API</strong> rispondere con un errore <strong>404</strong>. Il servizio non è più disponibile. I modelli scompaiono dal mercato come se non fossero mai esistiti.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Il Contesto Geopolitico</h2>
+
+<p>Quella che sembra una semplice misura di sicurezza è in realtà qualcosa di molto più grande. Per la prima volta, gli Stati Uniti usano il <strong>regime di controllo delle esportazioni</strong> — lo stesso strumento usato da decenni per i <strong>semiconduttori avanzati</strong>, i supercomputer, i componenti militari — su un modello di intelligenza artificiale. Il software entra nella stessa categoria normativa della tecnologia militare strategica.</p>
+
+<p>Non è una legge sull'intelligenza artificiale. È un <strong>precedente geopolitico</strong>.</p>
+
+<div class="quote">Negli anni Novanta il governo americano trattava la crittografia forte come materiale bellico, cercando di controllarla e limitarla. Alla fine vinse la tecnologia. Ma nel mezzo ci furono aziende che persero clienti, sviluppatori che non potevano lavorare, utenti confusi. Oggi la storia si ripete — con posta in gioco più alta.</div>
+
+<p>Il parallelo storico con le <strong>Crypto Wars</strong> degli anni Novanta è inevitabile. Allora la battaglia era sulla <strong>crittografia</strong>. Oggi è sull'<strong>intelligenza artificiale di frontiera</strong>. La geometria del conflitto è identica: innovazione privata contro controllo statale, mercato globale contro sovranità nazionale, velocità tecnologica contro lentezza normativa.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. La Reazione di Anthropic</h2>
+
+<p><em>Anthropic</em> pubblica un comunicato ufficiale in cui accetta la direttiva ma contesta il principio. L'azienda sostiene di non aver ricevuto spiegazioni dettagliate. Sostiene che le vulnerabilità citate sarebbero <strong>"un numero limitato di vulnerabilità minori e già note"</strong> — non la minaccia senza precedenti evocata dall'ordine governativo.</p>
+
+<p>La posizione è netta: applicare questo standard finirebbe per bloccare di fatto il rilascio di qualsiasi nuovo <strong>modello di intelligenza artificiale avanzata</strong> nell'intero settore. Non solo <em>Anthropic</em>. Tutti. L'azienda chiede un processo trasparente, equo, ancorato ai fatti tecnici — non a preoccupazioni non verificabili e non condivise.</p>
+
+<p>Pubblicamente, <em>Anthropic</em> dichiara di non essere d'accordo con la motivazione della direttiva. Ma obbedisce immediatamente. Non ha scelta. Quando il <em>Dipartimento del Commercio</em> cita la sicurezza nazionale, il margine di negoziazione si azzera.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Le Conseguenze e la Nuova Era</h2>
+
+<p>In tre giorni <em>Anthropic</em> passa dal celebrare il lancio più importante della sua storia allo <strong>spegnimento globale</strong> dei suoi modelli più potenti. Sviluppatori rimangono con le mani vuote. Clienti perdono accesso. Il precedente è stabilito — e i precedenti, nella storia regolatoria, tendono a durare.</p>
+
+<p>La partita si gioca ora su un terreno nuovo: come controllare l'<strong>intelligenza artificiale di frontiera</strong>. Se il blocco di <strong>Fable 5</strong> avrà effetti duraturi, l'intero settore dovrà confrontarsi con una realtà scomoda: la capacità computazionale e il software avanzato non sono più solo questioni tecniche e di mercato. Sono <strong>questioni di sicurezza nazionale</strong>. Trattate come tali, con gli strumenti della geopolitica.</p>
+
+<p>Siamo entrati in una nuova era. Un'era dove l'innovazione tecnologica si scontra direttamente con il potere statale. Un'era dove un modello di IA può essere ritenuto talmente pericoloso da giustificare l'intervento governativo immediato — senza procedimenti pubblici, senza trasparenza, senza diritto di replica preventiva.</p>
+
+<p>Tre giorni. È bastato poco più di un fine settimana per cambiare tutto.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Giugno 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
