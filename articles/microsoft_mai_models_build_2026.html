@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Modelli MAI di Microsoft: La Svolta di Build 2026 | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Microsoft lancia 7 modelli MAI a Build 2026: MAI-Thinking-1 (35B MoE, 256K context), MAI-Code-1-Flash in GitHub Copilot con 60% meno token. La strategia di indipendenza da OpenAI.">
+    <meta name="keywords" content="Microsoft MAI, MAI-Thinking-1, MAI-Code-1, Build 2026, GitHub Copilot, Azure Foundry, reasoning model, Microsoft AI, Mustafa Suleyman">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="I Modelli MAI di Microsoft: La Svolta di Build 2026 | Pillole di AI">
+    <meta property="og:description" content="7 modelli AI interni di Microsoft: MAI-Thinking-1 reasoning, MAI-Code-1 in Copilot, MAI-Image-2.5. L'annuncio di Build 2026 che ridisegna la strategia AI di Redmond.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-06-15T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Modelli MAI di Microsoft: La Svolta di Build 2026">
+    <meta name="twitter:description" content="MAI-Thinking-1, MAI-Code-1 in Copilot, 7 modelli in-house: Microsoft annuncia la sua famiglia AI a Build 2026">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>I Modelli MAI di Microsoft: La Svolta di Build 2026</h1>
+        <p>Microsoft lancia 7 modelli MAI a Build 2026: reasoning proprietario, coding agentico e una strategia per ridurre la dipendenza da OpenAI.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Giugno 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Build 2026: Microsoft Presenta la Sua Famiglia AI</h2>
+
+<p>Il <em>2 giugno 2026</em>, sul palco di <em>Microsoft Build</em> a <em>Redmond</em>, qualcosa di strutturalmente diverso è andato in scena rispetto agli anni precedenti. Niente annunci di partnership, niente integrazioni con modelli di terze parti presentate come il cuore dell'offerta. <em>Microsoft</em> ha mostrato i propri modelli. Sette. Con un nome che non lascia spazio all'ambiguità: <strong>MAI</strong> — <em>Microsoft AI</em>.</p>
+
+<p>Il messaggio di <em>Mustafa Suleyman</em>, CEO della divisione AI di <em>Microsoft</em>, è stato netto: <em>"Humanist Superintelligence — AI designed to serve people, not replace them."</em> Una frase che suona come un manifesto, ma nasconde una direzione tecnica ben precisa. La famiglia <strong>MAI</strong> è il tentativo di costruire uno stack AI verticalmente integrato, dalla generazione di immagini al ragionamento multi-step, con infrastruttura e modelli controllati internamente.</p>
+
+<p>Per chi sviluppa su <em>Azure</em>, lavora con <em>GitHub Copilot</em> o costruisce pipeline AI aziendali, questa non è una notizia di branding. È un cambio di architettura nelle dipendenze. E di conseguenza, nei costi.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. MAI-Thinking-1: Il Primo Modello Ragionatore Interno</h2>
+
+<p><strong>MAI-Thinking-1</strong> è il modello che probabilmente ha attirato più attenzione tecnica. È il primo sistema di reasoning interamente sviluppato da <em>Microsoft</em>, e la sua architettura racconta scelte precise. Si tratta di un modello <strong>MoE — Mixture-of-Experts</strong> — con <strong>35 miliardi di parametri attivi</strong>. Non è la dimensione totale che conta, ma quella attiva per ogni inferenza: un compromesso deliberato tra costo computazionale e capacità ragionativa.</p>
+
+<p>La <strong>context window da 256K token</strong> lo posiziona per task che richiedono continuità su documenti lunghi, catene di ragionamento estese o istruzioni multi-step complesse. I benchmark parlano di <strong>94,5% sul dataset MATH</strong>, circa <strong>2,5 punti sotto</strong> la versione esterna precedentemente usata da <em>Microsoft</em>, ma con un <strong>+30% sui casi d'uso target</strong> interni — un dettaglio che suggerisce ottimizzazione verticale più che corsa ai leaderboard generalisti.</p>
+
+<div class="highlight-box"><p><strong>MAI-Thinking-1</strong>: architettura <strong>MoE</strong> con <strong>35B parametri attivi</strong>, context window <strong>256K token</strong>, <strong>+30%</strong> sui casi d'uso target rispetto al modello precedente. Disponibile su <em>Azure AI Foundry</em>.</p></div>
+
+<p>Il termine usato internamente da <em>Microsoft</em> per descrivere la propria metodologia di sviluppo è <strong>"hill-climbing machine"</strong>: miglioramento ingegneristico continuo, incrementale, disciplinato. Non salti paradigmatici, ma ottimizzazione sistematica. È un'estetica ingegneristica che si contrappone esplicitamente alla cultura del breakthrough a tutti i costi.</p>
+
+<div class="quote">Un modello di reasoning proprietario non è solo un asset tecnico. È la capacità di controllare il proprio tetto di spesa cognitiva senza chiedere il permesso a nessun partner.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. MAI-Code-1: GitHub Copilot con Motore Proprietario</h2>
+
+<p><strong>MAI-Code-1-Flash</strong> è il secondo pilastro della famiglia, e per molti sviluppatori sarà il modello con cui interagiranno prima ancora di saperlo. È già integrato in <em>GitHub Copilot</em> e in <em>VS Code</em>. La sua caratteristica tecnica più rilevante non è nella precisione del codice generato, ma nell'efficienza inferenziale: <strong>60% di token in meno</strong> rispetto ai modelli precedentemente utilizzati da <em>Copilot</em>.</p>
+
+<p>La progettazione è esplicitamente orientata ai <strong>workflow agentici di coding</strong>: sequenze di operazioni autonome, lettura e modifica di file, esecuzione di test, gestione di dipendenze. In questi contesti, ogni token risparmiato si moltiplica lungo l'intera catena. Un agente che compie <strong>50 operazioni consecutive</strong> con il <strong>60% di token in meno</strong> per operazione non produce un risparmio lineare — produce un risparmio che ridisegna la fattibilità economica delle pipeline aziendali.</p>
+
+<div class="highlight-box"><p><strong>MAI-Code-1-Flash</strong> usa il <strong>60% di token in meno</strong> rispetto ai modelli precedenti di <em>Copilot</em>. Con il pricing usage-based di <em>GitHub Copilot</em> enterprise, la riduzione si traduce direttamente in costo per richiesta API.</p></div>
+
+<p>Il timing non è casuale. <em>GitHub Copilot</em> ha adottato un modello di fatturazione <strong>usage-based</strong>, dove il consumo di token è direttamente correlato alla spesa. Ridurre del <strong>60%</strong> il consumo medio non è un'ottimizzazione marginale: è un argomento commerciale che <em>Microsoft</em> porta ai CTO delle aziende enterprise con un foglio di calcolo in mano.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. L'Intera Famiglia: Dai Pixel alla Voce</h2>
+
+<p>La famiglia <strong>MAI</strong> conta ufficialmente <strong>7 modelli</strong>, ciascuno pensato per coprire una modalità specifica dello stack AI applicativo. Oltre a <strong>MAI-Thinking-1</strong> e <strong>MAI-Code-1-Flash</strong>, la lineup comprende <strong>MAI-Image-2.5</strong> — un modello multimodale per generazione e comprensione di immagini, disponibile anche in variante <strong>Flash</strong> per deployment ultra-efficiente. La presenza di capacità di comprensione, non solo generazione, indica un posizionamento su pipeline di analisi visiva oltre che su usi creativi.</p>
+
+<p><strong>MAI-Transcribe-1.5</strong> aggiorna la componente di trascrizione audio. <strong>MAI-Voice-1</strong> introduce un modello vocale proprietario. I rimanenti modelli della famiglia coprono ulteriori domini audio e speech, completando una copertura modale che punta a rendere <em>Microsoft</em> autosufficiente su ogni layer dell'interazione uomo-macchina.</p>
+
+<div class="quote">Sette modelli non sono sette prodotti. Sono sette punti di controllo su altrettante dipendenze esterne che, fino a ieri, portavano il nome di qualcun altro.</div>
+
+<p>La distribuzione è progettata per massimizzare la reach: <em>Azure AI Foundry</em> rimane il canale primario per l'enterprise, ma i modelli sono accessibili anche tramite il <strong>MAI Playground</strong>, <em>Fireworks AI</em>, <em>Baseten</em> e <em>Open Router</em>. Una scelta che parla al mercato degli sviluppatori indipendenti e delle startup, non solo ai clienti <em>Azure</em> istituzionali.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. La Strategia dell'Indipendenza da OpenAI</h2>
+
+<p>Il contesto in cui nasce la famiglia <strong>MAI</strong> non può essere letto senza considerare la relazione tra <em>Microsoft</em> e <em>OpenAI</em>. Per anni, <em>Microsoft</em> ha integrato i modelli di <em>OpenAI</em> come motore principale di <em>Copilot</em>, <em>Azure AI</em> e decine di prodotti consumer. Un accordo commerciale che ha generato valore, ma anche una dipendenza strutturale da una roadmap e da una struttura di costi non controllate internamente.</p>
+
+<p>La famiglia <strong>MAI</strong> è la risposta ingegneristica a questa dipendenza. Non si tratta di un distacco conflittuale — <em>OpenAI</em> rimane partner — ma di una diversificazione del rischio tecnologico. <em>Microsoft</em> costruisce ora la capacità di scegliere quale modello usare in base a criteri di performance, costo e controllo, senza essere vincolata a un unico fornitore esterno. È ciò che nel settore viene chiamato <strong>AI sovereignty</strong>: la capacità di un'organizzazione di gestire il proprio stack AI senza dipendenze critiche non negoziabili.</p>
+
+<p>La metafora della <strong>"hill-climbing machine"</strong> usata da <em>Microsoft</em> per descrivere il proprio approccio allo sviluppo modelli suggerisce una cultura interna che privilegia l'affidabilità incrementale rispetto alla discontinuità. In un mercato dove ogni trimestre arriva un presunto cambio di paradigma, è una posizione tecnica controcorrente — e probabilmente più sostenibile per chi deve garantire SLA enterprise.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Accesso e Implicazioni per gli Sviluppatori</h2>
+
+<p>Per chi lavora su <em>Azure AI Foundry</em>, i modelli <strong>MAI</strong> sono già accessibili. <strong>MAI-Thinking-1</strong> entra nel catalogo come opzione per task di reasoning complesso, math e generazione di codice con istruzioni elaborate. <strong>MAI-Code-1-Flash</strong> è operativo in <em>GitHub Copilot</em> e disponibile via API per chi costruisce tooling di sviluppo custom.</p>
+
+<p>Le implicazioni pratiche per i team di sviluppo sono immediate. Chi usa <em>GitHub Copilot</em> con piano enterprise e modello usage-based vedrà variare il costo per sessione agentica in funzione di questo switch. Chi costruisce applicazioni su <em>Azure AI Foundry</em> ha ora un'alternativa proprietaria <em>Microsoft</em> ai modelli di terze parti per ogni modalità — testo, codice, immagine, voce, trascrizione. La scelta del modello diventa una variabile di design architetturale, non solo una preferenza.</p>
+
+<p>Il <strong>MAI Playground</strong> e la disponibilità su <em>Open Router</em> abbassano la barriera di ingresso per chi vuole valutare i modelli prima di integrarli. È un segnale che <em>Microsoft</em> vuole costruire mindshare tecnico direttamente tra gli sviluppatori, non solo attraverso i canali enterprise tradizionali.</p>
+
+<p>La famiglia <strong>MAI</strong> non è ancora competitiva sui benchmark generalisti di frontiera. Ma non è questo il punto. È un'infrastruttura di capacità AI interna, progettata per migliorare sistematicamente, abbattere i costi operativi e ridurre le dipendenze critiche. Per <em>Microsoft</em>, e per chi costruisce su <em>Microsoft</em>, cambia qualcosa di fondamentale: la provenienza del motore.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Giugno 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
