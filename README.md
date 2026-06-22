@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (34 generati)
+## Articoli (35 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Giugno 2026 | [Apple Foundation Models a WWDC 2026: Una Swift API per Governarli Tutti](articles/apple_foundation_models_wwdc26.html) | Strumenti di Sviluppo AI | 7 min |
 | Giugno 2026 | [I Modelli MAI di Microsoft: La Svolta di Build 2026](articles/microsoft_mai_models_build_2026.html) | Nuovi Modelli AI | 6 min |
 | Giugno 2026 | [Fable 5 e Mythos 5: La Storia Di 3 Giorni Che Hanno Cambiato L'IA](articles/fable5_mythos5_tre_giorni_che_hanno_cambiato_ia.html) | AI & Geopolitica | 6 min |
 | Giugno 2026 | [Gemma 4 12B: Multimodale Locale senza Encoder — Il Futuro dell'AI sul Tuo Laptop](articles/gemma4_12b_multimodale_locale_encoder_free.html) | Nuovi Modelli AI | 7 min |
@@ -43,4 +44,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Febbraio 2023 | [ChatGPT e la programmazione](articles/chatgpt_e_la_programmazione.html) | Dev & AI | 4 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-06-15*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-06-22*

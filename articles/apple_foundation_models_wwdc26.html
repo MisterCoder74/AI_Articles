@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Foundation Models a WWDC 2026: Una Swift API per Governarli Tutti | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Apple Foundation Models a WWDC 2026: una Swift API unifica on-device (AFM 3), Private Cloud Compute e Claude/Gemini. Più Core AI per Qwen, Mistral, SAM3 su Apple Silicon.">
+    <meta name="keywords" content="Apple Foundation Models, WWDC 2026, AFM 3, LanguageModelSession, Core AI, Apple Intelligence, Private Cloud Compute, Swift AI, iOS 26, on-device AI">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Apple Foundation Models a WWDC 2026: Una Swift API per Governarli Tutti | Pillole di AI">
+    <meta property="og:description" content="WWDC 2026: Foundation Models diventa un'unica Swift API per on-device, cloud Apple e modelli terze parti (Claude, Gemini). AFM 3 in 5 varianti, nuovo Core AI framework per open source.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-06-22T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Apple Foundation Models a WWDC 2026: Una Swift API per Governarli Tutti">
+    <meta name="twitter:description" content="Apple mette Claude e Gemini dentro iOS con una Swift API. WWDC 2026 ridisegna lo stack AI per sviluppatori mobile.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Apple Foundation Models a WWDC 2026: Una Swift API per Governarli Tutti</h1>
+        <p>Foundation Models unifica on-device, Private Cloud e terze parti in un'unica API Swift. Cinque modelli AFM 3, Core AI per open source, Claude e Gemini nativi in iOS 26.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Giugno 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. WWDC 2026: Apple Ridisegna lo Stack AI per Sviluppatori</h2>
+
+<p>L'8 giugno 2026, all'<em>Apple Park</em> di <em>Cupertino</em>, <em>Apple</em> ha aperto la <em>WWDC 2026</em> con un messaggio inequivocabile rivolto agli sviluppatori: l'era dell'AI integrata per caso è finita. Inizia quella dell'AI progettata come infrastruttura. Il tema non dichiarato dell'intera keynote si può sintetizzare in due parole: <strong>agentic computing</strong>. Non più modelli da invocare su richiesta, ma sistemi capaci di pianificare, ragionare su più passaggi e agire in autonomia su contesti complessi.</p>
+
+<p>Lo stack AI per sviluppatori <em>iOS</em> viene ridisegnato dalla radice. Due nuovi framework entrano nel catalogo ufficiale: <strong>Foundation Models</strong> si evolve da API on-device a orchestratore unificato di tre livelli di inferenza, mentre <strong>Core AI</strong> debutta come runtime low-level per modelli open source direttamente su <em>Apple Silicon</em>. La direzione è chiara: ogni sviluppatore <em>Swift</em>, indipendentemente dal livello di expertise in machine learning, deve poter costruire esperienze AI di qualità produzione senza gestire infrastruttura, routing o ottimizzazioni hardware.</p>
+
+<p>Il segnale più forte, però, non è tecnico. È strategico. <em>Apple</em> ha invitato <em>Anthropic</em> e <em>Google</em> dentro <em>iOS 26</em>. <em>Claude</em> e <em>Gemini</em> sono ora cittadini di prima classe nel framework nativo. La piattaforma diventa più grande di qualsiasi singolo modello.</p>
+
+<div class="quote">Apple non ha annunciato il modello più potente del mondo. Ha annunciato la piattaforma dove tutti i modelli potenti possono vivere.</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Foundation Models Framework: Una API, Tre Livelli di Inferenza</h2>
+
+<p>Introdotto a <em>WWDC 2025</em> come interfaccia on-device, <strong>Foundation Models</strong> compie a <em>WWDC 2026</em> il salto da framework locale ad astrazione universale dell'inferenza AI in <em>Swift</em>. Il punto d'ingresso è uno solo: <strong>LanguageModelSession</strong>. Una sessione, tre possibili destinazioni di elaborazione, zero logica di routing da scrivere manualmente.</p>
+
+<p>I tre livelli operano in cascata secondo contesto, capacità del dispositivo e policy dello sviluppatore. Il primo livello è l'inferenza on-device tramite i modelli <strong>AFM 3</strong> locali: latenza di rete zero, privacy assoluta, funzionamento offline garantito. Il secondo è <strong>Private Cloud Compute</strong>, i server <em>Apple</em> basati su <em>Apple Silicon</em> che offrono modelli più potenti mantenendo la garanzia che i dati non vengano mai loggati né usati per training. Il terzo livello apre il sistema a <em>Claude</em> e <em>Gemini</em> tramite il protocollo <strong>LanguageModelExecutor</strong>.</p>
+
+<p>Le novità 2026 di <strong>LanguageModelSession</strong> riguardano due aree critiche per i workflow agentici. Prima: il supporto nativo all'input multimodale — le immagini entrano direttamente nella sessione senza pre-processing separato. Seconda: le nuove API di <strong>context management</strong>, che introducono ottimizzazione esplicita della KV cache per sessioni lunghe e gestione granulare del contesto su task multi-step. Per uno sviluppatore che costruisce agenti con memoria persistente o pipeline di reasoning concatenate, questo cambia l'architettura dell'applicazione in modo sostanziale.</p>
+
+<div class="highlight-box"><p><strong>LanguageModelSession</strong> compila per <em>iOS 26</em>, <em>macOS 26</em> e <em>iPadOS 26</em>. Supporta structured output, tool calling, guided generation, image input e context management APIs per sessioni agentiche multi-step.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. AFM 3 — Terza Generazione: Cinque Modelli, Due Ambienti</h2>
+
+<p>La terza generazione degli <strong>Apple Foundation Models</strong> si articola in cinque varianti distinte, distribuite tra ambiente on-device e cloud. Non è una famiglia monolitica: ogni modello ha un ruolo preciso nello stack e un target hardware definito.</p>
+
+<p><strong>AFM 3 Core</strong> è il modello on-device principale, lo stesso che alimenta le feature <em>Apple Intelligence</em> già note — riassunti in <em>Mail</em>, risposte contestuali di <em>Siri</em>, <em>Writing Tools</em>. Al di sopra si posiziona <strong>AFM 3 Core Advanced</strong>: più potente, nativamente multimodale con image input integrato, ottimizzato per chip recenti a partire da <em>M3</em> e <em>A18</em>. È il modello che <em>Apple</em> spinge per task complessi on-device, e introduce capacità di sintesi vocale che <em>9to5Mac</em> descrive come significativamente più espressive rispetto alla generazione precedente.</p>
+
+<p>Il terzo membro è <strong>AFM 3 Code Advanced</strong>, specializzato nel dominio coding e integrato profondamente in <em>Xcode</em>. Alimenta le nuove funzionalità di agentic coding: proposte di modifica autonome su file multipli, refactoring cross-file, generazione di test e suggerimenti di migrazione per API deprecate. Non è un completamento di riga: è un collaboratore che ragiona sull'intera base di codice.</p>
+
+<p>Sul versante cloud, <strong>AFM 3 Cloud</strong> porta la potenza server-side accessibile tramite la stessa identica API degli on-device model, senza discontinuità per lo sviluppatore. Completa la famiglia <strong>ADM 3 Cloud</strong>, il secondo modello cloud con focus su capacità audio e multimodale avanzata, che alimenta le funzioni più ambiziose di <em>Siri</em>.</p>
+
+<div class="highlight-box"><p>Cinque modelli <strong>AFM 3</strong>: Core, Core Advanced, Code Advanced on-device; AFM 3 Cloud e ADM 3 Cloud su <strong>Private Cloud Compute</strong>. Stessa API <strong>LanguageModelSession</strong> per tutti i livelli.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Core AI: Qwen, Mistral e SAM3 su Apple Silicon</h2>
+
+<p>Parallelo al percorso <strong>Foundation Models</strong>, <em>Apple</em> ha annunciato a <em>WWDC 2026</em> un secondo framework con obiettivi radicalmente diversi: <strong>Core AI</strong>. Dove <strong>Foundation Models</strong> astrae e orchestra, <strong>Core AI</strong> espone. È un runtime low-level progettato per sviluppatori che richiedono controllo diretto su modello, inferenza e pipeline di esecuzione.</p>
+
+<p>Il framework gestisce un catalogo curato di modelli open source ottimizzati per <em>Apple Silicon</em>: tra i modelli disponibili al lancio figurano <strong>Qwen</strong>, <strong>Mistral</strong>, <strong>SAM3</strong> e ulteriori modelli provenienti dall'ecosistema <em>HuggingFace</em>. Il compilatore interno sfrutta in modo nativo il Neural Engine (<em>ANE</em>) e la GPU unificata, producendo inferenza locale completamente offline — zero rete, zero cloud, zero dipendenze esterne di alcun tipo.</p>
+
+<p>Il developer flow è intenzionalmente diretto: selezione del modello dal catalogo, importazione del framework, esecuzione dell'inferenza. Per chi lavora con pesi custom, <strong>Core AI</strong> supporta l'export e la conversione guidata da formati <strong>GGUF</strong>, <strong>MLX</strong> e <strong>CoreML</strong>. La distinzione rispetto a <strong>Foundation Models</strong> è netta anche a livello concettuale: non esiste un layer <strong>LanguageModelSession</strong> qui. Lo sviluppatore scende di un livello, guadagna controllo, accetta la responsabilità di gestire il ciclo di inferenza in modo esplicito.</p>
+
+<div class="quote">Core AI è la risposta di Apple a chi costruisce su modelli propri: non ti chiediamo di usare i nostri, ti chiediamo solo di girare sul nostro hardware.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Claude e Gemini dentro iOS: Il Protocollo LanguageModelExecutor</h2>
+
+<p>La mossa più inattesa di <em>WWDC 2026</em> non riguarda un modello <em>Apple</em>. Riguarda <em>Claude</em> di <em>Anthropic</em> e <em>Gemini</em> di <em>Google</em>. Entrambi sono ora integrabili nativamente nel framework <strong>Foundation Models</strong> tramite il protocollo <strong>LanguageModelExecutor</strong>, un'interfaccia <em>Swift</em> che consente a qualsiasi provider LLM di presentarsi come sorgente valida per <strong>LanguageModelSession</strong>.</p>
+
+<p>L'architettura è elegante nella sua semplicità. Lo sviluppatore implementa il protocollo <strong>LanguageModelExecutor</strong> per il provider desiderato — o utilizza le implementazioni built-in già disponibili per <em>Claude</em> e <em>Gemini</em> — e la sessione gestisce il resto: trascrizione della conversazione, ottimizzazione del token budget, KV cache management delegato all'executor. Dal punto di vista del codice applicativo, chiamare <em>Claude</em> o <em>AFM 3 Core Advanced</em> è la stessa operazione.</p>
+
+<p>Le implicazioni per il mercato delle applicazioni <em>iOS</em> sono immediate. Uno sviluppatore può costruire un'app che usa <strong>AFM 3 Core</strong> on-device per task leggeri, scala a <strong>Private Cloud Compute</strong> per elaborazioni medie, e invoca <em>Claude</em> per reasoning complesso — tutto attraverso una singola API, con la stessa interfaccia utente, senza che l'utente percepisca il cambio di sorgente. Il protocollo è anche aperto: aziende con LLM proprietari o enterprise possono implementare <strong>LanguageModelExecutor</strong> per portare i propri modelli nell'ecosistema <em>iOS</em> senza abbandonare <strong>Foundation Models</strong> come orchestratore.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Free Tier e Strategia: Perché Apple Non Vuole Vincere la Gara ai Modelli</h2>
+
+<p>Il free tier di <strong>Private Cloud Compute</strong> è uno dei dettagli più rivelatori di <em>WWDC 2026</em>. Le prime due milioni di installazioni di un'app hanno accesso gratuito all'elaborazione cloud <em>Apple</em>. Oltre quella soglia, si attiva un pricing per token non ancora comunicato pubblicamente. La logica è quella della crescita: abbassa la barriera di adozione per sviluppatori indipendenti e startup, trasforma l'AI cloud in un componente accessibile fin dal prototipo.</p>
+
+<p>Il beneficio più concreto riguarda la frammentazione hardware. Un utente su <em>iPhone 15</em> o dispositivo precedente, teoricamente escluso dalle capacità dei modelli on-device più avanzati, ottiene tramite <strong>Private Cloud Compute</strong> un'esperienza AI equivalente a quella di chi possiede hardware recente. <em>Apple</em> risolve in modo silenzioso uno dei problemi più spinosi della distribuzione AI mobile: la disparità di capacità tra generazioni di dispositivi.</p>
+
+<p>La strategia complessiva che emerge da <em>WWDC 2026</em> è coerente con la storia di <em>Apple</em> come azienda di piattaforme. Il vantaggio competitivo non si costruisce sul modello più potente — terreno dove <em>Google</em>, <em>Anthropic</em> e <em>OpenAI</em> possono competere con risorse enormi — ma sul controllo dell'API, dell'esperienza sviluppatore e delle garanzie privacy che nessun cloud provider terzo può offrire con la stessa credibilità strutturale. Invitare <em>Claude</em> e <em>Gemini</em> dentro <em>iOS</em> non è una concessione: è una mossa che rafforza la centralità di <strong>Foundation Models</strong> come layer indispensabile per chiunque voglia distribuire AI su <em>Apple</em> platform.</p>
+
+<div class="quote">La piattaforma vince sempre sul modello. Apple lo sa da trent'anni. Nel 2026 ha applicato la stessa logica all'intelligenza artificiale.</div>
+
+<p>Per gli sviluppatori <em>iOS</em> e mobile, il messaggio pratico è questo: <strong>Foundation Models</strong> è diventato il punto di ingresso canonico per qualsiasi integrazione AI in <em>Swift</em>, con una profondità di routing che fino a dodici mesi fa richiedeva architetture custom. <strong>Core AI</strong> apre invece uno spazio prima inesistente per chi vuole lavorare con modelli open source su hardware <em>Apple</em> senza intermediari. Sono due strumenti diversi per due tipologie di sviluppatori diverse. Insieme coprono lo spazio quasi interamente.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Giugno 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
