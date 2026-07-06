@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Sonnet 5: Agentic Coding Quasi-Opus a Prezzo Sonnet | Pillole di AI</title>
+    <meta name="description" content="Claude Sonnet 5 raggiunge il 63.2% su agentic coding, vicino al 69.2% di Opus 4.8, con pricing Sonnet ($2/$10 per M token) e 1M di context.">
+    <meta name="keywords" content="Claude Sonnet 5, Anthropic, agentic coding, adaptive thinking, Claude Science, Claude Opus 4.8, pricing API, context window">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Claude Sonnet 5: Agentic Coding Quasi-Opus a Prezzo Sonnet | Pillole di AI">
+    <meta property="og:description" content="Sonnet 5: 63.2% su agentic coding, adaptive thinking a 5 livelli, 1M context, pricing $2/$10 per M token. Anthropic lancia anche Claude Science.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-07-06T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Sonnet 5: Agentic Coding Quasi-Opus a Prezzo Sonnet">
+    <meta name="twitter:description" content="Claude Sonnet 5: agentic coding quasi-Opus a prezzo Sonnet. 1M context, adaptive thinking, Claude Science.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Claude Sonnet 5: Agentic Coding Quasi-Opus a Prezzo Sonnet</h1>
+        <p>Claude Sonnet 5 conquista il 63.2% su agentic coding a $2/$10 per milione di token: pricing aggressivo, 1M di contesto e adaptive thinking a 5 livelli.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Luglio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. 30 Giugno 2026: <em>Anthropic</em> Muove Due Pedine in un Giorno Solo</h2>
+
+<p>Non capita spesso che una casa AI rilasci due annunci strutturalmente distinti nello stesso giorno. Il <em>30 giugno 2026</em>, <em>Anthropic</em> ha fatto esattamente questo: <strong>Claude Sonnet 5</strong> da una parte — il modello, i benchmark, il pricing — e <strong>Claude Science</strong> dall'altra, un workbench per ricercatori scientifici che non è un modello, ma un ambiente. Due mosse che, lette insieme, raccontano una strategia precisa: non competere solo sui numeri, ma costruire terreno.</p>
+
+<p><strong>Claude Sonnet 5</strong> è il salto più significativo nella linea <em>Sonnet</em> da quando esiste la gamma. Non perché sia il modello più potente in assoluto — <strong>Claude Opus 4.8</strong> resta al vertice — ma perché riduce drasticamente il gap prezzo-prestazioni che separava la fascia media dall'alto di gamma. Per team che costruiscono agenti di coding a scala, questo cambia le equazioni di budget in modo concreto.</p>
+
+<p><strong>Claude Science</strong>, invece, arriva silenzioso ma strategico. Nessun benchmark nuovo, nessuna architettura inedita: solo un ambiente integrato pensato per ricercatori, costruito sopra quanto <em>Anthropic</em> aveva già lanciato con <strong>Claude for Life Sciences</strong> nell'ottobre 2025. Il segnale è chiaro: la competizione si sposta anche sugli ambienti, non solo sui modelli.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. <strong>Claude Sonnet 5</strong>: <strong>Agentic Coding</strong> al <strong>63.2%</strong>, a un Passo da <strong>Opus 4.8</strong></h2>
+
+<p>Il numero che conta è <strong>63.2%</strong>. È il punteggio di <strong>Claude Sonnet 5</strong> sul benchmark interno di <em>Anthropic</em> per l'<strong>agentic coding</strong>. Non è il massimo — <strong>Claude Opus 4.8</strong> è al <strong>69.2%</strong> — ma è molto più vicino al top di quanto ci si aspettasse da un modello di fascia media. Il predecessore diretto, <strong>Claude Sonnet 4.6</strong>, si fermava al <strong>58.1%</strong>.</p>
+
+<div class="highlight-box"><p><strong>Benchmark agentic coding:</strong> Sonnet 5 → <strong>63.2%</strong> | Opus 4.8 → <strong>69.2%</strong> | Sonnet 4.6 → <strong>58.1%</strong>. Gap Sonnet–Opus ridotto a soli 6 punti percentuali.</p></div>
+
+<p>Cinque punti guadagnati rispetto a <strong>Sonnet 4.6</strong>, con un gap residuo di appena sei punti da <strong>Opus 4.8</strong>. <em>Anthropic</em> descrive <strong>Sonnet 5</strong> come capace di offrire "top-tier accuracy comparable to Opus-class models" e un "clear step-function improvement" rispetto alla generazione precedente. Non è marketing vuoto: la progressione sui benchmark lo conferma.</p>
+
+<p>Sul fronte multimodale, <strong>Sonnet 5</strong> accetta testo e immagini in input. La <strong>context window</strong> arriva a <strong>1 milione di token</strong> — un parametro che, su un modello di questa fascia di prezzo, apre scenari pratici su codebase complete senza doversi preoccupare di frammentare il contesto.</p>
+
+<div class="quote">Con 63.2% su agentic coding e 1M di token a prezzo Sonnet, il compromesso non è più "potenza o budget": è entrambi.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. <strong>Adaptive Thinking</strong>: Cinque Livelli di Ragionamento, un Solo Modello</h2>
+
+<p>Una delle caratteristiche architetturali più rilevanti di <strong>Claude Sonnet 5</strong> è l'<strong>adaptive thinking</strong>: un sistema di reasoning effort selezionabile su cinque livelli distinti — <strong>low</strong>, <strong>medium</strong>, <strong>high</strong>, <strong>max</strong>, <strong>x-high</strong>. Non è una novità assoluta nel panorama AI, ma l'implementazione su un modello della fascia <em>Sonnet</em> con queste performance è un passo avanti concreto.</p>
+
+<p>Il vantaggio pratico è immediato per chi costruisce agenti o pipeline multi-step. Task di routine, classificazione, estrazione strutturata: <strong>low</strong> o <strong>medium</strong> bastano, il costo si abbassa. Ragionamento complesso su architetture, debugging profondo, analisi di codice critico: si sale a <strong>high</strong> o <strong>x-high</strong> e si ottiene la profondità necessaria. Un solo modello, cinque tradeoff diversi tra latenza, costo e qualità di output.</p>
+
+<p>Per i team che oggi gestiscono pipeline con modelli multipli — uno veloce per i task semplici, uno potente per quelli complessi — <strong>adaptive thinking</strong> a cinque livelli introduce un'alternativa di semplificazione infrastrutturale non trascurabile. Meno endpoint, meno routing logic, meno overhead di gestione.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Pricing e Contesto: <strong>1M</strong> di Token, <strong>$2/$10</strong> per Milione, la Scommessa sul Volume</h2>
+
+<p>Il pricing di lancio di <strong>Claude Sonnet 5</strong> è dichiaratamente aggressivo: <strong>$2 per milione di token in input</strong> e <strong>$10 per milione di token in output</strong>, disponibile tramite <strong>Claude API</strong>, <strong>Claude Code</strong> e su <em>OpenRouter</em> alla route <em>anthropic/claude-sonnet-5</em>. La finestra promozionale è esplicita: valida fino al <em>31 agosto 2026</em>.</p>
+
+<div class="highlight-box"><p>Pricing introduttivo <strong>Claude Sonnet 5</strong>: <strong>$2/M token input</strong> — <strong>$10/M token output</strong>. Valido fino al <em>31 agosto 2026</em>. Dopo quella data, incremento atteso al prezzo standard.</p></div>
+
+<p>C'è un caveat tecnico da tenere presente: i conteggi effettivi di token dipendono dal tokenizer utilizzato. Le stime di costo naive — quelle basate su conteggi di parole o caratteri — possono divergere dal consumo reale in modo non trascurabile. Per pipeline ad alto volume, vale la pena profilare il tokenizer di <em>Anthropic</em> su task specifici prima di calcolare i budget.</p>
+
+<p>La scommessa sul volume è trasparente. Con <strong>1M di token di contesto</strong> a questo pricing, <em>Anthropic</em> punta a catturare i team che vogliono scalare agenti su codebase intere senza il costo di <strong>Opus 4.8</strong>. Il messaggio ai tech lead è diretto: le performance quasi-Opus sono ora accessibili al prezzo Sonnet, e la finestra di adozione early ha un scadenza precisa.</p>
+
+<div class="quote">$26 per mappare un intero campo di ricerca in biologia molecolare: Forbes cita già il primo caso d'uso. L'efficienza economica non è una promessa, è un dato.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Sicurezza: Perché le Safeguard di <strong>Sonnet 5</strong> Sono Quelle di un <strong>Opus</strong></h2>
+
+<p>Un dettaglio che emerge dalla documentazione tecnica — e su cui <em>simonwillison.net</em> si è soffermato — riguarda le salvaguardie di cybersicurezza di <strong>Claude Sonnet 5</strong>. Il modello risulta "significativamente meno capace" nei task di natura cyber rispetto a <strong>Mythos 5</strong>, il modello <em>Anthropic</em> più specializzato in quell'area. Questo non è un limite prestazionale generico: è una scelta di classificazione del rischio.</p>
+
+<p>La conseguenza diretta è che le safeguard applicate a <strong>Sonnet 5</strong> sono allineate a quelle di <strong>Claude Opus 4.7</strong> e <strong>Claude Opus 4.8</strong>, non a quelle di <strong>Mythos 5</strong>. In altri termini, <em>Anthropic</em> ha deciso di applicare a un modello di fascia media le stesse policy di sicurezza riservate ai modelli top di gamma. Il razionale è coerente: man mano che le capacità agentiche crescono su tutta la gamma, la soglia di rischio si alza, e le policy di rilascio si adeguano di conseguenza.</p>
+
+<p>Per i developer che integrano <strong>Sonnet 5</strong> in agenti autonomi o pipeline con accesso a strumenti e sistemi esterni, questo significa che il modello è stato valutato e vincolato con la stessa attenzione riservata ai modelli più potenti. Non è un dettaglio marginale in un contesto di deployment agentico a scala.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. <strong>Claude Science</strong>: la Scommessa sul Workflow, Non sul Modello</h2>
+
+<p><strong>Claude Science</strong> non è un nuovo modello. <em>TechCrunch</em> lo ha sintetizzato con precisione: "<strong>Claude Science</strong> bets on workflow, not a new model, to win over scientists." È un workbench integrato che unisce database, strumenti di coding, potenza di calcolo e workflow di ricerca in un unico ambiente. Il punto di forza dichiarato è la produzione di "auditable artifacts" — output tracciabili e verificabili, una condizione non negoziabile per il metodo scientifico.</p>
+
+<p>Il programma è strutturato: applicazioni aperte fino al <em>15 luglio 2026</em>, notifiche entro il <em>31 luglio</em>, progetti attivi da <em>settembre a dicembre 2026</em>. Costruito sopra l'esperienza di <strong>Claude for Life Sciences</strong>, <strong>Claude Science</strong> allarga il perimetro oltre la sola biologia, puntando ad analisi di letteratura scientifica, elaborazione dati ed esecuzione di analisi riproducibili in modo strutturato.</p>
+
+<p>Il caso citato da <em>Forbes</em> — mappare un intero campo di ricerca in biologia molecolare per <strong>$26</strong> — non è un aneddoto: è la dimostrazione che la strategia di <em>Anthropic</em> sui workbench verticali ha un'efficienza economica misurabile. Non si compete solo sui <strong>SWE-Bench</strong> e sulle tabelle di benchmark. Si compete anche sulla capacità di rendere il lavoro reale più veloce, più economico e più verificabile.</p>
+
+<p>Letto insieme a <strong>Claude Sonnet 5</strong>, il quadro del <em>30 giugno 2026</em> è coerente: <em>Anthropic</em> spinge sul volume con un modello agentico competitivo a pricing aggressivo, e allo stesso tempo costruisce ambienti verticali dove il modello diventa infrastruttura, non prodotto finale. Per sviluppatori e tech lead che devono decidere dove allocare sforzo di integrazione nei prossimi mesi, entrambe le direzioni meritano attenzione.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Luglio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
