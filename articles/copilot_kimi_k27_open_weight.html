@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot Apre all'Open-Weight: Kimi K2.7 Code nel Model Picker | Pillole di AI</title>
+    <meta name="description" content="Kimi K2.7 Code è il primo modello open-weight nel model picker di GitHub Copilot. Architettura MoE da 1 trilione di parametri, policy opt-in per enterprise, GitHub Models in chiusura il 30 luglio.">
+    <meta name="keywords" content="GitHub Copilot, Kimi K2.7 Code, Moonshot AI, Mixture-of-Experts, GitHub Models, Azure AI Foundry, model picker, open-weight">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="GitHub Copilot Apre all'Open-Weight: Kimi K2.7 Code nel Model Picker | Pillole di AI">
+    <meta property="og:description" content="GitHub apre Copilot al primo modello open-weight: Kimi K2.7 Code, architettura MoE, cinque provider AI in un solo abbonamento. GitHub Models chiude il 30 luglio.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-07-13T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GitHub Copilot Apre all'Open-Weight: Kimi K2.7 Code nel Model Picker">
+    <meta name="twitter:description" content="Kimi K2.7 Code nel model picker di Copilot: primo open-weight, MoE da 1 trilione di parametri, governance dei dati enterprise.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>GitHub Copilot Apre all'Open-Weight: Kimi K2.7 Code nel Model Picker</h1>
+        <p><em>GitHub Copilot</em> integra <strong>Kimi K2.7 Code</strong>: primo open-weight nel picker, architettura <strong>MoE</strong> da 1T parametri, governance opt-in e fine di <strong>GitHub Models</strong>.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Luglio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. 1° Luglio 2026: Copilot Apre la Porta all'Open-Weight</h2>
+
+<p>Il <em>1° luglio 2026</em> non è una data qualsiasi nel calendario dell'AI applicata allo sviluppo software. <em>GitHub</em> ha reso <strong>Kimi K2.7 Code</strong> — il modello di <em>Moonshot AI</em> — generalmente disponibile nel <strong>model picker</strong> di <strong>GitHub Copilot</strong>. Per la prima volta nella storia dello strumento, un modello <strong>open-weight</strong> è selezionabile dall'utente all'interno della piattaforma di coding AI più diffusa al mondo.</p>
+
+<p>La mossa non è cosmética. Segnala una trasformazione strutturale: <em>GitHub</em> non è più un distributore di modelli proprietari di frontiera. Diventa un orchestratore multi-laboratorio, capace di instradare le richieste degli sviluppatori verso cinque provider distinti sotto un'unica sottoscrizione. Per i <em>4,7 milioni di abbonati paganti</em> censiti a gennaio <em>2026</em>, il <strong>model picker</strong> è cambiato aspetto — e sostanza — in un solo mercoledì mattina.</p>
+
+<div class="quote">Per la prima volta, un modello open-weight entra nell'assistente di coding più diffuso al mondo: non come esperimento, ma come opzione di produzione selezionabile in produzione da milioni di sviluppatori.</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Diciannove Giorni: da Hugging Face al Model Picker di Copilot</h2>
+
+<p>La velocità è la prima cosa che colpisce. <em>Moonshot AI</em> ha pubblicato i pesi di <strong>Kimi K2.7 Code</strong> su <em>Hugging Face</em> in giugno <em>2026</em>. Diciannove giorni dopo, il modello era già selezionabile dentro <strong>GitHub Copilot</strong>: uno dei cicli di integrazione più rapidi mai registrati tra rilascio open-weight e disponibilità su piattaforma enterprise.</p>
+
+<p>Il percorso è stato tutt'altro che automatico. <em>GitHub</em> ha dovuto validare il modello, costruire l'integrazione con il layer <strong>AI Credit</strong> introdotto il <em>1° giugno 2026</em>, definire le superfici supportate — da <em>Visual Studio Code</em> <em>1.127.0+</em> a <em>JetBrains</em> <em>1.9.1-251+</em>, passando per <em>GitHub</em> Mobile su iOS e Android — e, soprattutto, progettare la policy di governance per i piani aziendali. Diciannove giorni per tutto questo: un segnale che la pipeline di onboarding dei modelli in <em>Microsoft Azure</em> si sta consolidando in qualcosa di industrialmente scalabile.</p>
+
+<div class="highlight-box"><p><strong>19 giorni</strong>: l'intervallo tra la pubblicazione dei pesi di <strong>Kimi K2.7 Code</strong> su <em>Hugging Face</em> e la sua disponibilità nel <strong>model picker</strong> di <strong>GitHub Copilot</strong> — una delle transizioni open-weight → enterprise più rapide mai documentate.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Un Trilione di Parametri, 32 Miliardi Attivi: Come Funziona il MoE di K2.7 Code</h2>
+
+<p><strong>Kimi K2.7 Code</strong> è costruito su un'architettura <strong>Mixture-of-Experts</strong>. I numeri di superficie sembrano contraddittori: un trilione di parametri totali, un costo di inferenza paragonabile a modelli proprietari molto più piccoli. La contraddizione si risolve guardando dentro il meccanismo.</p>
+
+<p>Il modello è composto da <strong>384 esperti</strong> specializzati, distribuiti su <strong>61 layer transformer</strong>. Per ogni token processato, un router appreso seleziona soltanto <strong>8 esperti attivi più 1 esperto condiviso</strong>. Il risultato: ogni passaggio di inferenza calcola attraverso <strong>32 miliardi di parametri attivi</strong> — il comportamento computazionale di un modello denso da 32B — mentre la rete conserva la capacità rappresentativa dell'intero pool da un trilione di parametri.</p>
+
+<div class="highlight-box"><p><strong>1 trilione</strong> di parametri totali, <strong>32 miliardi di parametri attivi</strong> per token: l'architettura <strong>Mixture-of-Experts</strong> di <strong>Kimi K2.7 Code</strong> con <strong>384 esperti</strong> rende economicamente sostenibile un modello di capacità frontier a un prezzo inferiore ai modelli proprietari concorrenti.</p></div>
+
+<p>Il punto editoriale che vale la pena fissare: il basso costo di <strong>Kimi K2.7 Code</strong> nel sistema <strong>AI Credit</strong> di <em>GitHub</em> non è il risultato di un sussidio commerciale. È la conseguenza diretta di una scelta ingegneristica. La distinzione tra "costa poco perché qualcuno ci rimette" e "costa poco perché l'architettura lo rende efficiente" è centrale per valutare la sostenibilità del modello nel lungo periodo — specialmente per chi deve giustificare la scelta a un CFO o a un comitato di approvvigionamento.</p>
+
+<div class="quote">Quando l'efficienza è un'architettura e non un sussidio, il prezzo basso diventa strutturale: per i tech lead che devono difendere la scelta in un budget review, questa distinzione vale più di qualsiasi benchmark.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. La Clausola che gli Amministratori Non Possono Ignorare</h2>
+
+<p><em>GitHub</em> ha impostato <strong>Kimi K2.7 Code</strong> come disabilitato per default nei piani <em>Copilot</em> Business ed Enterprise. Un amministratore del piano deve attivare esplicitamente la policy nelle impostazioni prima che chiunque nell'organizzazione possa selezionare il modello. È la prima volta che questa logica opt-in viene applicata a un modello nel <strong>model picker</strong> di <strong>Copilot</strong>.</p>
+
+<p>La ragione è precisa. <em>Moonshot AI</em> è un'azienda cinese soggetta alla <strong>National Intelligence Law</strong> della RPC. I prompt degli utenti vengono instradati verso l'infrastruttura di <em>Microsoft Azure</em> negli Stati Uniti — non verso i server di <em>Moonshot AI</em> — e questo cambia dove i dati transitano al momento dell'inferenza. Non cambia, però, cosa Pechino può legalmente richiedere a <em>Moonshot AI</em> come entità giuridica. La distinzione è sottile ma rilevante per qualsiasi valutazione seria di compliance.</p>
+
+<p>Per gli amministratori enterprise, le domande da porre prima di abilitare la policy sono concrete: i dati dei prompt rientrano nel perimetro normativo del proprio settore? Esiste una policy aziendale sull'utilizzo di infrastrutture con fornitori soggetti a giurisdizioni extra-UE ed extra-USA? I contratti con i clienti finali contengono clausole sul trattamento dei dati che potrebbero essere impattate? La risposta tecnica di <em>GitHub</em> — routing su <em>Microsoft Azure</em> — è necessaria ma non sufficiente per rispondere a tutte e tre.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Cinque Provider, un Solo Abbonamento: il Model Picker Cambia Forma</h2>
+
+<p>Con l'ingresso di <em>Moonshot AI</em>, il <strong>model picker</strong> di <strong>GitHub Copilot</strong> copre ora cinque laboratori AI indipendenti: <em>OpenAI</em>, <em>Anthropic</em>, <em>Google</em>, <em>Microsoft</em> e <em>Moonshot AI</em>. Nessun altro strumento di coding sul mercato instrada attualmente su cinque provider distinti sotto un'unica sottoscrizione.</p>
+
+<p>Il sistema <strong>AI Credit</strong> — introdotto il <em>1° giugno 2026</em> a <em>$0,01 per credito</em> — rende il costo comparabile in modo trasparente. <strong>Kimi K2.7 Code</strong> è fatturato a "provider list pricing", nella fascia bassa rispetto ai modelli di frontiera già presenti. Per un team che usa <em>Copilot</em> su scala, la scelta del modello non è più solo una decisione tecnica: diventa una leva di ottimizzazione dei costi con una granularità che prima non esisteva.</p>
+
+<p>L'implicazione strategica per i tech lead è altrettanto rilevante sul piano del lock-in: avere cinque provider sotto un abbonamento non elimina la dipendenza dalla piattaforma <em>GitHub</em>, ma riduce sensibilmente la dipendenza da un singolo laboratorio AI. Un cambiamento di pricing di <em>OpenAI</em> o un'interruzione del servizio di <em>Anthropic</em> non blocca più il workflow: c'è un fallback selezionabile in pochi clic.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Il Contrappeso: GitHub Models Chiude il 30 Luglio</h2>
+
+<p>Lo stesso <em>1° luglio 2026</em> in cui <strong>Kimi K2.7 Code</strong> entrava nel picker, <em>GitHub</em> annunciava il ritiro definitivo di <strong>GitHub Models</strong> per il <em>30 luglio 2026</em>. La timeline è già in corso: dal <em>16 giugno 2026</em>, la piattaforma non accetta più nuovi clienti — né free né paid. Il <em>30 luglio</em> chiuderanno playground, catalogo modelli, API di inferenza e BYOK per tutti gli utenti esistenti.</p>
+
+<p>Per i team che usavano <strong>GitHub Models</strong> per prototipazione rapida, la finestra di migrazione è stretta. I percorsi indicati da <em>GitHub</em> sono due: <strong>Copilot</strong> per i workflow di coding agentico, <em>Azure AI Foundry</em> per l'inferenza programmatica generale. Attenzione particolare va riservata alle pipeline CI/CD, agli hook di automazione e ai flussi di credenziali che dipendono dalle API di <strong>GitHub Models</strong>: vanno aggiornati prima della scadenza, non dopo.</p>
+
+<p>Letta insieme all'apertura di <em>Copilot</em> ai modelli open-weight, la chiusura di <strong>GitHub Models</strong> rivela la direzione strategica di <em>GitHub</em> con chiarezza: consolidare il traffico di inferenza su <em>Copilot</em> e su <em>Azure AI Foundry</em>, eliminando una superficie separata che frammentava l'esperienza e i dati di utilizzo. Il risultato per gli sviluppatori è un ecosistema più compatto — e per <em>Microsoft Azure</em>, una concentrazione maggiore dei flussi di inferenza sotto il proprio ombrello commerciale.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Luglio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
