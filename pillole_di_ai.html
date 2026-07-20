@@ -46,115 +46,171 @@
  
     <!-- ===== SCHEMA.ORG — LocalBusiness + Organization ===== -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": [
+        "Organization",
+        "LocalBusiness"
+      ],
+      "@id": "https://www.vivacitydesign.net/#organization",
+      "name": "Vivacity Design AI Division",
+      "url": "https://www.vivacitydesign.net/vd_ai_division/",
+      "logo": "https://www.vivacitydesign.net/vd_ai_division/vd_ai_division_h.jpg",
+      "description": "Divisione AI di Vivacity Design specializzata in chatbot, digital clone, workflow automatizzati e framework per web agency basati su modelli OpenAI.",
+      "founder": {
+        "@type": "Person",
+        "name": "Alessandro Demontis"
+      },
+      "areaServed": [
         {
-          "@type": ["Organization", "LocalBusiness"],
-          "@id": "https://www.vivacitydesign.net/#organization",
-          "name": "Vivacity Design AI Division",
-          "url": "https://www.vivacitydesign.net/vd_ai_division/",
-          "logo": "https://www.vivacitydesign.net/vd_ai_division/vd_ai_division_h.jpg",
-          "description": "Divisione AI di Vivacity Design specializzata in chatbot, digital clone, workflow automatizzati e framework per web agency basati su modelli OpenAI.",
-          "founder": {
-            "@type": "Person",
-            "name": "Alessandro Demontis"
-          },
-          "areaServed": [
+          "@type": "AdministrativeArea",
+          "name": "Nord Sardegna",
+          "containsPlace": [
             {
-              "@type": "AdministrativeArea",
-              "name": "Nord Sardegna",
-              "containsPlace": [
-                { "@type": "City", "name": "Sassari" },
-                { "@type": "City", "name": "Olbia" },
-                { "@type": "City", "name": "Nuoro" },
-                { "@type": "City", "name": "Alghero" },
-                { "@type": "City", "name": "Porto Torres" }
-              ]
+              "@type": "City",
+              "name": "Sassari"
             },
             {
-              "@type": "AdministrativeArea",
-              "name": "Lazio",
-              "containsPlace": [
-                { "@type": "City", "name": "Roma" },
-                { "@type": "City", "name": "Viterbo" },
-                { "@type": "City", "name": "Pomezia" },                
-                { "@type": "City", "name": "Latina" }
-              ]
+              "@type": "City",
+              "name": "Olbia"
             },
             {
-              "@type": "Country",
-              "name": "Italia"
+              "@type": "City",
+              "name": "Nuoro"
+            },
+            {
+              "@type": "City",
+              "name": "Alghero"
+            },
+            {
+              "@type": "City",
+              "name": "Porto Torres"
             }
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Prodotti AI",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "SoftwareApplication",
-                  "name": "Digital Clone",
-                  "description": "Chatbot AI con memoria semantica RAG, matrice emotiva e personalità adattiva.",
-                  "applicationCategory": "BusinessApplication",
-                  "url": "https://www.vivacitydesign.net/vd_ai_division/vd-digital-clone/digital_clone.html"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "SoftwareApplication",
-                  "name": "VD AI Canvas",
-                  "description": "Workspace visuale su canvas infinito per organizzare workflow AI multimodali.",
-                  "applicationCategory": "BusinessApplication",
-                  "url": "https://www.vivacitydesign.net/vd_ai_division/vd-ai-canvas/ai_canvas.html"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "SoftwareApplication",
-                  "name": "VD AI Pipeline",
-                  "description": "Web agency automatizzata con 5 chatbot collaborativi per lo sviluppo web.",
-                  "applicationCategory": "BusinessApplication",
-                  "url": "https://www.vivacitydesign.net/vd_ai_division/vd-ai-pipeline/product_overview.html"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "SoftwareApplication",
-                  "name": "NextGen Framework",
-                  "description": "Sistema operativo integrato per web agency con oltre 15 tool manageriali e tecnici.",
-                  "applicationCategory": "BusinessApplication",
-                  "url": "https://www.vivacitydesign.net/vd_ai_division/nextgen-framework/nextgen_promo.html"
-                }
-              }
-            ]
-          },
-          "sameAs": [
-            "https://github.com/MisterCoder74/"
           ]
         },
         {
-          "@type": "WebPage",
-          "@id": "https://www.vivacitydesign.net/vd_ai_division/index.html",
-          "url": "https://www.vivacitydesign.net/vd_ai_division/index.html",
-          "name": "Vivacity Design AI Division | Chatbot, Digital Clone e Automazione AI",
-          "description": "Soluzioni AI su misura per aziende e professionisti. Operativi in Nord Sardegna, Lazio e tutta Italia.",
-          "inLanguage": "it",
-          "isPartOf": { "@id": "https://www.vivacitydesign.net/" },
-          "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.vivacitydesign.net/" },
-              { "@type": "ListItem", "position": 2, "name": "AI Division", "item": "https://www.vivacitydesign.net/vd_ai_division/index.html" }
-            ]
-          }
+          "@type": "AdministrativeArea",
+          "name": "Lazio",
+          "containsPlace": [
+            {
+              "@type": "City",
+              "name": "Roma"
+            },
+            {
+              "@type": "City",
+              "name": "Viterbo"
+            },
+            {
+              "@type": "City",
+              "name": "Pomezia"
+            },
+            {
+              "@type": "City",
+              "name": "Latina"
+            }
+          ]
+        },
+        {
+          "@type": "Country",
+          "name": "Italia"
         }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Prodotti AI",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "name": "Digital Clone",
+              "description": "Chatbot AI con memoria semantica RAG, matrice emotiva e personalità adattiva.",
+              "applicationCategory": "BusinessApplication",
+              "url": "https://www.vivacitydesign.net/vd_ai_division/vd-digital-clone/digital_clone.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "name": "VD AI Canvas",
+              "description": "Workspace visuale su canvas infinito per organizzare workflow AI multimodali.",
+              "applicationCategory": "BusinessApplication",
+              "url": "https://www.vivacitydesign.net/vd_ai_division/vd-ai-canvas/ai_canvas.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "name": "VD AI Pipeline",
+              "description": "Web agency automatizzata con 5 chatbot collaborativi per lo sviluppo web.",
+              "applicationCategory": "BusinessApplication",
+              "url": "https://www.vivacitydesign.net/vd_ai_division/vd-ai-pipeline/product_overview.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "name": "NextGen Framework",
+              "description": "Sistema operativo integrato per web agency con oltre 15 tool manageriali e tecnici.",
+              "applicationCategory": "BusinessApplication",
+              "url": "https://www.vivacitydesign.net/vd_ai_division/nextgen-framework/nextgen_promo.html"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://github.com/MisterCoder74/"
       ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.vivacitydesign.net/vd_ai_division/index.html",
+      "url": "https://www.vivacitydesign.net/vd_ai_division/index.html",
+      "name": "Vivacity Design AI Division | Chatbot, Digital Clone e Automazione AI",
+      "description": "Soluzioni AI su misura per aziende e professionisti. Operativi in Nord Sardegna, Lazio e tutta Italia.",
+      "inLanguage": "it",
+      "isPartOf": {
+        "@id": "https://www.vivacitydesign.net/"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.vivacitydesign.net/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "AI Division",
+            "item": "https://www.vivacitydesign.net/vd_ai_division/index.html"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Grok 4.5: Intelligenza da Frontiera a Metà Prezzo",
+      "description": "Grok 4.5 di xAI: quarto posto nell'Intelligence Index, primo per costo-efficienza. Meno token, meno dollari, stessa classe di frontiera.",
+      "datePublished": "2026-07-20",
+      "url": "https://www.vivacitydesign.net/vd_ai_division/articles/grok_4_5_coding_efficiency.html",
+      "author": {
+        "@type": "Person",
+        "name": "Alessandro Demontis"
+      },
+      "publisher": {
+        "@id": "https://www.vivacitydesign.net/#organization"
+      }
     }
+  ]
+}
     </script>        
         
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -540,6 +596,14 @@
                     <p>Come coordinare più agenti intelligenti per completare task complessi. Dalle API strutturate alle skill configurabili.</p>
                     <div class="pilola-meta"><span class="pilola-date">Aprile 2026</span><span class="pilola-read-time">10 min</span></div>
                     <a href="./articles/societa_degli_agenti.html" class="pilola-btn">Leggi Articolo →</a>
+                </div>
+
+                <div class="pilola-card">
+                    <span class="pilola-tag">Nuovi Modelli AI</span>
+                    <h3>Grok 4.5: Intelligenza da Frontiera a Metà Prezzo</h3>
+                    <p>Grok 4.5 di xAI: quarto posto nell'Intelligence Index, primo per costo-efficienza. Meno token, meno dollari, stessa classe di frontiera.</p>
+                    <div class="pilola-meta"><span class="pilola-date">Luglio 2026</span><span class="pilola-read-time">6 min</span></div>
+                    <a href="./articles/grok_4_5_coding_efficiency.html" class="pilola-btn">Leggi Articolo →</a>
                 </div>
 
                 <div class="pilola-card">

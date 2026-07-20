@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok 4.5: Intelligenza da Frontiera a Metà Prezzo | Pillole di AI</title>
+    <meta name="description" content="Grok 4.5 di SpaceXAI raggiunge il quarto posto nell'Artificial Analysis Intelligence Index a $2/$6 per milione di token, con un uso di token per task oltre il 60% inferiore ai concorrenti.">
+    <meta name="keywords" content="Grok 4.5, xAI, SpaceXAI, Elon Musk, Intelligence Index, Coding Agent Index, agentic coding, pricing modelli AI">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Grok 4.5: Intelligenza da Frontiera a Metà Prezzo | Pillole di AI">
+    <meta property="og:description" content="SpaceXAI rilascia Grok 4.5: quarto posto assoluto nell'Intelligence Index, primo per efficienza costo/prestazioni tra i modelli di frontiera.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-07-20T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Grok 4.5: Intelligenza da Frontiera a Metà Prezzo">
+    <meta name="twitter:description" content="Grok 4.5: intelligenza da frontiera a metà prezzo, con 5x meno token per task rispetto ai concorrenti diretti.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Grok 4.5: Intelligenza da Frontiera a Metà Prezzo</h1>
+        <p>Grok 4.5 di xAI: quarto posto nell'Intelligence Index, primo per costo-efficienza. Meno token, meno dollari, stessa classe di frontiera.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Luglio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. 16 Luglio 2026: SpaceXAI Rilascia Grok 4.5</h2>
+
+<p>Il <em>16 luglio 2026</em> <em>SpaceXAI</em> ha rilasciato <strong>Grok 4.5</strong>, il modello più intelligente prodotto finora dall'azienda di <em>Elon Musk</em>. Ottimizzato per coding, task agentici e knowledge work, il modello non arriva con la pretesa di dominare le classifiche assolute. Arriva con un'altra ambizione, più pragmatica: cambiare i conti economici di chi costruisce prodotti sopra i modelli linguistici.</p>
+
+<p><strong>Grok 4.5</strong> pesa <strong>1.5 trilioni di parametri</strong>, tre volte il predecessore <em>Grok 4.3</em>, secondo quanto dichiarato dallo stesso <em>Elon Musk</em>. Elabora testo e immagini in input, restituisce testo in output, a una velocità di 80 token al secondo. Il knowledge cutoff è fissato all'<em>1 febbraio 2026</em>. Numeri che, da soli, descrivono un modello grande. Ma la vera notizia è altrove.</p>
+
+<div class="quote">
+<p>Non è la corsa al modello più potente. È la corsa al modello che un CTO può permettersi di far girare ventiquattr'ore su ventiquattro senza far saltare il budget infrastrutturale.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Quarto Posto nell'Intelligence Index, Primo nell'Efficienza</h2>
+
+<p>Sull'<strong>Intelligence Index</strong> di <em>Artificial Analysis</em>, <strong>Grok 4.5</strong> segna 54 punti. Quarto posto assoluto, alle spalle solo di <em>Fable 5</em>, <em>GPT-5.5</em> e <em>Claude Opus 4.8</em>. Sedici punti in più rispetto a <em>Grok 4.3</em>: un salto netto, non un ritocco incrementale.</p>
+
+<p>Il dato più significativo è il contesto: <strong>Grok 4.5</strong> supera tutti i modelli open-weight e, in particolare, i modelli Gemini di <em>Google</em>. Porta <em>SpaceXAI</em> sulla frontiera dell'intelligenza, dietro solo <em>OpenAI</em> e <em>Anthropic</em>. Non è più un rincorritore. È un terzo polo.</p>
+
+<p>Sui benchmark agentici la posizione si conferma. Nel <strong>GDPval-AA v2</strong>, quarto posto con Elo 1543, tra <em>Claude Opus 4.8</em> (1600) e <em>GLM-5.2</em> (1513). Nel <strong>τ³-Banking</strong>, invece, primo posto assoluto: 33%, contro il 31% di <em>GPT-5.5</em> in modalità xhigh. Su tutte e tre le valutazioni agentiche dell'<strong>Intelligence Index</strong>, <strong>Grok 4.5</strong> si posiziona sulla frontiera di Pareto costo/prestazioni.</p>
+
+<p>Sul <strong>Coding Agent Index</strong>, misurato tramite <strong>Grok Build</strong> — l'harness proprietario di <em>xAI</em> — il punteggio è 76. Alla pari di <em>GPT-5.5</em> (xhigh) su <em>Codex</em>, appena sotto <em>Fable 5</em> (max) su <em>Claude Code</em>. La base di valutazione comprende tre suite: DeepSWE, <strong>Terminal-Bench v2</strong> e SWE-Atlas QnA. È proprio su <strong>Terminal-Bench v2</strong>, l'uso agentico del terminale, che il modello mostra la sua forza più marcata.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Il Vero Differenziale: Meno Token, Stesso Risultato</h2>
+
+<p>Qui si gioca la partita vera. Sull'<strong>Intelligence Index</strong>, il costo per task di <strong>Grok 4.5</strong> è $0.31. Inferiore a <em>GLM-5.2</em> e Kimi K2.6, e cinque volte più economico di <em>Claude Sonnet 5</em> (max), pur con prestazioni superiori. Sul <strong>Coding Agent Index</strong>, in <strong>Grok Build</strong>, il costo per task scende a $2.49. Per confronto: <em>Fable 5</em> su <em>Claude Code</em> costa $11.80 per task. <em>GPT-5.5</em> su <em>Codex</em> costa $5.07.</p>
+
+<div class="highlight-box">
+<p>Sul Coding Agent Index, Grok 4.5 usa in media 1.9 milioni di token totali per completare i task — contro i 7.2 milioni di Fable 5 su Claude Code e i 6.2 milioni di GPT-5.5 su Codex.</p>
+</div>
+
+<p>Non è solo una questione di tariffa scontata. Sull'<strong>Intelligence Index</strong>, <strong>Grok 4.5</strong> usa in media circa 14.000 token per task, oltre il 60% in meno di <em>Claude Opus 4.8</em>. Questo è il punto che distingue un pricing aggressivo da un'architettura realmente più efficiente: il modello non solo costa meno per token, consuma anche meno token per arrivare allo stesso risultato. Due leve distinte, che si sommano.</p>
+
+<div class="quote">
+<p>Un modello tre volte più grande che consuma meno token del predecessore non è un paradosso. È un'architettura progettata per essere usata, non solo dimostrata sui benchmark.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Una Finestra di Contesto Che Si Restringe: Una Scelta, Non un Limite</h2>
+
+<p>Il dettaglio che sorprende di più: la <strong>context window</strong> di <strong>Grok 4.5</strong> è di <strong>500.000 token</strong>. Meno della metà rispetto al milione di token di <em>Grok 4.3</em>. In un settore dove la corsa alla finestra di contesto sempre più ampia è quasi un dogma, <em>xAI</em> va in direzione opposta.</p>
+
+<p>Il reasoning configurabile e l'input visivo restano intatti. Quello che cambia è la capacità grezza di ingestione. Difficile leggerla come una regressione tecnica: più probabile che sia una scelta esplicita di design, orientata all'efficienza operativa piuttosto che alla capacità massima teorica.</p>
+
+<div class="highlight-box">
+<p>Attenzione al costo scalare: per input oltre i 200.000 token, i costi di Grok 4.5 raddoppiano. La finestra ridotta non è solo un limite tecnico, è anche un incentivo economico a pipeline più snelle.</p>
+</div>
+
+<p>Chi progetta workflow con documenti enormi o codebase intere caricate in un solo prompt dovrà fare i conti con questo limite. Chi invece lavora per chunk, con retrieval mirato e contesto ben progettato, trova in <strong>Grok 4.5</strong> un modello che premia proprio quella disciplina architetturale.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Cosa Cambia per Chi Costruisce Pipeline Agentiche</h2>
+
+<p>Il pricing headline recita $2 per milione di token in input e $6 per milione in output. Con cache hit, lo sconto arriva al 75%, portando il costo effettivo a $0.5 per milione di token in condizioni ottimali. Per team che eseguono agenti di code review, pipeline CI/CD potenziate da LLM, o workflow agentici ad alto volume, questa struttura di costi cambia concretamente cosa è sostenibile su scala.</p>
+
+<p>Un agente che oggi elabora mille pull request al giorno con <em>Claude Opus 4.8</em> o <em>GPT-5.5</em> può, sulla carta, moltiplicare il volume di lavoro processabile a parità di budget passando a <strong>Grok 4.5</strong>. Non per un semplice sconto di listino, ma perché il modello consuma meno token per arrivare allo stesso output.</p>
+
+<div class="quote">
+<p>Per un CTO, il numero che conta non è più il punteggio sul benchmark. È il costo per task moltiplicato per il volume mensile previsto. Grok 4.5 sposta quella moltiplicazione a proprio favore.</p>
+</div>
+
+<p>La distribuzione conferma questa lettura orientata al developer reale, non al proof-of-concept isolato. <strong>Grok 4.5</strong> è già disponibile per l'integrazione in <em>Cursor</em>, <em>GitHub</em>, <em>Vercel</em>, <em>Supabase</em>, con partnership ecosystem che coinvolgono anche <em>ChatGPT</em>, <em>Figma</em> e <em>Linear</em> come superfici di distribuzione. Non un lancio isolato, ma un innesto rapido nell'infrastruttura già in uso.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Dove si Colloca Grok 4.5 nell'Ecosistema</h2>
+
+<p>Guardando la tabella dei prezzi per milione di token, <strong>Grok 4.5</strong> si posiziona in una fascia intermedia precisa: $2/$6, sotto <em>GPT-4o</em> ($5/$15) e <em>Claude 3.5 Sonnet</em> ($3/$15), ma ben sopra i modelli budget come <em>Claude 3 Haiku</em> ($0.25/$1.25) o <em>GPT-4o Mini</em> ($0.15/$0.60). Il paragone con <em>Claude 3 Opus</em>, storico riferimento premium a $15/$75, rende ancora più netta la distanza.</p>
+
+<p>Il posizionamento headline parla chiaro: prezzo oltre il 60% più basso rispetto a <em>Claude Opus 4.8</em> e <em>GPT-5.5</em>, con prestazioni da modello di frontiera. È la prima volta che la lineage <em>xAI</em> — da Grok 1/1.5, superati, a <em>Grok 2</em> general-purpose, a <em>Grok 3</em> con il salto in reasoning e coding, fino a <em>Grok 4</em> di frontiera ma costoso — arriva a un modello che combina entrambe le dimensioni: capacità da vertice e costo operativo sostenibile.</p>
+
+<p><strong>Grok 4.5</strong> non vince la classifica assoluta. Ma ridisegna la mappa di cosa conviene costruire, e con quale modello, per chi deve far quadrare bilanci di infrastruttura AI su scala reale. Per gli sviluppatori italiani che valutano l'adozione, il messaggio è diretto: la frontiera dell'intelligenza non è più solo una questione di punteggio, è una questione di quanti dollari servono per portare quel punteggio in produzione.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Luglio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
