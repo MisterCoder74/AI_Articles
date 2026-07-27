@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMD Helios: l'Infrastruttura Rack-Scale che Sfida Nvidia | Pillole di AI</title>
+    <meta name="description" content="AMD lancia Helios alla Advancing AI 2026: rack da 72 GPU Instinct MI455X, EPYC Venice, 2.9 ExaFLOPS FP4 e ROCm.ai per portare Claude, Codex e Cursor nativamente su hardware AMD.">
+    <meta name="keywords" content="AMD Helios, MI455X, EPYC Venice, ROCm.ai, Nvidia Vera Rubin, infrastruttura AI, rack-scale, AI agentica, HBM4">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="AMD Helios: l'Infrastruttura Rack-Scale che Sfida Nvidia | Pillole di AI">
+    <meta property="og:description" content="AMD sfida Nvidia con Helios: 72 GPU MI455X per rack, standard aperti e agenti di coding nativi tramite ROCm.ai.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-07-27T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AMD Helios: l'Infrastruttura Rack-Scale che Sfida Nvidia">
+    <meta name="twitter:description" content="AMD Helios: 72 GPU MI455X, standard aperti contro Nvidia e ROCm.ai per gli agenti di coding.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>AMD Helios: l'Infrastruttura Rack-Scale che Sfida Nvidia</h1>
+        <p>AMD lancia Helios: 72 GPU MI455X, EPYC Venice e ROCm.ai sfidano Nvidia Vera Rubin nella corsa all'infrastruttura per l'AI agentica.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Luglio 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. 23 Luglio 2026: AMD Lancia Helios alla Advancing AI</h2>
+
+<p>San Francisco, palco della conferenza <em>Advancing AI</em>. Il 23 luglio 2026 <em>AMD</em> mette a terra quello che aveva solo mostrato: <strong>Helios</strong>, la sua piattaforma di infrastruttura AI rack-scale, passa dalla vetrina del CES 2026 alla disponibilità commerciale reale.</p>
+
+<p>Non è un annuncio qualunque. È la mossa più diretta di <em>AMD</em> contro la posizione dominante di <em>Nvidia</em> negli acceleratori per l'intelligenza artificiale. Il tempismo non è casuale: <strong>Helios</strong> nasce esplicitamente per l'era dell'AI agentica, dove ogni singola richiesta a un agente si moltiplica in decine di passaggi distribuiti — reasoning, chiamate a tool, recupero dati, orchestrazione.</p>
+
+<div class="quote">Un rack non è più solo hardware. È l'unità minima di ragionamento per un sistema che deve pensare, decidere e agire migliaia di volte al secondo.</div>
+
+<p>Il messaggio di <em>AMD</em> è chiaro fin dal keynote: non si vende più una singola GPU più veloce, si vende un sistema completo — compute, memoria, rete, raffreddamento, software — pensato per reggere il carico di lavoro agentico su scala industriale.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Dentro il Rack: MI455X, EPYC Venice e i Numeri del Fabric</h2>
+
+<p>Al centro del sistema c'è l'<strong>Instinct MI455X</strong>, GPU basata su architettura <strong>CDNA 5</strong>, quinta generazione della linea compute AMD. Il chip conta <strong>320 miliardi</strong> di transistor e monta <strong>432 GB</strong> di memoria <strong>HBM4</strong> distribuita su sei stack, con banda di <strong>23.3 TB/s</strong> per singola GPU. Clock di picco a 2.4 GHz, 256 Work Group Processors spalmati su otto Accelerator Complex Dies: architettura chiplet spinta all'estremo.</p>
+
+<p>Il salto rispetto al predecessore MI355X è netto: fino a 34 volte il throughput di token su carichi come DeepSeek-V4-Flash ad alta interattività, con un costo per token ridotto fino a 18 volte.</p>
+
+<p>A orchestrare tutto ci pensa <strong>EPYC Venice</strong>, sesta generazione, serie 9006, core <strong>Zen 6</strong>: fino a 256 core ad alte prestazioni, banda di memoria da 1.6 TB/s, connessione CPU-GPU su PCIe Gen 6. È il direttore d'orchestra del rack — routing, scheduling, memory management per workload agentici che non tollerano latenza.</p>
+
+<div class="highlight-box"><p>Un singolo rack <strong>Helios</strong> aggrega <strong>72 GPU</strong>, <strong>31 TB</strong> di memoria HBM4, 1.7 PB/s di banda HBM e <strong>2.9 ExaFLOPS</strong> FP4 (1.4 ExaFLOPS FP8).</p></div>
+
+<p>Il networking non è un dettaglio: <strong>260 TB/s</strong> di banda scale-up via UALink over Ethernet, 43 TB/s di banda scale-out con <strong>Pensando</strong> Vulcano AI NIC, tre schede da 800 Gbps per GPU. Raffreddamento a liquido con connessioni quick-disconnect, standard <strong>Open Rack Wide</strong> del Open Compute Project.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Il Confronto Diretto: Helios contro Nvidia Vera Rubin</h2>
+
+<p><em>AMD</em> non gira intorno al confronto, lo mette al centro dello slide deck. Contro <em>Vera Rubin</em> NVL72 di <em>Nvidia</em>, <strong>Helios</strong> rivendica un vantaggio in compute FP4 che va dal +10% in alta interattività al +15% in bassa interattività, più il 50% di capacità HBM aggiuntiva e il 50% di banda scale-out in più.</p>
+
+<p>Il numero che interessa i platform engineer è però un altro: fino al 30% in più di token di inferenza per dollaro speso. È qui che si gioca la partita reale, non sui benchmark di picco ma sul costo operativo sostenuto.</p>
+
+<div class="quote">Scegliere uno standard aperto oggi significa non dover riscrivere l'infrastruttura domani. Il vendor lock-in si paga sempre, prima o poi.</div>
+
+<p>La scommessa strategica di <em>AMD</em> sta nella scelta di standard aperti — OCP <strong>Open Rack Wide</strong>, <strong>UALink</strong>, Ultra Ethernet Consortium — contro lo stack proprietario di <em>Nvidia</em>. Per un CTO che valuta un investimento pluriennale, la riduzione del vendor lock-in pesa quanto i FLOPS dichiarati.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. ROCm.ai: Quando gli Agenti di Coding Parlano Nativamente AMD</h2>
+
+<p>Se <strong>Helios</strong> è l'hardware, <strong>ROCm.ai</strong> è la piattaforma che lo rende utilizzabile senza attrito per chi scrive codice ogni giorno. La novità più concreta per gli sviluppatori: supporto nativo per gli agenti di coding <em>Claude</em> di <em>Anthropic</em>, <em>Codex</em> di <em>OpenAI</em> e <em>Cursor</em>.</p>
+
+<p>Il numero che <em>AMD</em> mette sul tavolo è fino a 3.3 volte più veloce nei workflow di sviluppo assistiti da agenti. Dietro c'è una CLI unificata, skill vendor-authored e tuning automatico dell'inferenza, con supporto day-0 per <strong>PyTorch</strong>, <strong>TensorFlow</strong>, <strong>JAX</strong>, <strong>ONNX Runtime</strong>, <strong>vLLM</strong> e <strong>Triton</strong>.</p>
+
+<p>L'obiettivo dichiarato è brutale nella sua semplicità: eliminare il vendor lock-in tramite API standardizzate. Gli stessi agenti che oggi girano su <em>Nvidia</em> devono capire nativamente le piattaforme <em>AMD</em>, senza costringere i team a riscrivere il workflow. È la parte di <strong>Helios</strong> che tocca direttamente chi non compra rack, ma li usa via cloud.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. I Numeri delle Partnership: OpenAI, Meta, Anthropic, Microsoft</h2>
+
+<p>Gli annunci da soli non spostano un mercato. Gli impegni sì, e qui i numeri parlano chiaro. <em>Anthropic</em> ha siglato una partnership strategica per il deployment di fino a 2 gigawatt di GPU <strong>Instinct</strong> serie MI450 tramite <strong>Helios</strong>, con collaborazione multi-anno per ottimizzare i workload di <em>Claude</em>.</p>
+
+<p><em>OpenAI</em> e <em>Meta</em>, insieme, portano 12 gigawatt di ordini GPU. <em>OpenAI</em> integra workload in stile GPT su <strong>MI455X</strong> con il framework <em>Triton</em>; <em>Meta</em> ha sviluppato lo standard <strong>Open Rack Wide</strong> su cui poggia lo stesso <strong>Helios</strong>, e ha già validato in laboratorio i nuovi <strong>EPYC Venice</strong>.</p>
+
+<div class="highlight-box"><p>Gli impegni combinati di <em>OpenAI</em>, <em>Meta</em> e <em>Anthropic</em> superano complessivamente i 12+ gigawatt di capacità GPU su architettura <em>AMD</em>.</p></div>
+
+<p><em>Microsoft</em>, per bocca del CEO <em>Satya Nadella</em>, conferma l'espansione dell'infrastruttura <em>Azure</em> con <strong>Helios</strong>. <em>Oracle</em> pianifica un deployment cliente. Sul lato partner infrastrutturali, <em>Dell</em>, <em>HPE</em>, <em>IBM</em> e <em>Cisco</em> completano l'ecosistema, mentre <em>Cerebras</em> lavora sulla combinazione con compute a bassissima latenza per l'efficienza di inferenza.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Chi Può Comprarlo (e Chi Deve Aspettare)</h2>
+
+<p>Ora la parte che interessa chi deve fare i conti. Il prezzo stimato per una singola configurazione GPU è di 327.238,40 dollari, con listino OEM a 265.928,24 dollari al 16 luglio 2026. Un rack <strong>Helios</strong> completo, 72 GPU, costa circa <strong>$5,25 milioni</strong>. Le prime spedizioni sono previste nella seconda metà del 2026.</p>
+
+<p>Qui arriva la nota scomoda per chi non è un iperscaler: tutta la produzione 2026 di memoria <strong>HBM4</strong> risulta già allocata ai grandi cloud provider — <em>OpenAI</em>, <em>Meta</em>, <em>Anthropic</em>, <em>Microsoft</em>. Per le aziende mid-market, l'accesso diretto nel 2026 non è considerato probabile.</p>
+
+<div class="quote">L'infrastruttura più potente del 2026 arriverà a chi non la compra, ma la affitta: la battaglia sui rack si combatte a monte, la si vive a valle in bolletta cloud.</div>
+
+<p>Secondo il CEO <em>AMD</em> <em>Lisa Su</em>, il mercato degli acceleratori AI è proiettato a raggiungere 1.400 miliardi di dollari entro il 2030, spinto in larga parte proprio dalla domanda di AI agentica: ogni richiesta innesca decine di passaggi che richiedono compute distribuito, reasoning e chiamate a tool.</p>
+
+<p>Per team di sviluppo e platform engineer italiani, l'impatto pratico di <strong>Helios</strong> nel breve termine non passerà dall'acquisto di un rack, ma dai cloud provider che lo useranno per abbassare i costi di inferenza offerti ai clienti. Chi valuta oggi la propria strategia AI dovrebbe guardare meno all'hardware in sé e più a chi, tra i grandi provider, lo adotterà per primo — e a quanto di quel vantaggio di costo verrà davvero trasferito a valle.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Luglio 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
