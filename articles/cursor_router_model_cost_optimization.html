@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Router: la Classificazione al Posto della Scelta del Modello | Pillole di AI</title>
+    <meta name="description" content="Cursor introduce Router: un classificatore addestrato su 600.000 richieste reali che instrada ogni task di codice al modello più adatto, tagliando i costi fino al 60% senza perdere qualità.">
+    <meta name="keywords" content="Cursor Router, model routing, AI coding assistant, cost optimization, developer tools, Intelligence Balance Cost">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Cursor Router: la Classificazione al Posto della Scelta del Modello | Pillole di AI">
+    <meta property="og:description" content="Cursor Router instrada ogni richiesta di codice al modello più adatto: fino al 60% di risparmio, stessa qualità.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-08-03T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cursor Router: la Classificazione al Posto della Scelta del Modello">
+    <meta name="twitter:description" content="Cursor Router: instradamento automatico tra modelli, fino al 60% di risparmio senza perdere qualità.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Cursor Router: la Classificazione al Posto della Scelta del Modello</h1>
+        <p>Cursor lancia Router: un classificatore instrada ogni richiesta al modello giusto, tagliando i costi fino al 60% senza sacrificare qualità.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<p>C'è un momento, in ogni team che scala l'uso dell'AI nello sviluppo, in cui la domanda smette di essere "quale modello uso" e diventa "chi decide quale modello uso". A luglio 2026 <em>Cursor</em> ha risposto con una mossa che sposta il problema da un dropdown menu a un sistema di machine learning dedicato: <strong>Cursor Router</strong>.</p>
+
+<h2>I. Troppi Modelli per Scegliere a Mano: Nasce Cursor Router</h2>
+<p>Il pool di modelli disponibili per generare codice è cresciuto più in fretta della capacità umana di valutarli richiesta per richiesta. <em>Opus 4.8</em>, <em>Fable 5</em>, <em>GPT-5.6 Sol</em>: ognuno con punti di forza diversi, prezzi diversi, comportamenti diversi su task di backend, UI o refactoring. Chiedere allo sviluppatore di scegliere ogni volta il modello giusto è diventato insostenibile.</p>
+<p><strong>Cursor Router</strong> nasce esattamente qui. È un sistema di instradamento automatico riservato ai clienti Teams ed Enterprise, che classifica ogni richiesta di codice prima ancora di eseguirla e la invia al modello più adatto per quel task specifico. Non un router statico basato su regole, ma un classificatore addestrato su comportamento reale.</p>
+
+<div class="quote">Il cambio di paradigma non è tecnico, è organizzativo: la scelta del modello smette di essere una decisione manuale e diventa un problema di classificazione risolto a monte.</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Un Classificatore Addestrato su 600.000 Richieste Reali</h2>
+<p>Il cuore del sistema è un'architettura basata su classificatore che analizza più segnali contemporaneamente: contenuto della query, dimensione e qualità del contesto disponibile, complessità del task, dominio (logica backend, UI, refactoring) e comportamento storico osservato di ciascun modello candidato.</p>
+<p>La differenza rispetto a un benchmark sintetico sta nei dati di addestramento: oltre <strong>600.000 richieste</strong> reali di produzione, generate da sviluppatori che lavoravano davvero, non da task pensati per un test. La validazione è avvenuta con A/B test online su milioni di richieste live, e il sistema è cache-aware — tiene conto dei cache miss sia in addestramento sia in produzione, così i risparmi riportati includono anche il costo reale del cambio modello a metà conversazione.</p>
+<p>Il design è model-agnostic: nuovi modelli, anche più potenti, entrano nel pool senza dover ricostruire il router da zero. È un dettaglio infrastrutturale, ma è quello che rende il sistema sostenibile nel tempo, mentre il mercato dei modelli continua a muoversi.</p>
+
+<div class="highlight-box"><p>Il classificatore di Cursor Router è stato addestrato su oltre <strong>600.000 richieste</strong> reali di produzione e validato con A/B test su milioni di richieste live.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Tre Modalità: Intelligence, Balance, Cost</h2>
+<p>Router non prende decisioni al buio: espone tre modalità che permettono a un team di posizionarsi sulla frontiera di Pareto tra qualità e spesa. <strong>Intelligence</strong> massimizza la capacità, puntando a prestazioni comparabili ai modelli di frontiera più potenti e costosi, come <em>Fable 5</em>. <strong>Balance</strong> cerca qualità solida a costo più basso, orientandosi sui modelli "quotidiani" che i team già usano ogni giorno, tipo <em>Opus 4.8</em>. <strong>Cost</strong> minimizza la spesa in token, mantenendo il livello di intelligenza più alto possibile in quella fascia di prezzo.</p>
+<p>I controlli amministrativi completano il quadro: attivazione del routing per team o gruppo, scelta delle modalità selezionabili dai membri, impostazione di una modalità di default, e possibilità di permettere o bloccare modelli specifici sottostanti. È una governance pensata per chi gestisce budget AI su decine o centinaia di sviluppatori, non per il singolo utente Pro.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. I Numeri: Fino al 60% di Risparmio Senza Perdere Qualità</h2>
+<p>Nei due settimane di early access con clienti enterprise, migliaia di utenti hanno visto un <strong>30-50% di risparmio</strong> sulle richieste instradate automaticamente rispetto a instradare tutto su <em>Opus 4.8</em> a tariffa API, senza calo di qualità percepita.</p>
+<p>I risultati dell'A/B test su traffico di produzione sono ancora più netti: la modalità Auto Intelligence porta a una <strong>60% di riduzione</strong> dei costi con prestazioni da modello di frontiera, avvicinandosi alla satisfaction di <em>Fable 5</em> a circa il 60% in meno di spesa. Contro <em>Opus 4.8</em>, Auto Intelligence migliora la satisfaction di circa il 15% a costo quasi identico. Auto Balance, dal canto suo, supera <em>Opus 4.8</em> in satisfaction al 36% in meno di costo.</p>
+
+<div class="quote">Non è un taglio di qualità mascherato da risparmio: è la prova che gran parte del lavoro di routine non aveva mai avuto bisogno del modello più costoso disponibile.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Il Costo per Commit: la Metrica che Conta per i Team</h2>
+<p>I benchmark generici dicono poco a chi deve chiudere un budget trimestrale. Il <strong>costo per commit</strong> è la metrica che invece parla la lingua di un tech lead: quanto costa, in media, produrre un commit funzionante di codice.</p>
+<p>I numeri parlano chiaro: <strong>Auto Balance</strong> costa 4,63 dollari per commit, <strong>Auto Intelligence</strong> 6,76 dollari. Contro questi valori, <em>Opus 4.8</em> statico si ferma a 7,34 dollari, <em>Fable 5</em> statico sale a 12,69 dollari, e <em>GPT-5.6 Sol</em> statico si attesta intorno ai 6,76 dollari. Il router, in pratica, batte o eguaglia il modello statico più economico usando comunque una miscela intelligente di modelli diversi per task diversi.</p>
+
+<div class="highlight-box"><p>Il <strong>costo per commit</strong> con Auto Balance è di 4,63 dollari, contro i 12,69 dollari di <em>Fable 5</em> usato staticamente su ogni richiesta.</p></div>
+
+<p>Il segnale di reward alla base di tutto questo non arriva da benchmark statici, ma dal comportamento reale: satisfaction inferita dal fatto che lo sviluppatore passi alla feature successiva o, al contrario, corregga e rigetti la risposta. A questo si affianca il <strong>keep rate</strong>, la percentuale di codice generato dall'agente che sopravvive nella codebase nel tempo — una misura pensata per resistere al benchmark-gaming, perché valuta sessioni intere di lavoro, con follow-up, errori e iterazioni, non singole domande isolate.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Il Prezzo della Comodità: Meno Trasparenza, Più Scala</h2>
+<p>Router è disponibile solo su piani Teams ed Enterprise, non su Free o Pro individuale. Non ci sono fee aggiuntive per il suo utilizzo: si paga solo per i modelli effettivamente instradati, su desktop, web, iOS, CLI e SDK.</p>
+<p>Ma la comodità ha un prezzo, ed è la trasparenza. Di default lo sviluppatore non sa sempre quale modello ha elaborato una specifica richiesta — alcuni utenti hanno già chiesto visibilità per singolo task. È il vero trade-off del sistema: risolve un problema di scala al costo di un po' di osservabilità, e vale la pena conoscerlo prima di adottarlo su team grandi.</p>
+<p>La roadmap non si ferma qui. Cursor sta lavorando a tool calling dinamico — i tool vengono caricati solo quando servono, invece che in ogni prompt — a un'espansione del pool di modelli su entrambi gli estremi del prezzo, e a un'ottimizzazione continua dell'harness per ridurre il consumo di token sprecato nel loop dell'agente.</p>
+
+<div class="quote">Le tre modalità spostano la decisione business dal "quale modello" al "quanto vogliamo spendere per quale livello di qualità" — una cornice più naturale per chi gestisce budget AI su team di sviluppo.</div>
+
+<p>Router non è solo una feature di Cursor. È un pattern che probabilmente si diffonderà oltre l'editor stesso, ora che i modelli disponibili sono troppi per una scelta manuale sensata a ogni singola richiesta. Per i team italiani che gestiscono strumenti AI su budget reali, la lezione è già scritta: il costo per commit conta più del punteggio su un benchmark, e la trasparenza va negoziata, non data per scontata.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
