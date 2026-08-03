@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Diventa Stateless: la Specifica 2026-07-28 Riscrive le Regole degli Agenti AI | Pillole di AI</title>
+    <meta name="description" content="Il 28 luglio 2026 MCP passa a un protocollo completamente stateless: niente più sessioni né handshake, nuova estensione Tasks contribuita da AWS, MCP Apps e quasi 500 milioni di download mensili.">
+    <meta name="keywords" content="Model Context Protocol, MCP, stateless, agenti AI, Amazon Bedrock, Tasks extension, MCP Apps, AI infrastructure">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="MCP Diventa Stateless: la Specifica 2026-07-28 Riscrive le Regole degli Agenti AI | Pillole di AI">
+    <meta property="og:description" content="MCP diventa stateless: niente più sessioni, nuova estensione Tasks e MCP Apps, quasi 500 milioni di download mensili sugli SDK.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-08-03T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MCP Diventa Stateless: la Specifica 2026-07-28 Riscrive le Regole degli Agenti AI">
+    <meta name="twitter:description" content="MCP diventa stateless dal 28 luglio 2026: niente più sessioni, nuova estensione Tasks contribuita da AWS.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>MCP Diventa Stateless: la Specifica 2026-07-28 Riscrive le Regole degli Agenti AI</h1>
+        <p>MCP diventa stateless: addio sessioni e handshake. AWS contribuisce Tasks per agenti di lunga durata su Amazon Bedrock.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<p>C'è un giorno in cui un protocollo smette di essere una promessa e diventa infrastruttura. Per il <strong>Model Context Protocol</strong>, quel giorno è il <strong>28 luglio 2026</strong>.</p>
+
+<h2>I. 28 Luglio 2026: la Revisione Più Grande nella Storia di MCP</h2>
+
+<p>Non è un aggiornamento incrementale. È una riscrittura dell'assunzione fondativa. <strong>MCP</strong> nasce bidirezionale e stateful: connessioni persistenti, sessioni, handshake. Con la revisione del 28 luglio, il protocollo diventa <strong>stateless</strong> — puro richiesta/risposta, senza memoria di connessione.</p>
+
+<p>Chi ha costruito server MCP negli ultimi due anni sa cosa significava prima: session affinity, storage condiviso, load balancer intelligenti che dovevano ricordarsi dove instradare ogni client. Un workload "speciale", diverso da qualunque altra API REST in produzione.</p>
+
+<div class="quote">Un protocollo che dimentica la connessione, per ricordarsi meglio dello stato che conta davvero: quello dell'applicazione, non quello del socket.</div>
+
+<p>La documentazione ufficiale su <em>blog.modelcontextprotocol.io</em> e il changelog tecnico della specifica <strong>2026-07-28</strong> non lasciano dubbi: ogni server MCP in produzione deve essere ripensato. Non aggiornato — ripensato.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Via Sessioni e Handshake: Cosa Cambia nella Richiesta</h2>
+
+<p>Il primo taglio è chirurgico: sparisce l'handshake <strong>initialize</strong>/<strong>initialized</strong>. Sparisce l'header <strong>Mcp-Session-Id</strong>. Sparisce ogni requisito di gestione dello stato a livello di connessione.</p>
+
+<p>Al suo posto, ogni richiesta diventa autodescrittiva. Porta con sé versione del protocollo e capability del client dentro un campo <strong>_meta</strong>, con chiavi come <em>io.modelcontextprotocol/clientInfo</em>, <em>/protocolVersion</em> e <em>/clientCapabilities</em>. Header HTTP dedicati — <strong>Mcp-Protocol-Version</strong>, <strong>Mcp-Method</strong>, <strong>Mcp-Name</strong> — permettono routing e autorizzazione a livello di gateway senza dover aprire e parsare il corpo JSON.</p>
+
+<p>Il risultato pratico è netto: qualunque richiesta può atterrare su qualunque istanza dietro un load balancer round-robin banale. Nessuno storage condiviso. Nessun sticky routing.</p>
+
+<div class="highlight-box"><p>Con l'header <strong>Mcp-Session-Id</strong> rimosso e le sessioni eliminate a livello di protocollo, un server MCP diventa indistinguibile da un normale servizio HTTP stateless per qualunque gateway, WAF o rate limiter già esistente.</p></div>
+
+<p>E se serve stato che attraversa più chiamate? La risposta è esplicita: gli handle vengono generati dall'applicazione e passati come normali argomenti dei tool. Lo stato viaggia con la richiesta, non con la connessione. È una scelta di design che sposta la responsabilità dallo strato di trasporto allo strato applicativo — dove, in fondo, dovrebbe sempre essere stata.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Multi Round-Trip Requests: Chiedere Conferma Senza uno Stream Aperto</h2>
+
+<p>C'è un problema che uno stateless puro non può ignorare: come chiede conferma un server durante un'operazione, se non ha più uno stream aperto verso il client? Prima, richieste come <strong>sampling/createMessage</strong>, <strong>elicitation/create</strong> e <strong>roots/list</strong> partivano dal server e vivevano dentro una connessione persistente.</p>
+
+<p>La revisione introduce le <strong>Multi Round-Trip Requests</strong>. Un server che ha bisogno di dati aggiuntivi non blocca la connessione: risponde con <em>resultType: "input_required"</em> e un campo <em>inputRequests</em>. Il client, ricevuta la richiesta, la ripete includendo <em>inputResponses</em> con i dati necessari.</p>
+
+<div class="quote">Chiedere una conferma a metà operazione, senza uno stream aperto, è come lasciare un messaggio in una bottiglia e aspettare che torni indietro con la risposta scritta sopra.</div>
+
+<p>Concettualmente è semplice. Nella pratica, richiede disciplina: ogni client e ogni server devono implementare correttamente questo scambio, altrimenti l'intera classe di interazioni — conferme utente, raccolta parametri interattiva — si rompe silenziosamente in produzione.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. L'Estensione Tasks e il Contributo di AWS per gli Agenti di Lunga Durata</h2>
+
+<p>La funzionalità Tasks passa da nucleo sperimentale a estensione ufficiale, sotto il namespace <em>io.modelcontextprotocol/tasks</em>. Il vecchio <strong>tasks/result</strong> bloccante viene sostituito da polling tramite <strong>tasks/get</strong>. Arriva un nuovo <strong>tasks/update</strong> per l'input dal client verso il server. Sparisce <strong>tasks/list</strong>. I server possono ora restituire handle di task non richiesti.</p>
+
+<p>Il dettaglio che conta di più, però, è chi ha contribuito questa estensione: <em>AWS</em>. Non è un dettaglio da footnote. Segnala che i grandi cloud provider non stanno solo adottando <strong>MCP</strong> — lo stanno attivamente forgiando per i propri casi d'uso enterprise.</p>
+
+<p>L'estensione Tasks abilita lavoro asincrono di lunga durata affidabile su server MCP distribuiti su <strong>Amazon Bedrock AgentCore</strong>, che ha integrato la specifica 2026-07-28 fin dal lancio. Per chi progetta agenti che devono completare operazioni lunghe — ricerche multi-step, orchestrazioni complesse, elaborazioni batch — questo cambia radicalmente cosa è possibile costruire su infrastruttura standard, senza gestione manuale delle sessioni.</p>
+
+<p>Come parte del framework di estensioni, viene stabilita formalmente anche <strong>MCP Apps</strong>: interfacce utente interattive consegnate in iframe sandboxati, integrate con l'architettura stateless per esperienze scalabili senza compromettere l'isolamento.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Cache, Autorizzazione e gli Altri Dettagli che Contano in Produzione</h2>
+
+<p>Sotto la superficie, ci sono modifiche che decidono se un sistema regge il traffico reale o crolla al primo picco. I risultati di <strong>tools/list</strong>, <strong>prompts/list</strong>, <strong>resources/list</strong> e <strong>resources/read</strong> ora includono <em>ttlMs</em> e <em>cacheScope</em> ("public" o "private"), permettendo alle cache intermedie di prendere decisioni informate. Meno re-fetching inutile, cache hit rate più alto sui prompt a monte.</p>
+
+<div class="highlight-box"><p>La validazione dell'issuer secondo <strong>RFC 9207</strong> e il passaggio da Dynamic Client Registration a Client ID Metadata Documents chiudono una falla nota: credenziali client ora legate esplicitamente al server di autorizzazione emittente.</p></div>
+
+<p>C'è anche una piccola rivoluzione silenziosa per chi sviluppa app desktop e CLI: eliminati gli errori di <em>redirect_uri</em>, grazie alla corretta specifica di <em>application_type</em>. Un dettaglio minore sulla carta, una frustrazione tolta di mezzo per chiunque abbia debuggato flussi OAuth alle tre di notte.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. I Numeri dell'Adozione e Cosa Significano per Chi Sviluppa Oggi</h2>
+
+<p>I numeri raccontano una traiettoria che pochi protocolli riescono a percorrere così in fretta. I quattro SDK di primo livello — <em>TypeScript</em>, <em>Python</em>, Go e C# — sono passati da 97 milioni di download mensili a marzo 2026 a quasi <strong>500 milioni di download</strong> al mese. Sia l'SDK <em>TypeScript</em> che quello <em>Python</em> hanno superato il miliardo di download totali. L'SDK Rust supporta già la nuova specifica in beta.</p>
+
+<div class="quote">Da 97 a 500 milioni di download mensili non è crescita: è un protocollo che smette di essere una scommessa e diventa il modo in cui gli agenti parlano con il mondo esterno.</div>
+
+<p>Tutti gli SDK sono stati rilasciati simultaneamente, con guide di migrazione dedicate ai breaking change, e una finestra minima di deprecazione formalizzata a 12 mesi — un margine di respiro per chi deve pianificare la migrazione senza fermare la produzione.</p>
+
+<p>Il supporto immediato è arrivato da <em>Microsoft</em>, <em>Google Cloud</em>, <em>AWS</em>, <em>Anthropic</em>, <em>Cloudflare</em>, <em>Figma</em>, <em>Netlify</em>, <em>Xero</em>, oltre a framework specializzati per agenti come FastMCP, Horizon e Runlayer. Non è adozione simbolica: è un intero ecosistema che riallinea la propria infrastruttura attorno a un unico standard stateless.</p>
+
+<p>Per chi sviluppa server MCP oggi, il messaggio è chiaro: una classe intera di problemi operativi — session affinity, storage di sessione distribuito, sticky routing — scompare. Il prezzo da pagare è ripensare esplicitamente ogni pezzo di stato che il proprio server manteneva tra una chiamata e l'altra. Non è un lavoro banale, ma è un lavoro che, una volta fatto, restituisce un server MCP scalabile come qualunque altra API HTTP — niente di più, niente di meno.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
