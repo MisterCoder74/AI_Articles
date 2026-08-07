@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (41 generati)
+## Articoli (42 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Agosto 2026 | [Verdent: il Cofondatore Tecnico AI, tra Eco Mode e un Trial Troppo Corto](articles/verdent_agentic_tool_eco_mode.html) | Strumenti di Sviluppo AI | 5 min |
 | Agosto 2026 | [Cursor Router: la Classificazione al Posto della Scelta del Modello](articles/cursor_router_model_cost_optimization.html) | Strumenti di Sviluppo AI | 6 min |
 | Luglio 2026 | [AMD Helios: l'Infrastruttura Rack-Scale che Sfida Nvidia](articles/amd_helios_rackscale_ai_infrastructure.html) | Infrastruttura AI | 6 min |
 | Luglio 2026 | [Grok 4.5: Intelligenza da Frontiera a Metà Prezzo](articles/grok_4_5_coding_efficiency.html) | Nuovi Modelli AI | 6 min |
@@ -50,4 +51,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Febbraio 2023 | [ChatGPT e la programmazione](articles/chatgpt_e_la_programmazione.html) | Dev & AI | 4 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-08-03*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-08-07*

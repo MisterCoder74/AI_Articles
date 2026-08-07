@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdent: il Cofondatore Tecnico AI, tra Eco Mode e un Trial Troppo Corto | Pillole di AI</title>
+    <meta name="description" content="Verdent si presenta come cofondatore tecnico AI: pianifica, esegue e testa il lavoro da solo. Analisi delle modalità Agent/Plan, della peculiare Eco Mode e del trial limitato a 7 giorni e 100 crediti.">
+    <meta name="keywords" content="Verdent, agentic tool, Eco Mode, Agent Mode, Plan Mode, AI coding assistant, developer tools">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Verdent: il Cofondatore Tecnico AI, tra Eco Mode e un Trial Troppo Corto | Pillole di AI">
+    <meta property="og:description" content="Verdent: pianificazione, esecuzione ed Eco Mode a costo zero — ma il trial da 100 crediti/7 giorni è la prima vera frizione.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-08-07T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Verdent: il Cofondatore Tecnico AI, tra Eco Mode e un Trial Troppo Corto">
+    <meta name="twitter:description" content="Eco Mode a costo zero su ogni piano, ma il trial da 100 crediti/7 giorni è troppo corto per test seri.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Verdent: il Cofondatore Tecnico AI, tra Eco Mode e un Trial Troppo Corto</h1>
+        <p>Vivacity AI Division testa Verdent: Agent Mode, Plan Mode e la vera novità, Eco Mode. Crediti, bonus e un trial troppo corto per giudicare davvero.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Un Cofondatore Tecnico AI, non un Autocomplete</h2>
+<p>Il team di Vivacity ha messo alla prova <em>Verdent</em> per capire se la promessa regge: non un generatore di snippet, ma un agente che pianifica, esegue, testa e torna quando il lavoro è finito. Anche mentre l'utente è offline.</p>
+<p>La differenza rispetto ai tool agentici che abbiamo già visto passare sui nostri repository è la persistenza: <em>Verdent</em> ricorda il contesto del progetto, gli standard di codice, le preferenze del team. Non riparte da zero ogni volta.</p>
+<div class="quote">Un autocomplete finisce quando premi invio. Un cofondatore tecnico continua a lavorare quando tu hai chiuso il laptop.</div>
+
+<div class="section-divider"></div>
+
+<h2>II. Agent Mode: Esecuzione Diretta e Trasparente</h2>
+<p><strong>Agent Mode</strong> è la modalità predefinita, ed è quella che abbiamo usato per il grosso dei test quotidiani: bug fix, feature piccole, refactoring con scope chiaro. Niente sessioni di pianificazione, l'agente agisce subito sulle istruzioni.</p>
+<p>Ciò che ci ha convinto è la trasparenza: ogni modifica ai file, ogni tool invocato, ogni passo dell'avanzamento è visibile in tempo reale. Nessuna scatola nera. Le azioni fuori dallo scope previsto, o quelle con effetti collaterali significativi, richiedono comunque un'approvazione esplicita — un freno di sicurezza che apprezziamo su codice di produzione.</p>
+<p>Un dettaglio da tech lead: le domande di chiarimento non arrivano come questionari rigidi, ma in linguaggio naturale dentro la chat. Il flusso resta conversazionale anche quando l'agente ha bisogno di più contesto.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Plan Mode: Pianificazione Collaborativa per il Lavoro Complesso</h2>
+<p>Quando lo scope non è ovvio, passiamo a <strong>Plan Mode</strong>. Basta una frase informale per far partire il dialogo: l'agente chiarisce i requisiti in modo iterativo, con domande a scelta multipla, risposte libere o un mix delle due.</p>
+<p>L'output è concreto: sommario di obiettivi e criteri di successo, struttura dei componenti, modelli dati, contratti API, considerazioni sullo stack. Materiale che un dev senior userebbe davvero come base per una code review architetturale.</p>
+<p>Il cambio tra modalità è immediato, una scorciatoia da tastiera (Shift+Tab o Cmd/Ctrl+.), e questo incoraggia un uso ibrido: <strong>Plan Mode</strong> per disegnare, <strong>Agent Mode</strong> per eseguire. Attenzione però: anche il <strong>Plan Mode</strong> consuma crediti in base al modello e ai token processati. Non è una fase "gratuita" prima della spesa vera.</p>
+<div class="quote">Pianificare bene costa quanto eseguire male. Il vero risparmio non è nella modalità, è nel non dover rifare il lavoro due volte.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Eco Mode: la Vera Peculiarità di Verdent</h2>
+<p>Se c'è una funzione che giustifica un articolo a parte è <strong>Eco Mode</strong>. L'idea è semplice e, nel mercato dei tool agentici, sorprendentemente rara: quando i crediti a pagamento finiscono, o per task non critici, si continua a lavorare con modelli a costo ridotto senza consumare crediti.</p>
+<p>Nel piano base abbiamo trovato disponibili <em>GPT-5.6 Luna</em>, <em>GLM-5.2</em>, <em>Kimi K3</em>, <em>Kimi K2.7 Code</em> e <em>DeepSeek-V4-Pro</em>. Non sono i modelli top di gamma, ma bastano per iterazioni di routine, test rapidi, task a basso rischio.</p>
+<div class="highlight-box"><p><strong>Eco Mode</strong> è incluso in ogni piano di abbonamento, dal più economico a <strong>$5/mese</strong> fino a quello da $179/mese: cambia solo il livello di capacità disponibile, non l'accesso alla modalità.</p></div>
+<p>La maggior parte dei tool concorrenti, quando i crediti finiscono, blocca l'accesso o fa pagare extra. <em>Verdent</em> offre invece un doppio binario: modelli premium quando servono, modelli economici quando bastano. È il modo più concreto per tenere sotto controllo il "credit anxiety" che affligge chi lavora con questi strumenti tutti i giorni.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Crediti, Bonus e la Logica dei Piani</h2>
+<p>I crediti sono l'unità di misura di tutto: ogni task ne consuma in base al modello scelto e al carico di lavoro, sia su <em>Verdent</em> per VS Code sia sull'app desktop. Nessun markup nascosto: il costo riflette il prezzo del provider del modello sottostante, che è un punto a favore in termini di trasparenza economica.</p>
+<p>C'è poi un <strong>Bonus Crediti del 50%</strong>, attivo per un periodo limitato, che si applica a ogni abbonamento mensile.</p>
+<div class="highlight-box"><p>Piano da $19/mese: 320 crediti base + 160 bonus = 480 crediti/mese. Piano da $179/mese: 3.000 base + 1.500 bonus = 4.500 crediti/mese.</p></div>
+<p>Un dettaglio utile per chi pianifica budget trimestrali: i crediti extra acquistati come top-up non scadono mai. Si accumulano, si usano quando servono, senza pressione a "consumarli entro il mese" come accade in molti competitor.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. La Nota Dolente: 7 Giorni e 100 Crediti Non Bastano</h2>
+<p>Qui arriva la parte meno entusiasmante del nostro test. Il trial gratuito è generoso sulla carta: <strong>100 crediti</strong>, validi per <strong>7 giorni</strong>, senza carta di credito. Nella pratica, la combinazione dei due limiti stringe parecchio.</p>
+<p><strong>7 giorni</strong> sono pochi per testare seriamente uno strumento che promette di seguire "l'intero prodotto dall'inizio alla fine". Un ciclo completo di pianificazione, esecuzione, revisione e iterazione su un task reale, nella nostra esperienza, richiede spesso più di una settimana di calendario.</p>
+<p>I <strong>100 crediti</strong> si esauriscono in fretta appena si toccano i modelli di fascia alta — <em>Claude Fable 5</em>, <em>GPT-5.6</em>, <em>Gemini 3.1 Pro</em> — che sono, paradossalmente, gli stessi modelli che rendono interessante valutare <em>Verdent</em> in primo luogo. L'<strong>Eco Mode</strong> attenua il colpo per i task minori, ma non sostituisce un vero stress test su architetture complesse.</p>
+<p>Il risultato: per condurre una valutazione seria — più task, più iterazioni, confronto tra <strong>Plan Mode</strong> e <strong>Agent Mode</strong> su modelli diversi — è quasi obbligatorio passare al piano da <strong>$5/mese</strong> prima ancora di aver finito di capire se lo strumento fa al caso proprio.</p>
+<p>Non è un limite nascosto: è documentato chiaramente nelle FAQ, e la trasparenza va riconosciuta. Ma resta la prima vera frizione che un team deve mettere in conto. Non un motivo per scartare <em>Verdent</em>, quanto un avvertimento pratico: chi valuta più tool agentici in parallelo dovrebbe considerare fin da subito questo costo minimo d'ingresso, invece di scoprirlo a metà test quando il trial è già scaduto.</p>
+<div class="quote">Un trial troppo corto non giudica lo strumento: giudica solo quanto in fretta finisce la pazienza di chi lo testa.</div>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
