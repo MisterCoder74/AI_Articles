@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astra di OpenAI Risolve 10 Problemi Matematici Aperti (e li Dimostra in Lean 4) | Pillole di AI</title>
+    <meta name="description" content="Astra, il modello di frontiera non ancora rilasciato da OpenAI, risolve 10 problemi matematici aperti da oltre 10 anni e pubblica le dimostrazioni formali in Lean 4 su GitHub.">
+    <meta name="keywords" content="OpenAI Astra, Lean 4, matematica, gruppi non-sofici, dimostrazioni formali, modelli di frontiera">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Astra di OpenAI Risolve 10 Problemi Matematici Aperti (e li Dimostra in Lean 4) | Pillole di AI">
+    <meta property="og:description" content="10 problemi matematici aperti da oltre un decennio, risolti da Astra e dimostrati in Lean 4 senza margine di dubbio: nessun 'sorry', tutto verificabile dal compilatore.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-08-10T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Astra di OpenAI Risolve 10 Problemi Matematici Aperti (e li Dimostra in Lean 4)">
+    <meta name="twitter:description" content="Astra di OpenAI risolve 10 problemi matematici aperti e pubblica le prove formali in Lean 4 su GitHub, senza alcun 'sorry'.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Astra di OpenAI Risolve 10 Problemi Matematici Aperti (e li Dimostra in Lean 4)</h1>
+        <p>Astra, modello OpenAI non rilasciato, risolve 10 problemi matematici aperti da oltre un decennio: dimostrazioni verificate in Lean 4, zero "sorry", costo totale $2.000.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Un Modello che Non Esiste Ancora, Ufficialmente</h2>
+
+<p>Il <strong>1 agosto 2026</strong> OpenAI ha fatto qualcosa di insolito: ha annunciato un risultato scientifico prodotto da un modello che il pubblico non può ancora usare. <em>Astra</em>, la prossima generazione di modelli OpenAI, non è disponibile via API, non ha una data di rilascio, non ha nemmeno un nome definitivo. Eppure una sua versione interna ha appena risolto <strong>10 problemi</strong> aperti in matematica e informatica teorica, ciascuno senza soluzione da oltre <strong>10 anni</strong>.</p>
+
+<p>L'annuncio è accompagnato da un manoscritto di <strong>249 pagine</strong> e da un repository GitHub con licenza Apache 2.0, contenente le dimostrazioni formali verificabili da macchina. Non stiamo parlando di un paper con affermazioni da prendere sulla parola: stiamo parlando di codice che chiunque può eseguire per controllare se le dimostrazioni sono corrette.</p>
+
+<div class="quote"><p>Per chi valuta output scientifici generati da AI, la domanda giusta non è più "il modello è affidabile?" ma "posso verificare io stesso, senza fidarmi di nessuno?" — è un cambio di paradigma nella fiducia, non solo nella capacità.</p></div>
+
+<p>È questo l'aspetto più interessante della notizia, prima ancora del contenuto matematico: OpenAI ha scelto di rendere l'annuncio falsificabile.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Dieci Problemi, Dieci Anni di Attesa Ciascuno</h2>
+
+<p>I <strong>10 problemi</strong> coprono aree molto diverse: sphere packing ad alta dimensionalità, codici binari e sferici, <strong>gruppi non-sofici</strong>, la congettura di rigidità di Connes (confutata), complessità dei circuiti aritmetici, ripetizione parallela quantistica, il Closest Vector Problem legato alla crittografia su reticoli, la congettura del volume di Ehrhart, i numeri di Ramsey multicolore (problema 183 di Erdős) e due congetture di teoria dei grafi estremale (problemi 146 e 180 di Erdős).</p>
+
+<p>Non è un elenco di esercizi difficili della stessa famiglia. È un campione trasversale di matematica pura e informatica teorica, scelto per dimostrare generalizzazione, non specializzazione su un singolo dominio.</p>
+
+<div class="highlight-box"><p>10 problemi aperti da oltre 10 anni ciascuno, risolti con dimostrazioni verificate formalmente in <strong>Lean 4</strong>, per un costo computazionale complessivo di circa <strong>$2.000</strong>.</p></div>
+
+<p>Il dettaglio da tenere a mente è che ogni problema appartiene a una sotto-comunità diversa della matematica, con linguaggio, strumenti e criteri di rilevanza propri. Risolverne uno richiede competenza verticale profonda. Risolverne dieci, in domini così distanti, in un colpo, è ciò che ha fatto scattare l'attenzione della comunità.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Il Gruppo Non-Sofico: il Risultato che la Comunità Aspettava dal 1999</h2>
+
+<p>Tra i dieci, uno spicca sugli altri per la comunità dei teorici dei gruppi: la prima costruzione esplicita di un <strong>gruppo non-sofico</strong>. La domanda era aperta dal <strong>1999</strong>, da quando Mikhail Gromov introdusse la nozione di soficità. Ventisette anni di tentativi, congetture, approcci parziali, senza una risposta definitiva.</p>
+
+<p>Diversi database di problemi aperti curati da matematici hanno segnalato questo risultato come il più rilevante del lotto, non perché sia "più difficile" degli altri in senso assoluto, ma perché la domanda era diventata un punto di riferimento della disciplina: chiunque lavorasse su gruppi sofici la conosceva a memoria.</p>
+
+<div class="quote"><p>Un risultato che chiude una domanda aperta da 27 anni non nasce mai isolato: nasce sopra decenni di tentativi falliti che hanno mappato lo spazio delle soluzioni impossibili. Il merito di Astra è aver trovato la costruzione esplicita, non aver inventato la domanda.</p></div>
+
+<p>È un punto da tenere presente per chi guarda a questi risultati con l'idea che l'AI stia "scoprendo" matematica dal nulla: sta piuttosto navigando, a velocità e scala inedite, uno spazio di problemi già definito e circoscritto da generazioni di matematici umani.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Lean 4: Dimostrare Senza Zone d'Ombra</h2>
+
+<p>La parte più operativa della notizia riguarda come le dimostrazioni sono state pubblicate, non solo cosa dimostrano. Tutte le 10 dimostrazioni sono formalizzate in <strong>Lean 4</strong>, un linguaggio per dimostrazioni matematiche verificabili automaticamente da un compilatore. Non un riassunto in prosa da far controllare a un revisore umano, ma un certificato formale che il kernel Lean accetta o rifiuta, senza margine di interpretazione.</p>
+
+<p>Il dettaglio che vale la pena isolare: nessuna delle dimostrazioni contiene <strong>"sorry"</strong>, il placeholder Lean che significa "qui manca un passaggio, fidati". Zero occorrenze, in tutti i 10 risultati. Ogni passaggio logico è verificato end to end.</p>
+
+<div class="highlight-box"><p>Zero istruzioni "sorry" in 249 pagine di dimostrazioni formali: nessun passaggio lasciato all'onore della parola, verifica end to end su ogni singolo step logico.</p></div>
+
+<p>Chiunque può clonare il repository, far girare il verificatore in locale, e controllare la correttezza formale senza dover fidarsi di OpenAI. Un ricercatore umano ha curato l'impaginazione del manoscritto e la preparazione per la pubblicazione, ma il ragionamento matematico e le dimostrazioni sono stati generati da <em>Astra</em>. OpenAI, comunque, si assume la responsabilità della correttezza di quanto pubblicato.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Duemila Dollari di Calcolo per Dieci Problemi Aperti</h2>
+
+<p>Il costo computazionale totale per ottenere i 10 risultati è stato di circa <strong>$2.000</strong>, calcolato alle tariffe API della famiglia <em>GPT-5.6</em> — gli stessi modelli pubblici Sol, Luna e Terra, reduci da forti tagli di prezzo: Luna -80% a $0,20 per milione di token in ingresso dal 30 luglio, Terra -20% a $2,00 per milione.</p>
+
+<p>È una cifra quasi comica se confrontata con il valore accademico di 10 problemi aperti risolti in un colpo. OpenAI la presenta come prova che il costo di generare scienza originale con questi modelli è ormai marginale rispetto al beneficio potenziale. Il numero da ricordare, però, non è tanto quanto vale il risultato, ma quanto poco è costato ottenerlo: un ordine di grandezza compatibile con il budget di un singolo ricercatore, non con un progetto di laboratorio finanziato su larga scala.</p>
+
+<p>Questo cambia, almeno sulla carta, chi può permettersi di fare questo tipo di ricerca assistita da AI — a patto, ovviamente, di avere accesso a un modello con le capacità di <em>Astra</em>, che oggi resta privilegio interno di OpenAI.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Cosa Manca Ancora: Peer Review, Rilascio, Nome Definitivo</h2>
+
+<p>Detto tutto questo, vanno messi sul tavolo i limiti, senza sconti. Nessuno dei 10 risultati è passato per la peer review accademica tradizionale. La verifica Lean 4 garantisce la correttezza formale della dimostrazione, non la sua rilevanza o originalità rispetto alla letteratura esistente — un giudizio che spetta ancora, e continuerà a spettare, alla comunità matematica.</p>
+
+<p><em>Astra</em> resta un modello non rilasciato pubblicamente. Un ordine esecutivo statunitense entrato in vigore il 1 agosto 2026 introduce una revisione governativa volontaria pre-rilascio per i modelli di frontiera, e Astra dovrebbe essere il primo modello a passare da questo processo prima di un eventuale lancio. Non è nemmeno chiaro se arriverà come <em>GPT-6</em> o come variante della famiglia <em>GPT-5.6</em>: OpenAI non ha sciolto la riserva.</p>
+
+<div class="quote"><p>La combinazione di risultato-non-ancora-rivisto-da-pari e dimostrazione-verificabile-da-macchina è un modello ibrido di validazione che diventerà probabilmente più comune: la verifica formale automatica riduce, ma non elimina, il bisogno di giudizio umano sulla rilevanza scientifica.</p></div>
+
+<p>Il contesto più ampio aiuta a inquadrare la notizia: <em>ChatGPT</em> ha superato 1 miliardo di utenti attivi il 31 luglio 2026, con oltre 2 milioni di clienti business. Astra arriva mentre OpenAI consolida contemporaneamente il lato consumer e quello della ricerca di frontiera. Per sviluppatori e team tecnici italiani, oggi questa è più un segnale di direzione — dove arriverà la prossima generazione di modelli — che una capacità già disponibile da integrare in produzione. Vale la pena osservarla con attenzione, ma senza fretta di riscrivere le roadmap sulla base di un modello che, ufficialmente, non esiste ancora.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
