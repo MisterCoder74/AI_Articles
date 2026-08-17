@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop | Pillole di AI</title>
+    <meta name="description" content="Meta rilascia Muse Glimmer 30B, modello agentico open-weight Apache 2.0 pensato per girare su laptop e GPU consumer, con benchmark che superano Qwen3.6-27B e Gemma4-31B sui task agentici.">
+    <meta name="keywords" content="Meta Muse Glimmer, modelli open source, agenti AI locali, Apache 2.0, quantizzazione, Qwen3.6, Gemma4">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop | Pillole di AI">
+    <meta property="og:description" content="Muse Glimmer 30B: primo modello agente open-weight di questa scala pensato per girare in locale, con benchmark agentici superiori a Qwen3.6-27B e Gemma4-31B.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-08-17T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop">
+    <meta name="twitter:description" content="Meta rilascia Muse Glimmer 30B, agente open-weight Apache 2.0 che gira su un laptop, con benchmark superiori a Qwen3.6-27B e Gemma4-31B.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop</h1>
+        <p>Meta rilascia Muse Glimmer 30B in Apache 2.0 puro: agenti che girano in locale, battono Qwen3.6-27B e Gemma4-31B su MCP Atlas, ma non su tutto.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Un Modello Agentico che Sta nel Tuo Laptop</h2>
+
+<p>Il <strong>10 agosto 2026</strong> Meta ha rilasciato <em>Muse Glimmer</em>, un modello da <strong>29.6 miliardi di parametri</strong> (circa <strong>30B</strong>) rilasciato sotto <strong>Apache 2.0</strong>, senza restrizioni per l'uso commerciale. Non è un modello qualsiasi: è distillato da <em>Muse Spark</em>, il modello "teacher" più grande, tramite logit distillation applicata durante il pre-training.</p>
+
+<p>Il dato che conta non è solo la dimensione, ma il destino d'uso. <em>Muse Glimmer</em> è il primo modello agente open-weight di questa scala pensato esplicitamente per girare su hardware di livello laptop o workstation consumer, non solo su cluster GPU da datacenter. È compatibile con scaffold di orchestrazione come <strong>OpenClaw</strong>, il che lo rende immediatamente utilizzabile in pipeline agentiche reali, non solo in demo da benchmark.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Architettura: Transformer Denso da 30B con Encoder di Percezione Dedicato</h2>
+
+<p>Sotto il cofano c'è un transformer causale <strong>denso</strong> — niente Mixture-of-Experts — affiancato da un encoder di percezione dedicato basato su ViT-G/14. Il vocabolario conta <strong>202.048 token</strong>, la finestra di contesto supera i <strong>131.072 token</strong>. L'input accetta testo e immagini interleaved, fino a <strong>4.096 token visivi</strong> per immagine; l'output resta esclusivamente testuale.</p>
+
+<p>L'addestramento segue tre fasi distinte: pre-training sugli output del teacher <em>Muse Spark</em>, mid-training su dataset ricchi di tracce di ragionamento orientate agli agenti, e post-training con fine-tuning supervisionato combinato a on-policy distillation e reinforcement learning. Il knowledge cutoff è fissato al <strong>4 gennaio 2026</strong>. Interessante il dettaglio operativo: quattro livelli di ragionamento configurabili — low, medium, high, xhigh — che permettono di bilanciare latenza e profondità di ragionamento a runtime, senza cambiare modello.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. I Benchmark: Meglio di Qwen3.6-27B e Gemma4-31B sui Task Agentici (ma non su tutto)</h2>
+
+<p>Sui benchmark agentici puri, <em>Muse Glimmer</em> non gioca in difesa. Su <strong>MCP Atlas (Public)</strong> segna 75.5 contro 62.5 di <em>Qwen3.6-27B</em> e 54.2 di <em>Gemma4-31B</em>: un margine netto. Su <strong>DeepSearch QA</strong> il vantaggio si conferma: 74.6 contro 71.1 e 61.7.</p>
+
+<div class="highlight-box"><p>Su <strong>MCP Atlas (Public)</strong>, <em>Muse Glimmer</em> supera <em>Qwen3.6-27B</em> di oltre <strong>13 punti percentuali</strong> (75.5 vs 62.5), il vantaggio più netto tra i benchmark agentici confrontati.</p></div>
+
+<p>Sul coding puro il quadro cambia. Su <strong>SWE-Bench Verified</strong> Muse Glimmer segna 76.0, quasi alla pari con il 77.2 di <em>Qwen3.6-27B</em> ma sopra il 66.6 di <em>Gemma4-31B</em>. Su <strong>OSWorld-Verified</strong>, però, <em>Qwen3.6-27B</em> resta chiaramente superiore: 75.6 contro 65.9. Sul ragionamento puro, <em>Muse Glimmer</em> tiene testa ai concorrenti nonostante dimensioni più contenute: 94.7 su AIME 2026, contro 94.1 di Qwen e 89.2 di Gemma.</p>
+
+<div class="quote"><p>Il punto non è chi vince ogni singola tabella. È che <em>Muse Glimmer</em> è stato costruito da zero per il tool calling con schemi precisi e per il recupero automatico da errori nelle chiamate agli strumenti, invece di bloccarsi — una scelta di design che si vede nei benchmark orientati agli agenti, non in quelli di coding generico.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Quantizzazione e Inferenza: da 55GB a Meno di 20GB</h2>
+
+<p>A piena precisione, <em>Muse Glimmer</em> richiede oltre <strong>55 GB</strong> di memoria: improponibile su qualunque laptop. Quantizzato a 4 bit, il conto scende a meno di <strong>20 GB</strong> solo per i pesi del modello.</p>
+
+<div class="highlight-box"><p>Quantizzato a 4 bit, <em>Muse Glimmer</em> richiede <strong>meno di 20 GB</strong> per i soli pesi — contro oltre <strong>55 GB</strong> a piena precisione. Con KV cache ed encoder di percezione, il consiglio pratico è <strong>24-32 GB di VRAM</strong>.</p></div>
+
+<p>Meta distribuisce due varianti quantizzate, K-Quant-Dynamic e K-Quant-17GB, con degradazione minima sui task agentici — un dettaglio che conta più delle cifre da leaderboard, perché è ciò che effettivamente si scarica e si esegue. L'hardware supportato copre MacBook M4-Max e M5-Max, GPU consumer come RTX 5090 e RTX PRO 6000 Blackwell, fino a GPU server H100/H200/B100/B200. Il drafter dedicato <strong>DFlash</strong> abilita speculative decoding con accelerazioni da 1.5x a 3.1x a seconda dell'hardware.</p>
+
+<p>Sul fronte software, il supporto è ampio fin dal day one: vLLM, llama.cpp, MLX, ExecuTorch, SGLang, con distribuzione su Hugging Face e integrazioni dirette in Ollama, LM Studio, Unsloth, Together AI, Fireworks AI e OpenRouter. Per chi valuta l'adozione locale, questo significa zero attesa per il tooling di terze parti.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Apache 2.0 Pieno: Perché la Licenza Conta Quanto i Numeri</h2>
+
+<p>Nella stessa settimana, Alibaba ha rilasciato un aggiornamento di Qwen — pesi non interamente sotto <strong>Apache 2.0</strong>. È un contrasto che vale la pena notare: la licenza piena di <em>Muse Glimmer</em> non è un dettaglio legale marginale, è una variabile che entra direttamente nella valutazione tecnica per chi deve mettere un modello in produzione senza vincoli su fine-tuning, redistribuzione o uso commerciale.</p>
+
+<div class="quote"><p>Per un tech lead che valuta modelli open-weight da eseguire in locale, una licenza parziale può azzerare in pratica ogni vantaggio di benchmark: se non puoi fare fine-tuning commerciale senza incertezze legali, il punteggio su MCP Atlas conta poco. <strong>Apache 2.0</strong> pieno sposta l'ago della bilancia più di qualche punto percentuale in più su un test.</p></div>
+
+<p>C'è anche una lettura più ampia: la distillazione da un teacher più grande (<em>Muse Spark</em>) segnala che l'industria sta ora ottimizzando esplicitamente per il rapporto prestazioni/hardware-consumer, non solo per il punteggio assoluto. È un cambio di priorità che si allinea a un dato di contesto: un report MIT/Google Cloud su 300 organizzazioni indica che il <strong>69%</strong> delle aziende pianifica un'adozione estesa di AI agentica, con oltre un miliardo di dollari raccolti nel primo semestre 2026 dagli agenti verticali. Un modello che gira su un laptop, sotto licenza libera, si inserisce esattamente in quella traiettoria.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Cosa Resta Aperto: i Limiti sul Coding e la Sicurezza degli Agenti Autonomi</h2>
+
+<p>Onestà sui numeri prima di tutto: su <strong>OSWorld-Verified</strong>, <em>Muse Glimmer</em> resta indietro rispetto a <em>Qwen3.6-27B</em> — 65.9 contro 75.6, un divario di quasi 10 punti che su task di automazione desktop reale si sente. Anche su <strong>SWE-Bench Verified</strong> il vantaggio è di Qwen, seppure minimo. Chi lavora su coding agentico complesso, dove serve navigare interfacce grafiche o gestire repository di grandi dimensioni, farà bene a testare entrambi prima di scegliere.</p>
+
+<p>Il tema più delicato, però, resta trasversale a tutto il settore: la sicurezza degli agenti autonomi. Fonti di settore riportano che OpenAI ha sospeso temporaneamente lo sviluppo di alcune componenti del suo modello <em>Astra</em> dopo aver identificato vulnerabilità di sicurezza negli agenti autonomi. Non è un problema specifico di un modello o di un vendor: è un promemoria che nessuno, open-weight o proprietario, ha ancora risolto in modo definitivo il problema del controllo su agenti che agiscono in autonomia su sistemi reali.</p>
+
+<p>Un agente che gira in locale su un laptop non è per questo automaticamente più sicuro di uno in cloud. Il rischio si sposta — meno esposizione di rete, ma più superficie d'attacco locale se l'agente ha accesso a file system, credenziali, strumenti — non sparisce. Per chi valuta l'adozione di <em>Muse Glimmer</em> in produzione, questo significa che il lavoro di sandboxing, permessi granulari e audit delle chiamate agli strumenti resta interamente a carico dell'integratore. La tecnologia è pronta prima delle procedure operative che dovrebbero circondarla.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
