@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent | Pillole di AI</title>
+    <meta name="description" content="La Developer Ecosystem Survey 2026 di JetBrains, su oltre 15.000 sviluppatori, mostra Claude Code superare GitHub Copilot e Cursor come coding agent AI più adottato al lavoro.">
+    <meta name="keywords" content="Claude Code, GitHub Copilot, Cursor, Codex, OpenCode, JetBrains Developer Ecosystem Survey, coding agent AI, sviluppo software AI">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent | Pillole di AI">
+    <meta property="og:description" content="Il sondaggio JetBrains 2026 su 15.000+ sviluppatori mostra Claude Code al 39% di adozione (dal 18% di gennaio), Codex in crescita 5x, GitHub Copilot e Cursor in calo.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="article:published_time" content="2026-08-24T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent">
+    <meta name="twitter:description" content="Claude Code sorpassa GitHub Copilot e Cursor secondo la Developer Ecosystem Survey 2026 di JetBrains: i numeri della guerra dei coding agent AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent</h1>
+        <p>Il Developer Ecosystem Survey 2026 di JetBrains, 15.000 sviluppatori: Claude Code raddoppia in sei mesi e sorpassa GitHub Copilot come agente AI più usato.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Il Sondaggio che Fotografa la Guerra dei Coding Agent</h2>
+<p>JetBrains ha pubblicato la decima edizione del suo <strong>Developer Ecosystem Survey</strong>, questa volta datato 2026. Il team Strategic Research and Market Intelligence ha raccolto risposte da oltre <strong>15.000 sviluppatori</strong> professionisti in tutto il mondo tra maggio e luglio 2026, aggiornando i dati del precedente report di aprile sugli strumenti AI effettivamente usati sul lavoro.</p>
+<p>Il quadro d'insieme è netto: il <strong>90%</strong> degli sviluppatori professionisti usa oggi agenti di coding AI almeno settimanalmente, e il <strong>68%</strong> li usa ogni giorno. La domanda non è più se adottare l'AI nel workflow. È quale strumento specifico si sta prendendo la fetta più grande di tempo di lavoro reale, ora che il mercato è saturo di opzioni.</p>
+<div class="highlight-box"><p>Il 90% degli sviluppatori professionisti usa un coding agent AI almeno settimanalmente; il 68% ogni giorno.</p></div>
+<p>Su questo terreno, il report restituisce una classifica ribaltata rispetto a un anno fa. C'è un nuovo leader, un pretendente in crescita esplosiva, un pioniere in affanno e un fenomeno di percezione che non si traduce in uso. Vale la pena guardarli uno per uno.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Claude Code: da Outsider a Leader Incontrastato</h2>
+<p>Il dato più clamoroso della rilevazione riguarda <em>Claude Code</em>. A gennaio 2026 lo usava il <strong>18%</strong> degli sviluppatori mondiali. Sei mesi dopo, a maggio-luglio 2026, l'adozione è salita al <strong>39%</strong>: più che raddoppiata in un semestre. Negli Stati Uniti la percentuale arriva al <strong>47%</strong>, quasi un developer su due.</p>
+<p>Ma il dato che conta davvero non è l'adozione grezza. È la conversione. Il <strong>31%</strong> degli sviluppatori dichiara <em>Claude Code</em> come strumento AI principale, quello più usato in assoluto tra tutti quelli disponibili. Significa un tasso di conversione da uso regolare a strumento primario vicino all'<strong>80%</strong> — chi lo prova, tendenzialmente lo elegge a strumento di riferimento. È il doppio dell'uso registrato per <em>GitHub Copilot</em>, che per anni aveva guidato il mercato.</p>
+<div class="quote">Non basta essere provati: bisogna diventare lo strumento di default. È questa metrica di conversione, non l'adozione grezza, a separare oggi i vincitori reali dai prodotti semplicemente popolari.</div>
+<p>Il dato di soddisfazione precede e conferma la traiettoria. Nel report AI Pulse di gennaio 2026, <em>Claude Code</em> registrava già il <strong>CSAT 91%</strong> più alto del mercato e un <strong>NPS 54</strong> su scala -100/+100, valore che nel settore dei developer tool è considerato eccellente. La crescita di adozione, in altre parole, non arriva da un colpo di marketing isolato: arriva da un prodotto che chi lo usa continua a preferire.</p>
+
+<div class="section-divider"></div>
+
+<h2>III. Codex Cresce 5 Volte, GitHub Copilot Perde il Trono</h2>
+<p><em>Codex</em> di OpenAI è la seconda storia del report. L'adozione passa dal <strong>3%</strong> di gennaio al <strong>16%</strong> di maggio-luglio 2026: una crescita di circa cinque volte in sei mesi. Ancora più ripida la curva della notorietà, che sale dal <strong>27%</strong> al <strong>65%</strong> degli sviluppatori che dichiarano di conoscere lo strumento. Buona parte della spinta arriva dal lancio pubblico dell'app desktop di <em>Codex</em> e dalla sua promozione diretta dentro ChatGPT, un canale di distribuzione che nessun altro competitor ha a disposizione con quella scala.</p>
+<p>Sul fronte opposto, <em>GitHub Copilot</em> paga il conto di essere stato il primo, non necessariamente il migliore. L'adozione scende dal <strong>29%</strong> di un anno fa al <strong>21%</strong> attuale, un calo di otto punti che lo relega al terzo posto per uso reale. Resta però lo strumento più conosciuto del mercato in assoluto, con il <strong>79%</strong> di mind share globale, che sale all'<strong>86-90%</strong> in Europa, Regno Unito e Stati Uniti. Il <strong>39%</strong> degli utenti Copilot lo usa anche dentro le IDE JetBrains, segno che il prodotto resta radicato in workflow consolidati anche se non è più la prima scelta.</p>
+<div class="highlight-box"><p>Codex passa dal 3% al 16% di adozione in sei mesi: una crescita cinque volte superiore, trainata dall'app desktop e da ChatGPT.</p></div>
+<p>La lettura è chiara: aver portato l'AI-assisted coding alla ribalta nel 2023 non garantisce più nulla nel 2026. In un mercato che si muove a questa velocità, il vantaggio del first mover si esaurisce in fretta se il prodotto non tiene il passo sulla qualità percepita dell'agente stesso.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. Cursor: Più Conosciuto, Ma Sempre Meno Usato</h2>
+<p><em>Cursor</em> è il caso più anomalo del report. La mind share sale dal <strong>69%</strong> di gennaio al <strong>75%</strong> di maggio-luglio 2026: più sviluppatori che mai sanno cos'è. Ma l'adozione effettiva scende nello stesso periodo dal <strong>18%</strong> al <strong>12%</strong>. Il calo più netto è in Cina, dove crolla dal <strong>28%</strong> di gennaio al <strong>16%</strong> di maggio-luglio.</p>
+<div class="quote">Notorietà e uso reale non sono più la stessa cosa. Cursor lo dimostra: conosciuto da tre sviluppatori su quattro, ma scelto ogni giorno da uno su otto. È l'erosione silenziosa di chi ha aperto un mercato che oggi altri stanno consolidando.</div>
+<p>Il divario tra quanto un prodotto è conosciuto e quanto viene effettivamente usato è il segnale tipico di un competitor che perde terreno su chi arriva dopo con un'offerta più convincente sull'uso quotidiano. La forza del brand resta, ma non si traduce più in scelta operativa concreta per il team.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. OpenCode e gli Altri: la Sfida Open Source e i Follower</h2>
+<p><em>OpenCode</em>, l'agente di coding open source, raggiunge il <strong>7%</strong> di adozione con un mind share del <strong>42%</strong> a livello globale — un risultato notevole per uno strumento privo del budget marketing di una big tech. Indica che una parte della community sviluppatori premia trasparenza e controllo sul codice dell'agente stesso, non solo le prestazioni pure sul benchmark.</p>
+<p>Tra i follower, <em>Google Antigravity</em> mantiene un'adozione stabile al <strong>6%</strong> ma con un balzo di notorietà dal <strong>29%</strong> al <strong>47%</strong> di mind share. In India è quasi alla pari con <em>Cursor</em> come terzo strumento più usato (<strong>15%</strong> contro il <strong>10%</strong> di gennaio). Il 20 agosto 2026 il prodotto ha ricevuto la funzione "Remote Control" per pilotare sessioni agent da remoto via browser, segnale che l'investimento continua anche restando terzo o quarto nella corsa all'adozione. <em>JetBrains AI</em>, tra IDE e Junie, si assesta intorno al <strong>9%</strong> globale.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Cosa Dice Davvero Questo Dato (e Cosa Non Dice)</h2>
+<p>Va detto con chiarezza: questo è un sondaggio, non telemetria di prodotto. I numeri riflettono uso dichiarato e percezione self-reported da oltre 15.000 sviluppatori, non log di sessioni reali raccolti dai vendor. Va bene per leggere il trend — la traiettoria di crescita di Claude Code, il crollo di Cursor sull'uso, l'esplosione di Codex — ma va usato con cautela se si cercano cifre assolute precise sul numero reale di sviluppatori attivi per strumento.</p>
+<p>C'è poi una differenza metodologica da tenere presente: i dati di gennaio 2026 vengono dal report AI Pulse, quelli di maggio-luglio dal Developer Ecosystem Survey vero e proprio. Campioni, canali di distribuzione del sondaggio e composizione geografica possono differire tra le due wave, il che introduce un margine di incertezza sui confronti diretti punto per punto.</p>
+<p>Resta però un segnale difficile da ignorare per chi deve decidere quale coding agent adottare in team: la convergenza tra adozione crescente, tasso di conversione a strumento primario e dati di soddisfazione pregressi (CSAT e NPS) racconta una storia coerente su Claude Code, non un picco isolato. Per Codex la crescita è vera ma recente, e andrà verificata sulla tenuta nei prossimi trimestri. Per GitHub Copilot e Cursor, il segnale di erosione dell'uso reale, pur dentro i limiti di un sondaggio, è troppo marcato per essere rumore statistico.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Agosto 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
