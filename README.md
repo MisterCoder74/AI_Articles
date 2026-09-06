@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (46 generati)
+## Articoli (47 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Settembre 2026 | [Pianificazione di un Flusso Conversazionale: Guida Pratica al Design dei Chatbot](articles/flusso_conversazionale_chatbot_design.html) | Tutorial AI | 6 min |
 | Agosto 2026 | [Gemini 3.7 Flash: Google Accorcia i Cicli di Rilascio e Dimezza il Prezzo](articles/google_gemini_3_7_flash_workhorse_coding.html) | Nuovi Modelli AI | 6 min |
 | Agosto 2026 | [Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent](articles/jetbrains_survey_2026_claude_code_domina.html) | Strumenti di Sviluppo AI | 6 min |
 | Agosto 2026 | [Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop](articles/meta_muse_glimmer_30b_agente_locale.html) | Modelli AI Open Source | 6 min |
@@ -55,4 +56,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Febbraio 2023 | [ChatGPT e la programmazione](articles/chatgpt_e_la_programmazione.html) | Dev & AI | 4 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-08-31*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-09-06*
