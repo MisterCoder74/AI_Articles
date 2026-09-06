@@ -262,7 +262,7 @@
         .tool-tag { font-family: var(--font-mono); font-size: 0.7rem; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 0.2em 0.7em; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
         .tool-name { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin: 0; }
         .tool-desc { color: var(--text-secondary); font-size: 0.95rem; margin: 0.5rem 0 1rem; }
-        .tool-cta { display: inline-block; background: var(--accent-green); color: #000; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
+        .tool-cta { display: inline-block; background: var(--accent-green); color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
         .tool-cta:hover { opacity: 0.85; }
         .tool-cta-disabled { display: inline-block; background: rgba(255,255,255,0.1); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; padding: 0.6rem 1.4rem; border-radius: 8px; cursor: default; }
         .tool-screenshot { width: 100%; border-radius: 10px; margin: 0.75rem 0; border: 1px solid rgba(255,255,255,0.1); }
@@ -285,64 +285,72 @@
 <p>Ecco quattro piattaforme meno conosciute ma altrettanto potenti, che Vivacity Design ha selezionato per chi vuole andare oltre il prompt-to-code.</p>
 
 <div class="section-divider"></div>
-
-<h2>I. Workshop — Costruisci App Reali da una Conversazione</h2>
-
-<p><em>Workshop</em> è una piattaforma AI che genera applicazioni reali — non prototipi — direttamente da conversazioni in linguaggio naturale. Disponibile in versione <strong>Cloud</strong> (browser) e <strong>Desktop</strong> (locale, con supporto a modelli LLM privati per chi ha requisiti di privacy), genera codice frontend + backend FastAPI, si connette a database enterprise (BigQuery, PostgreSQL, MongoDB, Snowflake) e API di terze parti (OpenAI, Claude, GitHub, Supabase). Il deploy è serverless one-click con autenticazione integrata.</p>
-
-<div class="tool-card">
-  <div class="tool-card-header">
-    <span class="tool-tag">App Builder</span>
-    <h3 class="tool-name">Workshop.ai</h3>
-  </div>
-  <p class="tool-desc">Build real, full-stack apps from conversation. Cloud + Desktop, multi-model, one-click deploy.</p>
-  <a href="https://workshop.ai/invite?id=abe8fccc-cf3a-4fc9-bf61-35711438142a" class="tool-cta" target="_blank">Prova Workshop →</a>
-</div>
-
-<div class="section-divider"></div>
-
-<h2>II. Accio — L'Agente AI Aziendale di Alibaba</h2>
-
-<p><em>Accio Work</em> è la risposta di Alibaba al mondo degli agenti AI: una piattaforma <strong>desktop-first</strong> che non si limita a rispondere domande, ma esegue task aziendali reali attraverso skill e connettori integrati. Il suo punto di forza è il <strong>sourcing globale</strong>: analisi trend di mercato, ricerca fornitori internazionali, richieste di preventivo automatizzate. Disponibile anche su iOS e Android, porta l'automazione aziendale a portata di smartphone.</p>
-
-<div class="tool-card">
-  <div class="tool-card-header">
-    <span class="tool-tag">Business Automation</span>
-    <h3 class="tool-name">Accio Work</h3>
-  </div>
-  <p class="tool-desc">AI agent team by Alibaba. Sourcing globale, analisi trend, design automation — tutto da un'unica conversazione.</p>
-  <a href="https://www.accio.com/" class="tool-cta" target="_blank">Scopri Accio →</a>
-</div>
-
-<div class="section-divider"></div>
-
-<h2>III. SureThing — La Prima General AI Agency</h2>
+                
+<h2>I. SureThing — La Prima General AI Agency</h2>
 
 <p><em>SureThing</em> si definisce la prima <strong>General AI Agency</strong> al mondo: non un singolo agente, ma un vero team AI — COO, CMO, CTO, Researcher — con <strong>memoria condivisa</strong> e zero silos tra agenti. Mentre la maggior parte delle piattaforme offre agenti specializzati che non comunicano tra loro, SureThing coordina tutto in un'unica mente persistente connessa a <strong>1000+ app</strong>. Lavora in autonomia 24/7, gestisce email, calendar, ricerche e task operativi. Piano gratuito con 150 crediti giornalieri, piani pagati da $30/mese, SOC 2 compliant.</p>
-
+<p style="margin: 1rem; font-size: 1.2rem; color: var(--green);">Il nostro voto: 10/10</p>
 <div class="tool-card">
   <div class="tool-card-header">
     <span class="tool-tag">AI Agency</span>
     <h3 class="tool-name">SureThing.io</h3>
   </div>
+  <img src="coverimgs/surething.jpg" alt="SureThing interface" class="tool-screenshot" />      
   <p class="tool-desc">Il tuo team AI — COO, CMO e CTO — con memoria condivisa e integrazione con 1000+ app. Zero silos, attivo 24/7.</p>
   <a href="https://app.surething.io/invitation?ref=DB4RTN6S&utm_source=invitation&utm_medium=copy_link&utm_campaign=copy_link" class="tool-cta" target="_blank">Inizia con SureThing →</a>
+  <p class="tool-desc">Usando questo link guadagni 500 crediti extra grazie a Vivacity Design appena ti iscrivi</p>      
+</div>  
+                
+<div class="section-divider"></div>                
+
+<h2>II. Workshop — Costruisci App Reali da una Conversazione</h2>
+
+<p><em>Workshop</em> è una piattaforma AI che genera applicazioni reali — non prototipi — direttamente da conversazioni in linguaggio naturale. Disponibile in versione <strong>Cloud</strong> (browser) e <strong>Desktop</strong> (locale, con supporto a modelli LLM privati per chi ha requisiti di privacy), genera codice frontend + backend FastAPI, si connette a database enterprise (BigQuery, PostgreSQL, MongoDB, Snowflake) e API di terze parti (OpenAI, Claude, GitHub, Supabase). Il deploy è serverless one-click con autenticazione integrata.</p>
+<p style="margin: 1rem; font-size: 1.2rem; color: var(--green);">Il nostro voto: 9/10</p>
+<div class="tool-card">
+  <div class="tool-card-header">
+    <span class="tool-tag">App Builder</span>
+    <h3 class="tool-name">Workshop.ai</h3>
+  </div>
+  <img src="coverimgs/workshop.jpg" alt="Workshop interface" class="tool-screenshot" />      
+  <p class="tool-desc">Build real, full-stack apps from conversation. Cloud + Desktop, multi-model, one-click deploy.</p>
+  <a href="https://workshop.ai/invite?id=abe8fccc-cf3a-4fc9-bf61-35711438142a" class="tool-cta" target="_blank">Prova Workshop →</a>
+  <p class="tool-desc">Usando questo link guadagni 1500 crediti extra grazie a Vivacity Design appena passi ad un piano a pagamento</p>           
 </div>
 
 <div class="section-divider"></div>
 
+<h2>III. Accio — L'Agente AI Aziendale di Alibaba</h2>
+
+<p><em>Accio Work</em> è la risposta di Alibaba al mondo degli agenti AI: una piattaforma <strong>desktop-first</strong> che non si limita a rispondere domande, ma esegue task aziendali reali attraverso skill e connettori integrati. Il suo punto di forza è il <strong>sourcing globale</strong>: analisi trend di mercato, ricerca fornitori internazionali, richieste di preventivo automatizzate. Disponibile anche su iOS e Android, porta l'automazione aziendale a portata di smartphone.</p>
+<p style="margin: 1rem; font-size: 1.2rem; color: var(--green);">Il nostro voto: 8/10</p>
+<div class="tool-card">
+  <div class="tool-card-header">
+    <span class="tool-tag">Business Automation</span>
+    <h3 class="tool-name">Accio Work</h3>
+
+  </div>
+  <img src="coverimgs/accio.jpg" alt="Accio interface" class="tool-screenshot" />      
+  <p class="tool-desc">AI agent team by Alibaba. Sourcing globale, analisi trend, design automation — tutto da un'unica conversazione.</p>
+  <a href="https://www.accio.com/invite-work?sId=Q43QAJqXrS4H%2Bqf6ShZV0w%3D%3D&ic=IC660099274246&tenant=accio&src=p_referral_IC660099274246&return_url=https%3A%2F%2Fwww.accio.com%2Fwork%2F" class="tool-cta" target="_blank">Scopri Accio →</a>
+  <p class="tool-desc">Usando questo link guadagni 1000 crediti extra grazie a Vivacity Design appena passi ad un piano a pagamento</p>            
+</div>
+
+<div class="section-divider"></div>
+
+
 <h2>IV. Accomplish — Descrivi il Task, l'AI lo Esegue</h2>
 
 <p><em>Accomplish</em> incarna il principio più radicale dell'agentic AI: <strong>descrivi cosa vuoi fare, in linguaggio naturale, e l'AI lo fa</strong>. Senza workflow da configurare, senza nodi da collegare. La piattaforma integra Slack, Gmail, Google Sheets, Google Docs, LinkedIn e Yahoo Finance, e gestisce sia automazioni web (verifica link rotti, confronto staging/production) che task locali (organizzazione file). Un task scheduler e una libreria di prompt pre-built completano un'interfaccia volutamente minimalista.</p>
-
+<p style="margin: 1rem; font-size: 1.2rem; color: var(--green);">Il nostro voto: 7.5/10</p>
 <div class="tool-card accomplish-card">
   <div class="tool-card-header">
     <span class="tool-tag">Task Automation</span>
     <h3 class="tool-name">Accomplish</h3>
   </div>
-  <img src="https://surething.io/api/files/e861f5eb-559c-4c1b-bbfb-a8fc4456e435/download?t=YyF1sHOgOXrgwk3fHEmQwg.1779041884" alt="Accomplish — AI task automation interface" class="tool-screenshot" />
+  <img src="coverimgs/accomplish.jpg" alt="Accomplish interface" class="tool-screenshot" />
   <p class="tool-desc">Descrivi un task in linguaggio naturale. Accomplish lo esegue: web, email, spreadsheet, file locali.</p>
-  <span class="tool-cta-disabled">Prodotto in fase di lancio</span>
+  <a href="https://sourceforge.net/projects/accomplish.mirror/" class="tool-cta" target="_blank">Scarica Accomplish →</a>
 </div>
 
 <div class="highlight-box">

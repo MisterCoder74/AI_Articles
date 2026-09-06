@@ -313,7 +313,7 @@
 
 <p>Il layer server-side è gestito da <em>PHP</em>, che carica il file di configurazione e inietta le costanti nel frontend tramite <em>echo PHP</em> con <em>addslashes</em> per prevenire injection. Una scelta pragmatica che separa nettamente la configurazione sensibile dall'esecuzione client-side.</p>
 
-<img src="../assets/team_flow.jpg" alt="Workflow del sistema Team Virtuali Multi-Ruolo" class="cover-image" style="margin: 2rem 0;">
+<img src="./coverimgs/team_flow.jpg" alt="Workflow del sistema Team Virtuali Multi-Ruolo" class="cover-image" style="margin: 2rem 0;">
 
 <p>Il <strong>workflow conversazionale</strong> segue uno schema iterativo ben definito: l'utente fornisce un prompt iniziale a uno dei due agenti, che avvia una sequenza di scambi con la controparte. Gli agenti si confrontano, negoziano le scelte tecniche e progettuali, e il loop continua fino al raggiungimento del consenso — o fino al limite massimo di 10 scambi (<em>MAX_EXCHANGES=10</em>). Solo a quel punto viene prodotto il codice finale.</p>
 
@@ -345,7 +345,7 @@
 
 <p>Il frontend è costruito con <em>CSS Grid</em> in un layout responsive strutturato in tre sezioni verticali distinte. Il pannello superiore ospita l'input testuale e i pulsanti di controllo (<em>START</em>, <em>STOP</em>, <em>SAVE LOG</em>). La sezione centrale mostra gli <strong>indicatori di stato</strong>: un exchange counter che tiene traccia del numero di scambi effettuati e una barra di status che comunica lo stato del processo in tempo reale. La griglia inferiore presenta le due chatbox in parallelo, una per agente.</p>
 
-<img src="../assets/team_interface.jpg" alt="Interfaccia grafica del sistema conversazionale multi-agente" class="cover-image" style="margin: 2rem 0;">
+<img src="./coverimgs/team_interface.jpg" alt="Interfaccia grafica del sistema conversazionale multi-agente" class="cover-image" style="margin: 2rem 0;">
 
 <p>La scelta cromatica è tutt'altro che casuale: una palette con <strong>gradienti rosa-violetto</strong> identifica visivamente il Full Stack Developer, mentre <strong>ciano-blu</strong> contraddistingue il Project Manager. Ogni messaggio viene classificato con classi <em>CSS</em> differenziate — <em>from-bot1</em>, <em>from-bot2</em>, <em>thinking</em> — permettendo all'utente di seguire il filo del dialogo tra i due agenti senza ambiguità. La scelta della tipografia monospaciata <em>Courier New</em> per il contenuto tecnico rafforza ulteriormente la leggibilità del codice prodotto.</p>
 
@@ -362,6 +362,8 @@
 <p>Sul fronte della <strong>persistenza e della scalabilità</strong>, la dipendenza da un singolo file <em>JSON</em> per la knowledge base è adeguata per un prototipo ma rappresenta un collo di bottiglia evidente in scenari produttivi. L'integrazione con sistemi di <strong>RAG</strong> (<em>Retrieval-Augmented Generation</em>) o database vettoriali aprirebbe scenari di specializzazione molto più profondi e dinamici.</p>
 
 <div class="quote">I Team Virtuali Multi-Ruolo non sono semplicemente un'architettura tecnica più sofisticata. Sono un cambio di paradigma nel modo in cui concepiamo l'intelligenza artificiale applicata: non un oracolo onnisciente da interrogare, ma un team da coordinare. E forse, proprio in questa umiltà progettuale — nel riconoscere che anche le macchine pensano meglio quando collaborano — risiede la lezione più preziosa di questo lavoro.</div>
+<p>Riportiamo un link allo <a href="team_virtuali.pdf" style="color: var(--green); text-decoration: none;" download>studio completo</a> qui.</p>                  
+                
         </article>
     </main>
 
