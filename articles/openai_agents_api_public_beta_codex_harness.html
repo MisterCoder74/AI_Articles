@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents API di OpenAI: l'Infrastruttura di Codex Diventa un'API per Tutti | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="OpenAI lancia l'Agents API in beta pubblica: la stessa infrastruttura di Codex e ChatGPT for Work, accessibile a qualsiasi sviluppatore con una singola chiamata API, tra sandbox gestiti, subagenti paralleli e compattazione automatica del contesto.">
+    <meta name="keywords" content="OpenAI Agents API, Codex, harness agentico, sandbox AI, subagenti, Model Context Protocol, sviluppo agenti AI, tool calling">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Agents API di OpenAI: l'Infrastruttura di Codex Diventa un'API per Tutti | Pillole di AI">
+    <meta property="og:description" content="L'harness che alimenta Codex diventa un'API pubblica: agenti production-ready in una chiamata, sandbox a scelta, subagenti in parallelo.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-09-14T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Agents API di OpenAI: l'Infrastruttura di Codex Diventa un'API per Tutti">
+    <meta name="twitter:description" content="OpenAI Agents API in beta pubblica: l'infrastruttura di Codex accessibile a tutti gli sviluppatori, con sandbox gestiti e subagenti paralleli.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Agents API di OpenAI: l'Infrastruttura di Codex Diventa un'API per Tutti</h1>
+        <p>OpenAI apre in beta pubblica l'harness di Codex: un agente production-ready con una chiamata API. Cosa cambia nel workflow, cosa resta da verificare.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Settembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. L'Agents API: l'Harness di Codex Diventa Disponibile a Tutti</h2>
+
+<p>Il <strong>10 settembre 2026</strong> OpenAI ha annunciato l'<strong>Agents API</strong> in beta pubblica. Non è un nuovo framework da installare e mantenere. È l'esposizione diretta dell'infrastruttura che già alimenta <em>Codex</em> e <em>ChatGPT for Work</em>, resa disponibile a qualsiasi sviluppatore tramite una API HTTP.</p>
+
+<p>Il salto concettuale rispetto a marzo 2025 è netto. Con <em>Responses API</em> e <em>Agents SDK</em> OpenAI aveva fornito i mattoni client-side per costruire agenti: strumenti nativi, gestione dello stato, primi passi verso l'orchestrazione. Con l'<strong>Agents API</strong> il baricentro si sposta lato server. L'harness — la logica che decide quando chiamare uno strumento, come gestire il contesto, quando fermarsi — non lo scrive più lo sviluppatore. Lo gestisce OpenAI, centralmente, per tutti i clienti contemporaneamente.</p>
+
+<div class="highlight-box"><p>L'harness che alimenta <em>Codex</em> e <em>ChatGPT for Work</em> è ora richiamabile via API da qualsiasi sviluppatore, senza reimplementare la logica agentica da zero.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Un Agente Production-Ready in una Sola Chiamata</h2>
+
+<p>La promessa operativa è concreta: una singola chiamata API per ottenere un agente pronto per la produzione. Si specifica il task, il modello, gli strumenti disponibili e l'ambiente di esecuzione. Il resto — orchestrazione, ciclo di ragionamento, gestione degli errori — è a carico dell'infrastruttura OpenAI.</p>
+
+<p>Per chi ha già costruito agenti custom con framework open source, il cambio di paradigma è evidente. Non si scrive più il loop che decide "chiama lo strumento, valuta il risultato, decidi il prossimo passo". Si dichiara l'obiettivo e si sceglie dove far girare il calcolo. L'unica decisione architetturale che resta interamente in mano allo sviluppatore è l'ambiente: sandbox gestito da OpenAI, infrastruttura propria, o provider partner.</p>
+
+<p>Questo riduce drasticamente il tempo di setup per prototipi e MVP agentici. Ma sposta anche il controllo: meno codice da mantenere significa meno visibilità su cosa succede dentro il ciclo di esecuzione.</p>
+
+<div class="quote">Delegare l'harness a OpenAI significa guadagnare velocità di sviluppo, ma perdere la possibilità di intervenire sulla logica di orchestrazione quando qualcosa va storto in produzione. Per chi opera in settori regolati, questo trade-off va valutato prima, non dopo il deploy.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Scegliere l'Ambiente: Sandbox OpenAI o Provider Partner</h2>
+
+<p>La flessibilità dichiarata riguarda il dove, non il come. OpenAI ha stretto partnership con provider dell'ecosistema — <strong>Blaxel</strong>, <strong>Cloudflare</strong>, <strong>DigitalOcean</strong>, <strong>E2B</strong>, <strong>Modal</strong>, <strong>Oracle</strong>, <strong>Runloop</strong> e <strong>Vercel</strong> — per integrazioni di prima classe, sia su ambienti gestiti da questi provider sia all'interno del VPC dello sviluppatore.</p>
+
+<p>In alternativa c'è l'OpenAI hosted sandbox: un ambiente pronto all'uso che sfrutta la stessa infrastruttura di sandboxing di <em>Codex</em> e <em>ChatGPT for Work</em>. Qui OpenAI gestisce tutto, dalla configurazione dei file ai pacchetti installati, fino a skill e plugin specifici per il task. È la scelta più rapida per chi vuole iterare senza pensare a infrastruttura.</p>
+
+<p>Per team con requisiti di data residency, compliance o isolamento di rete, l'opzione VPC-based tramite i partner sandbox diventa invece il percorso obbligato. La scelta dell'ambiente, in altre parole, non è solo una questione di performance: è una decisione di governance dei dati che va presa a monte del progetto, non aggiustata in corsa.</p>
+
+<div class="highlight-box"><p>Sette provider partner — tra cui <em>Cloudflare</em>, <em>E2B</em> e <em>Vercel</em> — offrono integrazioni native con l'<strong>Agents API</strong>, in alternativa al sandbox hosted direttamente da OpenAI.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Un Harness che si Evolve: Compattazione del Contesto e Tool Search</h2>
+
+<p>Uno dei problemi ricorrenti nello sviluppo di agenti è la rigidità dell'harness rispetto ai progressi dei modelli. Ogni volta che un nuovo modello introduce capacità inedite, spesso serve riscrivere pezzi di logica di orchestrazione. L'<strong>Agents API</strong> promette accesso versionato a queste capacità a ogni rilascio, senza refactoring lato applicativo.</p>
+
+<p>Concretamente, due funzioni meritano attenzione. La prima è la compattazione automatica del contesto: quando una sessione lunga si avvicina al limite di contesto del modello, l'harness comprime le informazioni precedenti preservando ciò che serve per proseguire. Chi ha già dovuto implementare logiche manuali di summarization per gestire sessioni agentiche prolungate sa quanto tempo questo faccia risparmiare.</p>
+
+<p>La seconda è il tool search: le definizioni degli strumenti vengono caricate solo quando effettivamente necessarie, riducendo il consumo di token e preservando la cache del modello. A questo si affianca il programmatic tool calling, che permette di eseguire chiamate in parallelo, incatenare operazioni correlate e filtrare i risultati direttamente nel codice — utile quando l'agente deve lavorare su grandi volumi di dati portando in contesto solo l'essenziale.</p>
+
+<p>Il supporto al <strong>Model Context Protocol</strong>, insieme a funzioni custom e strumenti nativi come la ricerca web, completa il quadro: l'interoperabilità con l'ecosistema MCP resta un punto di contatto con strumenti esterni al perimetro OpenAI.</p>
+
+<div class="quote">La compattazione automatica del contesto risolve un dolore reale per chi costruisce agenti long-running. Ma "automatica" significa anche "non ispezionabile": se la compressione elimina un dettaglio critico per il task, il debug diventa più complesso, non più semplice.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Subagenti: Parallelizzare Ricerca, Analisi e Coding</h2>
+
+<p>Il supporto multi-agente nativo è forse la funzione più orientata alla produttività immediata. L'<strong>Agents API</strong> può scomporre un task complesso in parti indipendenti e delegarle a subagenti che lavorano in parallelo, ciascuno con contesto separato e focus ristretto sul proprio sotto-compito.</p>
+
+<p>L'agente principale funge da coordinatore: assegna il lavoro, raccoglie i risultati parziali e li ricompone in output finale. Il caso d'uso dichiarato copre ricerca, analisi dati e task di coding — ambiti in cui la parallelizzazione riduce tempi complessivi senza sacrificare la qualità del singolo passaggio.</p>
+
+<p>Chi ha già costruito orchestrazioni multi-agente con <em>LangChain</em> o <em>Crew AI</em> conosce la complessità di gestire stato condiviso, race condition e coordinamento tra agenti. Se l'implementazione OpenAI mantiene la promessa, questo lavoro di plumbing si azzera lato applicativo. Resta da capire, in assenza di test indipendenti, quanto sia robusta la gestione degli errori quando un subagente fallisce a metà esecuzione.</p>
+
+<div class="highlight-box"><p>I subagenti mantengono contesto separato e lavorano in parallelo su ricerca, analisi e coding: l'orchestrazione multi-agente non richiede più codice custom lato sviluppatore.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>VI. Cosa Significa Davvero (e Cosa Resta da Verificare)</h2>
+
+<p>Va detto con chiarezza: questa è una beta pubblica, non una general availability. OpenAI dichiara che itererà rapidamente sulla base del feedback ricevuto durante la beta, il che implica che superfici di API, comportamenti di default e persino alcune funzioni descritte in questo articolo potrebbero cambiare prima della versione stabile. Chi integra oggi l'<strong>Agents API</strong> in un prodotto in produzione deve considerarlo un rischio di roadmap, non un dettaglio marginale.</p>
+
+<p>Sul fronte economico, le tariffe esatte per token e modello seguono il pricing generale OpenAI, ma i costi specifici di runtime e sandbox — soprattutto per l'hosted sandbox e per le integrazioni con i provider partner — non sono stati dettagliati pubblicamente al lancio. Prima di dimensionare un budget di produzione, serve chiedere direttamente a OpenAI o attendere documentazione più granulare.</p>
+
+<p>Non esistono ancora benchmark indipendenti su latenza, affidabilità o costo reale in produzione dei subagenti paralleli e della compattazione automatica del contesto. Tutti i dati disponibili al momento provengono dall'annuncio ufficiale OpenAI: nessuna terza parte ha ancora pubblicato una valutazione comparativa.</p>
+
+<p>Infine, il punto strategico più rilevante per chi valuta l'adozione: l'<strong>Agents API</strong> lega esplicitamente lo sviluppatore all'infrastruttura e ai modelli OpenAI. È un vincolo diverso rispetto a framework come <em>LangChain</em> o <em>Crew AI</em>, agnostici rispetto al provider, e diverso anche dall'integrazione nativa di <em>Claude Agent SDK</em> dentro <em>Xcode 26.3</em> vista la settimana scorsa. In cambio di un harness pronto e mantenuto centralmente, si accetta un lock-in tecnologico. Per chi costruisce prodotti che devono restare multi-provider, questo è probabilmente il criterio decisivo più della singola feature.</p>
+
+<div class="quote">L'harness open source di <em>Codex</em> è ispezionabile su GitHub, ma l'esecuzione in produzione tramite Agents API resta un servizio gestito, non un progetto che si può forkare e portare altrove. La trasparenza del codice non equivale a portabilità dell'infrastruttura.</div>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Settembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
