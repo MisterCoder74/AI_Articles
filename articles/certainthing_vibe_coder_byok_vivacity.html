@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertainThing: il Vibe Coder che Mette la Trasparenza dei Costi al Centro | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="CertainThing è il vibe coder della AI Division di Vivacity Design: architettura BYOK, stack universale PHP/JS e un pannello di ragionamento sempre visibile. Report completo su origine, sviluppo agentico e posizionamento competitivo.">
+    <meta name="keywords" content="CertainThing, vibe coding, BYOK, Vivacity Design, sviluppo agentico, SureThing AI, Agentic Workspace, generazione codice AI">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="CertainThing: il Vibe Coder che Mette la Trasparenza dei Costi al Centro | Pillole di AI">
+    <meta property="og:description" content="Un vibe coder con costi trasparenti via BYOK, Agentic Workspace per progetti esistenti e reasoning sempre visibile: come si posiziona CertainThing nel panorama del vibe coding.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-09-15T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Strumenti">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CertainThing: il Vibe Coder che Mette la Trasparenza dei Costi al Centro">
+    <meta name="twitter:description" content="CertainThing: vibe coder BYOK con stack universale e reasoning trasparente, sviluppato interamente in modo agentico dalla AI Division di Vivacity Design.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>CertainThing: il Vibe Coder che Mette la Trasparenza dei Costi al Centro</h1>
+        <p>Nato nella AI Division di Vivacity Design, CertainThing propone un modello BYOK, uno stack universale e un pannello di ragionamento sempre visibile: un posizionamento di nicchia nel panorama del vibe coding.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Settembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Cos'è CertainThing e da Dove Nasce</h2>
+
+<p><strong>CertainThing</strong> nasce come iniziativa interna della AI Division di <em>Vivacity Design</em>, web agency con sede a Pomezia. L'obiettivo di partenza era costruire un vibe coder — uno strumento di sviluppo assistito da AI conversazionale — con un'interfaccia a doppio pannello (chat/reasoning da un lato, anteprima live del codice dall'altro), multimodale in ingresso, distribuibile su hosting PHP tradizionale, senza legare l'utente a piattaforme proprietarie o a un sistema di crediti opaco.</p>
+
+<p>Il percorso è stato incrementale: dalle fondamenta dello stack base tra il <strong>19 e il 23 maggio 2026</strong> (autenticazione, gestione server-side delle chiavi API, chat in streaming, input multimodale, export GitHub/ZIP/deploy), a un periodo di Early Access tra giugno e luglio con abbonamento Stripe, scraping siti e debugger, fino alla separazione formale tra versione di produzione e versione di sviluppo tra il <strong>19 e il 24 agosto</strong>. L'ultima settimana di sviluppo, tra il 27 e il 28 agosto, ha portato il prodotto allo stato che il team definisce "<em>backlog esaurito</em>": dashboard costi, gestione persistente degli asset immagine, e la messa a fuoco documentale dell'Agentic Workspace e della Prompt Library.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Uno Stack Vanilla e l'Architettura BYOK</h2>
+
+<p>La scelta tecnica più caratterizzante di CertainThing è la sua semplicità deliberata: HTML, CSS e JavaScript puri sul frontend, PHP sul backend, dati persistiti in file JSON piatti — nessun database relazionale da amministrare — e pagamenti gestiti tramite Stripe Checkout. Non è un compromesso ma una decisione di prodotto: qualunque hosting con supporto PHP, anche il più economico, può ospitare CertainThing e le applicazioni che genera, senza bisogno di Node.js, Docker o infrastrutture serverless.</p>
+
+<p>Il cuore del prodotto è l'architettura <strong>BYOK (Bring Your Own Key)</strong>: l'utente collega la propria chiave OpenAI e paga solo i token realmente consumati, con un fallback a cascata — chiave utente, poi chiave condivisa di trial, infine variabile d'ambiente — e una dashboard dedicata che distingue i consumi su chiave propria da quelli su chiave condivisa.</p>
+
+<div class="highlight-box"><p>Il modello BYOK inverte la logica dei pacchetti di crediti proprietari tipici del settore: l'utente vede, chiamata per chiamata, quanto sta effettivamente spendendo in token, non un saldo crediti che si esaurisce senza preavviso a metà di un progetto.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. Un Processo di Sviluppo Interamente Agentico</h2>
+
+<p>Il tratto più insolito del progetto non è però lo stack finale, ma il modo in cui è stato scritto. CertainThing non è stato sviluppato da un team che segue ticket in uno sprint: è stato costruito attraverso un processo di sviluppo agentico su <strong>SureThing AI</strong>, la piattaforma digital-twin di Super Intent Inc. Un singolo Project Agent dedicato ha ricoperto, in cicli iterativi, i ruoli tipici di un team — analisi dei requisiti espressi in linguaggio naturale, implementazione diretta del codice PHP/JS, debug e correzione, verifica pre-deploy, e mantenimento della documentazione bilingue.</p>
+
+<p>Ogni funzionalità del prodotto — dal pannello di reasoning trasparente alla gestione degli asset, dall'Agentic Workspace alla dashboard costi — è il risultato di uno scambio conversazionale tra l'ideatore e questo agente, seguito da produzione di codice reale e consegna in pacchetti pronti per il deploy. Non un prototipo dimostrativo: un prodotto commerciale con utenti paganti e dati di produzione reali.</p>
+
+<div class="section-divider"></div>
+
+<h2>IV. I Numeri dello Sviluppo: Crediti, Run e Costo Stimato</h2>
+
+<p>L'intero ciclo di sviluppo, dal primo MVP allo stato attuale di backlog esaurito, è stato seguito da <strong>1 Agente</strong> su <strong>327 Run</strong>, per un totale di <strong>11.276,6 crediti</strong> consumati. Ogni run corrisponde a un ciclo di esecuzione end-to-end — una richiesta, un fix, una verifica, un aggiornamento di documentazione — elaborato dall'istruzione alla consegna del risultato: un numero che riflette l'intensità iterativa tipica dello sviluppo conversazionale, fatta di molte piccole rifiniture oltre alle implementazioni maggiori.</p>
+
+<p>Applicando i tassi di conversione crediti↔valuta pubblicati nel listino SureThing (circa $0,005/credito sui piani in abbonamento, circa $0,01/credito sui pacchetti di ricarica Top Up), il costo computazionale complessivo si colloca in una forchetta stimata tra <strong>$56 e $113</strong> (circa €52–€105). È una stima ragionata sui tassi pubblicati, non un dato di fatturazione diretto: il costo reale dipende dal piano dell'utente e dal mix di modelli usato nei singoli run.</p>
+
+<div class="quote">327 run per un singolo prodotto commerciale, seguiti da un solo agente senza suddivisione del lavoro, raccontano uno sviluppo fortemente sequenziale: ogni nuova funzione si costruisce sul contesto delle decisioni già prese nelle sessioni precedenti, non su rami paralleli.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Tre Assi di Differenziazione nel Panorama del Vibe Coding</h2>
+
+<p>Il vibe coding — sviluppo software guidato dall'intento espresso in linguaggio naturale — è passato in meno di due anni da curiosità sperimentale a categoria di prodotto affermata, con player finanziati da centinaia di milioni di dollari. CertainThing si inserisce in questo spazio affollato su tre assi specifici: la già citata trasparenza dei costi via BYOK; l'<strong>Agentic Workspace</strong>, che permette di caricare un intero progetto esistente via ZIP preservandone la struttura reale e di lavorarci sopra con lo stesso paradigma conversazionale, con uno step di scoping preliminare che decide quali file sono coinvolti prima di modificarli; e la trasparenza del ragionamento, con un'interfaccia a doppio pannello che mantiene sempre visibile il processo di pianificazione dell'AI invece di trattarlo come una scatola nera.</p>
+
+<p>Nel complesso, il prodotto non compete sulla sofisticazione del modello sottostante — usa API OpenAI standard, non un modello proprietario — ma su un pacchetto di scelte pensate per un segmento specifico: piccole agenzie, freelance, PMI e sviluppatori che vogliono prototipare rapidamente senza legarsi a un ecosistema di crediti proprietario.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Come si Colloca Rispetto alla Concorrenza</h2>
+
+<p>Il confronto con gli strumenti già affermati del settore è volutamente onesto: su alcuni fronti — qualità del modello sottostante, integrazione IDE profonda come <em>Cursor</em> o <em>Windsurf</em>, scala enterprise come <em>GitHub Copilot Workspace</em> — CertainThing non pretende di competere alla pari con concorrenti che hanno team dedicati da anni. Il suo vantaggio è concentrato: mentre <em>Replit Agent</em>, <em>Bolt.new</em>, <em>Lovable</em> e <em>v0</em> di Vercel vendono in prevalenza crediti proprietari e orientano l'output verso stack framework-specifici (spesso React/Next.js), CertainThing resta su uno stack universale a bassa barriera di hosting, con un modello di costo BYOK e un Agentic Workspace pensato esplicitamente per estendere progetti già esistenti, non solo per generarli da zero.</p>
+
+<div class="highlight-box"><p>Il target dichiarato non è lo sviluppatore enterprise già dotato di un ambiente strutturato, ma freelance, piccole agenzie e chi prototipa rapidamente senza voler dipendere da un fornitore di crediti proprietari — un segmento meno servito dai grandi player del vibe coding.</p></div>
+
+<p>Ideatore del progetto è <strong>Alessandro Demontis</strong>, all'interno della AI Division di Vivacity Design, web agency con sede a Pomezia (RM).</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Settembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
