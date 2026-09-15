@@ -3,10 +3,13 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (47 generati)
+## Articoli (50 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Settembre 2026 | [CertainThing: il Vibe Coder che Mette la Trasparenza dei Costi al Centro](articles/certainthing_vibe_coder_byok_vivacity.html) | Strumenti AI | 5 min |
+| Settembre 2026 | [Agents API di OpenAI: l'Infrastruttura di Codex Diventa un'API per Tutti](articles/openai_agents_api_public_beta_codex_harness.html) | Strumenti di Sviluppo AI | 6 min |
+| Settembre 2026 | [Xcode 26.3 Diventa Agentico: Claude Agent SDK e Codex Entrano Nativamente nell'IDE di Apple](articles/xcode_263_agentic_coding_claude_agent_sdk.html) | Strumenti di Sviluppo AI | 5 min |
 | Settembre 2026 | [Pianificazione di un Flusso Conversazionale: Guida Pratica al Design dei Chatbot](articles/flusso_conversazionale_chatbot_design.html) | Tutorial AI | 6 min |
 | Agosto 2026 | [Gemini 3.7 Flash: Google Accorcia i Cicli di Rilascio e Dimezza il Prezzo](articles/google_gemini_3_7_flash_workhorse_coding.html) | Nuovi Modelli AI | 6 min |
 | Agosto 2026 | [Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent](articles/jetbrains_survey_2026_claude_code_domina.html) | Strumenti di Sviluppo AI | 6 min |
@@ -56,4 +59,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Febbraio 2023 | [ChatGPT e la programmazione](articles/chatgpt_e_la_programmazione.html) | Dev & AI | 4 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-09-06*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-09-15*
