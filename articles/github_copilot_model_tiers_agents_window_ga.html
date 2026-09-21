@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot Sceglie il Modello per Te: Arrivano i Livelli Efficienza, Equilibrio, Intelligenza | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="GitHub Copilot introduce tre livelli di selezione automatica del modello (Efficienza, Equilibrio, Intelligenza), le metriche di utilizzo della finestra Agents in GA, il supporto ai Dev Container locali e un canvas Sentry dal crash alla pull request.">
+    <meta name="keywords" content="GitHub Copilot, model picker, selezione automatica del modello, VS Code Agents window, Dev Containers, Sentry, code review AI, GPT-6 Astra, agenti di coding">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="GitHub Copilot Sceglie il Modello per Te: Arrivano i Livelli Efficienza, Equilibrio, Intelligenza | Pillole di AI">
+    <meta property="og:description" content="Copilot lascia scegliere come instradare i modelli, misura l'adozione della modalità agentica e collega Sentry direttamente alla pull request: il weekly release del 18 settembre 2026.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-09-21T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Strumenti">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GitHub Copilot Sceglie il Modello per Te: Arrivano i Livelli Efficienza, Equilibrio, Intelligenza">
+    <meta name="twitter:description" content="GitHub Copilot: nuovi livelli Efficienza/Equilibrio/Intelligenza per la scelta del modello, metriche Agents in GA, Dev Container locali, canvas Sentry.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>GitHub Copilot Sceglie il Modello per Te: Arrivano i Livelli Efficienza, Equilibrio, Intelligenza</h1>
+        <p>Tre livelli per il model picker, code review più pulita, Dev Containers negli Agents e Sentry integrato: cosa cambia dal 18 settembre 2026.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Settembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Un Aggiornamento Settimanale, Quattro Novità Operative</h2>
+
+<p>Il changelog settimanale di <strong>GitHub Copilot</strong> pubblicato il <strong>18 settembre 2026</strong> non introduce un nuovo modello né una feature isolata. Copre la settimana del 14 settembre e tocca quattro fronti distinti: il modo in cui Copilot sceglie automaticamente quale modello usare, la pulizia della code review, la misurabilità dell'uso agentico in <em>VS Code</em>, e l'ingresso di <em>Sentry</em> come canvas nativo nella <em>Copilot app</em>.</p>
+
+<p>Non è un rilascio da titolo urlato. È il tipo di aggiornamento che si nota solo lavorando, giorno dopo giorno, dentro l'editor, la CLI o l'app desktop. Per chi guida un team di sviluppo, però, sono proprio questi cambiamenti — instradamento, rumore ridotto, osservabilità, integrazione con gli strumenti di incident response già in uso — a determinare se Copilot resta un autocompletamento evoluto o diventa infrastruttura operativa.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. Efficienza, Equilibrio, Intelligenza: Scegliere Come Copilot Sceglie il Modello</h2>
+
+<p>La novità più visibile riguarda la selezione automatica del modello. <strong>GitHub Copilot</strong> introduce tre livelli — <strong>Efficienza</strong>, <strong>Equilibrio</strong> e <strong>Intelligenza</strong> — ciascuno con un peso diverso tra costo, qualità della risposta e tempo di latenza. Il rollout riguarda <em>VS Code</em>, <em>Copilot CLI</em> e la <em>Copilot app</em> contemporaneamente, anche se non in modo uniforme per tutti gli utenti.</p>
+
+<p>Un chiarimento tecnico è importante: i tre livelli non cambiano l'elenco dei modelli disponibili. Attingono tutti dallo stesso pool — quello in cui è comparso anche <em>GPT-6 Astra</em> il 4 settembre 2026 in disponibilità generale. Cambia solo il criterio decisionale interno: quanto Copilot privilegia la velocità rispetto alla profondità di ragionamento per una data richiesta.</p>
+
+<div class="highlight-box"><p>I tre livelli — Efficienza, Equilibrio, Intelligenza — non ampliano la lista di modelli accessibili: modificano soltanto la logica con cui Copilot ne sceglie uno per ogni richiesta.</p></div>
+
+<div class="quote">GitHub non pubblica quali segnali — lunghezza del task, tipo di richiesta, storico di sessione — alimentano la scelta automatica all'interno di ciascun livello. Per un team lead che deve giustificare costi in crediti AI, questa opacità resta il vero punto interrogativo: si sceglie un livello per intuizione, non per dati verificabili.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Code Review Più Silenziosa: Meno Rumore, Commit Message Automatici</h2>
+
+<p>Chi usa la code review di Copilot su base quotidiana conosce il problema: commenti che restano aperti anche dopo essere stati risolti in una revisione successiva, thread che si accumulano senza reale valore informativo. Da questa settimana, Copilot risolve automaticamente i commenti già affrontati, lasciando visibili solo i feedback ancora da gestire. È una riduzione di rumore, non una nuova capacità di analisi.</p>
+
+<p>In parallelo, quando si applica un suggerimento di codice proposto da Copilot, l'assistente ora suggerisce anche il messaggio di commit corrispondente. Piccolo dettaglio, ma coerente con un pattern: meno passaggi manuali tra suggerimento e merge.</p>
+
+<p>Le review possono inoltre usare strumenti da shell per validare le modifiche proposte prima di segnalarle, e le review in modalità "Lite" ora combinano i risultati di più agenti in un'unica valutazione, invece di produrre output frammentati.</p>
+
+<div class="quote">Automatizzare la risoluzione dei commenti riduce il carico cognitivo sulle pull request lunghe, ma sposta la responsabilità di verifica: se Copilot marca un thread come risolto per errore, la traccia va cercata nella cronologia, non più nel thread visibile.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. La Finestra Agents Diventa Misurabile (e Lavora nei Dev Container Locali)</h2>
+
+<p>Le metriche di utilizzo della finestra <em>Agents window</em> dedicata di <strong>VS Code</strong> raggiungono la disponibilità generale, ma solo per i clienti Business ed Enterprise. I report a livello di organizzazione includono utenti attivi giornalieri, conteggio delle sessioni e totale dei messaggi utente, oltre a dati di attività per singolo utente. Sono metriche separate da quelle della finestra editor: misurano l'adozione della modalità agentica autonoma, non l'uso di Copilot come autocompletamento in linea.</p>
+
+<p><strong>VS Code 1.138</strong> introduce inoltre il supporto ai <strong>Dev Containers</strong> locali direttamente nella finestra Agents. Gli agenti possono eseguire task con gli strumenti e le dipendenze effettive del progetto, non in un ambiente generico astratto dal contesto reale del repository. Il rollout è graduale e richiede Docker installato e una configurazione Dev Container già presente nel progetto.</p>
+
+<p>Nella stessa release, le sessioni inattive possono essere marcate automaticamente come "Done" una volta che tutte le pull request collegate sono state unite, con cancellazione opzionale dopo un periodo di grazia — funzionalità opt-in, ancora in anteprima. È inoltre possibile creare pull request direttamente dalle sessioni della finestra Agents: si rivede titolo e descrizione generati, si sceglie lo stato di draft, e si procede senza uscire dall'interfaccia.</p>
+
+<div class="highlight-box"><p>Le metriche GA della finestra Agents sono riservate ai piani Business ed Enterprise: chi lavora con Copilot Pro o Pro+ non ha accesso agli stessi report aggregati di adozione.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>V. Da Sentry alla Pull Request Senza Uscire dalla Copilot App</h2>
+
+<p>La <em>Copilot app</em> guadagna un canvas dedicato a <strong>Sentry</strong>: dai report di crash in produzione si passa direttamente alla correzione del codice, senza cambiare strumento. Si possono revisionare errori, stack trace e contesto correlato, poi lavorare con Copilot per indagare la causa, validare una correzione e preparare una pull request.</p>
+
+<p>Il canvas Sentry si affianca a quelli già esistenti per <em>Azure DevOps</em> e <em>Jira</em>. Il pattern è chiaro: la Copilot app si posiziona come punto di raccolta tra strumenti di tracking, incident response e generazione di codice, provando a comprimere il ciclo che va dalla segnalazione dell'errore alla pull request pronta per la review.</p>
+
+<p>Tra gli aggiornamenti minori per gli amministratori, Copilot può ora suggerire i valori per le custom properties dei repository — in anteprima pubblica — e le organizzazioni con fatturazione a consumo possono richiedere un budget più alto quando raggiungono il proprio limite di crediti AI, con approvazione da parte di owner o billing manager.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Cosa Cambia Davvero (e Cosa Resta da Verificare)</h2>
+
+<p>Vale la pena essere precisi sui limiti di questo aggiornamento, prima di adottarlo acriticamente in un flusso di lavoro di team. Primo: <strong>GitHub</strong> non ha pubblicato alcun benchmark comparativo pubblico tra i tre livelli Efficienza, Equilibrio e Intelligenza. Non è possibile, sulla base dei soli materiali ufficiali, quantificare quanto cambi realmente il costo in crediti o la qualità delle risposte passando da un livello all'altro. Chi valuta l'adozione dovrà testare empiricamente sui propri task.</p>
+
+<p>Secondo: il rollout dei livelli di selezione automatica è descritto come progressivo su <em>VS Code</em>, CLI e app. Non tutti gli utenti li vedranno contemporaneamente, e le tempistiche non sono garantite in modo uniforme.</p>
+
+<p>Terzo: le metriche GA della finestra Agents restano un privilegio dei piani Business ed Enterprise — un limite concreto per i team più piccoli su Pro o Pro+ che vogliono misurare l'adozione interna della modalità agentica.</p>
+
+<p>Quarto: il supporto Dev Containers nella finestra Agents non è un'estensione automatica. Richiede Docker installato e una configurazione Dev Container già esistente nel repository: chi non ha ancora adottato questo standard non ne beneficia immediatamente, e non c'è un percorso guidato di migrazione incluso in questo rilascio.</p>
+
+<p>Infine, un confronto utile con la settimana precedente: l'Agents API di OpenAI, annunciata pochi giorni prima, offriva un harness lato server per costruire agenti da zero. Questo aggiornamento di Copilot copre l'altro lato del problema — non la costruzione di un agente, ma la sua gestione operativa quotidiana: instradamento dei modelli, osservabilità dell'adozione, integrazione con gli strumenti di incident response già in uso nei team.</p>
+
+<div class="quote">Chi lavora ogni giorno con Copilot non deve aspettarsi un salto di capacità del modello questa settimana. Deve aspettarsi meno attrito: meno rumore nelle review, meno passaggi tra crash report e pull request, più visibilità — se il piano lo consente — su come il team usa davvero gli agenti.</div>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Settembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
