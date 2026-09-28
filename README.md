@@ -3,11 +3,10 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (54 generati)
+## Articoli (53 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
-| Settembre 2026 | [Claude Code Projects: da Cartella a Conversazione, un Coordinatore per i Thread Agentici](articles/claude_code_projects_redesign_coordinator_threads.html) | Strumenti di Sviluppo AI | 7 min |
 | Settembre 2026 | [GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza](articles/openai_gpt6_sol_luna_api_pricing_caching.html) | Nuovi Modelli AI | 6 min |
 | Settembre 2026 | [GitHub Copilot Sceglie il Modello per Te: Arrivano i Livelli Efficienza, Equilibrio, Intelligenza](articles/github_copilot_model_tiers_agents_window_ga.html) | Strumenti di Sviluppo AI | 6 min |
 | Settembre 2026 | [AEO: la Nuova Frontiera del Web o l'Ennesimo Hype del Marketing Digitale?](articles/aeo_hype_marketing_o_nuova_frontiera.html) | Critica AI | 5 min |
