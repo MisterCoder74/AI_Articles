@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="OpenAI lancia GPT-6 Sol e GPT-6 Luna: stessi metodi di addestramento di GPT-6 Astra su modelli più veloci ed economici, prezzi API dimezzati, guadagni su AutomationBench, FrontierCode e OSWorld 2.0, e nuovi controlli di prompt caching per agenti.">
+    <meta name="keywords" content="GPT-6 Sol, GPT-6 Luna, GPT-6 Astra, OpenAI, prezzi API, prompt caching, Codex, AutomationBench, FrontierCode, DeepSWE, OSWorld 2.0, Claude Opus 5.5">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza | Pillole di AI">
+    <meta property="og:description" content="GPT-6 Sol e Luna distribuiscono l'intelligenza di Astra a costi molto più bassi: prezzi API dimezzati, benchmark su automazione e coding, caching potenziato per agenti — il lancio OpenAI del 22 settembre 2026.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-09-28T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza">
+    <meta name="twitter:description" content="OpenAI: GPT-6 Sol e Luna, prezzi API a -50%, benchmark su AutomationBench/FrontierCode/OSWorld 2.0, caching potenziato per agenti e Codex.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza</h1>
+        <p>GPT-6 Sol e Luna dimezzano i prezzi API e avvicinano le prestazioni di Astra: cosa cambia per chi progetta agenti di coding.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Settembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Due Nuovi Modelli, un Solo Obiettivo: Distribuire l'Intelligenza di Astra</h2>
+
+<p>Il <strong>22 settembre 2026</strong> OpenAI ha ampliato la famiglia GPT-6 con due nuovi modelli: <strong>GPT-6 Sol</strong> e <strong>GPT-6 Luna</strong>. Arrivano poche settimane dopo <strong>GPT-6 Astra</strong>, presentato a inizio mese come il modello di punta della famiglia. Astra resta il riferimento per i progetti più complessi e non viene sostituito da nessuno dei due nuovi arrivati.</p>
+
+<p>Il posizionamento dichiarato è diverso: Sol e Luna condividono con Astra metodi di addestramento simili, ereditandone i progressi su lavoro professionale, factuality, coding, uso del computer e alignment. L'obiettivo, nelle parole di OpenAI, è "distribuire i benefici" di quell'intelligenza su modelli più veloci ed economici. Non si tratta quindi di spingere ulteriormente la frontiera della capacità, ma quella dell'efficienza di costo — una distinzione che conta per chi deve scegliere quale modello mettere in produzione su larga scala.</p>
+
+<div class="highlight-box"><p>GPT-6 Sol e Luna non superano Astra: lo rendono economicamente accessibile su scala, avvicinandosi alle sue prestazioni a una frazione del costo.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Prezzi Dimezzati: Cosa Cambia per chi Costruisce su API</h2>
+
+<p>Il dato più concreto per chi lavora su <em>API</em> riguarda i prezzi. OpenAI ha tagliato del <strong>50%</strong> i costi di GPT-6 Sol e Luna rispetto al prezzo dei corrispettivi GPT-5.6. L'azienda attribuisce la riduzione a miglioramenti di caching e inferenza che abbassano i costi di erogazione, "passati direttamente" agli sviluppatori.</p>
+
+<p>Per un team che gestisce agenti di automazione con volumi elevati di chiamate, un dimezzamento del costo per token cambia i calcoli di sostenibilità di workflow che prima venivano scartati perché troppo costosi. Va però letto con attenzione: il confronto è fatto sul prezzo promozionale di GPT-5.6, non su un listino stabile nel tempo. Chi pianifica budget su base annuale dovrebbe considerarlo un dato indicativo del momento, non una baseline fissa.</p>
+
+<div class="quote">Un taglio del 50% suona bene in un annuncio, ma la domanda operativa è un'altra: rispetto a quale prezzo, misurato quando, e per quanto resterà stabile? Prima di ridisegnare il budget di un'infrastruttura agentica su questo numero, vale la pena aspettare un ciclo di fatturazione reale.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. I Numeri dei Benchmark: Automazione, Coding e Uso del Computer</h2>
+
+<p>Sul fronte prestazioni, OpenAI cita diversi confronti diretti con i modelli concorrenti di <em>Claude Opus 5</em> e <em>Claude Fable 5.1</em>. Su <strong>AutomationBench</strong> — workflow aziendali end-to-end su 47 strumenti — GPT-6 Sol a effort "xhigh" supera Claude Opus 5 al massimo effort, con un costo per task pari al <strong>9%</strong> di quello del concorrente. GPT-6 Luna, a effort alto, migliora il proprio predecessore di 5,4 punti percentuali con un costo per task inferiore del 58%.</p>
+
+<p>Su <strong>Agents' Last Exam</strong>, benchmark orientato ai workflow professionali complessi, GPT-6 Sol al massimo effort raggiunge il 56,4%, sopra il punteggio più alto registrato da Claude Opus 5, con un costo per task inferiore del 60%. Sulla factuality — misurata su conversazioni reali de-identificate in cui gli utenti avevano segnalato errori — GPT-6 Sol dimezza circa gli errori del proprio predecessore, avvicinandosi all'affidabilità di Astra a un costo molto più basso.</p>
+
+<p>Per il coding, i numeri più rilevanti per gli sviluppatori arrivano da <strong>FrontierCode</strong> e <strong>DeepSWE v1.1</strong>. Su FrontierCode — modifiche pronte per il merge in codebase reali — GPT-6 Sol migliora sensibilmente rispetto a GPT-5.6 Sol e raggiunge Claude Fable 5.1 a effort "xhigh" con un costo molto inferiore. Su DeepSWE v1.1, GPT-6 Sol al massimo effort segna 68,8%, contro il 69,9% del punteggio più alto di Claude Fable 5, ma con circa l'80% in meno di costo per task. Su <strong>OSWorld 2.0</strong> offline, benchmark sull'uso del computer, GPT-6 Sol a effort "xhigh" ottiene 60,5% contro il 60,3% di Claude Opus 5 a effort medio, sempre con circa l'80% in meno di costo per task.</p>
+
+<div class="highlight-box"><p>Il pattern comune ai benchmark citati non è "prestazioni superiori", ma "prestazioni comparabili a costo drasticamente inferiore" — la metrica che conta davvero per chi scala agenti in produzione.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Caching più Intelligente per Agenti e Conversazioni Lunghe</h2>
+
+<p>Per chi costruisce agenti che mantengono contesto su sessioni lunghe, la parte più operativa dell'annuncio riguarda il <em>prompt caching</em>. OpenAI dichiara tassi di cache hit più alti di default per GPT-6, con sconti del 90% sui token di input letti dalla cache. Arrivano anche due strumenti concreti: una dashboard di prompt caching che mostra quanto input viene servito dalla cache e come cambia nel tempo, e uno strumento di diagnostica che spiega le occasioni di cache mancate.</p>
+
+<p>Sul piano tecnico, ora è possibile regolare l'effort di ragionamento e abilitare o disabilitare strumenti senza invalidare la cache, oltre a impostare breakpoint espliciti per decidere dove termina il prefisso di prompt messo in cache. Sono dettagli che incidono direttamente sulla progettazione di agenti che alternano fasi di ragionamento leggero e pesante nello stesso flusso.</p>
+
+<p>GitHub riporta che questi miglioramenti hanno ridotto di oltre il 50%, su miliardi di richieste, la quota di token di prompt che richiedono elaborazione da zero, con effetti positivi sulla latenza di <em>GitHub Copilot</em>. È un dato citato nello stesso annuncio OpenAI, non un caso di studio indipendente su questo articolo, ma indica dove i benefici del caching si traducono in produzione reale.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Dove Trovarli (e Dove Non Ancora)</h2>
+
+<p>GPT-6 Sol e GPT-6 Luna sono disponibili da subito in <em>ChatGPT Work</em> e in <em>Codex</em> per gli utenti Plus, Pro, Business, Enterprise ed Edu. Gli utenti Free e Go possono accedere a GPT-6 Luna nell'app desktop. Non sono ancora disponibili nell'interfaccia Chat generica. Nell'API OpenAI compaiono con gli identificativi <strong>gpt-6-sol</strong> e <strong>gpt-6-luna</strong>. Il rollout in ChatGPT procede in modo graduale nel corso della giornata di lancio, quindi non tutti gli account vedono i modelli nello stesso momento.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Cosa Cambia Davvero (e Cosa Resta da Verificare)</h2>
+
+<p>Prima di riscrivere strategie di adozione basate solo su questo annuncio, alcuni caveat vanno tenuti presenti. Tutti i confronti di benchmark citati — su <strong>AutomationBench</strong>, Agents' Last Exam, <strong>FrontierCode</strong>, <strong>DeepSWE v1.1</strong> e <strong>OSWorld 2.0</strong> — sono riportati da OpenAI stessa, non verificati da terze parti indipendenti. Alcune note nello stesso annuncio segnalano limiti nei dati dei concorrenti: per esempio, il costo dichiarato da Claude Fable 5.1 su AutomationBench ometterebbe il costo dei fallback su Opus 5 in circa il 40% dei task, un dettaglio che rende quel confronto meno diretto di quanto sembri a prima lettura.</p>
+
+<div class="quote">Un benchmark interno che mostra il proprio modello vincere non è una notizia falsa, ma è una fonte parziale per definizione. La domanda utile per un team tecnico non è "chi vince nel report", ma "questi numeri reggono nel nostro workload specifico, con i nostri costi reali di fallback e retry?".</div>
+
+<p>Il taglio di prezzo del 50% è calcolato sul prezzo promozionale di GPT-5.6, non su un listino stabile: un dato reale ma che richiede cautela quando si proiettano costi su base annuale. Lo stesso 22 settembre 2026, Anthropic ha rilasciato <em>Claude Opus 5.5</em>, concorrente diretto in diversi dei benchmark citati sopra. Questo articolo racconta il posizionamento di prezzo ed efficienza di OpenAI all'interno della propria famiglia GPT-6, non un confronto testa a testa aggiornato con l'uscita di Anthropic: quella verifica indipendente arriverà, presumibilmente, nelle prossime settimane.</p>
+
+<p>Va infine ricordato che GPT-6 Astra resta il modello di riferimento per l'uso del computer e per i task più esigenti: Sol e Luna competono sul rapporto costo/prestazioni, non spostano il vertice della capacità. Rispetto alla notizia della settimana precedente — i livelli Efficienza, Equilibrio e Intelligenza con cui GitHub Copilot instrada tra i modelli già disponibili — questo aggiornamento riguarda l'altro lato del problema: non come un prodotto sceglie tra modelli esistenti, ma l'arrivo di due modelli nuovi con una propria politica di prezzo e caching, che i team dovranno valutare con i propri dati, non solo con quelli dell'annuncio.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Settembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
