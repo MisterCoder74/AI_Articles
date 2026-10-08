@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 3.8 Flash: Più Ragionamento e Codice allo Stesso Prezzo, e una Versione Cyber a Porte Chiuse | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gemini 3.8 Flash porta più ragionamento e coding allo stesso prezzo di 3.7 Flash; la variante Cyber è riservata ai difensori del Fairwind Program. Cosa cambia, costi e limiti.">
+    <meta name="keywords" content="Gemini 3.8 Flash, Gemini 3.8 Flash Cyber, Google DeepMind, Fairwind Program, Gemini API, Antigravity, modelli AI, coding agentico">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Gemini 3.8 Flash: Più Ragionamento e Codice allo Stesso Prezzo, e una Versione Cyber a Porte Chiuse | Pillole di AI">
+    <meta property="og:description" content="Terza release Flash in sei settimane: Gemini 3.8 Flash a 0,75 $/3,75 $ per milione di token e Flash Cyber solo per difensori fidati.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-10-08T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gemini 3.8 Flash: Più Ragionamento e Codice allo Stesso Prezzo, e una Versione Cyber a Porte Chiuse">
+    <meta name="twitter:description" content="Gemini 3.8 Flash: più coding e ragionamento, stesso prezzo; Flash Cyber solo via Fairwind Program.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Gemini 3.8 Flash: Più Ragionamento e Codice allo Stesso Prezzo, e una Versione Cyber a Porte Chiuse</h1>
+        <p>Google rilascia Gemini 3.8 Flash, terza release Flash in sei settimane, e la variante Cyber riservata ai difensori del Fairwind Program. Più ragionamento, stesso prezzo di listino.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Ottobre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Terza Release Flash in Sei Settimane</h2>
+
+<p>Google ha presentato <em>Gemini 3.8 Flash</em> e <em>Gemini 3.8 Flash Cyber</em>. L'annuncio, pubblicato sul blog dell'azienda, è firmato da Raluca Ada Popa, Gemini Security Lead di Google DeepMind. Rientra nel recap Google AI di settembre 2026.</p>
+
+<p>Il dato che colpisce è la cadenza. Il nuovo modello arriva circa <strong>tre settimane</strong> dopo <em>Gemini 3.7 Flash</em> ed è la <strong>terza release Flash in sei settimane</strong>. Per chi integra questi modelli in prodotti reali, il ritmo ha un costo: valutazioni, test di regressione e migrazioni da ripetere a intervalli molto brevi.</p>
+
+<p>Secondo Google, <strong>Gemini 3.8</strong> è il suo miglior modello di ragionamento e coding finora, con la stessa velocità e lo stesso costo di <strong>3.7 Flash</strong>. Le varianti sono due. <em>Gemini 3.8 Flash</em> è il modello generalista, il "workhorse". <em>Gemini 3.8 Flash Cyber</em> è dedicato alla sicurezza informatica e ha una distribuzione molto diversa, come si vedrà più avanti.</p>
+
+<div class="highlight-box"><p>Circa <strong>3 settimane</strong> da 3.7 Flash. Prezzo introduttivo invariato: <strong>0,75 $</strong> per milione di token in input, <strong>3,75 $</strong> in output.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Cosa Cambia Davvero in 3.8 Flash: Ragionamento, Coding, Agenti</h2>
+
+<p>I miglioramenti dichiarati riguardano tre aree: ingegneria del software, compiti agentici e ragionamento multi-step in domini specializzati. Sono le aree in cui un modello deve pianificare, usare strumenti e correggersi, non solo rispondere a una domanda.</p>
+
+<p>Sul benchmark <strong>DeepSWE v1.1</strong>, dedicato all'ingegneria del software a lungo orizzonte, Google afferma che <em>3.8 Flash</em> supera la maggior parte dei modelli frontier più grandi, a una frazione del costo. Il confronto resta però generico: i modelli di riferimento non vengono nominati.</p>
+
+<p>Google cita poi <strong>Vals Finance Agent V2</strong> e il <strong>Legal Agent Benchmark</strong> di Harvey. Qui il modello risulterebbe migliore di <em>3.7 Flash</em> e di altri modelli frontier. Su <strong>HLE-Verified</strong> il punteggio dichiarato è <strong>54,9%</strong>.</p>
+
+<p>Finanza e diritto sono scelte coerenti con la narrativa agentica: compiti lunghi, documenti densi, errori costosi. Un punteggio su benchmark, però, non dice come il modello si comporti sui flussi di lavoro di una specifica azienda.</p>
+
+<div class="quote">Tutti questi numeri vengono da Google. Finché non arrivano repliche indipendenti, vanno letti come indicazioni di direzione, non come classifiche.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Lavora di Più: Effort, Token e il Prezzo che Non Racconta Tutto</h2>
+
+<p>La scelta di design più interessante è dichiarata apertamente: <em>3.8 Flash</em> "lavora di più". In pratica esegue più passi di ragionamento e più chiamate iterative a strumenti. A volte genera anche più token, soprattutto ai livelli di <strong>effort</strong> più alti.</p>
+
+<p>Questo spiega in parte i risultati agentici. Un modello che verifica, richiama uno strumento e rivede il proprio lavoro tende a chiudere meglio i compiti lunghi. Ma la diligenza ha una conseguenza economica.</p>
+
+<p>Il prezzo introduttivo è identico a quello di <em>3.7 Flash</em>: <strong>0,75 $</strong> per milione di token in input e <strong>3,75 $</strong> per milione di token in output. Il prezzo per token, tuttavia, è solo uno dei fattori. Se lo stesso compito richiede più token, la spesa complessiva può salire anche a tariffa invariata.</p>
+
+<div class="quote">"Stesso costo" vale per il listino. Il costo reale dipende da quanti token servono per finire il lavoro, e questo si misura solo sui propri carichi.</div>
+
+<p>Google indica due strade a chi ha vincoli di efficienza di calcolo: usare livelli di effort più bassi, oppure restare su <em>Gemini 3.7 Flash</em>, che resta pienamente supportato. È un'ammissione utile. Il nuovo modello non è la scelta ottimale per ogni carico di lavoro.</p>
+
+<div class="highlight-box"><p>Il prezzo è <strong>introduttivo</strong>: nulla, nei materiali di Google, garantisce che resti tale. Più effort può significare più token, quindi più costo effettivo.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Dove Si Usa: Gemini API, AI Studio, Antigravity e Gli Altri Canali</h2>
+
+<p>Per gli sviluppatori, <em>Gemini 3.8 Flash</em> è disponibile tramite la <em>Gemini API</em> in <em>Google AI Studio</em>, in <em>Android Studio</em>, in <em>Google Antigravity</em> (l'ambiente con workflow agent-first) e in <em>Stitch</em>.</p>
+
+<p>Per le aziende c'è <em>Gemini Enterprise</em>. Per i consumatori l'accesso passa dagli abbonamenti <em>Google AI Pro</em> e <em>Ultra</em>, nell'app <em>Gemini</em>, in <em>AI Mode</em> di <em>Google Search</em> e in <em>Gemini in Google Sheets</em>.</p>
+
+<p>La distribuzione è ampia. Per un team significa che lo stesso modello compare in strumenti con livelli di controllo molto diversi. Una chiamata API permette di scegliere il livello di effort e di misurare i token. Un'integrazione in un foglio di calcolo o in una ricerca è un'esperienza chiusa, dove questi parametri non sono necessariamente visibili. I materiali di Google non entrano in questo dettaglio, quindi conviene verificarlo canale per canale.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Gemini 3.8 Flash Cyber e il Fairwind Program: Un Modello a Porte Chiuse</h2>
+
+<p><em>Gemini 3.8 Flash Cyber</em> non è un prodotto pubblico. È disponibile solo a difensori fidati tramite il nuovo <em>Fairwind Program</em>: autorità governative, operatori di infrastrutture critiche e maintainer software.</p>
+
+<p>La ragione è tecnica. Il modello adotta un set di mitigazioni più permissivo per la cybersecurity. È utile al lavoro difensivo, ma sarebbe rischioso in distribuzione aperta. Da qui l'accesso ristretto.</p>
+
+<p>Secondo Google, su <strong>CyberGym</strong> il modello raggiunge performance frontier nella scoperta autonoma di vulnerabilità. Su un benchmark interno che copre <strong>20 linguaggi</strong> supera il <strong>70%</strong> di successo. Nel patching, il <strong>pass@1</strong> su <strong>CWE-Bench</strong> è del <strong>47,2%</strong>, contro il <strong>47,8%</strong> di un modello frontier di punta, a costo molto inferiore. Il modello è quindi leggermente sotto, non sopra, e il vantaggio dichiarato sta nel rapporto con il costo.</p>
+
+<div class="highlight-box"><p>CWE-Bench, patching, secondo Google: <strong>47,2%</strong> pass@1 per <em>3.8 Flash Cyber</em> contro <strong>47,8%</strong> di un modello frontier di punta, a costo molto inferiore.</p></div>
+
+<p>Google dichiara di aver privilegiato il fixing delle vulnerabilità rispetto a capacità offensive come l'exploitation. È una scelta di priorità coerente con un programma pensato per i difensori.</p>
+
+<p>Google riporta anche risultati di casi d'uso. Il team Chrome Security ottiene <strong>2,6 volte</strong> più patch corrette rispetto ai migliori modelli commerciali più grandi. Wiz segnala un recall più alto del <strong>7,5-9,7%</strong> su un benchmark interno di penetration testing, con un costo <strong>2,3-5,2 volte</strong> inferiore. Il Cloud Vulnerability Research di Google ha trovato una vulnerabilità critica in meno di <strong>2 ore</strong>.</p>
+
+<div class="quote">Sono testimonianze di parte, raccolte e pubblicate da chi vende il modello. Utili per capire l'orientamento, insufficienti come prova.</div>
+
+<p>Sul piano della sicurezza generale, Google cita salvaguardie contro l'uso improprio in ambito CBRN e cyber offense. Cita inoltre una maggiore robustezza alla prompt injection, misurata da Gray Swan. Nel recap di settembre compare anche <em>Gemini 4 Argon</em>, in rollout solo ai difensori del <em>Fairwind Program</em>, ma è un argomento a parte.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Limiti e Cose da Verificare</h2>
+
+<p>Il primo limite riguarda la fonte. Tutti i benchmark sono pubblicati da Google, alcuni su suite interne, e nei materiali consultati non risulta alcuna replica indipendente. Lo stesso vale per i risultati attribuiti a Chrome Security, Wiz e Cloud Vulnerability Research.</p>
+
+<p>Il secondo riguarda i confronti. Quando Google parla di "modelli frontier più grandi" non li nom
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Ottobre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
