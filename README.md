@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (54 generati)
+## Articoli (55 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Ottobre 2026 | [Claude Haiku 5.5: Il Modello Piccolo di Anthropic Costa il 75% in Meno e Impara a Ragionare a Livelli](articles/claude_haiku_55_prezzi_effort_subagent.html) | Nuovi Modelli AI | 5 min |
 | Ottobre 2026 | [Gemini 3.8 Flash: Più Ragionamento e Codice allo Stesso Prezzo, e una Versione Cyber a Porte Chiuse](articles/gemini_38_flash_cyber_fairwind.html) | Nuovi Modelli AI | 6 min |
 | Settembre 2026 | [GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza](articles/openai_gpt6_sol_luna_api_pricing_caching.html) | Nuovi Modelli AI | 6 min |
 | Settembre 2026 | [GitHub Copilot Sceglie il Modello per Te: Arrivano i Livelli Efficienza, Equilibrio, Intelligenza](articles/github_copilot_model_tiers_agents_window_ga.html) | Strumenti di Sviluppo AI | 6 min |
@@ -63,4 +64,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Febbraio 2023 | [ChatGPT e la programmazione](articles/chatgpt_e_la_programmazione.html) | Dev & AI | 4 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-10-08*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-10-12*
