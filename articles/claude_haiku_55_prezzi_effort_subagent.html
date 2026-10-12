@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Haiku 5.5: Il Modello Piccolo di Anthropic Costa il 75% in Meno e Impara a Ragionare a Livelli | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Claude Haiku 5.5 costa in media il 75% in meno di Haiku 4.5, introduce l'effort regolabile ed è pensato come subagent. Prezzi, benchmark dichiarati da Anthropic e limiti.">
+    <meta name="keywords" content="Claude Haiku 5.5, Anthropic, Sonnet 5.5, subagent, prompt caching, effort, modelli AI, coding agentico">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Claude Haiku 5.5: Il Modello Piccolo di Anthropic Costa il 75% in Meno e Impara a Ragionare a Livelli | Pillole di AI">
+    <meta property="og:description" content="Haiku 5.5 a 0,10 $ in input e 0,50 $ in output per milione di token fino a 100k; cache read di Sonnet 5.5 dimezzate.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-10-12T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Haiku 5.5: Il Modello Piccolo di Anthropic Costa il 75% in Meno e Impara a Ragionare a Livelli">
+    <meta name="twitter:description" content="Claude Haiku 5.5: -75% di costo medio, effort regolabile, subagent per il coding.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Claude Haiku 5.5: Il Modello Piccolo di Anthropic Costa il 75% in Meno e Impara a Ragionare a Livelli</h1>
+        <p>Anthropic lancia Claude Haiku 5.5: prezzi fino al 90% più bassi di Haiku 4.5 sotto i 100k token, effort regolabile e benchmark solidi per un subagent, ma non per sostituire Sonnet 5.5.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Ottobre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Un Modello Piccolo con un Listino Molto Più Basso</h2>
+
+<p>Il 7 ottobre 2026 Anthropic ha presentato <em>Claude Haiku 5.5</em>, definito "il modello piccolo più economico, veloce e capace" della propria gamma. La novità più concreta riguarda il rapporto tra prestazioni e prezzo, più che la capacità assoluta.</p>
+
+<p>Il bersaglio dichiarato sono i carichi ad alto volume e sensibili ai costi: riassunti, compattazioni del contesto, query a database, classificazione. Anthropic lo indica anche come subagent per il coding, accanto a <em>Opus 5.5</em> e <em>Sonnet 5.5</em>, e per attività dove la rapidità pesa, come l'assistenza clienti live e l'uso del browser.</p>
+
+<div class="highlight-box"><p>Secondo Anthropic, <em>Haiku 5.5</em> costa in media circa il <strong>75%</strong> in meno di <em>Haiku 4.5</em>.</p></div>
+
+<p>Quel "in media" merita attenzione. Il risparmio dipende dalla lunghezza dei prompt, come mostra la sezione successiva.</p>
+
+<div class="section-divider"></div>
+
+<h2>II. I Numeri del Listino: Input, Output e Cache Sotto e Sopra i 100k Token</h2>
+
+<p>Il listino è diviso in due fasce, in base alla lunghezza del prompt. Prezzi per milione di token, fino a <strong>100k</strong> token e oltre:</p>
+
+<p>L'input costa <strong>0,10 $</strong> e <strong>0,50 $</strong>. L'output costa <strong>0,50 $</strong> e <strong>2,50 $</strong>. La lettura da cache costa <strong>0,01 $</strong> e <strong>0,05 $</strong>. La scrittura in cache costa <strong>0,125 $</strong> e <strong>0,625 $</strong>.</p>
+
+<p>Per confronto, <em>Haiku 4.5</em> costava <strong>1 $</strong> in input, <strong>5 $</strong> in output e <strong>0,10 $</strong> per la lettura da cache. Sotto i 100k token il taglio è quindi del <strong>90%</strong> su tutte e tre le voci. Sopra la soglia le tariffe di <em>Haiku 5.5</em> salgono di cinque volte rispetto alla fascia bassa, e il vantaggio su <em>Haiku 4.5</em> scende al <strong>50%</strong>.</p>
+
+<div class="highlight-box"><p>Anthropic dice che i prompt fino a <strong>100k</strong> token sono circa il <strong>90%</strong> delle richieste ricevute dal precedente Haiku.</p></div>
+
+<p>Questo spiega la media del 75%: la fascia economica copre la grande maggioranza del traffico. Chi lavora con contesti lunghi, però, vedrà un risparmio molto più contenuto.</p>
+
+<div class="quote">Il "-75%" è una media pesata sul traffico del modello precedente. Il risparmio reale dipende dalla distribuzione delle lunghezze dei propri prompt, non dal titolo del comunicato.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Cosa Sa Fare: Benchmark, Velocità e Uso come Subagent</h2>
+
+<p>Secondo Anthropic, i risultati sono questi (<em>Haiku 5.5</em> / <em>Haiku 4.5</em> / <em>GPT-6 Luna</em> / <em>Sonnet 5.5</em>).</p>
+
+<p>Su <strong>OSWorld 2.1</strong> (sottoinsieme offline): <strong>72,4%</strong>, <strong>15,7%</strong>, <strong>48,9%</strong>, <strong>83,9%</strong>. Su <strong>Terminal-Bench 4.0</strong>: <strong>39,2%</strong>, <strong>0,0%</strong>, <strong>16,4%</strong>, <strong>70,6%</strong>. Su <strong>FrontierCode 1.1</strong>: <strong>46,4%</strong>, dato non disponibile, <strong>42,4%</strong>, <strong>52,1%</strong>.</p>
+
+<p>Su <strong>Humanity's Last Exam</strong> senza strumenti: <strong>45,9%</strong>, <strong>10,2%</strong>, dato non disponibile, <strong>56,9%</strong>. Con strumenti: <strong>57,4%</strong>, <strong>18,7%</strong>, non disponibile, <strong>64,5%</strong>.</p>
+
+<p>Il salto rispetto a <em>Haiku 4.5</em> è ampio. Su <strong>Terminal-Bench 4.0</strong> si passa da zero a poco meno del 40%. <em>Sonnet 5.5</em> resta però nettamente davanti nel coding agentico e nell'uso del computer: <strong>70,6%</strong> contro <strong>39,2%</strong> su <strong>Terminal-Bench</strong>, <strong>83,9%</strong> contro <strong>72,4%</strong> su <strong>OSWorld</strong>.</p>
+
+<p>Sulla velocità c'è una testimonianza cliente. <em>Asana</em>, per i suoi <em>AI Teammates</em>, riferisce oltre il <strong>30%</strong> di latenza in meno nei completamenti e un turno agente fino a <strong>2,5 volte</strong> più veloce rispetto al modello usato prima. È un caso singolo, legato a un flusso di lavoro specifico.</p>
+
+<div class="quote">Un subagent non deve essere il più bravo in assoluto. Deve essere abbastanza bravo, molto rapido e poco costoso. I numeri dichiarati vanno letti in questa chiave.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. L'Effort Regolabile Arriva anche su Haiku</h2>
+
+<p><em>Haiku 5.5</em> è il primo modello della famiglia con un'impostazione di <strong>effort</strong> regolabile. Permette di scegliere se ottimizzare il costo o l'intelligenza, in base al compito.</p>
+
+<p>Per un classificatore che smista migliaia di ticket al minuto, l'effort basso ha senso. Per un passaggio di ragionamento più delicato dentro un flusso agentico, può servire un livello più alto. La fonte non dettaglia i livelli disponibili né il loro impatto su prezzo e prestazioni, quindi servono prove sul proprio carico.</p>
+
+<p>Resta anche un'incognita pratica: i benchmark pubblicati non specificano a quale impostazione siano stati ottenuti. Chi vuole replicarli dovrebbe prima verificarlo nella documentazione.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Sonnet 5.5 Costa il 20% in Meno e Dove Si Può Usare Haiku 5.5</h2>
+
+<p>Nello stesso annuncio Anthropic ha dimezzato il prezzo della lettura da cache di <em>Sonnet 5.5</em>: <strong>0,10 $</strong> invece di <strong>0,20 $</strong> per milione di token. Secondo l'azienda, il costo di <em>Sonnet 5.5</em> scende di circa il <strong>20%</strong> sulla maggior parte dei lavori agentici, dove il contesto viene riletto spesso.</p>
+
+<p>Per <em>Sonnet 5.5</em> il listino indica <strong>2 $</strong> in input e <strong>10 $</strong> in output. Sotto i 100k token, <em>Haiku 5.5</em> costa un ventesimo su entrambe le voci. È il dato che giustifica l'architettura a più livelli: il modello grande pianifica e decide, quello piccolo esegue in parallelo i compiti ripetitivi.</p>
+
+<div class="highlight-box"><p>Per gli abbonati <em>Claude Max</em> e <em>Team</em> arriva anche un nuovo credito API mensile.</p></div>
+
+<p>Gli usi sensati sono quelli indicati da Anthropic: riassunti, compattazioni, query a database, classificazione, assistenza live e navigazione web. Il modello è disponibile subito su tutte le piattaforme, inclusi <em>AWS</em>, <em>Google Cloud</em> e <em>Microsoft Azure</em>, con ID <strong>claude-haiku-5-5</strong>. Una guida alla migrazione è nella documentazione della <em>Claude Platform</em>.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Limiti e Cose da Verificare</h2>
+
+<p>Tutti i benchmark sono pubblicati da Anthropic e, allo stato attuale, non risulta alcuna replica indipendente. Anche il confronto con <em>GPT-6 Luna</em> è una scelta dell'azienda, non un test neutrale tra modelli di fascia analoga.</p>
+
+<p>Il prezzo ha una soglia netta. Il vantaggio massimo vale sotto i <strong>100k</strong> token di prompt. Oltre, le tariffe quintuplicano rispetto alla fascia bassa e il confronto con <em>Haiku 4.5</em> si riduce a un dimezzamento.</p>
+
+<p>Il divario con <em>Sonnet 5.5</em> è grande proprio dove l'agentività conta di più: <strong>Terminal-Bench</strong> e <strong>OSWorld</strong>. <em>Haiku 5.5</em> è quindi un subagent, non un sostituto.</p>
+
+<div class="quote">Un modello economico che sbaglia più spesso può costare di più, se gli errori obbligano a rilanciare i compiti o a farli rivedere. Il costo per token non coincide con il costo per risultato corretto.</div>
+
+<p>Sul fronte della sicurezza, Anthropic dichiara un allineamento migliorato rispetto a <em>Haiku 4.5</em>. Le salvaguardie cyber sono più restrittive di quelle di <em>Haiku 4.5</em>, ma un po' meno di altri modelli recenti. Consentono più attività difensive di <em>Sonnet 5.5</em>, ma bloccano il penetration testing. Per esigenze più ampie esistono programmi di verifica Cyber e Life Sciences.</p>
+
+<p>Resta un dettaglio non confermato. Fonti secondarie parlano di un possibile nuovo <strong>tokenizer</strong>, che cambierebbe il conteggio dei token rispetto ai modelli più vecchi. Non è verificato sulla fonte primaria. Va controllato nella guida alla migrazione, perché inciderebbe direttamente sul confronto dei costi.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Ottobre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
