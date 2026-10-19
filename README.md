@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (55 generati)
+## Articoli (46 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Ottobre 2026 | [Gemini 4 Argon: Il Modello di Google per Lavori Complessi e Coding Agentico](articles/google_gemini_4_argon_modello_agentico.html) | Nuovi Modelli AI | 5 min |
 | Ottobre 2026 | [Claude Haiku 5.5: Il Modello Piccolo di Anthropic Costa il 75% in Meno e Impara a Ragionare a Livelli](articles/claude_haiku_55_prezzi_effort_subagent.html) | Nuovi Modelli AI | 5 min |
 | Ottobre 2026 | [Gemini 3.8 Flash: Più Ragionamento e Codice allo Stesso Prezzo, e una Versione Cyber a Porte Chiuse](articles/gemini_38_flash_cyber_fairwind.html) | Nuovi Modelli AI | 6 min |
 | Settembre 2026 | [GPT-6 Sol e Luna: OpenAI Dimezza i Prezzi e Non Tocca l'Intelligenza](articles/openai_gpt6_sol_luna_api_pricing_caching.html) | Nuovi Modelli AI | 6 min |
@@ -20,16 +21,6 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Agosto 2026 | [Sondaggio JetBrains 2026: Claude Code Conquista la Guerra dei Coding Agent](articles/jetbrains_survey_2026_claude_code_domina.html) | Strumenti di Sviluppo AI | 6 min |
 | Agosto 2026 | [Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop](articles/meta_muse_glimmer_30b_agente_locale.html) | Modelli AI Open Source | 6 min |
 | Agosto 2026 | [Astra di OpenAI Risolve 10 Problemi Matematici Aperti (e li Dimostra in Lean 4)](articles/openai_astra_dieci_problemi_matematici.html) | Frontiere AI | 6 min |
-| Agosto 2026 | [Verdent: il Cofondatore Tecnico AI, tra Eco Mode e un Trial Troppo Corto](articles/verdent_agentic_tool_eco_mode.html) | Strumenti di Sviluppo AI | 5 min |
-| Agosto 2026 | [Cursor Router: la Classificazione al Posto della Scelta del Modello](articles/cursor_router_model_cost_optimization.html) | Strumenti di Sviluppo AI | 6 min |
-| Luglio 2026 | [AMD Helios: l'Infrastruttura Rack-Scale che Sfida Nvidia](articles/amd_helios_rackscale_ai_infrastructure.html) | Infrastruttura AI | 6 min |
-| Luglio 2026 | [Grok 4.5: Intelligenza da Frontiera a Metà Prezzo](articles/grok_4_5_coding_efficiency.html) | Nuovi Modelli AI | 6 min |
-| Luglio 2026 | [GitHub Copilot Apre all'Open-Weight: Kimi K2.7 Code nel Model Picker](articles/copilot_kimi_k27_open_weight.html) | Strumenti di Sviluppo AI | 6 min |
-| Luglio 2026 | [Claude Sonnet 5: Agentic Coding Quasi-Opus a Prezzo Sonnet](articles/claude_sonnet_5_agentic_coding.html) | Nuovi Modelli AI | 6 min |
-| Giugno 2026 | [Kimi K2.6, K2.7-Code e MiniMax M3: L'Open Source Supera i Modelli Proprietari sul Coding Agentico](articles/kimi_minimax_open_source_coding.html) | Modelli AI Open Source | 7 min |
-| Giugno 2026 | [Apple Foundation Models a WWDC 2026: Una Swift API per Governarli Tutti](articles/apple_foundation_models_wwdc26.html) | Strumenti di Sviluppo AI | 7 min |
-| Giugno 2026 | [I Modelli MAI di Microsoft: La Svolta di Build 2026](articles/microsoft_mai_models_build_2026.html) | Nuovi Modelli AI | 6 min |
-| Giugno 2026 | [Fable 5 e Mythos 5: La Storia Di 3 Giorni Che Hanno Cambiato L'IA](articles/fable5_mythos5_tre_giorni_che_hanno_cambiato_ia.html) | AI & Geopolitica | 6 min |
 | Giugno 2026 | [Gemma 4 12B: Multimodale Locale senza Encoder — Il Futuro dell'AI sul Tuo Laptop](articles/gemma4_12b_multimodale_locale_encoder_free.html) | Nuovi Modelli AI | 7 min |
 | Giugno 2026 | [Claude API: Le Breaking Change di Giugno 2026 che Devi Risolvere Subito](articles/claude_api_breaking_changes_giugno_2026.html) | API & Sviluppo AI | 6 min |
 | Giugno 2026 | [Figure a confronto: Webmaster vs Web Developers (e l'alba dell'IA)](articles/webmaster_vs_web_developer_alba_ia.html) | Storia di Internet | 6 min |
@@ -64,4 +55,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Febbraio 2023 | [ChatGPT e la programmazione](articles/chatgpt_e_la_programmazione.html) | Dev & AI | 4 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-10-12*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-10-19*
