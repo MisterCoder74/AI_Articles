@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 4 Argon: Il Modello di Google per Lavori Complessi e Coding Agentico | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gemini 4 Argon è il modello Google per coding e compiti agentici complessi: API con finestra unificata da 1M token, prezzo introduttivo e risultati dichiarati da Google.">
+    <meta name="keywords" content="Gemini 4 Argon, Google, coding agentico, Gemini API, Antigravity, modelli AI, agenti AI, context window">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Gemini 4 Argon: Il Modello di Google per Lavori Complessi e Coding Agentico | Pillole di AI">
+    <meta property="og:description" content="Disponibile dal 13 ottobre: Gemini 4 Argon, prezzi API introduttivi fino al 30 novembre, un milione di token unificati e benchmark per coding agentico.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-10-19T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gemini 4 Argon: Il Modello di Google per Lavori Complessi e Coding Agentico">
+    <meta name="twitter:description" content="Gemini 4 Argon: coding agentico, finestra unificata da 1M token e prezzi API introduttivi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Gemini 4 Argon: Il Modello di Google per Lavori Complessi e Coding Agentico</h1>
+        <p>Google lancia Gemini 4 Argon: API, prezzi introduttivi, contesto da 1M token e benchmark dichiarati. Cosa è documentato, cosa resta da verificare e dove il modello non è primo.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Ottobre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Gemini 4 Argon e il posizionamento per compiti complessi</h2>
+
+<p>Il 13 ottobre 2026 Google ha pubblicato l'annuncio "Gemini 4 Argon is now available for everyone", accompagnato dalla model card di Google DeepMind. Le due fonti descrivono Argon come un modello pensato per <strong>compiti complessi e multi-step</strong>, con particolare attenzione a coding, scienza e agenti, cioè sistemi che pianificano ed eseguono più passaggi in sequenza.</p>
+
+<p>Questo articolo si basa esclusivamente su quei due documenti. Ogni numero che leggerete, dai benchmark ai casi di studio, è <strong>dichiarato da Google</strong>. Non abbiamo condotto verifiche indipendenti e, per ora, non risultano repliche di terze parti nei materiali analizzati.</p>
+
+<div class="highlight-box"><p><strong>Come leggere i dati:</strong> benchmark, metriche interne ed esempi applicativi provengono da Google. Sono indicazioni utili sul posizionamento del modello, non una prova indipendente delle sue prestazioni.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Accesso API, Antigravity e prezzi introduttivi</h2>
+
+<p>Conviene separare due piani: lo sviluppo via API e l'uso da parte degli utenti finali.</p>
+
+<p><strong>Per sviluppatori e aziende</strong>, Argon è disponibile a livello globale tramite AI Studio e la piattaforma Gemini, con ID modello <em>gemini-4-argon</em>. Il listino API prevede una fase introduttiva fino al <strong>30 novembre</strong>: 2 dollari per milione di token in input e 10 in output, con uno sconto del 95% sugli input in cache. Dal <strong>1° dicembre</strong> le tariffe standard salgono a 4 dollari in input e 20 in output per milione di token, quindi raddoppiano.</p>
+
+<p><strong>Per gli utenti finali</strong>, Google indica l'accesso in Gemini app e AI Mode per gli abbonati Ultra e Pro. Argon è inoltre in Google Antigravity per gli abbonati Ultra. Queste vie passano dagli abbonamenti e non dal listino API a token.</p>
+
+<div class="highlight-box"><p><strong>Attenzione al budget:</strong> la tariffa da 2/10 dollari è temporanea. Chi stima i costi di un progetto dovrebbe usare il prezzo standard da 4/20 dollari, non quello promozionale.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>III. La finestra da un milione: cosa significa davvero</h2>
+
+<p>Via API, Argon offre una finestra di contesto fino a <strong>1 milione di token</strong>. Il dettaglio decisivo è che il limite è <em>unificato</em>: input e output si sommano nello stesso tetto. Non significa quindi poter ottenere un milione di token in una singola risposta.</p>
+
+<p>Per i flussi lunghi Google documenta un <strong>continuation protocol</strong>, un meccanismo per proseguire la generazione oltre i limiti di una singola risposta. I dettagli operativi vanno letti nella documentazione ufficiale prima di progettare pipeline che dipendano da output molto estesi.</p>
+
+<p>Sulla tenuta con contesti lunghi, la model card riporta per GraphWalks un F1 del <strong>99,7%</strong> fino a 128k token e dell'<strong>84,2%</strong> tra 256k e 1M. Sono numeri dichiarati da Google e mostrano un calo sulle lunghezze maggiori. Il milione di token è quindi un limite tecnico, non una garanzia di qualità uniforme su tutta la lunghezza.</p>
+
+<div class="quote">La finestra da un milione è un tetto aggregato di input e output, non la promessa di una risposta lunga un milione di token.</div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Coding agentico: le prove interne pubblicate da Google</h2>
+
+<p>Nell'uso interno di Antigravity, Google dichiara <strong>+35% di invii di codice agentici</strong> e quasi un terzo in meno di rollback. Sono metriche aziendali, senza dati indipendenti su campione, metodo o contesto.</p>
+
+<p>Google cita anche alcuni esempi applicativi:</p>
+
+<p>Un <strong>refactoring del codice delle funzionalità di Chrome</strong> in una base da 40 milioni di righe, con una cartella legacy di circa 6 milioni. Per <strong>ADK Python</strong>, Google riporta session prep in memoria ridotta del 40% sulle sessioni lunghe e cold imports ridotti del 21%. Per <strong>xTB</strong>, un'accelerazione fino a 2,3x. Per <strong>Gemma 4 E2B su vLLM</strong>, un throughput passato da 37.900 a oltre 108.000 token al secondo su GPU A100, con token parity.</p>
+
+<p>Sono casi selezionati e raccontati da chi ha sviluppato il modello. Mostrano dove Google vede il potenziale di Argon, ma non dicono quanto i risultati si ripetano in progetti diversi, con altri team, repository e strumenti.</p>
+
+<div class="quote">Gli esempi mostrano dove Google vede il valore di Argon. Non dimostrano che lo stesso risultato si ripeta in ogni progetto.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Benchmark: risultati forti, ma non una vittoria uniforme</h2>
+
+<p>La model card elenca, tra i risultati dichiarati da Google: Vals Index <strong>68,9%</strong>; AutomationBench <strong>51,3%</strong>; DeepSWE v1.1 <strong>77,9%</strong>; FrontierSWE v2 <strong>55,0%</strong>; Vibe Code Bench <strong>91,9%</strong>; Terminal-Bench 4.0 <strong>57,4%</strong>; OSWorld-2.0 offline <strong>69,2%</strong>.</p>
+
+<p>Il quadro però non è di dominio completo. Secondo le stesse fonti, <strong>GPT-6 Astra</strong> guida FrontierSWE, TerminalBench e i benchmark scientifici, mentre <strong>Claude Opus 5.5</strong> guida Terminal-Bench e ML engineering. Terminal-Bench compare quindi attribuito a entrambi i concorrenti nei dati a nostra disposizione. Non possiamo chiarire la discrepanza, che potrebbe dipendere da versioni o configurazioni diverse, e per questo invitiamo a controllare la tabella originale.</p>
+
+<p>Il messaggio utile è che Argon appare competitivo e in alcuni test molto forte, ma <strong>non è primo ovunque</strong>. I punteggi, inoltre, non sono confrontabili tra benchmark diversi e dicono poco sul comportamento nel vostro codice. Prima di scegliere un modello, i test sui vostri compiti reali pesano più della classifica.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Limiti, rollout cyber e cosa provare nello sviluppo</h2>
+
+<p>La model card ammette limiti concreti: possibili <strong>allucinazioni</strong>, <strong>lentezza o timeout occasionali</strong> e un <strong>cutoff di conoscenza a marzo 2026</strong>. Per librerie, API e vulnerabilità emerse dopo quella data servono documentazione aggiornata e controllo umano.</p>
+
+<p>Sul fronte sicurezza, le funzioni cyber senza guardrail sono riservate a <strong>difensori verificati</strong> tramite Fairwind. Non è un accesso generale a un modello privo di filtri: la distinzione è importante per chi legge titoli frettolosi.</p>
+
+<p>Per chi sviluppa, un approccio prudente può essere questo:</p>
+
+<p>Provare Argon su un compito circoscritto, come un refactoring di una porzione di codice, con test automatici e revisione umana. Misurare qualità, latenza, timeout e costo reale in token. Confrontare il risultato con il modello già in uso. Calcolare il budget al prezzo standard del 1° dicembre e testare i contesti lunghi sulle lunghezze che vi servono davvero, ricordando il calo dichiarato oltre i 256k token.</p>
+
+<p><em>Nota redazionale dalla sede di Cerveteri (RM): i dati qui riportati derivano dai documenti Google del 13 ottobre 2026 e andranno riverificati man mano che emergeranno prove indipendenti.</em></p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Ottobre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
