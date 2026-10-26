@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowflake porta i Coding Agent nei Server MCP Gestiti | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Snowflake aggiunge CODING_AGENT ai server MCP gestiti: setup, sandbox collegata al thread, continuità tra chiamate e limiti documentati.">
+    <meta name="keywords" content="Snowflake, CODING_AGENT, MCP, coding agent, code_toolset_all, managed sandbox, thread_id, Cortex Agents">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Snowflake porta i Coding Agent nei Server MCP Gestiti | Pillole di AI">
+    <meta property="og:description" content="Un coding agent senza stored agent object, configurato nel server specification e invocato via MCP con thread continuabile. Ecco i vincoli.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-10-26T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Snowflake porta i Coding Agent nei Server MCP Gestiti">
+    <meta name="twitter:description" content="CODING_AGENT nei server MCP Snowflake: sandbox gestita, continuità via thread e controlli da verificare.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Snowflake porta i Coding Agent nei Server MCP Gestiti</h1>
+        <p>Dal 23 ottobre 2026 i server MCP gestiti da Snowflake possono esporre un tool CODING_AGENT senza oggetto agent: thread, sandbox, flag e limiti documentati.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Ottobre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Un coding agent senza oggetto persistente</h2>
+<p>La release note di Snowflake del 23 ottobre 2026, intitolata «Coding agent MCP tool», introduce una novità nei server MCP gestiti dalla piattaforma. Un server può ora esporre un <strong>coding agent</strong> senza che esista un agente memorizzato come oggetto Snowflake. Finora un agente richiamato via MCP doveva essere definito a parte e referenziato. Ora il tool si dichiara direttamente nella specifica del server.</p>
+<p>Il punto è architetturale. Il proprietario del server non crea prima un oggetto agent e poi lo collega: descrive nella configurazione stessa del server il tool, con i parametri che vuole controllare. La semplificazione riguarda la <em>dichiarazione</em>. Non va letta come un workflow di sviluppo già pronto.</p>
+<div class="highlight-box"><p><strong>In sintesi:</strong> la fonte documenta un nuovo tipo di tool e il suo comportamento. Non documenta la qualità del codice prodotto, i costi o le prestazioni. Modello, istruzioni e tool restano scelte di chi configura il server.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. CODING_AGENT: come si dichiara in un server MCP</h2>
+<p>Nel server specification in formato YAML si aggiunge un tool con <strong>type CODING_AGENT</strong>. Il campo <em>identifier</em> si omette, perché serve ai tool che puntano ad altri oggetti Snowflake e qui non c'è nulla da referenziare.</p>
+<p>La configurazione è opzionale e comprende <em>model</em>, <em>instructions</em>, <em>tools</em>, <em>tool_resources</em> e <em>skills</em>. Le fonti non indicano un modello predefinito, quindi non va dato per scontato. Chi vuole un comportamento prevedibile deve valutare cosa specificare esplicitamente.</p>
+<p>A ogni esecuzione Snowflake aggiunge il toolset <strong>code_toolset_all</strong>. Per questo non si può configurare nello stesso tool anche <em>code_execution</em>: le due opzioni non convivono. Il sandbox è descritto dalla documentazione come ambiente gestito per il coding. Non esiste, nelle fonti citate, un elenco delle sue capacità interne, e qui non se ne ricostruisce uno.</p>
+<div class="quote">Il tipo CODING_AGENT non richiede un oggetto agent né un identifier: la definizione vive nella specifica del server.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Un thread, sandbox e continuità tra chiamate</h2>
+<p>Il client invia un campo <em>text</em>. Alla prima chiamata omette <strong>thread_id</strong>, e la risposta ne restituisce uno. Nelle chiamate successive il client lo ripassa per proseguire la conversazione e riutilizzare il <strong>sandbox</strong> associato al thread. È questo che rende possibile un lavoro in più passaggi: il contesto e l'ambiente non ripartono da zero a ogni richiesta.</p>
+<p>Il parametro opzionale <strong>parent_message_id</strong> governa la ramificazione. Se omesso, la conversazione continua dall'ultimo messaggio. Se vale <strong>0</strong>, si apre un nuovo ramo sul thread esistente. Si possono quindi esplorare strade alternative senza creare un thread nuovo.</p>
+<p>Sul piano operativo conta il flag <strong>ENABLE_MCP_AGENT_RUN_THREAD_CONTINUATION</strong>, abilitato per default. Se viene disattivato, Snowflake nasconde <em>thread_id</em> e <em>parent_message_id</em> e <strong>ogni chiamata diventa una nuova esecuzione</strong>. Un client progettato per la continuità perderebbe quindi stato e sandbox. Il flag va verificato prima di costruire un flusso persistente.</p>
+<div class="highlight-box"><p><strong>Da ricordare:</strong> la continuità dipende da un flag. Con il flag attivo, thread_id e parent_message_id sono disponibili. Con il flag disattivo, ogni chiamata è un'esecuzione nuova. Le fonti non offrono altre garanzie di persistenza oltre a questo comportamento.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Il confronto con gli altri tool Snowflake</h2>
+<p>CODING_AGENT è un tipo distinto nel catalogo dei tool MCP gestiti. <strong>CORTEX_AGENT_RUN</strong> richiama un agente già configurato come oggetto Snowflake. <strong>GENERIC</strong> espone UDF e procedure. <strong>SYSTEM_EXECUTE_SQL</strong> esegue SQL, mentre Cortex Search e Cortex Analyst coprono ricerca e analisi. Ciascun tipo ha un ruolo diverso, e il nuovo non sostituisce gli altri.</p>
+<p>La differenza principale con CORTEX_AGENT_RUN è l'assenza dell'oggetto persistente. Con CORTEX_AGENT_RUN l'agente esiste nella piattaforma e il server lo richiama. Con CODING_AGENT la configurazione sta nella specifica del server. Le fonti non dicono quale approccio sia preferibile: la scelta dipende da governance e riuso.</p>
+<p>Il protocollo resta quello MCP. Il client scopre i tool con <strong>tools/list</strong> e li invoca con <strong>tools/call</strong>. Il server gestito da Snowflake espone <em>tool</em>, non risorse né prompt: chi si aspetta questi altri elementi MCP non li troverà qui.</p>
+<div class="quote">Cambia il modo di dichiarare l'agente, non il modello di interazione: scoperta con tools/list, invocazione con tools/call.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. OAuth, RBAC e confini di sicurezza</h2>
+<p>Nella documentazione la sicurezza resta nella configurazione del server. <strong>OAuth</strong> è l'approccio raccomandato per l'autenticazione. L'accesso a server e tool è regolato dal <strong>RBAC</strong>, con il principio dei <em>privilegi minimi</em> per ciascun ruolo: a un ruolo si concede solo ciò che serve.</p>
+<p>Un punto da non fraintendere riguarda le <strong>annotazioni MCP</strong>. Sono suggerimenti rivolti al client, non controlli di sicurezza. Una dichiarazione di sola lettura, per esempio, non sostituisce i privilegi effettivi assegnati al ruolo. I confini reali si costruiscono con ruoli e permessi.</p>
+<p>La documentazione invita poi a verificare i <strong>tool di terze parti</strong> prima di inserirli nel server. Chiede anche di prevenire <strong>loop ricorsivi</strong> costosi: un agente che richiama tool capaci di riattivarlo può generare esecuzioni a catena. La fonte non fornisce meccanismi automatici in merito, quindi la prevenzione va pensata in fase di progettazione.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Limiti, condizioni e cosa verificare prima dell'adozione</h2>
+<p>I limiti documentati sono due. Un server MCP può avere al massimo <strong>50 tool</strong>. I risultati dei tool <strong>GENERIC</strong> e <strong>SQL</strong> vengono <strong>troncati a 250 KB</strong>. Chi si affida a questi tool per restituire dataset voluminosi deve tenerne conto: una risposta troncata può risultare incompleta se non progettata con attenzione.</p>
+<p>Le fonti consultate non esplicitano alcuni elementi, che quindi non si possono affermare: un <strong>prezzo separato</strong> per questa aggiunta, un <strong>modello predefinito</strong>, uno <strong>SLA</strong>, le <strong>regioni</strong> in cui è disponibile, <strong>benchmark</strong> di qualità. Lo stesso vale per la disponibilità uniforme tra account. Per chi valuta l'adozione da Cerveteri (RM) come da qualunque altra sede, la verifica va fatta sulla propria configurazione e sulla documentazione aggiornata, non sul presupposto di una copertura omogenea.</p>
+<p>Prima di procedere conviene controllare cinque punti:</p>
+<p><strong>1.</strong> lo stato di ENABLE_MCP_AGENT_RUN_THREAD_CONTINUATION, se serve continuità;<br>
+<strong>2.</strong> la configurazione di model, instructions, tools, tool_resources e skills, sapendo che code_execution non è utilizzabile insieme a code_toolset_all;<br>
+<strong>3.</strong> OAuth, ruoli e privilegi minimi, senza affidarsi alle annotazioni;<br>
+<strong>4.</strong> il numero di tool, che non può superare 50, e la gestione dei risultati troncati a 250 KB;<br>
+<strong>5.</strong> la prevenzione di loop ricorsivi e la revisione dei tool di terze parti.</p>
+<div class="highlight-box"><p><strong>Cautela editoriale:</strong> release note e documentazione descrivono funzione e configurazione, non una valutazione indipendente del coding agent. Disporre del tool CODING_AGENT non equivale ad avere un workflow end-to-end già predisposto. Prima di una messa in produzione servono prove sul proprio ambiente.</p></div>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Ottobre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
