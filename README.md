@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (47 generati)
+## Articoli (48 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Novembre 2026 | [Gemini API CLI: il nuovo client in beta per agenti di coding e CI](articles/gemini_api_cli_beta_coding_agents.html) | Strumenti di Sviluppo AI | 6 min |
 | Ottobre 2026 | [Snowflake porta i Coding Agent nei Server MCP Gestiti](articles/snowflake_coding_agent_mcp_server_managed.html) | Strumenti di Sviluppo AI | 5 min |
 | Ottobre 2026 | [Snowflake porta i Coding Agent nei Server MCP Gestiti](articles/snowflake_coding_agent_mcp_server_managed.html) | Strumenti di Sviluppo AI | 5 min |
 | Ottobre 2026 | [Gemini 4 Argon: Il Modello di Google per Lavori Complessi e Coding Agentico](articles/google_gemini_4_argon_modello_agentico.html) | Nuovi Modelli AI | 5 min |
