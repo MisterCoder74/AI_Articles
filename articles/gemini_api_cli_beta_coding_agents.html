@@ -20,11 +20,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gemini API CLI: il nuovo client in beta per agenti di coding e CI">
     <meta name="twitter:description" content="Gemini API CLI: beta per coding agent, script e CI, non un agente autonomo.">
-    <script type="application/ld+json">\n{
+    <script type="application/ld+json">
+{
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Gemini API CLI: il nuovo client in beta per agenti di coding e CI",
-  "description": "Google ha rilasciato in beta gemini-api, un client CLI stateless e senza dipendenze di progetto per script, pipeline CI e agenti di coding. È un'interfaccia per la Gemini API, non un agente autonomo.",
+  "description": "Google rilascia in beta gemini-api, client CLI stateless e senza dipendenze di progetto per generare testo e media, analizzare file e avviare managed agents via Interactions API.",
   "datePublished": "2026-11-02",
   "author": {
     "@type": "Person",
@@ -95,7 +96,8 @@
     "latitude": 41.9922,
     "longitude": 12.0975
   }
-}\n</script>
+}
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -357,86 +359,78 @@
         <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
         <div class="logo">PILLOLE <span>DI AI</span></div>
         <h1>Gemini API CLI: il nuovo client in beta per agenti di coding e CI</h1>
-        <p>Google ha rilasciato in beta gemini-api, un client CLI stateless e senza dipendenze di progetto per script, pipeline CI e agenti di coding. È un'interfaccia per la Gemini API, non un agente autonomo.</p>
+        <p>Google rilascia in beta gemini-api, client CLI stateless e senza dipendenze di progetto per generare testo e media, analizzare file e avviare managed agents via Interactions API.</p>
     </header>
     <main class="container">
         <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Novembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
         <article class="article-content">
 <h2>I. Una CLI per l'era degli agenti di coding</h2>
 
-<p>Il 27 ottobre Google ha rilasciato in <strong>beta</strong> <em>gemini-api</em>, un client a riga di comando per la Gemini API. Secondo il changelog di Google AI Studio e la guida ufficiale, è <strong>stateless e senza dipendenze</strong> ed è pensato per tre scenari: agenti di coding, script e pipeline di integrazione continua.</p>
+<p>Il 27 ottobre 2026 il changelog di Google AI Studio ha annunciato <strong>gemini-api</strong>, un client a riga di comando rilasciato in <strong>beta</strong>. Google lo presenta come stateless e senza dipendenze, pensato per agenti di coding, script e pipeline CI. Il rilascio non è GA, e conviene ricordarlo fin dall'inizio.</p>
 
-<p>Il client lavora sopra l'<strong>Interactions API</strong> e copre tre operazioni: generare testo e media, analizzare file e avviare i <em>Gemini managed agents</em>. Il perimetro è quindi preciso. La CLI offre un modo uniforme, da terminale o da script, per chiamare servizi Gemini che restano remoti.</p>
+<p>Il client lavora sopra l'<strong>Interactions API</strong> e copre tre famiglie di operazioni: generare testo e media, analizzare file, avviare i <em>Gemini managed agents</em>. Va chiarito subito che cosa non è. Le fonti non lo descrivono come un agente autonomo né come un wrapper di shell general-purpose. È un <strong>client per operazioni Gemini API</strong>: riceve un comando, lo traduce in una chiamata ai servizi remoti e restituisce il risultato.</p>
 
-<div class="highlight-box"><p><strong>Da tenere separato:</strong> la CLI beta è un client per operazioni Gemini API. Non è descritta come un agente autonomo né come un wrapper di shell general-purpose. I managed agents sono un servizio che la CLI può avviare, non la CLI stessa.</p></div>
-
-<p>La distinzione conta perché l'espressione «strumento per agenti» si presta a equivoci. Qui la CLI è lo strumento che un agente di coding, uno script o un job CI può invocare. Il comportamento agentico resta nei servizi Gemini richiamati tramite API.</p>
+<div class="highlight-box"><p><strong>Distinzione chiave:</strong> la CLI è un'interfaccia a riga di comando. Il runtime autonomo, cioè il managed agent che può essere avviato tramite Interactions API, è un'altra cosa. La CLI lo invoca ma non coincide con esso.</p></div>
 
 <div class="section-divider"></div>
 
 <h2>II. Stateless e senza dipendenze nel progetto: cosa promette il client</h2>
 
-<p>«Senza dipendenze» va letto con attenzione. La formula indica che il client <strong>non richiede dipendenze nel progetto</strong> che lo usa, quindi niente pacchetti da aggiungere al repository per chiamare Gemini da script o pipeline. Non significa <em>zero setup</em>.</p>
+<p>Le due parole d'ordine dell'annuncio, <em>stateless</em> e <em>zero dipendenze</em>, vanno lette con precisione. Il client non richiede dipendenze nel progetto che lo usa: non va aggiunto un pacchetto al manifest, e questo alleggerisce script e pipeline. Non significa però <strong>zero setup</strong>.</p>
 
-<p>I prerequisiti restano. La guida documenta un'installazione tramite script per macOS e Linux, che porta il <strong>binario</strong> sulla macchina. Serve poi una chiave API, letta dalla variabile <strong>GEMINI_API_KEY</strong>, e ogni operazione comporta <strong>chiamate remote</strong> ai servizi Gemini. Senza rete e senza credenziali valide il client non produce nulla. Per verificare la configurazione la guida cita il comando <strong>whoami</strong>.</p>
+<p>Prima di tutto serve il binario. La guida ufficiale documenta un'installazione tramite script per macOS e Linux. Serve poi una chiave API, fornita tramite la variabile <strong>GEMINI_API_KEY</strong>, e il comando <strong>whoami</strong> è documentato per verificare l'identità con cui il client sta operando. Infine ogni operazione genera chiamate ai servizi Gemini, quindi la connettività e l'accesso remoto restano indispensabili.</p>
 
-<div class="quote">Zero dipendenze di progetto non vuol dire zero requisiti: binario, chiave API e connessione ai servizi restano necessari.</div>
+<div class="quote">Senza dipendenze nel progetto non significa senza prerequisiti: binario, chiave API e chiamate remote restano parte dell'equazione.</div>
 
-<p>Anche «stateless» richiede cautela. Nel contesto di scripting e CI, l'approccio riduce l'onere di gestire dipendenze e stato locale. Una sessione conversazionale o un managed agent vanno però interpretati attraverso le <strong>API sottostanti</strong>, e la documentazione non promette uno stato locale persistente. Stateless descrive il client e non va esteso a stabilità, durata della beta o comportamento dei servizi remoti.</p>
+<p>Anche <em>stateless</em> merita cautela. Descrive il client e l'API sottostante, e non promette uno stato locale persistente. Una sessione conversazionale o un managed agent vanno interpretati attraverso le API su cui poggiano. Dalla parola stateless non si deve dedurre né stabilità né la permanenza di uno stato da qualche parte.</p>
 
 <div class="section-divider"></div>
 
 <h2>III. Immagini, documenti e output senza gonfiare il contesto</h2>
 
-<p>Un punto pratico riguarda gli output pesanti. Chi ha integrato un modello in un agente di coding sa che immagini o audio restituiti come testo codificato possono occupare molto spazio nella finestra di contesto. La guida dichiara che <strong>media e trascrizioni vengono scritti su disco</strong> e che sullo standard output compare il <strong>percorso del file</strong>. Per questi output non viene inserito base64 nel contesto.</p>
+<p>Per chi usa la CLI dentro un agente di coding conta molto come tornano i risultati. Ogni byte che rientra nel contesto del modello ha un costo in spazio. La guida documenta che media e trascrizioni vengono <strong>scritti su disco</strong>, mentre su stdout compaiono i <strong>percorsi dei file</strong>. Per questi output non c'è base64 nel contesto: l'agente o lo script riceve un riferimento e può decidere se e quando aprire il file.</p>
 
-<p>L'agente o lo script riceve quindi un riferimento breve e decide se aprire il file, passarlo a un altro passaggio o archiviarlo. Lo stesso vale per l'analisi di file e documenti, fra le operazioni dichiarate dal client.</p>
+<p>Gli strumenti documentati per gli script sono diversi:</p>
 
-<p>La guida documenta anche alcune funzioni di controllo:</p>
+<p><strong>--dry-run</strong> permette di preparare una richiesta senza trattarla come un'esecuzione ordinaria. Il nome richiama la logica del controllo preventivo, ma per il comportamento esatto vale la guida. <strong>--usage</strong> e <strong>--schema</strong> fanno il <em>lookup</em> delle istruzioni d'uso e degli schemi, quindi chi automatizza può scoprire i parametri senza averli in testa. Gli output possono uscire in formato <strong>JSON</strong>, <strong>TOON</strong> o filtrati con <strong>JQ</strong>, utili quando un passaggio successivo deve leggerli come dati. La guida cita anche una modalità <strong>--agent-mode</strong>; qui ci limitiamo a registrarne l'esistenza, perché i dettagli del suo comportamento non sono nei dati disponibili.</p>
 
-<p><strong>--dry-run</strong> permette di verificare una richiesta prima di eseguirla. <strong>--usage</strong> e <strong>--schema</strong> servono a consultare le modalità d'uso e gli schemi direttamente dal client. Per gli output strutturati sono documentati i formati <strong>JSON</strong>, <strong>TOON</strong> e <strong>JQ</strong>. È inoltre documentata una modalità <strong>--agent-mode</strong>, di cui qui si riporta solo l'esistenza, senza dettagli che la guida sintetizzata non fornisce.</p>
-
-<div class="highlight-box"><p><strong>Perché interessa:</strong> percorsi su disco, <strong>--dry-run</strong>, consultazione di schema e usage e output strutturati rendono il client più leggibile per un programma. Chi legge l'output è spesso un altro software, non una persona.</p></div>
+<div class="highlight-box"><p><strong>In pratica:</strong> su disco restano media e trascrizioni, a schermo i percorsi, mentre gli output strutturati servono a passare informazioni ai passaggi successivi di uno script o di una pipeline.</p></div>
 
 <div class="section-divider"></div>
 
 <h2>IV. Managed agents e integrazione nei workflow CI</h2>
 
-<p>Tra le capacità dichiarate c'è l'avvio di <strong>Gemini managed agents</strong> tramite Interactions API. Qui il confine va ribadito. La CLI è il punto d'ingresso, mentre il lavoro agentico avviene sul lato servizio. Da questa fonte non si possono dedurre né le capacità dei managed agents né il loro comportamento in casi specifici.</p>
+<p>Il terzo ambito dichiarato è l'avvio dei <strong>Gemini managed agents</strong> via Interactions API. Qui la separazione tra interfaccia e runtime torna centrale. La CLI è il punto d'ingresso: lancia l'operazione e raccoglie ciò che viene restituito. L'esecuzione agentica avviene sul lato servizio, e la guida non attribuisce alla CLI autonomia propria.</p>
 
-<p>Nei workflow CI la CLI può fungere da <strong>interfaccia standard</strong> per chiamare i servizi Gemini. Un job può generare un testo, analizzare un file prodotto dalla build, salvare un artefatto multimediale o lanciare un'operazione più articolata, usando sempre lo stesso strumento. Per chi scrive pipeline, un'interfaccia unica da terminale è più semplice da documentare, da rivedere e da sostituire di una collezione di chiamate HTTP scritte a mano.</p>
+<p>In un workflow CI la CLI può fungere da <strong>interfaccia standard</strong> per chiamare i servizi Gemini. Un job può generare un testo, trascrivere un file, far analizzare un documento o avviare un managed agent con lo stesso strumento, senza una libreria per ogni passaggio. Per team che già orchestrano controlli e build con script, è un vantaggio di uniformità. Il lavoro resta però quello della pipeline: la CLI non decide cosa fare né quando.</p>
 
-<div class="quote">Nella pipeline la CLI è un'interfaccia comune. Tutto ciò che sta intorno alla chiamata resta compito di chi progetta il workflow.</div>
-
-<p>Va ricordato che le funzioni descritte sono quelle dichiarate da Google. Annuncio e guida definiscono l'uso previsto, ma non sono valutazioni indipendenti: l'affidabilità nei flussi reali dovrà emergere dall'esperienza degli utenti.</p>
+<div class="quote">Nella pipeline la CLI è un'interfaccia comune, non un decisore: chi orchestra continua a essere il workflow.</div>
 
 <div class="section-divider"></div>
 
 <h2>V. Credenziali, CI e responsabilità della pipeline</h2>
 
-<p>La guida indica due precauzioni per l'uso in CI: caricare la chiave da un <strong>secret store</strong> e <strong>fissare la versione</strong> del client (<em>pin</em>). Sono pratiche coerenti con lo stato beta, perché un binario che può cambiare tra un'esecuzione e l'altra rende meno ripetibile una pipeline.</p>
+<p>Il fatto che il client sia leggero non sposta le responsabilità operative. Le indicazioni per la CI sono chiare: la chiave API va gestita tramite un <strong>secret store</strong> e la versione del client va fissata con un <strong>pin</strong>. Il secondo punto pesa in particolare per una beta, perché un aggiornamento inatteso può modificare il comportamento di un job che prima funzionava.</p>
 
-<p>La CLI, però, non risolve da sola la parte di sicurezza e governance. Restano in capo alla pipeline:</p>
+<p>Restano in capo alla pipeline anche altri aspetti:</p>
 
-<p>la <strong>gestione dei secret</strong>, cioè dove vive GEMINI_API_KEY e chi può leggerla; i <strong>permessi del runner</strong>, ovvero cosa può raggiungere il job che invoca il client; la <strong>conservazione di log e artifact</strong>, compresi i file multimediali scritti su disco e i loro percorsi; il <strong>gating delle modifiche</strong>, cioè i controlli prima che un output generato produca effetti, per esempio una revisione umana.</p>
+<p>i <strong>permessi del runner</strong>, cioè che cosa il job può leggere, scrivere o raggiungere; la <strong>conservazione di log e artifact</strong>, che con output su disco e percorsi su stdout diventa una scelta esplicita; il <strong>gating delle modifiche</strong>, cioè la decisione su cosa può essere applicato automaticamente e cosa richiede revisione umana. Se un managed agent produce cambiamenti, a stabilire il controllo è la pipeline, non la CLI.</p>
 
-<div class="highlight-box"><p><strong>Responsabilità:</strong> un client stateless e senza dipendenze semplifica l'integrazione, ma non sposta su Google la gestione di credenziali, permessi, tracciabilità e controllo delle modifiche. Queste restano a chi gestisce la pipeline.</p></div>
-
-<p>Poiché le chiamate sono remote, ciò che si invia ai servizi Gemini, come file o prompt, va deciso dal team. Anche la scelta di cosa conservare nei log fa parte di quella responsabilità.</p>
+<div class="highlight-box"><p><strong>Checklist minima per la CI:</strong> chiave nel secret store, versione del client fissata, permessi del runner ridotti al necessario, log e artifact trattati come dati da gestire, modifiche soggette a gating.</p></div>
 
 <div class="section-divider"></div>
 
 <h2>VI. Beta, limiti e le modifiche API della stessa settimana</h2>
 
-<p>Il changelog annuncia una <strong>beta</strong>, non una disponibilità generale. Senza una fonte esplicita non si possono quindi attribuire alla CLI garanzie di stabilità, SLA, supporto multipiattaforma oltre quanto documentato, formati di packaging o prestazioni. Non ci sono dati su prezzi, benchmark o disponibilità regionali, e questo articolo non li ipotizza. Una beta può cambiare, anche nei comandi e nelle opzioni oggi documentati.</p>
+<p>Il changelog annuncia una <strong>beta</strong>, non una GA. Per questo non vanno attribuite al client garanzie di stabilità, SLA, supporto multipiattaforma oltre quanto documentato, formato di packaging o prestazioni: le fonti non offrono basi per farlo. Mancano anche prezzi, benchmark e indicazioni di disponibilità regionale. Una beta può cambiare, e chi la adotta dovrebbe pianificare di conseguenza.</p>
 
-<p>Nella stessa settimana sono comparse altre voci nel changelog, che vanno tenute come <strong>contesto distinto</strong> e non come caratteristiche della CLI:</p>
+<p>C'è poi un limite di metodo. Annuncio e guida definiscono l'<em>uso previsto</em> dello strumento, ma non sono valutazioni indipendenti. Come funzioni nei casi reali lo diranno i test dei team che lo useranno.</p>
 
-<p>il <strong>30 ottobre</strong> Computer Use è diventato disponibile in <strong>GA</strong> per Interactions e GenerateContent; il <strong>26 ottobre</strong> <strong>store=true</strong> è diventato l'impostazione predefinita per i nuovi progetti a pagamento sulla Generate Content API, con possibilità di opt-out per singola richiesta con <strong>store=false</strong> o tramite Logs and Datasets.</p>
+<p>Nella stessa settimana sono arrivate altre due novità API, che restano <strong>contesto distinto</strong> e non vanno confuse con la CLI. Il 30 ottobre <strong>Computer Use</strong> è diventato GA per Interactions e GenerateContent. Il 26 ottobre <strong>store=true</strong> è diventato il default per i nuovi progetti a pagamento su Generate Content API, con opt-out per singola richiesta tramite <strong>store=false</strong> oppure da Logs and Datasets. Sono modifiche alla piattaforma e non caratteristiche di <em>gemini-api</em>.</p>
 
-<p>Sono modifiche alla piattaforma API. Non dicono nulla sul comportamento della CLI e non vanno lette come funzioni del client. Chi gestisce progetti Gemini farà bene a verificarle a parte, in particolare la questione dello store predefinito, che riguarda la conservazione dei dati sul lato API.</p>
+<div class="quote">Una beta si adotta con curiosità e prudenza: provarla è utile, darla per stabile no.</div>
 
-<p>Per ora <em>gemini-api</em> è un tassello utile ma ancora in beta: un client stateless che porta le operazioni dell'Interactions API nel terminale e nelle pipeline, con output pensati per essere letti da programmi. Prima di adottarlo in produzione, i team dovranno confrontare la guida ufficiale con le proprie prove, fissare la versione e mantenere sotto controllo credenziali e dati.</p>
+<p>In sintesi, <em>gemini-api</em> offre a script, pipeline e agenti di coding un modo uniforme di usare le funzioni Gemini dal terminale, con output pensati per non appesantire il contesto. Resta uno strumento in beta, con prerequisiti reali, e la sicurezza e la governance di ciò che accade intorno restano responsabilità di chi lo integra.</p>
         </article>
     </main>
     <footer>
