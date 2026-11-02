@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API CLI: il nuovo client in beta per agenti di coding e CI | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gemini API CLI debutta in beta: client stateless e senza dipendenze per coding agent, script e CI via Interactions API.">
+    <meta name="keywords" content="Gemini API CLI, gemini-api, coding agent, CI, Interactions API, Gemini managed agents">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Gemini API CLI: il nuovo client in beta per agenti di coding e CI | Pillole di AI">
+    <meta property="og:description" content="Generare testo e media, analizzare file e avviare agenti gestiti da terminale: cosa fa e cosa non implica la nuova CLI Gemini.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-11-02T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gemini API CLI: il nuovo client in beta per agenti di coding e CI">
+    <meta name="twitter:description" content="Gemini API CLI: beta per coding agent, script e CI, non un agente autonomo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Gemini API CLI: il nuovo client in beta per agenti di coding e CI</h1>
+        <p>Google rilascia in beta gemini-api, client CLI stateless per l'Interactions API: testo, media, file e managed agents. È un'interfaccia per script e CI, non un agente autonomo.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Novembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Una CLI per l'era degli agenti di coding</h2>
+<p>Il 27 ottobre 2026 Google ha annunciato nel changelog di Google AI Studio il rilascio di <strong>gemini-api</strong>, un client a riga di comando per la Gemini API. Il rilascio è <strong>in beta</strong>, non è disponibile in versione GA. Google lo descrive come <em>stateless</em> e <em>senza dipendenze</em>, pensato per agenti di coding, script e pipeline CI.</p>
+<p>Conviene chiarire subito che cosa è questo strumento. Il client opera con l'<strong>Interactions API</strong> per tre attività: generare testo e media, analizzare file e avviare i <strong>Gemini managed agents</strong>. Non viene presentato come un agente autonomo, né come un wrapper di shell general-purpose. È un punto di accesso testuale a operazioni della Gemini API, che un agente di coding, uno script o un job di integrazione continua possono invocare in modo uniforme.</p>
+<div class="highlight-box"><p><strong>Da tenere separati:</strong> la CLI beta è l'interfaccia con cui si chiamano i servizi Gemini. Il runtime autonomo, cioè il managed agent, è una risorsa che la CLI può avviare, ma non coincide con essa.</p></div>
+<div class="section-divider"></div>
+
+<h2>II. Stateless e senza dipendenze nel progetto: cosa promette il client</h2>
+<p>Le due etichette, <em>stateless</em> e <em>senza dipendenze</em>, vanno lette con precisione. La seconda riguarda il progetto: per usare il client non si aggiungono librerie al repository né si gestisce un albero di pacchetti. Questo è il vantaggio dichiarato per scripting e CI, dove ogni dipendenza in più è un punto da mantenere, aggiornare e verificare.</p>
+<p>Ma <strong>zero dipendenze di progetto non significa zero setup</strong>. Secondo la guida ufficiale servono comunque:</p>
+<p>l'installazione del binario, per cui la guida documenta uno script per macOS e Linux; una chiave API, fornita tramite la variabile <strong>GEMINI_API_KEY</strong>; e la possibilità di inviare chiamate remote ai servizi Gemini. Il comando <strong>whoami</strong>, previsto dalla guida, aiuta a verificare l'identità con cui il client opera. Non ci sono altri dettagli di installazione nei materiali consultati, e qui non ne aggiungiamo.</p>
+<p>Anche <em>stateless</em> merita cautela. Indica che il client non promette uno stato locale persistente tra una chiamata e l'altra. Non ne segue che sul lato servizio non esista alcuno stato: una sessione conversazionale o un managed agent vanno interpretati attraverso le API sottostanti, non attraverso la CLI. Dalla parola <em>stateless</em> non si può dedurre nulla sulla permanenza dei dati altrove.</p>
+<div class="quote"><p>Senza dipendenze nel progetto non vuol dire senza prerequisiti: serve un binario, serve una chiave, servono chiamate remote.</p></div>
+<div class="section-divider"></div>
+
+<h2>III. Immagini, documenti e output senza gonfiare il contesto</h2>
+<p>Uno degli aspetti più concreti riguarda la gestione degli output. Per un agente di coding la finestra di contesto è una risorsa limitata, e incollarvi grandi blocchi di dati codificati è un modo rapido per sprecarla. La guida descrive un approccio diverso: media e trascrizioni vengono <strong>scritti su disco</strong>, e la CLI restituisce su stdout i <strong>percorsi dei file</strong>. Per questi output non viene inserito base64 nel contesto.</p>
+<p>In pratica, un comando che genera un'immagine o produce la trascrizione di un file lascia l'artefatto nel filesystem e comunica solo dove si trova. L'agente o lo script può poi decidere se aprirlo, archiviarlo o passarlo a uno step successivo.</p>
+<p>Per l'uso in automazione la guida documenta anche altre funzioni:</p>
+<p><strong>--dry-run</strong> permette di verificare cosa verrebbe eseguito prima di inviare davvero la richiesta. <strong>--usage</strong> e <strong>--schema</strong> consentono di consultare l'uso dei comandi e gli schemi, un aiuto per agenti che devono scoprire le opzioni disponibili senza ricorrere alla documentazione esterna. Gli <strong>output strutturati</strong> sono disponibili in <strong>JSON</strong>, <strong>TOON</strong> e con filtri <strong>JQ</strong>, utili quando il risultato deve essere letto da un altro programma e non da una persona. Infine esiste una modalità <strong>--agent-mode</strong>, indicata nella guida come parte delle funzioni pensate per l'uso da parte di agenti.</p>
+<div class="section-divider"></div>
+
+<h2>IV. Managed agents e integrazione nei workflow CI</h2>
+<p>La parte più delicata da descrivere è l'avvio dei managed agents. La CLI può lanciarli tramite l'Interactions API, ma ciò che gira dopo l'avvio è un servizio Gemini, non il client. La CLI resta l'interfaccia di chiamata; l'esecuzione autonoma, se c'è, appartiene al managed agent e va compresa attraverso la documentazione delle API sottostanti.</p>
+<div class="highlight-box"><p><strong>Perché la distinzione conta:</strong> attribuire alla CLI capacità agentiche autonome significherebbe descrivere una funzione che Google non dichiara. Il client invoca, il servizio esegue.</p></div>
+<p>In un workflow CI, secondo le indicazioni, la CLI può fungere da <strong>interfaccia standard</strong> per chiamare i servizi Gemini. Un job può generare testo, analizzare un documento allegato alla build, produrre un artefatto multimediale oppure avviare un managed agent, usando sempre lo stesso strumento e leggendo output in formato strutturato. Il vantaggio descritto è la coerenza: una sola interfaccia, comandi ispezionabili con <strong>--dry-run</strong>, risultati leggibili da macchina.</p>
+<p>Restano fuori dal perimetro della CLI le decisioni su cosa far eseguire e in quali condizioni, che appartengono a chi progetta la pipeline.</p>
+<div class="section-divider"></div>
+
+<h2>V. Credenziali, CI e responsabilità della pipeline</h2>
+<p>Integrare una CLI che parla con servizi remoti in un ambiente CI sposta alcune responsabilità verso chi gestisce la pipeline. Le indicazioni per questo scenario sono nette: la chiave API va prelevata da un <strong>secret store</strong>, non scritta nel repository o negli script, e la <strong>versione del client va fissata</strong> (pin). Dato che il rilascio è in beta e può cambiare, bloccare la versione evita che un aggiornamento imprevisto modifichi il comportamento di una build.</p>
+<p>Gli stessi materiali lasciano alla pipeline anche altri aspetti operativi:</p>
+<p>la gestione dei <strong>secret</strong> e dei <strong>permessi del runner</strong>; la <strong>conservazione di log e artifact</strong>, compresi i file multimediali e le trascrizioni scritti su disco; il <strong>gating delle modifiche</strong>, cioè i controlli e le approvazioni prima che un risultato generato produca effetti. Nessuno di questi punti è risolto dalla CLI: è il team a stabilire chi può eseguire quali chiamate, dove finiscono gli output e come vengono rivisti.</p>
+<div class="quote"><p>La CLI standardizza la chiamata, ma la responsabilità di segreti, permessi, log e approvazioni resta alla pipeline.</p></div>
+<div class="section-divider"></div>
+
+<h2>VI. Beta, limiti e le modifiche API della stessa settimana</h2>
+<p>Il changelog parla di <strong>beta</strong>, non di disponibilità generale. Da qui discendono limiti di lettura. Nei materiali consultati non ci sono garanzie di stabilità, SLA, supporto multipiattaforma oltre a quanto indicato per l'installazione, dettagli sul formato di packaging o dati sulle prestazioni, e non li attribuiamo. Mancano anche informazioni su prezzi e disponibilità regionali. Annuncio e guida definiscono l'uso previsto dello strumento ma non sono valutazioni indipendenti, e una beta può cambiare.</p>
+<p>Nella stessa settimana sono arrivate due modifiche alle API Gemini che vanno ricordate come <strong>contesto distinto</strong>, non come funzioni della CLI:</p>
+<p>il <strong>30 ottobre</strong> Computer Use è diventato GA per Interactions e GenerateContent; il <strong>26 ottobre</strong> <em>store=true</em> è diventato il default per i nuovi progetti a pagamento sulla Generate Content API, con opt-out per singola richiesta tramite <em>store=false</em> oppure da Logs and Datasets. Sono cambiamenti che riguardano le API, e chi lavora con pipeline automatiche farà bene a verificarli per conto proprio, senza assumere che siano collegati al client a riga di comando.</p>
+<p>In sintesi, gemini-api è un client beta, stateless e senza dipendenze di progetto, con prerequisiti precisi e un perimetro chiaro: chiama i servizi Gemini, non li sostituisce e non decide al posto della pipeline.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Novembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
