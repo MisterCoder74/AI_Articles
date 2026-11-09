@@ -3,7 +3,7 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (48 generati)
+## Articoli (49 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
