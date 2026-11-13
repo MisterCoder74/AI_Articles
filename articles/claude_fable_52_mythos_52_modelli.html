@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Claude Fable 5.2 e Mythos 5.2: stesso modello con salvaguardie diverse, 1M token di contesto, prezzi $8/$40 per milione di token e accesso verificato per Mythos.">
+    <meta name="keywords" content="Claude Fable 5.2, Claude Mythos 5.2, Anthropic, claude-fable-5-2, adaptive thinking, API">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso | Pillole di AI">
+    <meta property="og:description" content="Cosa cambia tra Fable 5.2 e Mythos 5.2: specifiche, prezzi, accesso e breaking change API.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-11-13T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso">
+    <meta name="twitter:description" content="Claude Fable 5.2 e Mythos 5.2: specifiche, prezzi, accesso e breaking change.">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso",
+  "description": "Fable 5.2 è disponibile in generale, Mythos 5.2 solo per organizzazioni verificate: stesso modello, stessi prezzi. Specifiche, accesso, breaking change API e benchmark autodichiarati.",
+  "datePublished": "2026-11-13",
+  "author": {
+    "@type": "Person",
+    "name": "Alessandro Demontis"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vivacity Design"
+  },
+  "mainEntityOfPage": "https://www.vivacitydesign.net/vd_ai_division/articles/claude_fable_52_mythos_52_modelli.html",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Claude Fable 5.2"
+    },
+    {
+      "@type": "Thing",
+      "name": "Claude Mythos 5.2"
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Cerveteri",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "RM",
+        "addressCountry": "IT"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Lazio",
+      "containsPlace": [
+        {
+          "@type": "City",
+          "name": "Roma"
+        },
+        {
+          "@type": "City",
+          "name": "Viterbo"
+        },
+        {
+          "@type": "City",
+          "name": "Pomezia"
+        },
+        {
+          "@type": "City",
+          "name": "Cerveteri"
+        },
+        {
+          "@type": "City",
+          "name": "Ladispoli"
+        },
+        {
+          "@type": "City",
+          "name": "Civitavecchia"
+        },
+        {
+          "@type": "City",
+          "name": "Latina"
+        }
+      ]
+    }
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.9922,
+    "longitude": 12.0975
+  }
+}
+</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso</h1>
+        <p>Fable 5.2 è disponibile in generale, Mythos 5.2 solo per organizzazioni verificate: stesso modello, stessi prezzi. Specifiche, accesso, breaking change API e benchmark autodichiarati.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Novembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<p>Il 9 novembre 2026 Anthropic ha rilasciato <strong>Claude Fable 5.2</strong> e <strong>Claude Mythos 5.2</strong>. Questo articolo si limita agli aspetti operativi: modelli, funzioni, API, prezzi e accesso. Le informazioni provengono dalla documentazione di Claude Platform, con conferme della stampa (CNBC, Reuters, Yahoo Finance) e, per i benchmark, di CNET e MarkTechPost.</p>
+
+<div class="section-divider"></div>
+
+<h2>I. Due nomi, un solo modello</h2>
+
+<p>Fable 5.2 e Mythos 5.2 sono <strong>lo stesso modello</strong>, con le stesse specifiche e gli stessi prezzi. Cambia solo l'accesso: Fable 5.2 è disponibile in generale, Mythos 5.2 solo per organizzazioni verificate attraverso i programmi di verifica di Anthropic, come il Cyber Verification Program.</p>
+
+<p>La documentazione descrive Fable 5.2 come un modello «per ragionamento complesso e lavoro agentico di lunga durata»: sessioni agentiche di ore, ricerca multi-step, analisi che arrivano a un documento, un foglio di calcolo o una presentazione finita. Lo stato è "Latest". L'ID del modello in documentazione è <em>claude-fable-5-2</em>. L'ID API di Mythos 5.2 non è stato verificato e non lo riportiamo.</p>
+
+<p>La cronologia aiuta a collocare i nomi: secondo la stampa Mythos era stato presentato ad aprile 2026 con accesso limitato, mentre Fable 5, versione pubblica con salvaguardie, è uscito il 9 giugno 2026 (data confermata dalla documentazione).</p>
+
+<div class="highlight-box"><p><strong>In sintesi:</strong> un solo modello, due canali di accesso. Fable 5.2 per tutti, Mythos 5.2 per organizzazioni verificate.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Specifiche e prezzi a confronto con la famiglia 5.5</h2>
+
+<p>Le specifiche condivise dai due modelli, secondo la documentazione:</p>
+<p><strong>Contesto:</strong> 1 milione di token, sia come valore predefinito sia come massimo. <strong>Output massimo:</strong> 128K token. <strong>Modalità:</strong> input di testo e immagini, output di testo. <strong>Adaptive thinking:</strong> sempre attivo e non disattivabile. <strong>Effort predefinito:</strong> <em>high</em>. <strong>Latenza:</strong> "moderata". <strong>Knowledge cutoff:</strong> giugno 2026. <strong>Tokenizer:</strong> quello introdotto con Claude Opus 4.7.</p>
+
+<p>Esiste inoltre una <em>fast mode</em> opzionale a prezzo premium, prevista dalla documentazione. Il fattore 2,5x è riportato solo da MarkTechPost, quindi va trattato con cautela.</p>
+
+<p>Prezzi per milione di token:</p>
+<p><strong>Fable 5.2 / Mythos 5.2:</strong> 8 dollari in input, 40 in output. <strong>Opus 5.5:</strong> 4 / 20. <strong>Sonnet 5.5:</strong> 2 / 10. <strong>Haiku 5.5:</strong> da 0,10 / 0,50.</p>
+
+<p>Fable 5.2 costa dunque il doppio di Opus 5.5 e quattro volte Sonnet 5.5. Rispetto a Fable 5.1, che secondo Yahoo Finance costava 10 / 50 dollari, il prezzo è inferiore del 20% (dato riportato da CNBC). Anthropic dichiara inoltre output fino al 30% più veloce rispetto alle generazioni 5.1, con miglioramenti in coding, ragionamento e visione (CNBC, Reuters, Yahoo).</p>
+
+<div class="quote">Fable 5.2: 8 dollari in input e 40 in output per milione di token, il doppio di Opus 5.5.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Quando scegliere Fable 5.2 invece di Opus</h2>
+
+<p>L'indicazione della documentazione è pragmatica: per la maggior parte dei carichi di lavoro conviene <strong>partire dall'ultimo modello Opus</strong> e passare a Fable 5.2 solo quando le valutazioni su Opus a effort alto non sono sufficienti.</p>
+
+<p>In pratica, il passaggio ha senso quando il compito rientra nel profilo descritto per Fable: lavoro agentico di lunga durata, ricerca multi-step, analisi complesse fino al prodotto finito. Il costo doppio per token suggerisce di misurare il guadagno di qualità sui propri casi d'uso, con test comparativi, prima di migrare.</p>
+
+<div class="highlight-box"><p><strong>Regola pratica:</strong> si parte da Opus, si valuta a effort alto e si passa a Fable 5.2 solo se i risultati non bastano.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Accesso: Fable generale, Mythos verificato</h2>
+
+<p>Fable 5.2 è accessibile senza verifiche specifiche. Mythos 5.2 è riservato a organizzazioni che superano i programmi di verifica di Anthropic: la documentazione cita il Cyber Verification Program e, secondo CNBC e Reuters, esiste anche un programma per le Life Sciences.</p>
+
+<p>Un requisito rilevante riguarda i dati: Fable 5.2 richiede una <strong>conservazione dei dati di 30 giorni</strong> e non è disponibile in zero data retention, salvo autorizzazione esplicita. Chi ha vincoli di conformità deve verificarlo prima di pianificare l'adozione.</p>
+
+<p>Un'altra funzione operativa è il blocco delle richieste: la documentazione parla di <em>classifier refusals</em> con retry su un altro modello Claude. La disponibilità sulle piattaforme cloud (AWS, Google, Azure) proviene solo da fonti secondarie e non è confermata dalla documentazione consultata.</p>
+
+<div class="quote">Mythos 5.2 non è un modello diverso: è lo stesso modello, riservato a chi è stato verificato.</div>
+
+<div class="section-divider"></div>
+
+<h2>V. Breaking change per chi usa l'API</h2>
+
+<p>Rispetto a Fable 5.1 la documentazione segnala diverse modifiche che possono rompere integrazioni esistenti.</p>
+
+<p><strong>1. Controllo di prefisso sui thinking block.</strong> Se si modificano system prompt, tool o messaggi precedenti a un thinking block, l'API restituisce un errore 400 («The block is bound to a different conversation»). Non cambia nulla per Claude Code, claude.ai, Managed Agents e Agent SDK. Come soluzione temporanea esiste l'header beta <em>thinking-binding-controls-2026-08-01</em> con <em>thinking.block_binding.prefix_mismatch_behavior: "drop_block"</em>, che però può aumentare i token di output.</p>
+
+<p><strong>2. Thinking block legati al modello.</strong> Fable 5.2 e Mythos 5.2 leggono i reciproci blocchi.</p>
+
+<p><strong>3. Computer use.</strong> Il tool <em>computer_20251124</em> restituisce errore su ogni piattaforma tranne Amazon Bedrock.</p>
+
+<p><strong>4. Advisor tool.</strong> Un executor Fable 5.2 richiede un advisor Fable 5.2 o Mythos 5.2.</p>
+
+<p><strong>5. Parametri.</strong> Un <em>tool_choice</em> forzato (any o tool) restituisce errore 400; vanno omessi <em>temperature</em>, <em>top_p</em> e <em>top_k</em>.</p>
+
+<div class="highlight-box"><p><strong>Da controllare prima della migrazione:</strong> modifiche ai messaggi prima dei thinking block, uso di computer use, advisor tool, tool_choice forzato e parametri di campionamento.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>VI. Benchmark autodichiarati e dati da non dare per certi</h2>
+
+<p>Tutti i numeri che seguono sono <strong>secondo i dati dichiarati da Anthropic</strong>, riportati dalla stampa. Non risultano repliche indipendenti.</p>
+
+<p><strong>FrontierCode 2.0</strong> (coding agentico): 49,1% a effort Xhigh, contro il 32,4% di Fable 5.1 (CNET) e il 45,5% di Opus 5.5 (MarkTechPost); a effort High il risultato è 45,3%.</p>
+
+<p><strong>Benchmark cyber:</strong> Mythos 5.2 passerebbe dal 61,7% al 76,3% (CNET); su CVE Rediscovery il dato è 89,6% (MarkTechPost).</p>
+
+<p><strong>Non in testa ovunque:</strong> su AutomationBench Fable ottiene 51,4%, contro il 53,9% di Gemini 4 Carbon (MarkTechPost).</p>
+
+<p><strong>Blocchi:</strong> MarkTechPost riferisce che, quando Fable blocca una richiesta, la risposta arriva da un Opus precedente, con circa il 55% di blocchi in meno rispetto a Fable 5.1. Il meccanismo di blocco con retry è confermato dalla documentazione; le percentuali no.</p>
+
+<p>Restano da considerare non verificati anche l'ID API di Mythos 5.2, il fattore 2,5x della fast mode e la disponibilità sulle piattaforme cloud. Per decisioni di adozione, l'unico criterio solido è una valutazione sui propri carichi di lavoro.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Novembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
