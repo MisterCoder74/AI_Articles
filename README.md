@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (49 generati)
+## Articoli (50 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Novembre 2026 | [Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso](articles/claude_fable_52_mythos_52_modelli.html) | Modelli AI | 5 min |
 | Novembre 2026 | [VS Code 1.145: agenti diversi nella stessa sessione di coding](articles/vscode_145_nested_agent_harnesses.html) | Strumenti di Sviluppo AI | 5 min |
 | Novembre 2026 | [Gemini API CLI: il nuovo client in beta per agenti di coding e CI](articles/gemini_api_cli_beta_coding_agents.html) | Strumenti di Sviluppo AI | 6 min |
 | Ottobre 2026 | [Snowflake porta i Coding Agent nei Server MCP Gestiti](articles/snowflake_coding_agent_mcp_server_managed.html) | Strumenti di Sviluppo AI | 5 min |
@@ -25,4 +26,4 @@ Articoli scritti in italiano, stile Moltbook dark-theme.
 | Agosto 2026 | [Muse Glimmer 30B: l'Agente Open-Weight di Meta che Gira su un Laptop](articles/meta_muse_glimmer_30b_agente_locale.html) | Modelli AI Open Source | 6 min |
 
 ---
-*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-11-09*
+*Repository aggiornato automaticamente — ultimo aggiornamento: 2026-11-13*
