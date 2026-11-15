@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 4 Hydrogen: il modello veloce di Google per agenti e coding, con quattro livelli di thinking | Pillole di AI</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gemini 4 Hydrogen (gemini-4-hydrogen): 1M token, $1,50/$7,50 per milione di token, quattro livelli di thinking con xhigh e long decode per agenti e coding.">
+    <meta name="keywords" content="Gemini 4 Hydrogen, gemini-4-hydrogen, Google, thinking level, xhigh, long decode, Gemini API">
+    <meta name="author" content="Pillole di AI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Gemini 4 Hydrogen: il modello veloce di Google per agenti e coding, con quattro livelli di thinking | Pillole di AI">
+    <meta property="og:description" content="Specifiche, prezzi, thinking level e uso nei workflow multi-modello di Gemini 4 Hydrogen.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pillole di AI">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vd_ai_division/articles/ai_division_pillole.jpg">
+    <meta property="article:published_time" content="2026-11-15T09:00:00+02:00">
+    <meta property="article:author" content="Pillole di AI">
+    <meta property="article:section" content="Modelli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gemini 4 Hydrogen: il modello veloce di Google per agenti e coding, con quattro livelli di thinking">
+    <meta name="twitter:description" content="Gemini 4 Hydrogen: specifiche, prezzi, thinking xhigh e long decode.">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Gemini 4 Hydrogen: il modello veloce di Google per agenti e coding, con quattro livelli di thinking",
+  "description": "Gemini 4 Hydrogen (ID gemini-4-hydrogen) è il modello Google per esecuzione rapida e workflow agentici: specifiche, prezzi, quattro livelli di thinking, long decode e benchmark da leggere con cautela.",
+  "datePublished": "2026-11-15",
+  "author": {
+    "@type": "Person",
+    "name": "Alessandro Demontis"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vivacity Design"
+  },
+  "mainEntityOfPage": "https://www.vivacitydesign.net/vd_ai_division/articles/gemini_4_hydrogen_modello_agentico.html",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Gemini 4 Hydrogen"
+    },
+    {
+      "@type": "Thing",
+      "name": "Gemini API"
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Cerveteri",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "RM",
+        "addressCountry": "IT"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Lazio",
+      "containsPlace": [
+        {
+          "@type": "City",
+          "name": "Roma"
+        },
+        {
+          "@type": "City",
+          "name": "Viterbo"
+        },
+        {
+          "@type": "City",
+          "name": "Pomezia"
+        },
+        {
+          "@type": "City",
+          "name": "Cerveteri"
+        },
+        {
+          "@type": "City",
+          "name": "Ladispoli"
+        },
+        {
+          "@type": "City",
+          "name": "Civitavecchia"
+        },
+        {
+          "@type": "City",
+          "name": "Latina"
+        }
+      ]
+    }
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.9922,
+    "longitude": 12.0975
+  }
+}
+</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg-surface: #0d1017;
+            --bg-card: #111520;
+            --green: #10b981;
+            --gold: #f59e0b;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --gold-glow: rgba(245, 158, 11, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+            
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+            
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-content {
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--green);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content strong {
+            color: var(--green);
+        }
+
+        .article-content em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .video-container {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 30px var(--green-glow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .video-label {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--green);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--green-glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    
+        .article-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="breadcrumb"><a href="../pillole_di_ai.html">← Pillole di AI</a></div>
+        <div class="logo">PILLOLE <span>DI AI</span></div>
+        <h1>Gemini 4 Hydrogen: il modello veloce di Google per agenti e coding, con quattro livelli di thinking</h1>
+        <p>Gemini 4 Hydrogen (ID gemini-4-hydrogen) è il modello Google per esecuzione rapida e workflow agentici: specifiche, prezzi, quattro livelli di thinking, long decode e benchmark da leggere con cautela.</p>
+    </header>
+    <main class="container">
+        <div class="article-meta">Vivacity AI Division &nbsp;·&nbsp; Novembre 2026 &nbsp;·&nbsp; Alessandro Demontis</div>
+        <article class="article-content">
+<h2>I. Hydrogen nella famiglia Gemini 4</h2>
+
+<p>Il nome ufficiale è <strong>Gemini 4 Hydrogen</strong> e l'ID API è <code>gemini-4-hydrogen</code>. Le fonti primarie sono l'annuncio sul blog Google (aggiornato al 13 novembre 2026), la documentazione della Gemini API e la model card DeepMind del 12 novembre 2026. Ars Technica ha fornito una conferma secondaria.</p>
+
+<p>Google lo posiziona come modello per <em>velocità ed efficienza nel coding quotidiano e nei workflow agentici</em>. I modelli di punta della generazione, <strong>Gemini 4 Carbon</strong> e <strong>Gemini 4 Argon</strong>, sono pensati per il ragionamento profondo e di lungo orizzonte. Hydrogen è invece il modello per l'esecuzione rapida. Secondo la model card è adattato da Gemini 4 Carbon.</p>
+
+<p>La documentazione lo indica come aggiornamento consigliato rispetto a Gemini 3.8 Flash. Ars Technica riferisce che lo ha sostituito nei prodotti Google.</p>
+
+<div class="highlight-box"><p><strong>In sintesi:</strong> Hydrogen non compete con Carbon e Argon sul ragionamento profondo. È il livello di esecuzione della famiglia, ottimizzato per velocità ed efficienza.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>II. Specifiche, prezzi e disponibilità</h2>
+
+<p>La model card indica come input testo, immagini, audio e video. La finestra di contesto è unificata da 1M token (1.048.576). L'output sincrono predefinito arriva a 64K token (65.536). Si può arrivare fino a 1M token con il long decode in background o con la continuazione lato client.</p>
+
+<p>Nel tier a pagamento il prezzo è di <strong>$1,50 per 1M token in input</strong> e <strong>$7,50 per 1M token in output</strong>. È <em>uniforme su tutta la finestra da 1M</em>, quindi non ci sono scaglioni per i contesti lunghi.</p>
+
+<p>Il modello è disponibile in:</p>
+<p>Google AI Studio e Gemini API (GenerateContent e Interactions API), sia in tier gratuito sia a pagamento; Gemini for business; abbonati Google AI Pro e Ultra in Google Antigravity. Secondo la documentazione è anche il default dell'agente Antigravity per i Managed Agents.</p>
+
+<p>Tra le funzioni dichiarate:</p>
+<p>Google segnala una riduzione di oltre 5x delle "fabricated claims" rispetto a 3.8 Flash, perché il modello segnala il contesto mancante invece di indovinare. Ci sono poi chiamate di lettura e ricerca in parallelo (batching), un migliore adattamento quando una tool call fallisce, la comprensione video agentica e la lettura di tabelle, grafici e PDF densi.</p>
+
+<div class="quote">Il modello segnala il contesto mancante invece di indovinare: per un agente che esegue decine di passi, conta quanto la velocità.</div>
+
+<div class="section-divider"></div>
+
+<h2>III. Quattro livelli di thinking, compreso xhigh</h2>
+
+<p>Il parametro <code>thinking_level</code> prevede quattro valori: <code>low</code>, <code>medium</code>, <code>high</code> (predefinito) e <code>xhigh</code>, che è il nuovo livello. L'esempio della documentazione usa l'Interactions API: <code>client.interactions.create(model="gemini-4-hydrogen", input=..., generation_config={"thinking_level": "xhigh"})</code>.</p>
+
+<p>Le indicazioni di Google sono operative:</p>
+<p>Si parte da <code>high</code>. Si usa <code>xhigh</code> solo per i problemi difficili in cui <code>high</code> non basta. Questo livello aumenta latenza e consumo di token e può causare <em>overthinking</em> sui prompt semplici. Conviene testare tutti i livelli con un <code>max_output_tokens</code> alto, perché quel limite copre insieme thinking e output. Infine si sceglie il livello più basso che soddisfa la qualità richiesta.</p>
+
+<div class="highlight-box"><p><strong>Regola pratica:</strong> il thinking consuma il budget di <code>max_output_tokens</code>. Con un limite troppo basso, a livelli alti il ragionamento può ridurre lo spazio per la risposta.</p></div>
+
+<div class="section-divider"></div>
+
+<h2>IV. Output lungo e long decode</h2>
+
+<p>L'output sincrono predefinito si ferma a 65.536 token. Per superarlo la documentazione prevede il <strong>long decode</strong>. Si imposta <code>max_output_tokens</code> a un valore superiore, fino a 1.048.576 meno i token di input, e si attiva <code>background</code> a true. Il server continua poi la generazione a passi da 64K.</p>
+
+<p>In alternativa si può gestire la <em>continuazione lato client</em>, riprendendo l'output in più richieste. Il long decode in background è utile per generazioni molto estese, come refactoring ampi, documentazione lunga o trasformazioni di grandi corpus.</p>
+
+<p>Il limite totale è condiviso: più token di input significano meno spazio per l'output, perché la finestra è unica.</p>
+
+<div class="section-divider"></div>
+
+<h2>V. Hydrogen come esecutore nei workflow multi-modello</h2>
+
+<p>Google propone un'architettura in cui Hydrogen è l'<strong>esecutore efficiente</strong> e Carbon o Argon fanno da coordinatori. Nel caso di "Orchestrator in Google Antigravity", il modello cambia dinamicamente nella stessa sessione.</p>
+
+<p>Le funzioni di Hydrogen si adattano a questo ruolo. Le chiamate di lettura e ricerca in parallelo riducono i giri a vuoto. Il recupero dopo una tool call fallita limita i blocchi. Le dichiarazioni sul contesto mancante servono a evitare che l'esecutore inventi dati.</p>
+
+<div class="quote">Su Terminal-Bench 4.0 Google dichiara un successo quasi pari a Carbon, con il 24% di quota in meno e il 19% di velocità in più.</div>
+
+<p>Questo dato è di Google. Per i test iniziali con i partner, Google dichiara anche una velocità da 2x a 2,8x e il 12-23% di token in meno rispetto a 3.8 Flash.</p>
+
+<div class="section-divider"></div>
+
+<h2>VI. Benchmark dichiarati da Google e dati da non dare per certi</h2>
+
+<p><strong>Secondo i dati dichiarati da Google</strong>, rispetto a 3.8 Flash Hydrogen è 2,5x più veloce a <code>high</code>. Su Terminal-Bench 4.1 ottiene il 57% contro il 18,2%, più del triplo. Non risultano repliche indipendenti verificate.</p>
+
+<p>Sull'Artificial Analysis Intelligence Index, indice di terza parte citato da Google, Hydrogen ottiene 51 a <code>high</code>, contro 50 di Argon, e 54 a <code>xhigh</code>. Ars Technica riporta lo stesso 54 contro 50 e rimanda alla pagina di Artificial Analysis.</p>
+
+<p>La tabella della model card confronta Hydrogen, Claude Sonnet 5.5 e GPT-6.1 Terra. I risultati sono questi:</p>
+<p>SWE-sweep: 13,5% contro 3,1% e 5,8%. Agents' Last Exam v1.1: 71,6% contro 60,4% e 69,8%. HLE-Diamond: 58,8% contro 53,3% e 47,3%. In questi casi Hydrogen è in testa.</p>
+
+<div class="highlight-box"><p><strong>Dove Hydrogen non è in testa:</strong> su Terminal-Bench 4.1 (cheating-adjusted) ha il 57,0% contro il 63,9% di Claude Sonnet 5.5. Su OSWorld-2.1 offline ha il 77,6% contro l'83,9% di Sonnet 5.5. Su Terminal-Bench-Science 0.1 ha il 51,4% contro il 59,9% di Sonnet 5.5. Su OSWorld-2.1 è comunque sopra GPT-6.1 Terra (74,2%), mentre su Terminal-Bench-Science è sotto anche GPT-6.1 Terra (58,3%).</p></div>
+
+<p><strong>Limiti da tenere presenti:</strong> i benchmark sono autodichiarati da Google e i modelli confrontati sono scelti da Google. Non sono state verificate la pagina di pricing ufficiale né le release notes. Per un uso in produzione conviene testare Hydrogen sui propri compiti e sui diversi livelli di thinking.</p>
+        </article>
+    </main>
+    <footer>
+        <p><strong>Pillole di AI</strong> | Vivacity Design AI Division &nbsp;·&nbsp; Novembre 2026</p>
+        <p style="margin-top:1rem;font-size:0.85rem;">Analisi e approfondimenti originali su intelligenza artificiale, modelli linguistici e fenomeni tech.</p>
+        <a href="#top" class="back-to-top">Torna su ↑</a>
+    </footer>
+</body>
+</html>
