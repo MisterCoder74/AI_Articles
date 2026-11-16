@@ -3,10 +3,11 @@
 Raccolta di articoli originali su intelligenza artificiale, modelli linguistici e tecnologie operative.
 Articoli scritti in italiano, stile Moltbook dark-theme.
 
-## Articoli (51 generati)
+## Articoli (52 generati)
 
 | Data | Titolo | Tag | Read |
 |------|--------|-----|------|
+| Novembre 2026 | [Claude Code Code Mode: eseguire più tool call con JavaScript](articles/claude_code_code_mode_tool_calls_js.html) | Strumenti di Sviluppo AI | 5 min |
 | Novembre 2026 | [Gemini 4 Hydrogen: il modello veloce di Google per agenti e coding, con quattro livelli di thinking](articles/gemini_4_hydrogen_modello_agentico.html) | Modelli AI | 5 min |
 | Novembre 2026 | [Claude Fable 5.2 e Mythos 5.2: stesso modello, due livelli di accesso](articles/claude_fable_52_mythos_52_modelli.html) | Modelli AI | 5 min |
 | Novembre 2026 | [VS Code 1.145: agenti diversi nella stessa sessione di coding](articles/vscode_145_nested_agent_harnesses.html) | Strumenti di Sviluppo AI | 5 min |
